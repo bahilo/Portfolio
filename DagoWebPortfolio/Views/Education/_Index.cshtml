@@ -1,0 +1,125 @@
+﻿@model IEnumerable<DagoWebPortfolio.Models.EducationViewModel>
+@using DagoWebPortfolio.Models.CustomHelpers 
+@{
+    Layout = "";
+    ViewBag.Title = "EDUCATION";
+    var count = 0;
+}
+
+ <div class="education-home"> 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="title">
+                            <h1>@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="bg-4">
+        <div class="container">
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    
+                    @if (count % 2 == 0)
+                    {
+
+                        <div class="col-md-5 animated rotateInDownLeft">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+
+                                                    @if (item.link != null)
+                                                    {
+                                                        <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+
+                                                    }
+                                                    <div class="body-description"><span class="nb-year-title"></span> <span class="nb-year">@Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</span></div>
+                                                    @Html.DisplayHtml(item.Description)
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div><!--/panel-->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 img-layout">
+                            <!--/col<div class="wrapper"><center><h2>@Html.DisplayFor(modelItem => item.YearGraduate.Year)</h2></center></div>-->
+                            <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
+                        </div>
+
+                        
+                    }
+                    else
+                    {
+                        <div class="col-md-2 col-md-offset-5  img-layout">
+                            <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
+                        </div>
+                        <div class="col-md-5 animated rotateInDownRight">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+
+                                                    @if (item.link != null)
+                                                    {
+                                                        <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+
+                                                    }
+                                                    <div class="body-description"><span class="nb-year-title"></span> <span class="nb-year">@Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</span></div>
+                                                    @Html.DisplayHtml(item.Description)
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div><!--/panel-->
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="divider"></div>
+
+                count++;
+            }
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+
+@Scripts.Render("~/bundles/bootstrap")
+
+
+
+
+

@@ -1,0 +1,99 @@
+﻿@model DagoWebPortfolio.Models.PicturesViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>PicturesViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Education.SchoolName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Education.SchoolName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Experience.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Experience.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectDetail.Subject)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProjectDetail.Subject)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Skill.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Skill.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subject)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.path)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.path)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FileName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FileName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.link)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.link)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</div>

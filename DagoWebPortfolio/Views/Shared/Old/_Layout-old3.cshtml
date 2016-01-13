@@ -1,0 +1,156 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Portfolio</title>
+    @Styles.Render("~/Content/css")
+    
+
+</head>
+<body>
+
+   
+    <header class="header-home">
+
+
+        <div class="wrapper-portfolio">
+            <nav class="navbar navbar-transparent navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+
+                        @Html.ActionLink("Portfolio", "_Welcome", "Home", new { area = "" }, new { @class = "navbar-brand", @id = "brand" })
+                    </div><!-- /navbar-header -->
+                </div><!-- /container -->
+            </nav><!-- /nav -->
+        </div>
+
+        <div class="parent-container-home-title">
+            <div class="container-home-title">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-4 col-xs-offset-4">
+                            <img class="picture-home" alt="Me" src="~/Content/Images/photo_id1.jpg" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <h1 class="title"> I'm A C# Developer </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+
+        <div class="container-home-span">
+            <div class="container-home">
+                <div id="carousel-home" class="carousel slide" data-ride="carousel">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="~/Content/Images/Carousel/4-brasilia.jpg" alt="Lady-1">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="~/Content/Images/Carousel/New-York-City-Image.jpg" alt="Lady-2">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="~/Content/Images/Carousel/o-NEW-YORK-facebook.jpg" alt="Lady-2">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="~/Content/Images/Carousel/Singapour.jpg" alt="Lady-2">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="control">
+            <ul class="nav nav-tabs">
+
+                <li class="Skills active">
+                    @if (Request.IsAuthenticated)
+            { @Html.ActionLink("Skills", "Index", "Skills")}
+            else
+            { <a>Skills</a>}
+                </li>
+                <li class="Experiences">
+                    @if (Request.IsAuthenticated)
+                    { @Html.ActionLink("Experiences", "Index", "Experiences")}
+                    else
+                    { <a>Experiences</a>}
+                </li>
+                <li class="Projects">
+                    @if (Request.IsAuthenticated)
+                    { @Html.ActionLink("Projects", "Index", "Projects")}
+                    else
+                    { <a>Projects</a>}
+                </li>
+                <li class="Education">
+                    @if (Request.IsAuthenticated)
+                    { @Html.ActionLink("Education", "Index", "Education")}
+                    else
+                    { <a>Education</a>}
+                </li>
+                <li class="Contact">
+                    @if (Request.IsAuthenticated)
+                    { @Html.ActionLink("Contact", "Contact", "Home")}
+                    else
+                    { <a>Contact</a>}
+                </li>
+                <li class="About">
+                    @if (Request.IsAuthenticated)
+                    { @Html.ActionLink("About", "About", "Home")}
+                    else
+                    { <a>About</a>}
+                </li>
+
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="Levels">
+                        @Html.ActionLink("Levels", "Index", "Levels")
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+        @if (Request.IsAuthenticated)
+            {
+            @Html.Partial("_LoginPartial")
+        }
+    </header>
+
+
+
+        <div class="home-page container body-content">
+
+            @RenderBody()
+
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - eric.dago.225@gmail.com </p>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jqueryval")
+
+        @RenderSection("scripts", required: false)
+</body>
+</html>

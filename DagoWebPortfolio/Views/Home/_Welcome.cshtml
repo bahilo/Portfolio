@@ -1,0 +1,40 @@
+﻿@*@using MVCThemes.Extensions;*@
+@using DagoWebPortfolio.Models.CustomHelpers 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWelcomePage.cshtml";
+} 
+<div class="welcome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 vcenter-welcome-page">
+                <div class="jumbotron animated  rotateInUpLeft">
+                    <div class="intro">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <p class="picture"><img alt="Me" src="@ViewBag.WelcomePictureUrl" /></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                @Html.DisplayHtml((string)ViewBag.WelcomeZone1)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                @Html.DisplayHtml((string)ViewBag.WelcomeZone2)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <a href="/Home/Index">@Html.DisplayHtml((string)ViewBag.WelcomeZone3)</a>
+                            </div>
+                        </div>
+                        <!--<p class="home-link">@Html.ActionLink("Learn More", "Index", "Home")</p>-->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,211 @@
+﻿@model DagoWebPortfolio.Models.PicturesViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2>Details</h2>
+
+    <fieldset>
+        <legend class="clickable-picture">Picture</legend>
+        <table id="picture-detail" class="table table-hover">
+            <thead>
+            </thead>
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Subject)</td>
+                    <td>@Html.DisplayFor(model => model.Subject)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.FileName)</td>
+                    <td>@Html.DisplayFor(model => model.FileName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.path)</td>
+                    <td>@Html.DisplayFor(model => model.path)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.link)</td>
+                    <td>@Html.DisplayFor(model => model.link)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Description)</td>
+                    <td>@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+
+    @if (Model.Education != null)
+    {
+        <fieldset>
+            <legend class="clickable-education">Education</legend>
+            <table id="education-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Education.SchoolName)</td>
+                        <td>@Html.DisplayFor(model => model.Education.SchoolName)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Education.Pictures.Max().FileName)</td>
+                        <td>@Html.DisplayFor(model => model.Education.Pictures.Max().FileName)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Education.Pictures.Max().path)</td>
+                        <td>@Html.DisplayFor(model => model.Education.Pictures.Max().path)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Education.link)</td>
+                        <td>@Html.DisplayFor(model => model.Education.link)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Education.YearGraduate)</td>
+                        <td>@Html.DisplayFor(model => model.Education.YearGraduate)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+    @if (Model.ProjectDetail != null)
+    {
+        <fieldset>
+            <legend class="clickable-project">Project</legend>
+            <table id="project-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Subject)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Status)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Status)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Description)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Description)</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+
+    @if (Model.Experience != null)
+    {
+        <fieldset>
+            <legend class="clickable-experience">Experiences</legend>
+            <table id="experience-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Experience.Title)</td>
+                        <td>@Html.DisplayFor(model => model.Experience.Title)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Experience.StartDate)</td>
+                        <td>@Html.DisplayFor(model => model.Experience.StartDate)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Experience.EndDate)</td>
+                        <td>@Html.DisplayFor(model => model.Experience.EndDate)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Experience.Responsabilities)</td>
+                        <td>@Html.DisplayFor(model => model.Experience.Responsabilities)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+    @if (Model.Skill != null)
+    {
+        <fieldset>
+            <legend class="clickable-skill">Skill</legend>
+            <table id="skill-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Skill.Title)</td>
+                        <td>@Html.DisplayFor(model => model.Skill.Title)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Skill.LevelsViewModel.Level)</td>
+                        <td>@Html.DisplayFor(model => model.Skill.LevelsViewModel.Level)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Skill.CategoryViewModel.Title)</td>
+                        <td>@Html.DisplayFor(model => model.Skill.CategoryViewModel.Title)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Skill.Description)</td>
+                        <td>@Html.DisplayFor(model => model.Skill.Description)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#picture-detail').hide();
+        $('#education-detail').hide();
+        $('#project-detail').hide();
+        $('#experience-detail').hide();
+        $('#skill-detail').hide();
+
+        $('.clickable-picture').click(function () {
+            $('#picture-detail').toggle("slow");
+        });
+        $('.clickable-education').click(function () {
+            $('#education-detail').toggle("slow");
+        });
+        $('.clickable-project').click(function () {
+            $('#project-detail').toggle("slow");
+        });
+        $('.clickable-experience').click(function () {
+            $('#experience-detail').toggle("slow");
+        });
+        $('.clickable-skill').click(function () {
+            $('#skill-detail').toggle("slow");
+        });
+
+        /*$('.collapseDetail').on('show.bs.collapse', function () {
+            $('.collapseDetail.in').collapse('hide');
+        });*/
+
+    });
+
+</script>

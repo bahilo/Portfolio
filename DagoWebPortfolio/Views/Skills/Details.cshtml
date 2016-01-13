@@ -1,0 +1,110 @@
+﻿@model DagoWebPortfolio.Models.SkillsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2>Details</h2>
+
+
+
+    <fieldset>
+        <legend class="clickable-skill">Skill</legend>
+        <table id="skill-detail" class="table table-hover">
+            <thead>
+            </thead>
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Title)</td>
+                    <td>@Html.DisplayFor(model => model.Title)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Description)</td>
+                    <td>@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    @if (Model.CategoryViewModel != null)
+    {
+        <fieldset>
+            <legend class="clickable-category">Category</legend>
+            <table id="category-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.CategoryViewModel.Title)</td>
+                        <td>@Html.DisplayFor(model => model.CategoryViewModel.Title)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.CategoryViewModel.Description)</td>
+                        <td>@Html.DisplayFor(model => model.CategoryViewModel.Description)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+    @if (Model.LevelsViewModel != null)
+    {
+        <fieldset>
+            <legend class="clickable-level">Level</legend>
+            <table id="level-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.LevelsViewModel.Level)</td>
+                        <td>@Html.DisplayFor(model => model.LevelsViewModel.Level)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.LevelsViewModel.comments)</td>
+                        <td>@Html.DisplayFor(model => model.LevelsViewModel.comments)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#skill-detail').hide();
+        $('#category-detail').hide();
+        $('#level-detail').hide();
+
+        $('.clickable-skill').click(function () {
+            $('#skill-detail').toggle("slow");
+        });
+        $('.clickable-category').click(function () {
+            $('#category-detail').toggle("slow");
+        });
+        $('.clickable-level').click(function () {
+            $('#level-detail').toggle("slow");
+        });
+
+        /*$('.collapseDetail').on('show.bs.collapse', function () {
+            $('.collapseDetail.in').collapse('hide');
+        });*/
+
+    });
+
+</script>

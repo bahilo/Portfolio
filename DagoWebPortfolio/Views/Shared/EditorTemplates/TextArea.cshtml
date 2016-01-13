@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "TextArea";
+}
+
+@Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue,
+                new
+                {
+                    @class = "form-control",
+                    placeholder = ViewData.ModelMetadata.Watermark
+                                  ?? ViewData.ModelMetadata.DisplayName
+                                  ?? ViewData.ModelMetadata.PropertyName
+                })
+

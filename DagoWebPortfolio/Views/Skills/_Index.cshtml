@@ -1,0 +1,227 @@
+﻿@model IEnumerable<DagoWebPortfolio.Models.SkillsViewModel>
+
+@{
+        Layout = "";
+        ViewBag.Title = "SKILLS";
+
+    int count = 0;
+}
+@*
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+*@ 
+
+<div class="skills-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="title">
+                            <h1>@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+      
+
+        
+        <section class="bg-3">
+            <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Coding</h2></div>
+        </section>
+            <!--<div class="col-sm-10 col-sm-offset-1">
+                <h2>Coding</h2>
+                <div class="divider"></div>
+            </div>/col-->
+        
+        <section class="bg-4">
+            <div class="row coding">
+           @foreach (var item in Model)
+            {
+                if (item.CategoryViewModel.Title == "Coding")
+                {
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
+                                <div class="panel-body text-center">
+                                    <h2 class="title">@Html.DisplayFor(model => item.Title)</h2>
+                                    <p></p>
+                                </div>
+                            </div><!--/panel-->
+                        </div><!--/col-->
+
+
+                        <!--
+
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                @Html.DisplayFor(model => item.Title)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas>
+                                            </div>
+                                        </div>
+                                     </div>
+                                       -->
+                    }
+                    count++;
+                }
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+    <section class="bg-3">
+        <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Business</h2></div>
+    </section>
+
+
+        <div class="bg-4">
+            <div class="row business">
+                @foreach (var item in Model)
+            {
+                if (item.CategoryViewModel.Title == "Business")
+                {
+
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
+                                <div class="panel-body text-center">
+                                    <h2 class="title">@Html.DisplayFor(model => item.Title)</h2>
+                                    <p></p>
+                                </div>
+                            </div><!--/panel-->
+                        </div>
+
+
+                        <!--/col
+                                            <div class="col-md-4 col-sm-6 glyphicon-check">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @Html.DisplayFor(model => item.Title)
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @Html.DisplayFor(model => item.CategoryViewModel.Description)
+                                                    </div>
+                                                </div>
+                                            </div>
+                        -->
+                    }
+                    count++;
+                }
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+    <section class="bg-3">
+        <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Others</h2></div>
+    </section>
+       
+
+        <div class="bg-4">
+            <div class="row others">
+                @foreach (var item in Model)
+            {
+                if (item.CategoryViewModel.Title == "Others")
+                {
+
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
+                                <div class="panel-body text-center">
+                                    <h2 class="title">@Html.DisplayFor(model => item.Title)</h2>
+                                    <p></p>
+                                </div>
+                            </div><!--/panel-->
+                        </div>
+
+                <!--/col
+                        <div class="col-md-4 col-sm-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.DisplayFor(model => item.Title)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.DisplayFor(model => item.CategoryViewModel.Description)
+                                </div>
+                            </div>
+                        </div>
+-->
+                    }
+
+                }
+            </div>
+        </div>
+
+   
+</div>
+
+
+<div class="divider"></div>
+
+@Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var param = 0;
+            var value = 0;
+            var name = "";
+            var listColor = ['#33f5fe', '#E53238', '#7F677F', '#c1fc2f', '#88E000'];
+            $("canvas[id^=demo]").each(function () {                
+                value = $(this).attr("property");
+                name = $(this).attr("name");
+                param = value / 100;
+                $(this).waterbubble({
+
+                    // bubble size
+                    radius: 100,
+
+                    // border width
+                    lineWidth: undefined,
+
+                    // data to present
+                    data: param,
+
+                    // color of the water bubble
+                    waterColor: listColor[Math.floor(Math.random() * listColor.length)],//'rgba(25, 139, 201, 1)',
+
+                    // text color
+                    textColor: 'rgba(06, 85, 128, 0.8)',
+
+                    // custom font family
+                    font: '',
+
+                    // show wave
+                    wave: true,
+
+                    // custom text displayed inside the water bubble
+                    txt: value + "%",
+
+                    // enable water fill animation
+                    animation: true
+
+                });
+            });
+            
+            
+            
+            
+            //alert(param);
+            
+
+        });
+    </script>
+

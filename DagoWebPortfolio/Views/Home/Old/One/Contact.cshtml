@@ -1,0 +1,93 @@
+﻿@model DagoWebPortfolio.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "CONTACT";
+    Layout = "";
+}
+
+<div class="contact">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="title">
+                            <h1>@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <hr>
+
+            <div class="col-sm-9 col-sm-offset-1">
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <h1>Contact Me</h1>
+                    </div>
+                    <div class="col-xs-4">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "firstName", @class = "form-control", @placeholder = "" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xs-6">
+                        @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @id = "organization", @class = "form-control", @placeholder = "" } })
+                        @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-5">
+                        <!--<input type="text" class="form-control" name="email" placeholder="Email"><!---->
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "firstName", @class = "form-control", @placeholder = "" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xs-5">
+                        <!--<input type="text" class="form-control" name="phone" placeholder="Phone"><!---->
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @id = "firstName", @class = "form-control", @placeholder = "" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-10">
+                        <!--<textarea class="form-control" placeholder="Comments"></textarea><!---->
+                        @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @id = "firstName", @class = "form-control", @placeholder = "" } })
+                        @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-10">
+                        <button class="btn btn-default pull-right">Contact Us</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div><!--/row-->
+
+
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+
+
+<div class="divider"></div>

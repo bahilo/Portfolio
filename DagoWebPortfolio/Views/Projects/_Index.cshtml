@@ -1,0 +1,121 @@
+﻿@model IEnumerable<DagoWebPortfolio.Models.ProjectsViewModel>
+@using DagoWebPortfolio.Models.CustomHelpers 
+@{
+    Layout = "";
+    ViewBag.Title = "PROJECTS";
+    var count = 0;
+    var count2 = 0;
+}
+
+<div class="projects-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="title">
+                            <h1 class="text">@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section>
+        <div class="container">
+            <div class="row">
+             
+                    @foreach (var project in Model)
+                    { 
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-thumbnail">
+                                    <a href="#section[@count]" title="Renovations">
+
+                                        @if ( project.ProjectDetail.Pictures.Count() > 0 ) {
+                                            <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ToList().LastOrDefault().path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ToList().LastOrDefault().FileName)" class="img-responsive">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive">
+                                        }
+                                    </a>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <h2 class="title">@Html.DisplayFor(modelItem => project.Title)</h2>
+                                    <p></p>
+                                </div>
+                            </div><!--/panel-->
+                        </div><!--/col-->
+                        count++;
+                    }
+
+              
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <!--
+    <section class="bg-1">
+        <div class="col-sm-6 col-sm-offset-3 text-center"></div>
+    </section>
+-->
+
+            @foreach (var project in Model)
+            {
+                <div class="divider" id="section[@count2]"></div>
+                <section class="bg-3">
+                    <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">@Html.DisplayFor(modelItem => project.Title)</h2></div>
+                </section>
+                <section class="bg-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+
+                                <div class="row">
+                                    @foreach (var picture in project.ProjectDetail.Pictures)
+                                    {
+                                        <div class="col-md-12 img-layout">
+                                            <img src="@Html.DisplayFor(modelItem => picture.path)@Html.DisplayFor(modelItem => picture.FileName)" class="img-responsive"/>                                                
+                                        </div><!--/panel-->
+                                        
+                                    }
+                                </div>
+                                <div class="divider"></div>
+                            </div><!--/col-->
+                            <div class="col-md-4">
+                                <div class="project-title">
+                                    @if (project.link != null)
+                                    {
+                                        <h2 class="title"> <a target="_blank" href="@Html.DisplayFor(modelItem => project.link)"><span>@Html.DisplayFor(modelItem => project.Title)</span> - <span class="date">@Html.DisplayFor(modelItem => project.ProjectDetail.Date)</span></a></h2>
+
+                                    }
+                                    else
+                                    {
+                                        <h2 class="no-link title"><span>@Html.DisplayFor(modelItem => project.Title)</span> - <span class="date">@Html.DisplayFor(modelItem => project.ProjectDetail.Date)</span></h2>
+
+                                    }
+                                    
+                               </div><!--/panel-->
+                                <div class="description-body"></div><!--/panel-->
+                                     @Html.DisplayHtml(project.ProjectDetail.Description)
+                                
+                            </div><!--/col-->
+                        </div>
+                    </div>
+                </section>
+
+                count2++;
+            }
+
+    
+</div>
+
+<div class="divider"></div>
+
+
+
+

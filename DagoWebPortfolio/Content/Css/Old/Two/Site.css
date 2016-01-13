@@ -1,0 +1,230 @@
+﻿
+@font-face {
+    font-family: Alex-Brush;
+    src: url(/Content/Fonts/AlexBrush-Regular.ttf);
+}
+
+/*______________________________________________________________________________________________*/
+
+
+/*@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+  img {
+    width: 100px;
+    height: auto;
+  }
+}*/
+
+/*______________________________________________________________________________________________*/
+
+body {
+    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;
+    background-color:#15495D; 
+    color:#fff;
+    background-color: rgb(234,229,197);*/
+}
+
+.container {
+    margin: 0;
+    width: 100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 5px;
+    padding-right: 5px;
+    min-height: 600px;
+    /*background-image: url("/Content/Images/wet_snow.png");*/
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* ____________[ Home page ]*/
+
+.header-home {
+    /*border: 4px solid black; */
+    width: 100%;
+    /*position:relative;*/
+    padding: 0;
+    margin:0;
+}
+
+.header-home .container {
+    padding: 0;
+}
+    .header-home .control {
+        /*border: 2px solid red;*/
+        /*float: right;
+        margin-right: 50px;*/
+    }
+
+        .header-home .control .row .container  {
+            z-index: 1;
+            position: absolute;
+            /*border: 2px solid blue;*/
+            margin-top: 350px;
+        }
+
+    .header-home .control .navbar-header {
+        font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+        font-weight: 500;
+        /*background-color:#0D47A1;
+        border: 2px solid blue;*/
+        width: 100%;
+        /*background-image: url(/Content/Images/ciel-paris.PNG);*/
+    }
+
+
+
+    .header-home .navbar-brand {
+        z-index: 2;
+    }
+
+
+
+
+
+    /*-----------------------------------------------------------*/
+
+
+    .header-home #brand {
+        font-family: Montserrat;
+        color: white;
+        font-size: 20pt;
+        /*margin-top: 20px;
+        text-transform: uppercase;*/
+    }
+
+
+    .header-home .wrapper-portfolio .navbar {
+        z-index: 2;
+        border: none;
+        border-radius: 0;
+        background-color: rgba(0,162,232,0.5);/*rgba(0,0,0,0.5);*/
+        position: absolute; 
+        margin-top:2px;
+    }
+
+    .header-home .wrapper-control {
+        /*border: 2px solid red;*/
+    }
+
+    .header-home .container-home {
+        z-index: 99;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        margin: 0;
+        opacity: 0.6;
+        /*position: fixed;*/
+    }
+
+    .header-home .parent-container-home-title {
+        width: 100%;
+        z-index: 10;
+        /*border: 2px solid red; */
+        position: absolute;
+        margin-top: 50px;
+    }
+
+    .header-home .container-home-title .title {
+        /*border: 2px solid red;*/
+        font-family: Alex-Brush;
+        color: black;
+    }
+
+    .header-home .picture-home {
+        border-radius: 50%;
+        opacity: 0.7;
+        margin-left: 50px;
+    }
+
+/*-----------------------------------------------------------*/
+
+.container-home-slide {
+    /*border: 2px solid purple;*/
+
+}
+
+
+
+
+
+
+/* ____________[ Wlecome page ]*/
+.welcome {
+    margin-top: 15%;
+}
+
+.intro {
+    /*border:2px solid red;*/
+    padding-left: 100px;
+}
+
+    .intro .me {
+        /*border:2px solid blue;*/
+        padding-left: 10px;
+    }
+
+    .intro .welcome-intro {
+        /*border:2px solid purple;*/
+        padding-left: 55px;
+    }
+
+    .intro .home-link {
+        /*border:2px solid orange;*/
+        padding-left: 110px;
+    }
+
+.picture {
+    margin: 0px 100px 100px 70px;
+}
+
+    .picture img {
+        border-radius: 60px;
+        opacity: 0.7;
+    }
+
+
+.wlecome-page {
+    background-image: url("/Content/Images/f4769_paris night.jpg");
+    background-size: 100% 800px;
+    z-index: -1;
+    background-position: center bottom;
+}
+
+
+/* ____________[ Skills page ]*/
+
+.skills .row {
+    margin-top: 15px;
+}
+
+.skills .coding {
+    /*background-color:#15495D;
+    color:#fff;*/
+}
+
+
+
+/* ____________[ Skills page ]*/
+
+.experiences-home .background-setup {
+    /*border: 2px solid black;*/
+    background-image: url(/Content/Images/Arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}

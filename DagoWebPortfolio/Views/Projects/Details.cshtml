@@ -1,0 +1,95 @@
+﻿@model DagoWebPortfolio.Models.ProjectsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2>Details</h2>
+
+
+
+    <fieldset>
+        <legend class="clickable-project">Project</legend>
+        <table id="project-detail" class="table table-hover">
+            <thead>
+            </thead>
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Title)</td>
+                    <td>@Html.DisplayFor(model => model.Title)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.link)</td>
+                    <td>@Html.DisplayFor(model => model.link)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Resume)</td>
+                    <td>@Html.DisplayFor(model => model.Resume)</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    @if (Model.ProjectDetail != null)
+    {
+        <fieldset>
+            <legend class="clickable-more">More Informations</legend>
+            <table id="more-detail" class="table table-hover">
+                <thead>
+                </thead>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Subject)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Status)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Status)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Client)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Client)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Description)</td>
+                        <td>@Html.DisplayFor(model => model.ProjectDetail.Description)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    }
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#project-detail').hide();
+        $('#more-detail').hide();
+
+        $('.clickable-project').click(function () {
+            $('#project-detail').toggle("slow");
+        });
+        $('.clickable-more').click(function () {
+            $('#more-detail').toggle("slow");
+        });
+
+        /*$('.collapseDetail').on('show.bs.collapse', function () {
+            $('.collapseDetail.in').collapse('hide');
+        });*/
+
+    });
+
+</script>

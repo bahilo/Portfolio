@@ -1,0 +1,133 @@
+﻿@model DagoWebPortfolio.Models.DisplayViewModel.DisplayViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+<h2>Details</h2>
+
+<fieldset>
+    <legend class="clickable-welcome">Welcome Page</legend>
+        <table id="welcome-detail" class="table table-hover">
+            <thead>
+            </thead>
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.WelcomeView.Name)</td>
+                    <td>@Html.DisplayFor(model => model.WelcomeView.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.WelcomeView.FileName)</td>
+                    <td>@Html.DisplayFor(model => model.WelcomeView.FileName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.WelcomeView.Path)</td>
+                    <td>@Html.DisplayFor(model => model.WelcomeView.Path)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.WelcomeView.Zone1)</td>
+                    <td>@Html.DisplayFor(model => model.WelcomeView.Zone1)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.WelcomeView.Zone2)</td>
+                    <td>@Html.DisplayFor(model => model.WelcomeView.Zone2)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.WelcomeView.Zone3)</td>
+                    <td>@Html.DisplayFor(model => model.WelcomeView.Zone3)</td>
+                </tr>
+            </tbody>
+        </table>    
+</fieldset>
+
+<fieldset>
+    <legend class="clickable-about">About Page</legend>
+    <table id="about-detail" class="table table-hover">
+        <thead>
+        </thead>
+        <thead>
+        </thead>
+        <tbody>   
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.Name)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.Name)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.FileName)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.FileName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.Path)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.Path)</td>
+            </tr>            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.HeadZone1)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.HeadZone1)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.HeadZone2)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.HeadZone2)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.HeadZone3)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.HeadZone3)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.BodyZone1)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.BodyZone1)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.BodyZone2)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.BodyZone2)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.BodyZone3)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.BodyZone3)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.BodyZone4)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.BodyZone4)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.AboutView.BodyZone5)</td>
+                <td>@Html.DisplayFor(model => model.AboutView.BodyZone5)</td>
+            </tr>
+            
+        </tbody>
+    </table>  
+</fieldset>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        
+        $('#welcome-detail').hide();
+        $('#about-detail').hide();
+
+        $('.clickable-about').click(function () {
+            $('#about-detail').toggle("slow");
+        });
+
+        $('.clickable-welcome').click(function () {
+            $('#welcome-detail').toggle("slow");
+        });
+
+        /*$('.collapseDetail').on('show.bs.collapse', function () {
+            $('.collapseDetail.in').collapse('hide');
+        });*/
+
+    });
+
+</script>

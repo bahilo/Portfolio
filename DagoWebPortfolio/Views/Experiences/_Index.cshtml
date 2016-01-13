@@ -1,0 +1,151 @@
+﻿@model IEnumerable<DagoWebPortfolio.Models.ExperiencesViewModel> 
+@using DagoWebPortfolio.Models.CustomHelpers 
+    @{
+        Layout = "";
+        ViewBag.Title = "EXPERIENCES";
+        var count = 0;
+    }
+   
+ 
+<div class="experiences-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="title">
+                            <h1 class="text">@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="bg-4">
+
+        @foreach (var experience in Model)
+        {
+            <div class="row">
+
+                @if (count % 2 == 0)
+                {
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5 animated rotateInDownLeft">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (experience.Pictures.Count() > 0)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-12 img-layout">
+                                                    <img src="@Html.DisplayFor(modelItem => experience.Pictures.Max().path)@Html.DisplayFor(modelItem => experience.Pictures.Max().FileName)" class="img-responsive">
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+
+                                                        @if (experience.link != null)
+                                                        {
+                                                            <h2><span class="link title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h2>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.DisplayFor(model => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })</span></h2>
+
+                                                        }
+                                                        <div class="body-description">
+                                                            @Html.DisplayFor(modelItem => experience.Company)  @Html.DisplayFor(modelItem => experience.StartDate, new { @Value = experience.StartDate.ToString("dd-MMM-yyyy") }) / @Html.DisplayFor(modelItem => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })
+                                                        </div>
+                                                        @Html.DisplayHtml(experience.Responsabilities)
+                                                        <p></p>
+                                                    </div>
+                                                </div><!--/panel-->
+                                            </div>
+
+                                        </div>
+                                    </div><!--/col-->
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <!--<div class="col-xs-6 col-xs-pull-6 boxb">-->
+                                    <div class="wrapper"><center><h2>@Html.DisplayFor(modelItem => experience.EndDate.Year)</h2></center></div>
+                                           <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-5">
+                                <div class="wrapper"><center><h2>@Html.DisplayFor(modelItem => experience.EndDate.Year)</h2></center></div>
+                            </div>
+                            <div class="col-md-5 animated rotateInDownRight">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (experience.Pictures.Count() > 0)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-12 img-layout">
+                                                    <img src="@Html.DisplayFor(modelItem => experience.Pictures.Max().path)@Html.DisplayFor(modelItem => experience.Pictures.Max().FileName)" class="img-responsive">
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+
+                                                        @if (experience.link != null)
+                                                        {
+                                                            <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.DisplayFor(model => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })</a></span></h2>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.DisplayFor(model => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })</span></h2>
+
+                                                        }
+                                                        <div class="body-description">
+                                                            @Html.DisplayFor(modelItem => experience.Company) @Html.DisplayFor(modelItem => experience.StartDate , new { @Value = experience.StartDate.ToString("dd-MMM-yyyy") }) / @Html.DisplayFor(modelItem => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })
+                                                        </div>
+                                                        @*@Html.DisplayFor(modelItem => experience.Responsabilities)*@
+                                                        @Html.DisplayHtml(experience.Responsabilities)
+                                                        <p></p>
+                                                    </div>
+                                                </div><!--/panel-->
+                                            </div>
+
+                                        </div>
+                                    </div><!--/col-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+                        <div class="divider"></div>
+                        count++;
+                    }
+             
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="divider"></div>
+
+@Scripts.Render("~/bundles/bootstrap")

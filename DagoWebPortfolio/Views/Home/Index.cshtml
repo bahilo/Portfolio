@@ -1,0 +1,95 @@
+﻿@{
+
+    ViewBag.Title = "Home Page";
+
+}
+<!--
+<div class="ar"> < </div>
+<div class="av"> > </div>
+-->
+<div id="content-section">
+    <!--  Carousel - consult the Twitter Bootstrap docs at
+          http://twitter.github.com/bootstrap/javascript.html#carousel -->
+    <div id="this-carousel-id" class="carousel-home-body slide">
+        <!-- class of slide for animation -->
+        <div class="carousel-inner">
+            <div class="item">
+                <div id="page0">HERE PAGE 0</div>
+            </div>
+            <div class="item">
+                <div id="page1">HERE PAGE 1</div>
+            </div>
+            <div class="item">
+                <div id="page2">HERE PAGE 2</div>
+            </div>
+            <div class="item">
+                <div id="page3">HERE PAGE 3</div>
+            </div>
+            <div class="item">
+                <div id="page4">HERE PAGE 4</div>
+            </div>
+            <div class="item active">
+                <div id="page5">HERE PAGE 5</div>
+                <!--<div class="carousel-caption">
+                    <p></p>
+                </div>-->
+            </div>
+            <div class="item">
+                <div id="loading-pages">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 vcenter">
+                            <img class="ajax-loader" src="/Content/Images/ajax-loader.gif" />
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="item">
+                <div id="contact-confirm">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 alert alert-success  vcenter">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>Success!</strong> Your message has been sent successfully.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.carousel -->
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.carousel-home-body').carousel({ interval: false });
+        var obj = @Html.Raw(ViewBag.Object);
+        if ( obj == true ) {
+            $('.carousel-home-body').carousel(7);
+        }else{
+            var loding = $("#loading-pages").html();
+            $('#page5').html(loding);
+            $.ajax({
+                type: "POST",
+                url: "/Home/About",
+                datatype: "html",
+                success: function (data) {
+                    $('#page5').html(data);
+                }
+
+            });
+        }
+
+        $('.alert .close').click(function(){
+            $(location).attr('href', '/Home/Index');
+        });
+
+
+
+    });
+
+</script>
+

@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Portfolio</title>   
+    <link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+    <!--@Styles.Render("~/Content/css")-->
+    <link href="/Content/Css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/Css/animate.css">
+</head>
+<body>
+
+    <div class="welcome-page">
+        @RenderBody()        
+    </div>
+
+   
+    
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="/Content/Scripts/bootstrap.min.js"></script>
+    <script src="/Content/Scripts/Site.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

@@ -1,0 +1,39 @@
+﻿@model DagoWebPortfolio.Models.ProjectDetailsViewModel
+
+<p>
+    @Html.HiddenFor(model => Model.ID)
+
+     
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(model => Model.Status)
+        </div>
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => Model.Status, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(model => Model.Client)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => Model.Client, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(model => Model.Date)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => Model.Date, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(model => Model.Description)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => Model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+</p>

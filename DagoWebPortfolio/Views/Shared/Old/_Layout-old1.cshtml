@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Portfolio</title>
+    @Styles.Render("~/Content/css")
+    
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Portfolio", "_Welcome", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li class="Skills">@if (Request.IsAuthenticated) { @Html.ActionLink("Skills", "Index", "Skills")}else { <a>Skills</a>}</li>
+                    <li class="Experiences">@if (Request.IsAuthenticated) { @Html.ActionLink("Experiences", "Index", "Experiences")}else { <a>Experiences</a>}</li>
+                    <li class="Projects">@if (Request.IsAuthenticated) { @Html.ActionLink("Projects", "Index", "Projects")}else { <a>Projects</a>}</li>
+                    <li class="Education">@if (Request.IsAuthenticated) { @Html.ActionLink("Education", "Index", "Education")}else { <a>Education</a>}</li>
+                    <li class="Contact">@if (Request.IsAuthenticated) { @Html.ActionLink("Contact", "Contact", "Home")}else { <a>Contact</a>}</li>
+                    <li class="About">@if (Request.IsAuthenticated) { @Html.ActionLink("About", "About", "Home")}else { <a>About</a>}</li>
+                
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <ul class="pagination">
+
+        <li class="Skills">@if (Request.IsAuthenticated)
+        { @Html.ActionLink("Skills", "Index", "Skills")}
+        else
+        { <a>Skills</a>}</li>
+        <li class="Experiences">@if (Request.IsAuthenticated)
+        { @Html.ActionLink("Experiences", "Index", "Experiences")}
+        else
+        { <a>Experiences</a>}</li>
+        <li class="Projects">@if (Request.IsAuthenticated)
+        { @Html.ActionLink("Projects", "Index", "Projects")}
+        else
+        { <a>Projects</a>}</li>
+        <li class="Education">@if (Request.IsAuthenticated)
+        { @Html.ActionLink("Education", "Index", "Education")}
+        else
+        { <a>Education</a>}</li>
+        <li class="Contact">@if (Request.IsAuthenticated)
+        { @Html.ActionLink("Contact", "Contact", "Home")}
+        else
+        { <a>Contact</a>}</li>
+        <li class="About">@if (Request.IsAuthenticated)
+        { @Html.ActionLink("About", "About", "Home")}
+        else
+        { <a>About</a>}</li>
+
+    </ul>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - eric.dago.225@gmail.com </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

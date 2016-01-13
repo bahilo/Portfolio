@@ -1,0 +1,19 @@
+﻿@model DagoWebPortfolio.Models.SkillsCategoryViewModel
+
+<p>    
+    <div class="form-group">
+        @Html.LabelFor(model => Model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => Model.Title, new SelectList(new string[] { "Coding", "Business", "Other" }), Model.Title ?? "-- Select Category --", new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.se(model => model.CategoryViewModel.Title, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => Model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => Model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => Model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => Model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</p>

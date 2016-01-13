@@ -1,0 +1,28 @@
+﻿@model DagoWebPortfolio.Models.ExperiencesViewModel
+
+
+<p>
+    @Html.HiddenFor(model => Model.ID)
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <input type="checkbox" name="selectedExperiencesID" value="@Model.ID" />
+        </div>          
+        <div class="col-md-10">
+            @Model.Title
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => Model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => Model.Company, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => Model.Company, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => Model.Responsabilities, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => Model.Responsabilities, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => Model.Responsabilities, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</p>

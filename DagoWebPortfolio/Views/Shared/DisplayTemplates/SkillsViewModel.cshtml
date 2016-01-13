@@ -1,0 +1,38 @@
+﻿@model DagoWebPortfolio.Models.SkillsViewModel
+
+ @{
+     var project = Model.Projects.Where(x => x.ID == ViewBag.ProjectID).DefaultIfEmpty().Single();
+     var isCondOnViewBagPrj = Model.Projects.Count() != 0 && ViewBag.ProjectID != null;
+
+     var experience = Model.Experiences.Where(x => x.ID == ViewBag.ExperienceID).DefaultIfEmpty().Single();
+     var isCondOnViewBagExp = Model.Experiences.Count() != 0 && ViewBag.ExperienceID != null;
+}
+
+<p>
+    @Html.HiddenFor(model => Model.ID)
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+
+            @if (project != null && isCondOnViewBagPrj && ViewBag.ProjectID == project.ID)
+            {
+                <input type="hidden" name="listSkillOfProjectsId" value="@Model.ID" />
+                <input type="checkbox" name="isSkillSelected" value="true-@Model.ID" checked />
+
+            }
+            else if (experience != null && isCondOnViewBagExp && ViewBag.ExperienceID == experience.ID)
+            {
+                <input type="hidden" name="listSkillOfExperiencesId" value="@Model.ID" />
+                <input type="checkbox" name="isSkillSelected" value="true-@Model.ID" checked />
+            }
+            else
+            {
+                <input type="checkbox" name="isSkillSelected" value="true-@Model.ID" />
+            }
+
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => Model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+</p>
