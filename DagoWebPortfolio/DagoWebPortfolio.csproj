@@ -197,6 +197,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AnalyticService.cs" />
+    <Compile Include="Infrastructure\CustomControllerFactory.cs" />
+    <Compile Include="Infrastructure\ProjectsRepository.cs" />
+    <Compile Include="Interfaces\IAnalyticService.cs" />
+    <Compile Include="Interfaces\IProjectsRepository.cs" />
     <Compile Include="Migrations\201511070928162_InitialCreate.cs" />
     <Compile Include="Migrations\201511070928162_InitialCreate.Designer.cs">
       <DependentUpon>201511070928162_InitialCreate.cs</DependentUpon>
@@ -224,6 +229,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-DagoWebPortfolio-20151104125639.mdf" />
+    <Content Include="App_Data\aspnet-DagoWebPortfolio-20151104125639_log.ldf">
+      <DependentUpon>aspnet-DagoWebPortfolio-20151104125639.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\Bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\Bootstrap\css\bootstrap.css" />
@@ -488,7 +497,6 @@
     <Content Include="Views\Shared\DisplayTemplates\SkillsViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="App_Start\Old\" />
     <Folder Include="Content\Images\Skills\" />
     <Folder Include="Content\Images\Welcome\" />

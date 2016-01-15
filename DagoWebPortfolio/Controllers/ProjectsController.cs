@@ -9,13 +9,20 @@ using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
 using DagoWebPortfolio.Models.DisplayViewModel;
+using DagoWebPortfolio.Interfaces;
 
 namespace DagoWebPortfolio.Controllers 
 {
     [Authorize]
     public class ProjectsController : Controller
     {
+        private IProjectsRepository ProjectRepository;
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
+
+        public ProjectsController(IProjectsRepository rep)
+        {
+            ProjectRepository = rep;
+        }
 
         public ActionResult Index()
         {
@@ -26,7 +33,7 @@ namespace DagoWebPortfolio.Controllers
         [AllowAnonymous]
         public ActionResult _Index()
         {
-            var skills = db.Skills.Include("Projects").Include("LevelsViewModel").Include("CategoryViewModel").ToList();
+            var skills = db.Skills.ToList();
             populateProjectsWithProjectdetails(skills);
             populateProjectsWithPicture(skills);
             return View(getProjectsOrderByDate(skills));

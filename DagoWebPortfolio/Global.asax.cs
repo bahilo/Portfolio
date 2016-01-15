@@ -1,4 +1,5 @@
 ﻿using DagoWebPorfolio;
+using DagoWebPortfolio.Infrastructure;
 using DagoWebPortfolio.Models;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace DagoWebPortfolio
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            initialize();
+        }
+
+        private void initialize()
+        {
+            ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
         }
     }
 }
