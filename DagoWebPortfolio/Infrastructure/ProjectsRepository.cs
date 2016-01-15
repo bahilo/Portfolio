@@ -17,8 +17,15 @@ namespace DagoWebPortfolio.Infrastructure
         {
             db = dbContext;
         }
-        
 
+        //---------------------------------------------------------------------------------------
+        //                          Populate project
+        //---------------------------------------------------------------------------------------
+        
+        /// <summary>
+        /// Populate project with the attached detail
+        /// </summary>
+        /// <param name="skills"></param>
         public void populateProjectsWithProjectdetails(List<SkillsViewModel> skills)
         {
             foreach (var skill in skills)
@@ -30,6 +37,10 @@ namespace DagoWebPortfolio.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Polulate project with the attached pictures
+        /// </summary>
+        /// <param name="skills"></param>
         public void populateProjectsWithPicture(List<SkillsViewModel> skills)
         {
             foreach (var skill in skills)
@@ -41,6 +52,19 @@ namespace DagoWebPortfolio.Infrastructure
             }
         }
 
+
+
+        //---------------------------------------------------------------------------------------
+        //                          Update project
+        //---------------------------------------------------------------------------------------
+
+
+        /// <summary>
+        /// Update project in database
+        /// </summary>
+        /// <param name="project"></param>
+        /// <param name="listSkillOfProjectsId"></param>
+        /// <param name="isSkillSelected"></param>
         public void addOrUpdateSkillWithObjects(ProjectsViewModel project, IEnumerable<string> listSkillOfProjectsId, IEnumerable<string> isSkillSelected)
         {
             // Project Skills handling
@@ -80,6 +104,42 @@ namespace DagoWebPortfolio.Infrastructure
         }
 
 
+        /// <summary>
+        /// Save project from form into database 
+        /// </summary>
+        /// <param name="formDataDictionary"></param>
+        /// <param name="outputProjectModel"></param>
+        public void populateDBWithDataFromForm(Dictionary<string, object> formDataDictionary, ProjectsViewModel outputProjectModel)
+        {
+            var id = Int32.Parse((string)formDataDictionary["projectDetailID"]);
+
+            addOrUpdateSkillWithObjects(((ProjectsViewModel)formDataDictionary["projectsViewModel"]), (IEnumerable<string>)formDataDictionary["listSkillOfProjectsId"], (IEnumerable<string>)formDataDictionary["isSkillSelected"]);
+
+            outputProjectModel.link = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).link;
+            outputProjectModel.Resume = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Resume;
+            outputProjectModel.Title = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Title;
+            outputProjectModel.Skills = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Skills;
+
+            ProjectDetailsViewModel newProjectDetail = new ProjectDetailsViewModel();
+            newProjectDetail.Subject = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Subject;
+            newProjectDetail.Status = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Status;
+            newProjectDetail.Description = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Description;
+            newProjectDetail.Date = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Date;
+            newProjectDetail.Client = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Client;
+
+            outputProjectModel.ProjectDetail = newProjectDetail;
+
+        }
+
+        //---------------------------------------------------------------------------------------
+        //                          Delete project
+        //---------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Delete project
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Server"></param>
         public void deleteProject(int id, HttpServerUtilityBase Server)
         {
             var projectsViewModelWithIncludes = db.Projects.Include("ProjectDetail");
@@ -116,6 +176,11 @@ namespace DagoWebPortfolio.Infrastructure
         }
 
 
+        /// <summary>
+        /// Delete project picture
+        /// </summary>
+        /// <param name="picture"></param>
+        /// <param name="Server"></param>
         public void deletePicture(PicturesViewModel picture, HttpServerUtilityBase Server)
         {
             if (picture != null)
@@ -138,6 +203,11 @@ namespace DagoWebPortfolio.Infrastructure
         }
 
 
+        /// <summary>
+        /// Order project by date 
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
         public IEnumerable<ProjectsViewModel> getProjectsOrderByDate(List<SkillsViewModel> skills)
         {
             var projectsListFromSkills = (from e in (from d in skills select d.Projects.OrderBy(x => x.ProjectDetail.Date)).Distinct() select e).ToList();
@@ -156,60 +226,7 @@ namespace DagoWebPortfolio.Infrastructure
             var projectsListFinalDistict = projectsListFinal.Distinct().Reverse().ToList();
 
             return projectsListFinalDistict;
-        }
-
-
-        public void populateDBWithDataFromForm(ProjectsViewModel projectsViewModel, string projectDetailID, IEnumerable<string> listSkillOfProjectsId, IEnumerable<string> isSkillSelected)
-        {
-            var id = Int32.Parse(projectDetailID);
-            var origineParentDetail = db.DetailsProject.First(x => x.ID == id);
-            origineParentDetail.Subject = projectsViewModel.ProjectDetail.Subject;
-            origineParentDetail.Status = projectsViewModel.ProjectDetail.Status;
-            origineParentDetail.Description = projectsViewModel.ProjectDetail.Description;
-            origineParentDetail.Date = projectsViewModel.ProjectDetail.Date;
-            projectsViewModel.ProjectDetail = origineParentDetail;
-
-            addOrUpdateSkillWithObjects(projectsViewModel, listSkillOfProjectsId, isSkillSelected);
-            
-            var origineProject = db.Projects.Where(x => x.ID == projectsViewModel.ID).Include("ProjectDetail").DefaultIfEmpty().Single();
-            
-            
-            //try
-            //{
-            //    origineProject.ProjectDetail = projectsViewModel.ProjectDetail;
-            //    origineProject.link = projectsViewModel.link;
-            //    origineProject.Resume = projectsViewModel.Resume;
-            //    origineProject.Title = projectsViewModel.Title;
-            //    origineProject.Skills = projectsViewModel.Skills;
-
-            //    db.Entry(origineProject).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //}
-            //catch (DbEntityValidationException dbEx)
-            //{
-            //    Exception raise = dbEx;
-            //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-            //    {
-            //        foreach (var validationError in validationErrors.ValidationErrors)
-            //        {
-            //            string message = string.Format("Property: {0} Error: {1}",
-            //                                    validationError.PropertyName,
-            //                                    validationError.ErrorMessage);
-            //            raise = new InvalidOperationException(message, raise);
-            //        }
-            //    }
-
-            //    throw raise;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
-
-        }
-
-
-
+        }      
 
 
     }

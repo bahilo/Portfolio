@@ -15,9 +15,10 @@ namespace DagoWebPortfolio.Interfaces
         void populateProjectsWithPicture(List<SkillsViewModel> skills);
         IEnumerable<ProjectsViewModel> getProjectsOrderByDate(List<SkillsViewModel> skills);
         void setContext(DBModelPortfolioContext dbContext);
-        void populateDBWithDataFromForm(ProjectsViewModel projectsViewModel, string projectDetailID, IEnumerable<string> listSkillOfProjectsId, IEnumerable<string> isSkillSelected);
+        void populateDBWithDataFromForm(Dictionary<string, object> formDataDictionary, ProjectsViewModel outputProjectModel);
         void deletePicture(PicturesViewModel picture, HttpServerUtilityBase Server);
         void deleteProject(int id, HttpServerUtilityBase Server);
         void addOrUpdateSkillWithObjects(ProjectsViewModel project, IEnumerable<string> listSkillOfProjectsId, IEnumerable<string> isSkillSelected);
+        
     }
 }
