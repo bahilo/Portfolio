@@ -33,7 +33,7 @@
                         <div class="col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-thumbnail">
-                                    <a href="#section[@count]" title="Renovations">
+                                    <a href="#section[@count]" title="@Html.DisplayFor(modelItem => project.Title)">
 
                                         @if ( project.ProjectDetail.Pictures.Count() > 0 ) {
                                             <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ToList().LastOrDefault().path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ToList().LastOrDefault().FileName)" class="img-responsive">
@@ -95,7 +95,7 @@
                                     }
                                     else
                                     {
-                                        <h2 class="no-link title"><span>@Html.DisplayFor(modelItem => project.Title)</span>  <span class="date">@Html.DisplayFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</span></h2>
+                                        <h2 class="no-link title">@Html.DisplayFor(modelItem => project.Title) @Html.DisplayFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</h2>
 
                                     }
                                     
