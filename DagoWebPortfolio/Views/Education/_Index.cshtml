@@ -10,6 +10,13 @@
     _glyphicons[2] = "glyphicon-floppy-disk";
     _glyphicons[3] = "glyphicon-thumbs-up";
 
+    string[] colors = new string[5];
+    colors[0] = "rgba(229,225,206,.6)";
+    colors[1] = "rgba(84,140,191,.6)";
+    colors[2] = "rgba(237,28,36,.6)";
+    colors[3] = "rgba(34,177,76,.6)";
+    colors[4] = "rgba(195,195,195,.6)";
+
     var rd = new Random();
 }
 
@@ -42,7 +49,7 @@
                                 if (count % 2 == 0)
                                 {
                                     <li>
-                                        <div class="timeline-badge"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                        <div class="timeline-badge" style="background-color: @colors[rd.Next(0, 4)];"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
                                         <div class="timeline-panel animated rotateInDownLeft">
 
                                             <div class="row">
@@ -76,7 +83,7 @@
                                 else
                                 {
                                     <li class="timeline-inverted">
-                                        <div class="timeline-badge"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                        <div class="timeline-badge" style="background-color: @colors[rd.Next(0, 4)];"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
                                         <div class="timeline-panel animated rotateInDownRight">
 
                                             <div class="row">

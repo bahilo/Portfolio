@@ -4,7 +4,18 @@
     Layout = "";
     ViewBag.Title = "EXPERIENCES";
     var count = 0;
+
+    string[] colors = new string[5];
+    colors[0] = "rgba(229,225,206,.6)";
+    colors[1] = "rgba(84,140,191,.6)";
+    colors[2] = "rgba(237,28,36,.6)";
+    colors[3] = "rgba(34,177,76,.6)";
+    colors[4] = "rgba(195,195,195,.6)";
+
+    var rd = new Random();
 }
+
+
 
 
 <div class="experiences-home">
@@ -35,7 +46,7 @@
                                 if (count % 2 == 0)
                                 {
                                     <li>
-                                        <div class="timeline-badge">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                        <div class="timeline-badge" style="background-color: @colors[rd.Next(0, 4)];">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownLeft">
 
 
@@ -78,7 +89,7 @@
                                 else
                                 {
                                     <li class="timeline-inverted">
-                                        <div class="timeline-badge">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                        <div class="timeline-badge" style="background-color: @colors[rd.Next(0, 4)];">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownRight">
 
 
