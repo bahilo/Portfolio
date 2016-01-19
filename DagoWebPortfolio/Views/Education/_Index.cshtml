@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<DagoWebPortfolio.Models.EducationViewModel>
-@using DagoWebPortfolio.Models.CustomHelpers 
+@using DagoWebPortfolio.Models.CustomHelpers
 @{
     Layout = "";
     ViewBag.Title = "EDUCATION";
     var count = 0;
+    string[] _glyphicons = new string[4];
+    _glyphicons[0] = "glyphicon-check";
+    _glyphicons[1] = "glyphicon-credit-card";
+    _glyphicons[2] = "glyphicon-floppy-disk";
+    _glyphicons[3] = "glyphicon-thumbs-up";
+
+    var rd = new Random();
 }
 
- <div class="education-home"> 
+<div class="education-home">
 
     <div class="container">
         <div class="row">
@@ -24,95 +31,97 @@
 
     <div class="divider"></div>
 
-    <div class="bg-4">
-        <div class="container">
-            @foreach (var item in Model)
-            {
-                <div class="row">
-                    
-                    @if (count % 2 == 0)
-                    {
+    <div class="col-md-12 top-20 padding-0">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <ul class="timeline">
+                            @foreach (var item in Model)
+                            {
+                                if (count % 2 == 0)
+                                {
+                                    <li>
+                                        <div class="timeline-badge"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                        <div class="timeline-panel animated rotateInDownLeft">
 
-                        <div class="col-md-5 animated rotateInDownLeft">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12 img-layout">
+                                                    <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
+                                                </div>
+                                            </div>
 
-                                                    @if (item.link != null)
-                                                    {
-                                                        <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
-                                                    }
-                                                    else
-                                                    {
-                                                        <h2><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="timeline-heading">
 
-                                                    }
-                                                    <div class="body-description"><span class="nb-year-title"></span> <span class="nb-year">@Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</span></div>
-                                                    @Html.DisplayHtml(item.Description)
-                                                    
+                                                        @if (item.link != null)
+                                                        {
+                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+
+                                                        }
+
+                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
+                                                        <p>@Html.DisplayHtml(item.Description)</p>
+                                                    </div><!--/panel-->
                                                 </div>
                                             </div>
                                         </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                        <div class="timeline-panel animated rotateInDownRight">
 
-                                    </div><!--/panel-->
-                                </div>
+                                            <div class="row">
+                                                <div class="col-md-12 img-layout">
+                                                    <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
+                                                </div>
+                                            </div>
 
-                            </div>
-                        </div>
-                        <div class="col-md-2 img-layout">
-                            <!--/col<div class="wrapper"><center><h2>@Html.DisplayFor(modelItem => item.YearGraduate.Year)</h2></center></div>-->
-                            <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
-                        </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="timeline-heading">
 
-                        
-                    }
-                    else
-                    {
-                        <div class="col-md-2 col-md-offset-5  img-layout">
-                            <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
-                        </div>
-                        <div class="col-md-5 animated rotateInDownRight">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-body">
+                                                        @if (item.link != null)
+                                                        {
+                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
 
-                                                    @if (item.link != null)
-                                                    {
-                                                        <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
-                                                    }
-                                                    else
-                                                    {
-                                                        <h2><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+                                                        }
 
-                                                    }
-                                                    <div class="body-description"><span class="nb-year-title"></span> <span class="nb-year">@Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</span></div>
-                                                    @Html.DisplayHtml(item.Description)
-
+                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
+                                                        <p>@Html.DisplayHtml(item.Description)</p>
+                                                    </div><!--/panel-->
                                                 </div>
                                             </div>
                                         </div>
+                                    </li>
+                                }
 
-                                    </div><!--/panel-->
-                                </div>
 
-                            </div>
-                        </div>
-                    }
+                                <div class="divider"></div>
+
+                                count++;
+                            }
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="divider"></div>
-
-                count++;
-            }
+            </div>
         </div>
     </div>
 </div>
+
+
 
 <div class="divider"></div>
 
