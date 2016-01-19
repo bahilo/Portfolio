@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNet.Identity
+@using DagoWebPortfolio.Models
+@using DagoWebPortfolio.Models.CustomHelpers
+@{
+    ViewBag.Title = "E. DAGO - PORTFOLIO";
+    ViewBag.AboutHeadZone1 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone1 : "Head Zone 1";
+    ViewBag.AboutHeadZone2 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone2 : "Head Zone 2";
+    ViewBag.AboutHeadZone3 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone3 : "Head Zone 3";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Bootstrap CSS -->
+    @*<link href="~/Content/AdminTheme/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="~/Content/AdminTheme/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="~/Content/AdminTheme/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content/AdminTheme/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="~/Content/AdminTheme/css/style.css" rel="stylesheet">
+    <link href="~/Content/AdminTheme/css/style-responsive.css" rel="stylesheet" />*@
+
+    @Styles.Render("~/bundles/Admin/css")
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--<link href="/Content/Css/styles.css" rel="stylesheet" />-->
+    <script src="//use.edgefonts.net/aguafina-script;playball.js"></script>
+    @*@Styles.Render("~/Content/css")*@
+</head>
+<body class="login-img3-body">
+
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jqueryval")
+        <!-- script references
+        <script src="/Content/Scripts/bootstrap.min.js"></script>-->
+        <script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+            <script src="/Content/Scripts/scripts.js"></script>
+        -->
+        <script>
+          tinymce.init({
+              selector: 'textarea',
+              plugin: 'a_tinymce_plugin',
+              a_plugin_option: true,
+              a_configuration_option: 400
+          });
+        </script>*@
+
+    @RenderSection("scripts", required: false)
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

@@ -56,11 +56,11 @@
                                                         }
                                                         else
                                                         {
-                                                            <h2><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.DisplayFor(model => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })</span></h2>
+                                                            <h2><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.DisplayFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h2>
 
                                                         }
                                                         <div class="body-description">
-                                                            @Html.DisplayFor(modelItem => experience.Company)  @Html.DisplayFor(modelItem => experience.StartDate, new { @Value = experience.StartDate.ToString("dd-MMM-yyyy") }) / @Html.DisplayFor(modelItem => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })
+                                                            @Html.DisplayFor(modelItem => experience.Company)  @Html.DisplayFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.DisplayFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}")
                                                         </div>
                                                         @Html.DisplayHtml(experience.Responsabilities)
                                                         <p></p>
@@ -106,15 +106,15 @@
 
                                                         @if (experience.link != null)
                                                         {
-                                                            <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.DisplayFor(model => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })</a></span></h2>
+                                                            <h2><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.DisplayFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h2>
                                                         }
                                                         else
                                                         {
-                                                            <h2><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.DisplayFor(model => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })</span></h2>
+                                                            <h2><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.DisplayFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h2>
 
                                                         }
                                                         <div class="body-description">
-                                                            @Html.DisplayFor(modelItem => experience.Company) @Html.DisplayFor(modelItem => experience.StartDate , new { @Value = experience.StartDate.ToString("dd-MMM-yyyy") }) / @Html.DisplayFor(modelItem => experience.EndDate, new { @Value = experience.EndDate.ToString("dd-MMM-yyyy") })
+                                                            @Html.DisplayFor(modelItem => experience.Company) @Html.DisplayFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.DisplayFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}")
                                                         </div>
                                                         @*@Html.DisplayFor(modelItem => experience.Responsabilities)*@
                                                         @Html.DisplayHtml(experience.Responsabilities)

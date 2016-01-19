@@ -21,7 +21,7 @@ namespace DagoWebPorfolio
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Content/Bootstrap/js/bootstrap.js",
+                      "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Content/Scripts/Carousel.js",
                       "~/Content/Scripts/Site.js",
@@ -30,11 +30,18 @@ namespace DagoWebPorfolio
                       ));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      //"~/Content/Css/bootstrap.css",
-                      "~/Content/Bootstrap/css/bootstrap.css",
+            bundles.Add(new StyleBundle("~/bundles/Content/css").Include(
+                      "~/Content/Css/bootstrap.css",
                       "~/Content/Css/animate.css",
                       "~/Content/Css/styles.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/Admin/css").Include(
+                      "~/Content/Css/bootstrap.css",
+                      "~/Content/AdminTheme/css/bootstrap-theme.css",
+                      "~/Content/AdminTheme/css/elegant-icons-style.css",
+                      "~/Content/AdminTheme/css/font-awesome.css",
+                      "~/Content/AdminTheme/css/style.css",
+                      "~/Content/AdminTheme/css/style-responsive.css"));
         }
     }
 }

@@ -233,15 +233,16 @@
     <Content Include="App_Data\aspnet-DagoWebPortfolio-20151104125639_log.ldf">
       <DependentUpon>aspnet-DagoWebPortfolio-20151104125639.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\Bootstrap\css\bootstrap-theme.css" />
-    <Content Include="Content\Bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="Content\Bootstrap\css\bootstrap.css" />
-    <Content Include="Content\Bootstrap\css\bootstrap.min.css" />
-    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Bootstrap\js\bootstrap.js" />
-    <Content Include="Content\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\AdminTheme\css\bootstrap-theme.css" />
+    <Content Include="Content\AdminTheme\css\bootstrap.min.css" />
+    <Content Include="Content\AdminTheme\css\elegant-icons-style.css" />
+    <Content Include="Content\AdminTheme\css\font-awesome.css" />
+    <Content Include="Content\AdminTheme\css\style-responsive.css" />
+    <Content Include="Content\AdminTheme\css\style.css" />
     <Content Include="Content\Css\animate.css" />
+    <Content Include="Content\Css\bootstrap.css" />
     <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Css\AdminStyles.css" />
     <Content Include="Content\Css\styles.css" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Fonts\KaushanScript-Regular.otf" />
@@ -355,14 +356,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Fonts\AlexBrush-Regular.ttf" />
     <Content Include="Content\Fonts\Quicksand-Light.otf" />
-    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\Bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="Content\Bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="Content\Bootstrap\css\bootstrap.css.map" />
-    <Content Include="Content\Bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.woff" />
@@ -430,7 +423,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ExperiencesViewModel.cshtml" />
-    <Content Include="Views\Shared\_LayoutWelcomePage.cshtml" />
+    <Content Include="Views\Shared\_WelcomePageLayout.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ProjectsViewModel.cshtml" />
     <Content Include="Views\Home\_Welcome.cshtml" />
     <Content Include="Views\Skills\Old\One\Create-old0.cshtml" />
@@ -495,9 +488,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SkillsViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SkillsViewModel.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\Old\" />
+    <Folder Include="Content\AdminTheme\assets\" />
+    <Folder Include="Content\AdminTheme\fonts\" />
+    <Folder Include="Content\AdminTheme\img\" />
+    <Folder Include="Content\AdminTheme\js\" />
     <Folder Include="Content\Images\Skills\" />
     <Folder Include="Content\Images\Welcome\" />
     <Folder Include="Views\Skills\Old\Two\" />

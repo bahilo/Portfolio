@@ -1,5 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="../content/bootstrap/js/bootstrap.js" />
 /// <reference path="../content/modules/tinymce/js/tinymce/plugins/advlist/plugin.min.js" />
 /// <reference path="../content/modules/tinymce/js/tinymce/plugins/anchor/plugin.min.js" />
 /// <reference path="../content/modules/tinymce/js/tinymce/plugins/autolink/plugin.min.js" />
