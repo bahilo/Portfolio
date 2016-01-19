@@ -31,7 +31,7 @@ namespace DagoWebPorfolio
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                       "~/Content/AdminTheme/js/jquery.js",
-                      "~/Scripts/bootstrap.js",
+                      "~/Content/AdminTheme/js/bootstrap.js",
                       "~/Content/AdminTheme/js/jquery.scrollTo.min.js",
                       "~/Content/AdminTheme/js/jquery.nicescroll.js",
                       "~/Content/AdminTheme/js/gritter.js",
@@ -44,7 +44,7 @@ namespace DagoWebPorfolio
                       "~/Content/Css/styles.css"));
 
             bundles.Add(new StyleBundle("~/bundles/admin/css").Include(
-                      "~/Content/AdminTheme/css/Css/bootstrap.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/AdminTheme/css/bootstrap-theme.css",
                       "~/Content/AdminTheme/css/elegant-icons-style.css",
                       "~/Content/AdminTheme/css/font-awesome.css",
