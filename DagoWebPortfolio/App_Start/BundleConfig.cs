@@ -39,12 +39,12 @@ namespace DagoWebPorfolio
                       ));
 
             bundles.Add(new StyleBundle("~/bundles/Content/css").Include(
-                      "~/Content/Css/bootstrap.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/Css/animate.css",
                       "~/Content/Css/styles.css"));
 
             bundles.Add(new StyleBundle("~/bundles/admin/css").Include(
-                      "~/Content/Css/bootstrap.css",
+                      "~/Content/AdminTheme/css/Css/bootstrap.css",
                       "~/Content/AdminTheme/css/bootstrap-theme.css",
                       "~/Content/AdminTheme/css/elegant-icons-style.css",
                       "~/Content/AdminTheme/css/font-awesome.css",
