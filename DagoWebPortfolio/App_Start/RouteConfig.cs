@@ -21,7 +21,7 @@ namespace DagoWebPorfolio
 
             routes.MapRoute(
                name: "Admin",
-               url: "{controller}/{action}/{id}",
+               url: "Admin/{controller}/{action}/{id}",
                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
            );
 

@@ -501,6 +501,8 @@
     <Folder Include="Content\AdminTheme\js\" />
     <Folder Include="Content\Images\Skills\" />
     <Folder Include="Content\Images\Welcome\" />
+    <Folder Include="Temp\miminium-master\" />
+    <Folder Include="Temp\NiceAdmin\" />
     <Folder Include="Views\Skills\Old\Two\" />
   </ItemGroup>
   <ItemGroup>
