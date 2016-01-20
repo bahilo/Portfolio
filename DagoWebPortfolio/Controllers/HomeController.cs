@@ -48,29 +48,14 @@ namespace DagoWebPortfolio.Controllers
             if (display != null)
             {
                 ViewBag.Display = display;
-                /*ViewBag.AboutPictureUrl = display.AboutView.Path + display.AboutView.FileName;
-                ViewBag.AboutMe = display.AboutView.Name;
-                ViewBag.AboutHeadZone1 = display.AboutView.HeadZone1;
-                ViewBag.AboutHeadZone2 = display.AboutView.HeadZone2;
-                ViewBag.AboutHeadZone3 = display.AboutView.HeadZone3;
-
-                ViewBag.AboutBodyZone1 = display.AboutView.BodyZone1;
-                ViewBag.AboutBodyZone2 = display.AboutView.BodyZone2;
-                ViewBag.AboutBodyZone3 = display.AboutView.BodyZone3;
-                ViewBag.AboutBodyZone4 = display.AboutView.BodyZone4;
-                ViewBag.AboutBodyZone5 = display.AboutView.BodyZone5;*/
             }
 
             display = dbD.Displays.Include("WelcomeView").Where(x => x.WelcomeView.FileName != null).ToList().LastOrDefault();
 
             if (display != null)
             {
-
+                ViewBag.Display = display;
                 ViewBag.WelcomePictureUrl = display.WelcomeView.Path + display.WelcomeView.FileName;
-                ViewBag.WelcomeMe = display.WelcomeView.Name;
-                ViewBag.WelcomeZone1 = display.WelcomeView.Zone1;
-                ViewBag.WelcomeZone2 = display.WelcomeView.Zone2;
-                ViewBag.WelcomeZone3 = display.WelcomeView.Zone3;
             }
 
         }
