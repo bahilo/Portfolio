@@ -2079,6 +2079,8 @@
     <Content Include="Temp\NiceAdmin\NiceAdmin\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
+    <None Include="Views\Admin\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\Old\" />

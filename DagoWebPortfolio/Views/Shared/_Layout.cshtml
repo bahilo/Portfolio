@@ -99,8 +99,8 @@
                         <li id="Education"><a>Education</a></li>
                         @if (Request.IsAuthenticated) { 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                            <a href ="/Admin/Index" target="_blank">Admin</a>
+                            @*<ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
                                 <li>@Html.ActionLink("Experiences", "Index", "Experiences")</li>
                                 <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
@@ -108,7 +108,7 @@
                                 <li>@Html.ActionLink("Pictures", "Index", "Pictures")</li>
                                 <li>@Html.ActionLink("Displays", "Index", "Displays")</li>
                                 @Html.Partial("_LoginPartial")
-                            </ul>
+                            </ul>*@
                         </li>                            
                         }
                         <li id="Contact"><a>Contact</a></li>
@@ -153,9 +153,9 @@
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2 text-center">
             <ul class="list-inline center-block">
-                <li><a href="http://facebook.com/bootply"><img src="~/Content/Images/facebook.png"></a></li>
-                <li><a href="http://twitter.com/bootply"><img src="~/Content/Images/twitter.png"></a></li>
-                <li><a href="http://google.com/+bootply"><img src="~/Content/Images/gooplus.png"></a></li>
+                <li><a href="http://facebook.com/bootply" target="_blank"><img src="~/Content/Images/facebook.png"></a></li>
+                <li><a href="http://twitter.com/bootply" target="_blank"><img src="~/Content/Images/twitter.png"></a></li>
+                <li><a href="http://google.com/+bootply" target="_blank"><img src="~/Content/Images/gooplus.png"></a></li>
                 <!--<li><a href="http://pinterest.com/in1"><img src="/assets/example/soc_pin.png"></a></li>-->
             </ul>
         </div><!--/col-->

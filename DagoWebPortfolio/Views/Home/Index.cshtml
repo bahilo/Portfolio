@@ -1,6 +1,7 @@
 ﻿@{
 
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 <!--
@@ -36,13 +37,13 @@
             </div>
             <div class="item">
                 <div id="loading-pages">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3 vcenter">
-                            <img class="ajax-loader" src="/Content/Images/ajax-loader.gif" />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 vcenter">
+                                <img class="ajax-loader" src="/Content/Images/ajax-loader.gif" />
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
             <div class="item">
@@ -62,34 +63,34 @@
 </div>
 
 
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.carousel-home-body').carousel({ interval: false });
-        var obj = @Html.Raw(ViewBag.Object);
-        if ( obj == true ) {
-            $('.carousel-home-body').carousel(7);
-        }else{
-            var loding = $("#loading-pages").html();
-            $('#page5').html(loding);
-            $.ajax({
-                type: "POST",
-                url: "/Home/About",
-                datatype: "html",
-                success: function (data) {
-                    $('#page5').html(data);
-                }
+            $('.carousel-home-body').carousel({ interval: false });
+            var obj = @Html.Raw(ViewBag.Object);
+            if ( obj == true ) {
+                $('.carousel-home-body').carousel(7);
+            }else{
+                var loding = $("#loading-pages").html();
+                $('#page5').html(loding);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/About",
+                    datatype: "html",
+                    success: function (data) {
+                        $('#page5').html(data);
+                    }
+                });
+            }
 
+            $('.alert .close').click(function(){
+                $(location).attr('href', '/Home/Index');
             });
-        }
 
-        $('.alert .close').click(function(){
-            $(location).attr('href', '/Home/Index');
         });
 
+    </script>
+}
 
-
-    });
-
-</script>
 

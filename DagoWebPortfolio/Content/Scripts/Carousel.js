@@ -1,10 +1,12 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
 
     //alert("test carousel");
 
     var AjaxRequest = function (targetElement, targetCOntroller, sendMethod) {
-        var loding = $("#loading-pages").html();
-        targetElement.html(loding);
+        var loading = $("#loading-pages").html();
+        targetElement.html(loading);
         $.ajax({
             type: sendMethod,
             url: targetCOntroller,

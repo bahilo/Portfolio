@@ -3,7 +3,7 @@ using System.Web.Optimization;
 
 namespace DagoWebPorfolio
 {
-    public class BundleConfig
+    public class BundleConfig 
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
@@ -29,13 +29,19 @@ namespace DagoWebPorfolio
                       "~/Content/Scripts/scripts.js"
                       ));
 
+            bundles.Add(new ScriptBundle("~/bundles/courousel").Include(
+                      "~/Content/Scripts/Carousel.js"
+                      ));
+
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                       "~/Content/AdminTheme/js/jquery.js",
                       "~/Content/AdminTheme/js/bootstrap.js",
                       "~/Content/AdminTheme/js/jquery.scrollTo.min.js",
                       "~/Content/AdminTheme/js/jquery.nicescroll.js",
                       "~/Content/AdminTheme/js/gritter.js",
-                      "~/Content/AdminTheme/js/scripts.js"
+                      "~/Content/AdminTheme/js/scripts.js",
+                      "~/Content/AdminTheme/assets/chart-master/Chart.js",
+                      "~/Content/AdminTheme/js/chartjs-custom.js"
                       ));
 
             bundles.Add(new StyleBundle("~/bundles/Content/css").Include(
