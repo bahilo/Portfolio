@@ -672,7 +672,7 @@ header {
 }
 
     .timeline:before {
-        top: 0;
+        top: 0;/**/
         bottom: 0;
         position: absolute;
         content: " ";
@@ -691,6 +691,7 @@ header {
         .timeline > li:after {
             content: " ";
             display: table;
+            
         }
 
         .timeline > li:after {
@@ -734,7 +735,7 @@ header {
                 border-top: 15px solid transparent;
                 border-left: 15px solid #ccc;
                 border-right: 0 solid #ccc;
-                border-bottom: 15px solid transparent;
+                border-bottom: 20px solid transparent;
                 content: " ";
             }
 
@@ -744,10 +745,11 @@ header {
                 right: -14px;
                 display: inline-block;
                 border-top: 14px solid transparent;
-                border-left: 14px solid #fff;
-                border-right: 0 solid #fff;
+                border-left: 14px solid  rgb(242,242,242);
+                border-right: 0 solid rgb(242,242,242);
                 border-bottom: 14px solid transparent;
                 content: " ";
+                
             }
 
         .timeline > li > .timeline-badge {
