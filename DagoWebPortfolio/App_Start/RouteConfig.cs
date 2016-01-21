@@ -13,11 +13,11 @@ namespace DagoWebPorfolio
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-           // routes.MapRoute(
-           //    name: "Default_Admin",
-           //    url: "Admin",
-           //    defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
-           //);
+            routes.MapRoute(
+               name: "Admin",
+               url: "{controller}/{action}/{target}/{id}",
+               defaults: new { controller = "Account", action = "Login", target = "Read", id = UrlParameter.Optional }
+           );
 
             routes.MapRoute(
                 name: "Default",

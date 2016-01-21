@@ -2081,6 +2081,13 @@
     <Content Include="Temp\NiceAdmin\NiceAdmin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <None Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\Skills\_ViewStart.cshtml" />
+    <Content Include="Views\Details\_ViewStart.cshtml" />
+    <Content Include="Views\Displays\_ViewStart.cshtml" />
+    <Content Include="Views\Education\_ViewStart.cshtml" />
+    <Content Include="Views\Experiences\_ViewStart.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Pictures\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\Old\" />

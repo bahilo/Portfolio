@@ -14,7 +14,7 @@ using DagoWebPortfolio.Interfaces;
 namespace DagoWebPortfolio.Controllers 
 {
     [Authorize]
-    public class ProjectsController : Controller
+    public class ProjectsController : Controller 
     {
         private IProjectsRepository ProjectRepository;
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
@@ -25,8 +25,11 @@ namespace DagoWebPortfolio.Controllers
             ProjectRepository.setContext(db);
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string target)
         {
+
+            ViewBag.Target = target.ToLower() ?? "";
+            
             return View(db.Projects.ToList());
         }
 

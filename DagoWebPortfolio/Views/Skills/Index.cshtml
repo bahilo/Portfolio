@@ -1,71 +1,86 @@
 ﻿@model IEnumerable<DagoWebPortfolio.Models.SkillsViewModel>
 
 @{
-    ViewBag.Title = "Index";
-} 
+    ViewBag.Title = "SKILLS";
+}
 
 
-    <h2>Index</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-list-alt"></i> @ViewBag.Title</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Admin/index">Home</a></li>
+            <li><i class="fa fa-desktop"></i>Consultation</li>
+            <li><i class="fa fa-list-alt"></i>Skills</li>
+        </ol>
+    </div>
+</div>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Experiences)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Projects)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @foreach (var experience in item.Experiences)
-                {
-                    <table>
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => experience.Title)
-                            </td>
-                        </tr>
-                    </table>
-                } 
-                </td>
-                <td>
-                    @foreach (var project in item.Projects)
-                    {
-                        <table>
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => project.Title)
-                                </td>
-                            </tr>
-                        </table>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="panel">
+    <div class="panel-heading">        
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Experiences)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Projects)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @foreach (var experience in item.Experiences)
+                {
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => experience.Title)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </td>
+                    <td>
+                        @foreach (var project in item.Projects)
+                        {
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => project.Title)
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
