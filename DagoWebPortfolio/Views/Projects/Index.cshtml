@@ -40,7 +40,7 @@
             @foreach (var item in Model)
             {
 
-                <a href="/Projects/@ViewBag.Target/@item.ID">
+                <a href="/Projects/@ViewBag.Target/@item.ID">@item.ID
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
@@ -53,56 +53,6 @@
                         </td>
                     </tr>
                 </a>
-
-                @*switch ((string)ViewBag.Target)
-                {
-                    case "read":
-                        <a href="/Projects/Details/@item.ID">
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.link)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Resume)
-                                </td>
-                            </tr>
-                        </a>
-                        break;
-                    case "update":
-                        <a href="/Projects/Edit/@item.ID">
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.link)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Resume)
-                                </td>
-                            </tr>
-                        </a>
-                        break;
-                    case "delete":
-                        <a href="/Projects/Delete/@item.ID">
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.link)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Resume)
-                                </td>
-                            </tr>
-                        </a>
-                        break;*@
-                }
-
             }
 
         </table>

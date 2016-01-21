@@ -1,4 +1,5 @@
 ﻿
+using DagoWebPortfolio.Models.DisplayViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,116 +29,307 @@ namespace DagoWebPortfolio.Models
         {
             base.Seed(context);
 
-            var Skill1 = new SkillsViewModel { ID = 1, Title = "PHP", Description = "Very good skill" };
-            var Category1 = new SkillsCategoryViewModel { ID = 1, Title = "Coding", Description = "Category[Coding] -> Very good skill" };
-            var Level1 = new SkillsLevelsViewModel { ID = 1, Level = 85, comments = "Level[Coding] -> Very good skill" };
-            var Project1 = new ProjectsViewModel { ID = 1, Title = "Bird Watching", Resume = "Bird Watching" };
-            var DetailProject1 = new ProjectDetailsViewModel { ID = 1, Subject = "Bird Watching", Status = false, Client = "Bahilo sisi 1", Date = DateTime.Now, Description = "Description eetail project3" };
 
-            var Skill2 = new SkillsViewModel { ID = 2, Title = "Client Satisfactions", Description = "Very good skill" };
-            var Category2 = new SkillsCategoryViewModel { ID = 2, Title = "Business", Description = "Category[Business - Client Satisfactions] -> Very good skill" };
-            var Level2 = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "Level[Business] -> Very good skill" };
-            var Project2 = new ProjectsViewModel { ID = 2, Title = "Basket weaving", Resume = "Basket weaving for beginners" };
-            var DetailProject2 = new ProjectDetailsViewModel { ID = 2, Subject= "Basket weaving", Status = false, Client = "Bahilo sisi 2", Date = DateTime.Now, Description = "Description eetail project2" };
+       //=========================================[ Skills ]=========================================================
 
-            var Skill3 = new SkillsViewModel { ID = 3, Title = "Pressure handling", Description = "Very good skill" };
-            var Category3 = new SkillsCategoryViewModel { ID = 3, Title = "Others", Description = "Category[Others] -> Very good skill" };
-            var Level3 = new SkillsLevelsViewModel { ID = 3, Level = 85, comments = "Level[Others] -> Very good skill" };
-            var Project3 = new ProjectsViewModel { ID = 3, Title = "Photography", Resume = "Photography 101" };
-            var DetailProject3 = new ProjectDetailsViewModel { ID = 3, Subject = "Photography", Status = true, Client = "Bahilo sisi 3", Date = DateTime.Now, Description = "Description eetail project3" };
+            var skills = new List<SkillsViewModel>();
 
-            var Skill4 = new SkillsViewModel { ID = 4, Title = "ASP.NET", Description = "Very good skill" };
-            var Category4 = new SkillsCategoryViewModel { ID = 4, Title = "Coding", Description = "Category[Coding] -> Very good skill" };
-            var Level4 = new SkillsLevelsViewModel { ID = 4, Level = 65, comments = "Level[Coding] -> Very good skill" };
-            var Experience1 = new ExperiencesViewModel { ID = 1, Title = "Engineer Developper", Company = "Infoelsa", Responsabilities = "Developing solutions", StartDate = new DateTime(2014, 12, 22), EndDate = new DateTime(2015, 4, 10) };
+            skills.Add(new SkillsViewModel { ID = 1, Title = "PHP", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 1, Title = "Coding", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 1, Level = 85, comments = "To Do" };
 
-            var Skill5 = new SkillsViewModel { ID = 5, Title = "Communication", Description = "Very good skill" };
-            var Category5 = new SkillsCategoryViewModel { ID = 5, Title = "Business", Description = "Category[Business - Communication] -> Very good skill" };
-            var Level5 = new SkillsLevelsViewModel { ID = 5, Level = 75, comments = "Level[Business] -> Very good skill" };
-            var Experience2 = new ExperiencesViewModel { ID = 2, Title = "Apprentice Engineer", Company = "Orange", Responsabilities = "Maintaining IT environnement", StartDate = new DateTime(2011, 11, 2), EndDate = new DateTime(2014, 10, 30) };
+            skills.Add(new SkillsViewModel { ID = 2, Title = "JAVA J2E", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Coding", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 75, comments = "To Do" };
             
+            skills.Add(new SkillsViewModel { ID = 3, Title = "MySQL", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 3, Title = "Coding", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 3, Level = 80, comments = "To Do" };
+            
+            skills.Add(new SkillsViewModel { ID = 4, Title = "HTML / CSS", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Coding", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "To Do" };
 
-            var Education = new EducationViewModel { ID = 1, NbYearsToGraduate = 3, SchoolName = "ISEP", YearGraduate = new DateTime(2014,10,30)};
-            var Education2 = new EducationViewModel { ID = 2, NbYearsToGraduate = 3, SchoolName = "IUT Ville d'AVRAY", YearGraduate = new DateTime(2014, 10, 30) };
+            skills.Add(new SkillsViewModel { ID = 5, Title = "French", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Others", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 100, comments = "To Do" };
 
+            skills.Add(new SkillsViewModel { ID = 6, Title = "Client Satisfactions", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Business", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "To Do" };
 
-            var picture1 = new PicturesViewModel { ID = 1, Subject = "Experience", Description = "Experience Picture description", FileName = "f4769_paris night.jpg", path = "/Content/Images/Experiences/" };
-            var picture2 = new PicturesViewModel { ID = 2, Subject = "Project", Description = "Project Picture description", FileName = "f4769_paris night.jpg", path = "/Content/Images/Experiences/" };
-            var picture3 = new PicturesViewModel { ID = 3, Subject = "Project", Description = "Project Picture description", FileName = "f4769_paris night.jpg", path = "/Content/Images/Experiences/" };
-            var picture4 = new PicturesViewModel { ID = 4, Subject = "Project", Description = "Project Picture description", FileName = "f4769_paris night.jpg", path = "/Content/Images/Experiences/" };
+            skills.Add(new SkillsViewModel { ID = 7, Title = "Pressure handling", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Others", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "To Do" };
 
-            picture2.ProjectDetail = DetailProject1;
-            picture2.ProjectDetailsViewModelID = DetailProject1.ID;
-            picture2.Experience = null;
-            picture2.ExperiencesViewModelID = null;
-            picture2.Skill = null;
-            picture2.SkillsViewModelID = null;
-            picture2.Education = null;
-            picture2.EducationViewModelID = null;
+            skills.Add(new SkillsViewModel { ID = 8, Title = "Communication", Description = "Very good skill" });
+            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Business", Description = "To Do" };
+            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 80, comments = "To Do" };
 
-            DetailProject1.Pictures.Add(picture2);
-            Project1.ProjectDetail = DetailProject1;
-            Skill1.CategoryViewModel = Category1;
-            Skill1.LevelsViewModel = Level1;
-            Skill1.Projects.Add( Project1 );
+            skills.ForEach(x=>context.Skills.Add(x));
 
-            Project2.ProjectDetail = DetailProject2;
-            Skill2.CategoryViewModel = Category2;
-            Skill2.LevelsViewModel = Level2;
-            Skill2.Projects.Add( Project2 );
+            //=========================================[ Experiences ]=========================================================
 
-            Project3.ProjectDetail = DetailProject3;
-            Skill3.CategoryViewModel = Category3;
-            Skill3.LevelsViewModel = Level3;
-            Skill3.Projects.Add( Project3 );
+            var experiences = new List<ExperiencesViewModel>();
+            experiences.Add(new ExperiencesViewModel
+            {
+                ID = 1,
+                Title = "Training period",
+                Company = "PSA Peugeot Citroën",
+                Responsabilities = "<p>Automation of 3-D simulation result treatment for graphical Post-treatment and analysis</p> <p>Centralization of simulations result</p> <p>Graphic user interface development with MATLAB for result analysis</p>",
+                StartDate = new DateTime(2011, 04, 01),
+                EndDate = new DateTime(2011, 06, 30),
+                link = "https://www.linkedin.com/company/260214?trk=prof-exp-company-name"
+            });
 
-            Skill4.CategoryViewModel = Category4;
-            Skill4.LevelsViewModel = Level4;
-            Skill4.Experiences.Add( Experience1 );
+            experiences.Add(new ExperiencesViewModel
+            {
+                ID = 2,
+                Title = "Internship Engineer Integration and exploitation of services",
+                Company = "Orange - France",
+                Responsabilities = "<p>Maintaining in operational condition of the IT environments Technical support of the operational domains (Provisioning, Invoicing Data, Pre paid and free canal-services)</p> <p>Project manager of a supervision application deployment Web designing for indicators displaying</p>",
+                StartDate = new DateTime(2011, 11, 02),
+                EndDate = new DateTime(2014, 10, 30),
+                link = "https://www.linkedin.com/company/1110?trk=prof-exp-company-name"
+            });
 
-            picture1.Experience = Experience2;
-            picture1.ExperiencesViewModelID = Experience2.ID;
-            picture1.ProjectDetail = null;
-            picture1.ProjectDetailsViewModelID = null;
-            picture1.Skill = null;
-            picture1.SkillsViewModelID = null;
-            picture1.Education = null;
-            picture1.EducationViewModelID = null;
-            Experience2.Pictures.Add(picture1);
-            Skill5.CategoryViewModel = Category5;
-            Skill5.LevelsViewModel = Level5;
-            Skill5.Experiences.Add(Experience2);
+            experiences.Add(new ExperiencesViewModel
+            {
+                ID = 3,
+                Title = "Engineer Developer",
+                Company = "Infoelsa",
+                Responsabilities = "Bank and Insurance software (CIRIS/LIRIS) INFOELSA Champs-Elysées - FRANCE",
+                StartDate = new DateTime(2014, 12, 22),
+                EndDate = new DateTime(2015, 04, 30),
+                link = "http://www.infoelsa.com/"
+            });
 
-            context.Skills.Add(Skill1);
-            context.Skills.Add(Skill2);
-            context.Skills.Add(Skill3);
-            context.Skills.Add(Skill4);
-            context.Skills.Add(Skill5);
+            experiences.ForEach(x=>context.Experiences.Add(x));
 
-            picture3.Education = Education;
-            picture3.EducationViewModelID = Education.ID;
-            picture3.Experience = null;
-            picture3.ExperiencesViewModelID = null;
-            picture3.Skill = null;
-            picture3.SkillsViewModelID = null;
-            picture3.ProjectDetail = null;
-            picture3.ProjectDetailsViewModelID = null;
+            //=========================================[ Projects ]=========================================================
 
-            Education.Pictures.Add(picture3);
+            var projects = new List<ProjectsViewModel>();
 
-            picture4.Education = Education2;
-            picture4.EducationViewModelID = Education2.ID;
-            picture4.Experience = null;
-            picture4.ExperiencesViewModelID = null;
-            picture4.Skill = null;
-            picture4.SkillsViewModelID = null;
-            picture4.ProjectDetail = null;
-            picture4.ProjectDetailsViewModelID = null;
+            projects.Add(new ProjectsViewModel
+            {
+                ID = 1,
+                Title = "The DISIC",
+                Resume = "The DISIC (Inter-ministerial Directorate for Information and Communications Systems) is attached to the SGMAP (Secretariat-General for Government Modernization, under the control of the Prime Minister).",
+                link = "http://www.modernisation.gouv.fr/mots-cle/disic"
+            });
 
-            Education2.Pictures.Add(picture4);
+            projects[0].ProjectDetail = new ProjectDetailsViewModel
+            {
+                ID = 1,
+                Subject = "The DISIC (Interministerial Directorate for Information and Communications Systems)",
+                Status = false,
+                Client = "The French government supports",
+                Date = new DateTime(2014, 02, 04),
+                Description = "The DISIC (Inter-ministerial Directorate for Information and Communications Systems) is attached to the SGMAP (Secretariat-General for Government Modernization, under the control of the Prime Minister)..."
+            };
 
-            context.Education.Add(Education);
-            context.Education.Add(Education2);
+            projects.Add(new ProjectsViewModel
+            {
+                ID = 2,
+                Title = "Codsimex",
+                Resume = "Codsimex is an import /Export company between Europe and Africa. The company distribute more than 10 000 referenced articles to professionals in new technologies",
+                link = "http://www.codsimail.com/commercial/index2.php"
+            });
+
+            projects[1].ProjectDetail = new ProjectDetailsViewModel
+            {
+                ID = 2,
+                Subject = "Codsimex",
+                Status = false,
+                Client = "Habib Codsi",
+                Date = new DateTime(2014, 06, 10),
+                Description = "Codsimex is an import /Export company between Europe and Africa. The company distribute more than 10 000 referenced articles to professionals in new technologies"
+            };
+
+            projects.Add(new ProjectsViewModel
+            {
+                ID = 3,
+                Title = "Portfolio",
+                Resume = "Creation of a portfolio via ASP .NET MVC 5",
+                link = "http://e-dago.azurewebsites.net/"
+            });
+
+            projects[2].ProjectDetail = new ProjectDetailsViewModel
+            {
+                ID = 3,
+                Subject = "Portfolio",
+                Status = true,
+                Client = "Just IT",
+                Date = new DateTime(2015, 09, 15),
+                Description = "Creation of a portfolio via ASP .NET MVC 5 ..."
+            };
+
+            projects.ForEach(x=>context.Projects.Add(x));
+
+            //========================================[ Education ]============================================================
+
+            var educations = new List<EducationViewModel>();
+
+            educations.Add(new EducationViewModel
+            {
+                ID = 1,
+                NbYearsToGraduate = 2,
+                SchoolName = "Ville d'Avray",
+                YearGraduate = new DateTime(2011, 06, 30),
+                Description = "<p>DUT&nbsp;GEII - Industrial Electrical Computer Engineering&nbsp;</p>",
+                link = "http://cva.u-paris10.fr/les-departements-et-leurs-formations-599365.kjsp?RH=1426843093236&RF=1426847532554"
+            });
+
+            educations.Add(new EducationViewModel
+            {
+                ID = 2,
+                NbYearsToGraduate = 3,
+                SchoolName = "ISEP",
+                YearGraduate = new DateTime(2011 , 06 ,30),
+                Description = "ISEP is a graduate engineering school in Electronics, Software & Computer Engineering, Signal & Image Processing, Telecommunications and Networks, founded in 1955.",
+                link = "http://en.isep.fr/"
+            });
+
+            educations.Add(new EducationViewModel
+            {
+                ID = 3,
+                NbYearsToGraduate = 1,
+                SchoolName = "Just IT",
+                YearGraduate = new DateTime(2015 , 09 , 10),
+                Description = "Just IT are dedicated to introducing new skills and talent into the UK IT sector.TRAINING APPRENTICESHIP&nbsp; RECRUITMENT&nbsp;",
+                link = "http://www.justit.co.uk/individual-training/"
+            });
+
+            educations.ForEach(x=>context.Education.Add(x));
+
+            //========================================[ Displays ]============================================================
+
+            var display = new DisplayViewModel.DisplayViewModel
+            {
+                ID = 1,
+                lang = "EN"
+            };
+
+            display.AboutView = new DisplayViewAbout
+            {         
+                ID = 1,       
+                HeadZone1 = "<p>E. DAGO PORTFOLIO</p>",
+                HeadZone2 = "<p>ERIC DAGO</p>",
+                HeadZone3 = "<p>I am A C#&nbsp;Developer</p>",
+
+                BodyZone1 = "<p>Having the fundamentals of programming well structured, my dream is not only to become a better programmer, but also to build my lifestyle around it.</p>",
+                BodyZone2 = "<p>Seeing progress and appreciation in the work I do makes me more ambitious and keen to offer more.</p>",
+                BodyZone3 = "<p>Seeing all the opportunities that today's technologies offer gives me great motivation to be an important part of the process.</p>",
+                BodyZone4 = "<p>I think quality products not only make you a better programmer but seeing happy clients in the end, gives great satisfaction.</p>",
+                BodyZone5 = "<p>Essex England</p>",
+
+                FileName = "photo_id1.jpg",
+                Name = "ERIC",
+                Path = "/Content/Images/Welcome/"
+            };
+
+            display.WelcomeView = new DisplayViewWelcome
+            {  
+                ID = 1,              
+                Zone1 = "<h1>Hi, I'M ERIC</h1>",
+                Zone2 = "<p>Welcome to my Portfolio</p>",
+                Zone3 = "<p>Learn more</p>"
+            };
+
+            //========================================[ Pictures ]============================================================
+            
+            var pictures = new List<PicturesViewModel>();
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 1,
+                Subject = "IUT - Ville d'Avray",
+                Description = "To Do",
+                FileName = "IUT-Ville-Avray.PNG",
+                path = "/Content/Images/Education/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 2,
+                Subject = "ISEP",
+                Description = "To Do",
+                FileName = "ISEP.PNG",
+                path = "/Content/Images/Education/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 3,
+                Subject = "Just IT",
+                Description = "To Do",
+                FileName = "Just-IT.PNG",
+                path = "/Content/Images/Education/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 4,
+                Subject = "Orange",
+                Description = "To Do",
+                FileName = "Orange.PNG",
+                path = "/Content/Images/Experiences/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 5,
+                Subject = "PSA",
+                Description = "To Do",
+                FileName = "PSA.PNG",
+                path = "/Content/Images/Experiences/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 6,
+                Subject = "Infoelsa",
+                Description = "To Do",
+                FileName = "Infoelsa.PNG",
+                path = "/Content/Images/Experiences/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 7,
+                Subject = "DISIC",
+                Description = "To Do",
+                FileName = "DISIC.PNG",
+                path = "/Content/Images/Projects/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 8,
+                Subject = "Portfolio",
+                Description = "To Do",
+                FileName = "Portfolio.PNG",
+                path = "/Content/Images/Projects/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 9,
+                Subject = "Codsimex",
+                Description = "To Do",
+                FileName = "Codsimex.PNG",
+                path = "/Content/Images/Projects/"
+            });
+
+            pictures.Add(new PicturesViewModel
+            {
+                ID = 10,
+                Subject = "Portfolio",
+                Description = "To Do",
+                FileName = "PortfolioModelDiagram.PNG",
+                path = "/Content/Images/Projects/"
+            });
+
         }
     }
 }

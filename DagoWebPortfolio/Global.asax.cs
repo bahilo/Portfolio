@@ -16,7 +16,7 @@ namespace DagoWebPortfolio
     {
         protected void Application_Start()
         {
-            //Database.SetInitializer(new MockInitializer());
+            Database.SetInitializer(new MockInitializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -28,7 +28,7 @@ namespace DagoWebPortfolio.Controllers
         public ActionResult Index(string target)
         {
 
-            ViewBag.Target = target.ToLower() ?? "";
+            ViewBag.Target = target;
             
             return View(db.Projects.ToList());
         }
