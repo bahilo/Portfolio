@@ -24,7 +24,7 @@ namespace DagoWebPortfolio.Models
 
     } 
 
-    public class MockInitializer : DropCreateDatabaseAlways<DBModelPortfolioContext>
+    public class MockInitializer : DropCreateDatabaseIfModelChanges<DBModelPortfolioContext>
     {
         protected override void Seed(DBModelPortfolioContext context)
         {

@@ -14,7 +14,7 @@ namespace DagoWebPortfolio.Models.DisplayViewModel
     }
 
 
-    public class MockInitializerDisplay : DropCreateDatabaseAlways<DBDisplayModelContext>
+    public class MockInitializerDisplay : DropCreateDatabaseIfModelChanges<DBDisplayModelContext>
     {
         protected override void Seed(DBDisplayModelContext context)
         {

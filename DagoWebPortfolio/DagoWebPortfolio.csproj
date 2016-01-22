@@ -203,11 +203,6 @@
     <Compile Include="Infrastructure\ProjectsRepository.cs" />
     <Compile Include="Interfaces\IAnalyticService.cs" />
     <Compile Include="Interfaces\IProjectsRepository.cs" />
-    <Compile Include="Migrations\201511070928162_InitialCreate.cs" />
-    <Compile Include="Migrations\201511070928162_InitialCreate.Designer.cs">
-      <DependentUpon>201511070928162_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomHelpers\HtmlDisplayHelper.cs" />
@@ -1766,61 +1761,6 @@
     <Content Include="Temp\NiceAdmin\NiceAdmin\img\user.jpg" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\img\user22.png" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\index.html" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\additional-methods.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\bootstrap-switch.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\bootstrap-wysiwyg-custom.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\bootstrap-wysiwyg.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\bootstrap.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\bootstrap.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\calendar-custom.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\chartjs-custom.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\charts-flot.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\charts-other.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\charts-xcharts.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\charts.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\dynamic-table.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\easy-pie-chart.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\excanvas.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\form-component.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\form-validation-script.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\fullcalendar.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\fullcalendar.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\ga.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\gdp-data.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\gritter.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\html5shiv.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\index.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery-1.8.3.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery-jvectormap-1.2.2.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery-jvectormap-world-mill-en.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery-ui-1.10.4.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery-ui-1.9.2.custom.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.autosize.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.customSelect.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.flot.pie.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.hotkeys.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.localscroll.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.nicescroll.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.placeholder.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.rateit.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.scrollTo.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.slimscroll.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.smartWizard.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.sparkline-11.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.sparkline.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.stepy.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.tagsinput.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\jquery.validate.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\lte-ie7.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\morris-script.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\morris.min.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\owl.carousel.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\scripts.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\sliders.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\sparkline-chart.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\sparklines.js" />
-    <Content Include="Temp\NiceAdmin\NiceAdmin\js\xcharts.min.js" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\login.html" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\profile.html" />
     <Content Include="Temp\NiceAdmin\NiceAdmin\widgets.html" />
@@ -2097,11 +2037,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511070928162_InitialCreate.resx">
-      <DependentUpon>201511070928162_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
