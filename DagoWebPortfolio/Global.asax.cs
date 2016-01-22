@@ -1,6 +1,7 @@
 ﻿using DagoWebPorfolio;
 using DagoWebPortfolio.Infrastructure;
 using DagoWebPortfolio.Models;
+using DagoWebPortfolio.Models.DisplayViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +18,7 @@ namespace DagoWebPortfolio
         protected void Application_Start()
         {
             Database.SetInitializer(new MockInitializer());
+            Database.SetInitializer(new MockInitializerDisplay());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

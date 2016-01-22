@@ -3,6 +3,7 @@ using DagoWebPortfolio.Models.DisplayViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,44 +30,53 @@ namespace DagoWebPortfolio.Models
         {
             base.Seed(context);
 
-
-       //=========================================[ Skills ]=========================================================
+            
+            //=========================================[ Skills ]=========================================================
 
             var skills = new List<SkillsViewModel>();
 
-            skills.Add(new SkillsViewModel { ID = 1, Title = "PHP", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 1, Title = "Coding", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 1, Level = 85, comments = "To Do" };
+            var skill = new SkillsViewModel { ID = 1, Title = "PHP", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 1, Title = "Coding", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 1, Level = 85, comments = "To Do" };
+            skills.Add(skill);
 
-            skills.Add(new SkillsViewModel { ID = 2, Title = "JAVA J2E", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Coding", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 75, comments = "To Do" };
+            skill = new SkillsViewModel { ID = 2, Title = "JAVA J2E", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Coding", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 75, comments = "To Do" };
+            skills.Add(skill);            
+
+            skill = new SkillsViewModel { ID = 3, Title = "MySQL", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 3, Title = "Coding", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 3, Level = 80, comments = "To Do" };
+            skills.Add(skill);
+
+            skill = new SkillsViewModel { ID = 4, Title = "HTML / CSS", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 4, Title = "Coding", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 4, Level = 85, comments = "To Do" };
+            skills.Add(skill);
+
+            skill = new SkillsViewModel { ID = 5, Title = "French", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 5, Title = "Others", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 5, Level = 100, comments = "To Do" };
+            skills.Add(skill);
+
+            skill = new SkillsViewModel { ID = 6, Title = "Client Satisfactions", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 6, Title = "Business", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 6, Level = 85, comments = "To Do" };
+            skills.Add(skill);
+
+            skill = new SkillsViewModel { ID = 7, Title = "Pressure handling", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 7, Title = "Others", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 7, Level = 85, comments = "To Do" };
+            skills.Add(skill);
+
+            skill = new SkillsViewModel { ID = 8, Title = "Communication", Description = "Very good skill" };
+            skill.CategoryViewModel = new SkillsCategoryViewModel { ID = 8, Title = "Business", Description = "To Do" };
+            skill.LevelsViewModel = new SkillsLevelsViewModel { ID = 8, Level = 80, comments = "To Do" };
+            skills.Add(skill);
             
-            skills.Add(new SkillsViewModel { ID = 3, Title = "MySQL", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 3, Title = "Coding", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 3, Level = 80, comments = "To Do" };
-            
-            skills.Add(new SkillsViewModel { ID = 4, Title = "HTML / CSS", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Coding", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "To Do" };
 
-            skills.Add(new SkillsViewModel { ID = 5, Title = "French", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Others", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 100, comments = "To Do" };
-
-            skills.Add(new SkillsViewModel { ID = 6, Title = "Client Satisfactions", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Business", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "To Do" };
-
-            skills.Add(new SkillsViewModel { ID = 7, Title = "Pressure handling", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Others", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 85, comments = "To Do" };
-
-            skills.Add(new SkillsViewModel { ID = 8, Title = "Communication", Description = "Very good skill" });
-            skills[0].CategoryViewModel = new SkillsCategoryViewModel { ID = 2, Title = "Business", Description = "To Do" };
-            skills[0].LevelsViewModel = new SkillsLevelsViewModel { ID = 2, Level = 80, comments = "To Do" };
-
-            skills.ForEach(x=>context.Skills.Add(x));
+            skills.ForEach(x => context.Skills.Add(x));
 
             //=========================================[ Experiences ]=========================================================
 
@@ -110,15 +120,14 @@ namespace DagoWebPortfolio.Models
 
             var projects = new List<ProjectsViewModel>();
 
-            projects.Add(new ProjectsViewModel
+            var project = new ProjectsViewModel
             {
                 ID = 1,
                 Title = "The DISIC",
                 Resume = "The DISIC (Inter-ministerial Directorate for Information and Communications Systems) is attached to the SGMAP (Secretariat-General for Government Modernization, under the control of the Prime Minister).",
                 link = "http://www.modernisation.gouv.fr/mots-cle/disic"
-            });
-
-            projects[0].ProjectDetail = new ProjectDetailsViewModel
+            };
+            project.ProjectDetail = new ProjectDetailsViewModel
             {
                 ID = 1,
                 Subject = "The DISIC (Interministerial Directorate for Information and Communications Systems)",
@@ -127,16 +136,17 @@ namespace DagoWebPortfolio.Models
                 Date = new DateTime(2014, 02, 04),
                 Description = "The DISIC (Inter-ministerial Directorate for Information and Communications Systems) is attached to the SGMAP (Secretariat-General for Government Modernization, under the control of the Prime Minister)..."
             };
+            projects.Add(project);
 
-            projects.Add(new ProjectsViewModel
+
+            project = new ProjectsViewModel
             {
                 ID = 2,
                 Title = "Codsimex",
                 Resume = "Codsimex is an import /Export company between Europe and Africa. The company distribute more than 10 000 referenced articles to professionals in new technologies",
                 link = "http://www.codsimail.com/commercial/index2.php"
-            });
-
-            projects[1].ProjectDetail = new ProjectDetailsViewModel
+            };
+            project.ProjectDetail = new ProjectDetailsViewModel
             {
                 ID = 2,
                 Subject = "Codsimex",
@@ -145,16 +155,17 @@ namespace DagoWebPortfolio.Models
                 Date = new DateTime(2014, 06, 10),
                 Description = "Codsimex is an import /Export company between Europe and Africa. The company distribute more than 10 000 referenced articles to professionals in new technologies"
             };
+            projects.Add(project);
 
-            projects.Add(new ProjectsViewModel
+
+            project = new ProjectsViewModel
             {
                 ID = 3,
                 Title = "Portfolio",
                 Resume = "Creation of a portfolio via ASP .NET MVC 5",
                 link = "http://e-dago.azurewebsites.net/"
-            });
-
-            projects[2].ProjectDetail = new ProjectDetailsViewModel
+            };
+            project.ProjectDetail = new ProjectDetailsViewModel
             {
                 ID = 3,
                 Subject = "Portfolio",
@@ -163,8 +174,10 @@ namespace DagoWebPortfolio.Models
                 Date = new DateTime(2015, 09, 15),
                 Description = "Creation of a portfolio via ASP .NET MVC 5 ..."
             };
+            projects.Add(project);
 
             projects.ForEach(x=>context.Projects.Add(x));
+            //context.Projects.Add(projects[0]);
 
             //========================================[ Education ]============================================================
 
@@ -201,40 +214,7 @@ namespace DagoWebPortfolio.Models
             });
 
             educations.ForEach(x=>context.Education.Add(x));
-
-            //========================================[ Displays ]============================================================
-
-            var display = new DisplayViewModel.DisplayViewModel
-            {
-                ID = 1,
-                lang = "EN"
-            };
-
-            display.AboutView = new DisplayViewAbout
-            {         
-                ID = 1,       
-                HeadZone1 = "<p>E. DAGO PORTFOLIO</p>",
-                HeadZone2 = "<p>ERIC DAGO</p>",
-                HeadZone3 = "<p>I am A C#&nbsp;Developer</p>",
-
-                BodyZone1 = "<p>Having the fundamentals of programming well structured, my dream is not only to become a better programmer, but also to build my lifestyle around it.</p>",
-                BodyZone2 = "<p>Seeing progress and appreciation in the work I do makes me more ambitious and keen to offer more.</p>",
-                BodyZone3 = "<p>Seeing all the opportunities that today's technologies offer gives me great motivation to be an important part of the process.</p>",
-                BodyZone4 = "<p>I think quality products not only make you a better programmer but seeing happy clients in the end, gives great satisfaction.</p>",
-                BodyZone5 = "<p>Essex England</p>",
-
-                FileName = "photo_id1.jpg",
-                Name = "ERIC",
-                Path = "/Content/Images/Welcome/"
-            };
-
-            display.WelcomeView = new DisplayViewWelcome
-            {  
-                ID = 1,              
-                Zone1 = "<h1>Hi, I'M ERIC</h1>",
-                Zone2 = "<p>Welcome to my Portfolio</p>",
-                Zone3 = "<p>Learn more</p>"
-            };
+            
 
             //========================================[ Pictures ]============================================================
             
@@ -246,7 +226,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "IUT - Ville d'Avray",
                 Description = "To Do",
                 FileName = "IUT-Ville-Avray.PNG",
-                path = "/Content/Images/Education/"
+                path = "/Content/Images/Education/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -255,7 +243,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "ISEP",
                 Description = "To Do",
                 FileName = "ISEP.PNG",
-                path = "/Content/Images/Education/"
+                path = "/Content/Images/Education/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -264,7 +260,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "Just IT",
                 Description = "To Do",
                 FileName = "Just-IT.PNG",
-                path = "/Content/Images/Education/"
+                path = "/Content/Images/Education/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -273,7 +277,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "Orange",
                 Description = "To Do",
                 FileName = "Orange.PNG",
-                path = "/Content/Images/Experiences/"
+                path = "/Content/Images/Experiences/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -282,7 +294,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "PSA",
                 Description = "To Do",
                 FileName = "PSA.PNG",
-                path = "/Content/Images/Experiences/"
+                path = "/Content/Images/Experiences/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -291,7 +311,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "Infoelsa",
                 Description = "To Do",
                 FileName = "Infoelsa.PNG",
-                path = "/Content/Images/Experiences/"
+                path = "/Content/Images/Experiences/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -300,7 +328,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "DISIC",
                 Description = "To Do",
                 FileName = "DISIC.PNG",
-                path = "/Content/Images/Projects/"
+                path = "/Content/Images/Projects/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -309,7 +345,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "Portfolio",
                 Description = "To Do",
                 FileName = "Portfolio.PNG",
-                path = "/Content/Images/Projects/"
+                path = "/Content/Images/Projects/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -318,7 +362,15 @@ namespace DagoWebPortfolio.Models
                 Subject = "Codsimex",
                 Description = "To Do",
                 FileName = "Codsimex.PNG",
-                path = "/Content/Images/Projects/"
+                path = "/Content/Images/Projects/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
 
             pictures.Add(new PicturesViewModel
@@ -327,8 +379,19 @@ namespace DagoWebPortfolio.Models
                 Subject = "Portfolio",
                 Description = "To Do",
                 FileName = "PortfolioModelDiagram.PNG",
-                path = "/Content/Images/Projects/"
+                path = "/Content/Images/Projects/",
+                ProjectDetail = null,
+                ProjectDetailsViewModelID = null,
+                Skill = null,
+                SkillsViewModelID = null,
+                Education = null,
+                EducationViewModelID = null,
+                Experience = null,
+                ExperiencesViewModelID = null
             });
+
+
+            pictures.ForEach(x=>context.PicturesApp.Add(x));
 
         }
     }

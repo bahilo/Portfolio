@@ -231,9 +231,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-DagoWebPortfolio-20151104125639.mdf" />
-    <Content Include="App_Data\aspnet-DagoWebPortfolio-20151104125639_log.ldf">
-      <DependentUpon>aspnet-DagoWebPortfolio-20151104125639.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\AdminTheme\assets\chart-master\Chart.js" />
     <Content Include="Content\AdminTheme\assets\chart-master\Chart.min.js" />
     <Content Include="Content\AdminTheme\assets\chart-master\docs\Chart.js" />
