@@ -1,57 +1,77 @@
 ﻿@model IEnumerable<DagoWebPortfolio.Models.EducationViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "EDUCATION";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-list-alt"></i> @ViewBag.Title</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Admin/index">Home</a></li>
+            <li><i class="fa fa-eye"></i>@ViewBag.From</li>
+            <li><i class="fa fa-list-alt"></i>@ViewBag.Target</li>
+            <li><i class="fa fa-briefcase"></i>@ViewBag.Action</li>
+        </ol>
+    </div>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SchoolName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearGraduate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NbYearsToGraduate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SchoolName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearGraduate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NbYearsToGraduate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+<div class="panel">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SchoolName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.YearGraduate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NbYearsToGraduate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.link)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchoolName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.YearGraduate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NbYearsToGraduate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.link)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</div>

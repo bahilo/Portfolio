@@ -16,8 +16,13 @@ namespace DagoWebPortfolio.Controllers
         private DBDisplayModelContext db = new DBDisplayModelContext();
 
         // GET: Displays
-        public ActionResult Index()
+        public ActionResult Index(string target, string from, string action)
         {
+
+            ViewBag.Target = target;
+            ViewBag.From = from;
+            ViewBag.Action = action;
+
             var display = db.Displays.Include("AboutView").Include("WelcomeView").ToList();
 
             return View(display);
@@ -39,8 +44,12 @@ namespace DagoWebPortfolio.Controllers
         }
 
         // GET: Displays/Create
-        public ActionResult Create()
+        public ActionResult Create(string target, string from, string action)
         {
+
+            ViewBag.Target = target;
+            ViewBag.From = from;
+            ViewBag.Action = action;
             //db.Displays.Include("AboutView").Include("WelcomeView")
             return View();
         }
@@ -84,8 +93,13 @@ namespace DagoWebPortfolio.Controllers
 
 
         // GET: Displays/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string target, string from, string action)
         {
+
+            ViewBag.Target = target;
+            ViewBag.From = from;
+            ViewBag.Action = action;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

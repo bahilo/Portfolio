@@ -9,8 +9,9 @@
         <h3 class="page-header"><i class="fa fa-list-alt"></i> @ViewBag.Title</h3>
         <ol class="breadcrumb">
             <li><i class="fa fa-home"></i><a href="/Admin/index">Home</a></li>
-            <li><i class="fa fa-desktop"></i>Consultation</li>
-            <li><i class="fa fa-list-alt"></i>Projects</li>
+            <li><i class="fa fa-eye"></i>@ViewBag.From</li>
+            <li><i class="fa fa-list-alt"></i>@ViewBag.Target</li>
+            <li><i class="fa fa-briefcase"></i>@ViewBag.Action</li>
         </ol>
     </div>
 </div>
@@ -23,7 +24,7 @@
     <div class="panel-heading">
     </div>
     <div class="panel-body">
-        <table class="table">
+        <table class="table table-hover">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)

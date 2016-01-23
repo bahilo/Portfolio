@@ -8,7 +8,7 @@
     ViewBag.AboutHeadZone3 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone3 : "Head Zone 3";
 
 }  
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -100,7 +100,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li>
+                            <li> 
                                 <a href="#">
                                     <div class="task-info">
                                         <div class="desc">Digital Marketing</div>
@@ -311,16 +311,16 @@
                     <li class="sub-menu">
                         <a href="javascript:;" class="">
                             <i class="icon_documents_alt"></i>
-                            <span>Consultation</span>
+                            <span>View</span>
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
                         <ul class="sub">
-                            <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
-                            <li>@Html.ActionLink("Experiences", "Index", "Experiences")</li>
+                            <li>@Html.ActionLink("Skills", "Index/View/Details", "Skills")</li>
+                            <li>@Html.ActionLink("Experiences", "Index/View/Details", "Experiences")</li>
                             <li>@Html.ActionLink("Projects", "Index/View/Details", "Projects")</li>
-                            <li>@Html.ActionLink("Education", "Index", "Education")</li>
-                            <li>@Html.ActionLink("Pictures", "Index", "Pictures")</li>
-                            <li>@Html.ActionLink("Displays", "Index", "Displays")</li>
+                            <li>@Html.ActionLink("Education", "Index/View/Details", "Education")</li>
+                            <li>@Html.ActionLink("Pictures", "Index/View/Details", "Pictures")</li>
+                            <li>@Html.ActionLink("Displays", "Index/View/Details", "Displays")</li>
                         </ul>
                     </li>
                     <li class="sub-menu">
@@ -330,12 +330,12 @@
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
                         <ul class="sub">
-                            <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
-                            <li>@Html.ActionLink("Experiences", "Index", "Experiences")</li>
+                            <li>@Html.ActionLink("Skills", "Index/Update/Edit", "Skills")</li>
+                            <li>@Html.ActionLink("Experiences", "Index/Update/Edit", "Experiences")</li>
                             <li>@Html.ActionLink("Projects", "Index/Update/Edit", "Projects")</li>
-                            <li>@Html.ActionLink("Education", "Index", "Education")</li>
-                            <li>@Html.ActionLink("Pictures", "Index", "Pictures")</li>
-                            <li>@Html.ActionLink("Displays", "Index", "Displays")</li>
+                            <li>@Html.ActionLink("Education", "Index/Update/Edit", "Education")</li>
+                            <li>@Html.ActionLink("Pictures", "Index/Update/Edit", "Pictures")</li>
+                            <li>@Html.ActionLink("Displays", "Index/Update/Edit", "Displays")</li>
                         </ul>
                     </li>
                     <li class="sub-menu">
@@ -345,12 +345,12 @@
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
                         <ul class="sub">
-                            <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
-                            <li>@Html.ActionLink("Experiences", "Index", "Experiences")</li>
+                            <li>@Html.ActionLink("Skills", "Index/Delete/Delete", "Skills")</li>
+                            <li>@Html.ActionLink("Experiences", "Index/Delete/Delete", "Experiences")</li>
                             <li>@Html.ActionLink("Projects", "Index/Delete/Delete", "Projects")</li>
-                            <li>@Html.ActionLink("Education", "Index", "Education")</li>
-                            <li>@Html.ActionLink("Pictures", "Index", "Pictures")</li>
-                            <li>@Html.ActionLink("Displays", "Index", "Displays")</li>
+                            <li>@Html.ActionLink("Education", "Index/Delete/Delete", "Education")</li>
+                            <li>@Html.ActionLink("Pictures", "Index/Delete/Delete", "Pictures")</li>
+                            <li>@Html.ActionLink("Displays", "Index/Delete/Delete", "Displays")</li>
                         </ul>
                     </li>
                     <li>

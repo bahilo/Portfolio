@@ -25,9 +25,9 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(242,242,242);
     font-size: 21px;
-    font-weight: 200;
-    /*line-height:2.1428571435;*/
-    color: inherit;
+    /*font-weight: 200;
+    line-height:2.1428571435;
+    color: inherit;*/
 }
 
 /*body p{line-height:1.4}*/
@@ -598,8 +598,8 @@ header {
 
     .education-home .picture {
         border-radius: 100%;
-        width: 100%;
-        height: 100%;
+        /*width: 100%;
+        height: 100%;*/
     }
 
     .education-home .bg-4 {
@@ -676,11 +676,13 @@ header {
         bottom: 0;
         position: absolute;
         content: " ";
-        width: 3px;
+        width: 10px;
         background-color: rgb(242,242,242);
         left: 50%;
-        margin-left: -1.5px;
+        margin-left: -5.8px;
     }
+
+
 
     .timeline > li {
         margin-bottom: 20px;
@@ -753,18 +755,19 @@ header {
             }
 
         .timeline > li > .timeline-badge {
-            color: #fff;
+            color: rgb(242,242,242);
             padding: 10px 15px 0px 2px;
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             line-height: 50px;
             font-size: 1.4em;
             text-align: center;
             position: absolute;
             top: 8px;
             left: 50%;
-            margin-left: -35px;
+            margin-left: -40px;
             background-color: #999999;
+            border: 5px solid rgb(242,242,242);
             z-index: 100;
             -webkit-border-top-right-radius: 50%;
             -moz-border-top-right-radius: 50%;
@@ -786,6 +789,35 @@ header {
             -ms-border-bottom-left-radius: 50%;
             -o-border-bottom-left-radius: 50%;
             border-bottom-left-radius: 50%;
+        }
+        
+        .timeline > li > .start.timeline-badge{
+            padding: 1%;
+            background-color: rgb(242,242,242);
+        }
+        .timeline > li > .start.timeline-badge > .glyphicon.glyphicon-circle-arrow-up{
+            background-color: #e6e6e6;
+            -webkit-border-top-right-radius: 50%;
+            -moz-border-top-right-radius: 50%;
+            -ms-border-top-right-radius: 50%;
+            -o-border-top-right-radius: 50%;
+            border-top-right-radius: 50%;
+            -webkit-border-top-left-radius: 50%;
+            -moz-border-top-left-radius: 50%;
+            -ms-border-top-left-radius: 50%;
+            -o-border-top-left-radius: 50%;
+            border-top-left-radius: 50%;
+            -webkit-border-bottom-right-radius: 50%;
+            -moz-border-bottom-right-radius: 50%;
+            -ms-border-bottom-right-radius: 50%;
+            -o-border-bottom-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            -webkit-border-bottom-left-radius: 50%;
+            -moz-border-bottom-left-radius: 50%;
+            -ms-border-bottom-left-radius: 50%;
+            -o-border-bottom-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border: 5px solid #e6e6e6;
         }
 
         .timeline > li.timeline-inverted > .timeline-panel {

@@ -5,12 +5,12 @@
     ViewBag.Title = "EXPERIENCES";
     var count = 0;
 
-    string[] _colors = new string[5];
-    _colors[0] = "rgba(229,225,206,1)";
-    _colors[1] = "rgba(84,140,191,.7)";
-    _colors[2] = "rgba(237,28,36,.7)";
-    _colors[3] = "rgba(34,177,76,.7)";
-    _colors[4] = "rgba(195,195,195,.7)";
+    string[] _colors_class = new string[5];
+    _colors_class[0] = "primary";
+    _colors_class[1] = "success";
+    _colors_class[2] = "warning";
+    _colors_class[3] = "danger";
+    _colors_class[4] = "info";
 
     var rd = new Random();
 }
@@ -46,7 +46,7 @@
                                 if (count % 2 == 0)
                                 {
                                     <li>
-                                        <div class="timeline-badge" style="background-color: @_colors[rd.Next(0, 4)];">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                        <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownLeft">
 
 
@@ -89,7 +89,7 @@
                                 else
                                 {
                                     <li class="timeline-inverted">
-                                        <div class="timeline-badge" style="background-color: @_colors[rd.Next(0, 4)];">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                        <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownRight">
 
 
@@ -137,7 +137,11 @@
                                 
                                 count++;
                             }
+                            <li>
+                                <div class="start timeline-badge "><i class="glyphicon glyphicon-circle-arrow-up"></i></div>
+                            </li>
                         </ul>
+                        <div class="divider"></div>
                     </div>
 
                 </div>

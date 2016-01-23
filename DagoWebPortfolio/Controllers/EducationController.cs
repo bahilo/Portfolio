@@ -25,6 +25,10 @@ namespace DagoWebPortfolio.Controllers
         [AllowAnonymous]
         public ActionResult _Index()
         {
+            using (var Ddb = new DBDisplayModelContext())
+            {
+                ViewBag.AvatarUrl = Ddb.DisplayWelcome.OrderByDescending(x=>x.ID).First().Path + Ddb.DisplayWelcome.OrderByDescending(x => x.ID).First().FileName;
+            }
             var educationList = db.Education.Include("Pictures").ToList();
             populateEducationWithPicture(educationList);
             return View(educationList.OrderByDescending(x=>x.YearGraduate));

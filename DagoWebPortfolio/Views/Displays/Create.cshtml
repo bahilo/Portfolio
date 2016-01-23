@@ -1,50 +1,93 @@
 ﻿@model DagoWebPortfolio.Models.DisplayViewModel.DisplayViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "DISPLAY";
 }
 
-<div class="container">
-    <h2>Create</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-list-alt"></i> @ViewBag.Title</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/Admin/index">Home</a></li>
+            <li><i class="fa fa-eye"></i>@ViewBag.From</li>
+            <li><i class="fa fa-list-alt"></i>@ViewBag.Target</li>
+            <li><i class="fa fa-briefcase"></i>@ViewBag.Action</li>
+        </ol>
+    </div>
+</div>
 
-    @using (Html.BeginForm(Html.BeginForm("Create", "Displays", FormMethod.Post,
-                                                                new { enctype = "multipart/form-data" })))
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <fieldset>
-                <legend>DisplayViewModel</legend>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.lang, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.lang, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.lang, "", new { @class = "text-danger" })
-                    </div>
+@using (Html.BeginForm(Html.BeginForm("Create", "Displays", FormMethod.Post,
+                                                                                                                    new { enctype = "multipart/form-data" })))
+{
+    @Html.AntiForgeryToken()
+
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    About Page
                 </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Welcome Page Display</legend>
-                @Html.EditorFor(model => model.WelcomeView)
-            </fieldset>
-
-            <fieldset>
-                <legend>About Page Display</legend>
-                @Html.EditorFor(model => model.AboutView)
-            </fieldset>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <fieldset>
+                            @Html.EditorFor(model => model.AboutView)
+                        </fieldset>
+                    </div>
                 </div>
             </div>
         </div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        <div class="col-md-6">
+            <div class="row">
+            <div class="panel">
+                <div class="panel-heading">
+                    Welcome Page
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <fieldset>
+                            @Html.EditorFor(model => model.WelcomeView)
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-heading">
+                        Display
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <fieldset>
+                                
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.lang, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.lang, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.lang, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
+

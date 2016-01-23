@@ -22,7 +22,7 @@ namespace DagoWebPorfolio
 
             routes.MapRoute(
                name: "Admin",
-               url: "{controller}/{action}/{from}/{target}",
+               url: "{controller}/{action}/{from}/{target}/{id}",
                defaults: new { controller = "Account", action = "Login", from = "View" , target = "Details", id = UrlParameter.Optional }
            );
         }

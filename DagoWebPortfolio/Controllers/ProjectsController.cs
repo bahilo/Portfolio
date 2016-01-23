@@ -25,11 +25,13 @@ namespace DagoWebPortfolio.Controllers
             ProjectRepository.setContext(db);
         }
 
-        public ActionResult Index(string target)
+        public ActionResult Index(string target, string from, string action)
         {
 
             ViewBag.Target = target;
-            
+            ViewBag.From = from;
+            ViewBag.Action = action;
+
             return View(db.Projects.ToList());
         }
 

@@ -10,12 +10,12 @@
     _glyphicons[2] = "glyphicon-floppy-disk";
     _glyphicons[3] = "glyphicon-thumbs-up";
 
-    string[] _colors = new string[5];
-    _colors[0] = "rgba(229,225,206,1)";
-    _colors[1] = "rgba(84,140,191,.7)";
-    _colors[2] = "rgba(237,28,36,.7)";
-    _colors[3] = "rgba(34,177,76,.7)";
-    _colors[4] = "rgba(195,195,195,.7)";
+    string[] _colors_class = new string[5];
+    _colors_class[0] = "primary";
+    _colors_class[1] = "success";
+    _colors_class[2] = "warning";
+    _colors_class[3] = "danger";
+    _colors_class[4] = "info";
 
     var rd = new Random();
 }
@@ -49,7 +49,7 @@
                                 if (count % 2 == 0)
                                 {
                                     <li>
-                                        <div class="timeline-badge" style="background-color: @_colors[rd.Next(0, 4)];"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                        <div class="timeline-badge @_colors_class[rd.Next(0, 4)]" ><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
                                         <div class="timeline-panel animated rotateInDownLeft">
 
                                             <div class="row">
@@ -64,7 +64,7 @@
 
                                                         @if (item.link != null)
                                                         {
-                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
+                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h2>
                                                         }
                                                         else
                                                         {
@@ -83,7 +83,7 @@
                                 else
                                 {
                                     <li class="timeline-inverted">
-                                        <div class="timeline-badge" style="background-color: @_colors[rd.Next(0, 4)];"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                        <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
                                         <div class="timeline-panel animated rotateInDownRight">
 
                                             <div class="row">
@@ -102,25 +102,32 @@
                                                         }
                                                         else
                                                         {
-                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h2>
 
                                                         }
 
                                                         <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
-                                                        <p>@Html.DisplayHtml(item.Description)</p>
-                                                    </div><!--/panel-->
+                                                      
+                                                    </div><!--timeline-heading-->
+                                                    <p>@Html.DisplayHtml(item.Description)</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                 }
 
+                                
 
-                                <div class="divider"></div>
+                                @*<div class="divider"></div>*@
 
                                 count++;
                             }
+                            <li>
+                                <div class="start timeline-badge "><i class="glyphicon glyphicon-circle-arrow-up"></i></div>
+                            </li>
                         </ul>
+                        <div class="divider"></div>
+
                     </div>
                 </div>
             </div>
