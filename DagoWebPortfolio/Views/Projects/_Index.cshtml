@@ -90,12 +90,12 @@
                                 <div class="project-title"> 
                                     @if (project.link != null)
                                     {
-                                        <h2 class="title"> <a target="_blank" href="@Html.DisplayFor(modelItem => project.link)"><span>@Html.DisplayFor(modelItem => project.Title)</span>  <span class="date">@Html.DisplayFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</span></a></h2>
+                                        <h2 class="title"> <a target="_blank" href="@Html.DisplayFor(modelItem => project.link)"><span>@Html.DisplayFor(modelItem => project.Title)</span>  <span class="date">@Html.ValueFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</span></a></h2>
 
                                     }
                                     else
                                     {
-                                        <h2 class="no-link title">@Html.DisplayFor(modelItem => project.Title) @Html.DisplayFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</h2>
+                                        <h2 class="no-link title">@Html.DisplayFor(modelItem => project.Title) @Html.ValueFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</h2>
 
                                     }
                                     

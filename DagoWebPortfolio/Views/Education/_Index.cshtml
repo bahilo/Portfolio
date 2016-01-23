@@ -64,11 +64,11 @@
 
                                                         @if (item.link != null)
                                                         {
-                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h2>
+                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h2>
                                                         }
                                                         else
                                                         {
-                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</span></h2>
+                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h2>
 
                                                         }
 
@@ -98,11 +98,11 @@
 
                                                         @if (item.link != null)
                                                         {
-                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate)</a></span></h2>
+                                                            <h2 class="timeline-title"><span class="title"><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h2>
                                                         }
                                                         else
                                                         {
-                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.DisplayFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h2>
+                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h2>
 
                                                         }
 
