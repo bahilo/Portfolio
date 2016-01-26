@@ -1,3 +1,5 @@
+
+
 function initializeJS() {
 
     //tool tips
@@ -90,4 +92,28 @@ function initializeJS() {
 
 jQuery(document).ready(function(){
     initializeJS();
+     /**/
+    /*
+    //$(function () {
+        //alert("toto1");
+          $(".datepicker").datepicker({
+              todayBtn: true,
+              language: "en-GB",
+              format: "dd/mm/yyyy",
+              clearBtn: true,
+              pickTime: false
+          });
+
+          //alert("toto2");
+
+          $.validator.addMethod("date",
+              function (value, element) {
+                  return this.optional(element) || parseDate(value, "dd-MM-yyyy") !== null;
+              });
+    //})();*/
+
+    $.validator.methods.date = function (value, element) {
+        return this.optional(element) || Globalize.parseDate(value, "d/M/y", "en");
+    }
+
 });

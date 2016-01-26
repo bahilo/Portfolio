@@ -11,14 +11,13 @@
 	display: inline-block !important;
 }
 .icon-task-l {
-	/*background: url('/Content/AdminTheme/img/icons/line-icon.png') no-repeat -517px -102px;*/
-	border: 2px solid red;
-    width: 23px;
-	height: 16px;
+	background: url('/Content/AdminTheme/img/icons/line-icon.png') no-repeat -517px -102px;
+	width: 23px;
+	height: 16px;;
 	display: inline-block !important;	
 }
 .icon-dashboard-l {
-	background: url('/Content/AdminTheme/img/icons/line-icon.png') no-repeat -15px -17px;
+	background: url('/Content/AdminTheme/img/icons/line-icon.png') no-repeat -15px -17px; 
 	width: 24px;
 	height: 24px;
 	display: inline-block !important;
@@ -86,20 +85,19 @@
 
 /*Hover*/
 .icon-envelope-l:hover,.icon-envelope-l.active{
-	background: url('~/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -727px  -62px;	
+	background: url('/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -727px  -62px;	
 	width: 24px;
 	height: 16px;
 	display: inline-block !important;
 }
 .icon-bell-l:hover{
-    background: url('~/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -217px -18px;
-	background: url('~/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -217px -18px;	
+	background: url('/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -217px -18px;
 	width: 23px;
 	height: 25px;
 	display: inline-block !important;
 }
 .icon-task-l:hover{
-	background: url('~/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -517px -102px;
+	background: url('/Content/AdminTheme/img/icons/line-icon-hover.png') no-repeat -517px -102px;
 	width: 23px;
 	height: 16px;
 	display: inline-block !important;	

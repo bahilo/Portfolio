@@ -16,7 +16,7 @@ figure,
 footer,
 header,
 hgroup,
-main,
+main, 
 nav,
 section,
 summary {
@@ -2155,8 +2155,9 @@ input[type="button"].btn-block {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('/Content/AdminTheme/app/fonts/glyphicons-halflings-regular.eot');
-  src: url('/Content/AdminTheme/app/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/Content/AdminTheme/app/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/Content/AdminTheme/app/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/Content/AdminTheme/app/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+  src: url('/Content/AdminTheme/fonts/glyphicons-halflings-regular.eot');
+  src: url('/Content/AdminTheme/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/Content/AdminTheme/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/Content/AdminTheme/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/Content/AdminTheme/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+
 }
 .glyphicon {
   position: relative;
