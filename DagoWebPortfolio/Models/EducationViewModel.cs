@@ -20,7 +20,7 @@ namespace DagoWebPortfolio.Models
         [Required(ErrorMessage = "You must specify Year Of Graduation.")]
         [DataType(DataType.Date)]
         [Display(Name ="Year Of Graduation")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime YearGraduate { get; set; }
 
         [Display(Name = "Number Of Years")]

@@ -27,13 +27,13 @@ namespace DagoWebPortfolio.Models
         [Required(ErrorMessage = "You must specify a start date.")]
         [DataType(DataType.Date)]
         [Display(Name = "Start date")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "You must specify a end date.")]
         [DataType(DataType.Date)]
         [Display(Name = "End date")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
         public string link { get; set; }
