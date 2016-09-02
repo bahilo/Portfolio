@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
 /*@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");*/
 
-@font-face {
+/*@font-face {
     font-family: Alex-Brush;
     src: url(/Content/Fonts/AlexBrush-Regular.ttf);
 }
@@ -14,7 +14,7 @@
 @font-face {
     font-family: Quicksand-Light;
     src: url(/Content/Fonts/Quicksand-Light.otf);
-}
+}*/
 /*______________________________________________________________________________________________*/
 
 html,
@@ -22,6 +22,7 @@ body {
     height: 100%;
     /* The html and body elements cannot have any padding or margin. */
     -webkit-font-smoothing: antialiased;
+    /*font-family: Kaushan-Script, monospace;*/
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(242,242,242);
     font-size: 21px;
@@ -59,10 +60,37 @@ textarea {
     padding-bottom: 20px;
 }
 
-a:hover {
-    cursor: pointer;
+a{
+    text-decoration: none;
+    color: rgb(197,186,166);
 }
 
+a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color:rgba(197,186,166,1);
+}
+
+.title {
+    width: 100%;
+    /*color: rgb(197,186,166);*/
+    margin: 0px 0px 10px 0px;
+    text-align: center;
+    /*font-family: Kaushan-Script, monospace;*/
+}
+
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    min-height: 200px;
+    max-height: 400px;
+    /*border: 2px solid black;*/
+    padding: 12% 10% 10% 18%;
+}
 /* Custom page CSS
 -------------------------------------------------- */
 /* CUSTOMIZE THE NAVBAR
@@ -154,7 +182,8 @@ a:hover {
 }
 
     .navbar-custom .navbar-nav > li > a {
-        color: #ddd;
+        /*color: #ddd;*/
+        color: rgb(197,186,166);
     }
 
     .navbar-custom .dropdown-menu li > a:hover {
@@ -184,7 +213,8 @@ a:hover {
 
 .panel {
     border-width: 0;
-    color: black;
+    /*color: black;*/
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
@@ -227,7 +257,7 @@ section {
 }
 
 .bg-1 {
-    background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
+    background: url(/Content/Images/bg_suburb.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -235,7 +265,7 @@ section {
 }
 
 .bg-2 {
-    background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
+    background: url(/Content/Images/bg_suburb.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -243,21 +273,22 @@ section {
 }
 
 .bg-3 {
-    background: url('http://www.bootply.com/assets/example/bg_blueplane.jpg') no-repeat center center fixed;
+    background: url(/Content/Images/bg_blueplane.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    color: rgb(197,186,166);
 }
 
 .bg-4 {
-    padding-top: 30px;
+    padding-top: 0px;
     /*background-color: #e6e6e6;*/
 }
 
 .panel .img-responsive {
-    min-height: 270px;
-    max-height: 270px;
+    height: 270px;
+    width: 370px;
 }
 
 .list-inline img {
@@ -378,10 +409,7 @@ header {
         }
 
 .home-page .title {
-    width: 100%;
-    border-bottom: 2px solid #ddd;
-    text-align: center;
-    font-family: Kaushan-Script, monospace;
+    border-bottom: 2px solid rgb(197,186,166);
 }
 
 /*.no-link, .link{
@@ -401,6 +429,8 @@ header {
 .img-layout {
     padding: 10px;
     background-color: rgb(242,242,242);
+    overflow: hidden;
+    align-content: center;
     /*margin-bottom: 10px;*/
 }
 
@@ -467,7 +497,7 @@ header {
     }
 
         .skills-home .bg-4 .panel-thumbnail {
-            background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed; /**/
+            background: url(/Content/Images/bg_suburb.jpg) no-repeat center center fixed; /**/
             background-color: rgb(242,242,242);
             padding: 10% 10% 10% 20%;
         }
@@ -485,19 +515,6 @@ header {
     }
 
 
-
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-    margin-top: 5%;
-    margin-bottom: 10%;
-    min-height: 200px;
-    max-height: 400px;
-    /*border: 2px solid black;*/
-    padding: 12% 10% 10% 18%;
-}
 
 /*canvas[id^=demo] {
   -vendor-animation-duration: 3s;
@@ -566,8 +583,20 @@ header {
 
     .projects-home .bg-3 {
         background: none;
-        background-color: #e6e6e6;
+        background-color: #e6e6e7;
     }
+
+    .projects-home section.bg-3 {
+        min-height: 250px;
+        padding: 0;
+    }
+
+
+    .projects-home section.bg-4{
+        min-height:700px;
+        padding:0;
+    }/**/
+
 
     .projects-home .bg-4 {
         background-color: #e6e6e6;
@@ -575,10 +604,57 @@ header {
     }
 
 
-    .projects-home .panel {
+    .projects-home .button-back {
+        background-color: rgb(242,242,242);
+        text-align: center;
+        text-decoration:none;
+        color: black;
     }
 
 
+    .projects-home .panel {
+    }
+
+    .projects-home .divider h2 {
+        padding: 20px;
+        background-color: rgba(5,5,5,.8);
+    }
+
+/***[ Project details ]****/
+
+.projects-details {
+}
+
+    .projects-details .bg-3 {
+        background: none;
+        background-color: #e6e6e6;
+    }
+
+    .projects-details section.bg-3 {
+        min-height: 150px;
+        padding: 0;
+    }
+
+    .projects-details .bg-4 {
+        background-color: #e6e6e6;
+        color: black;
+        min-height: 650px;
+    }
+
+
+    .projects-details .section-divider {
+        height: 100px;
+        background-color: rgba(5,5,5,.5);
+    }
+
+    .projects-details .divider h2 {
+        padding: 20px;
+        background-color: rgba(5,5,5,.8);
+    }
+
+    .projects-details section.bg-3 .title { 
+        color:rgba(5,5,5,.8);
+    }
 
 /* ____________[ Education page ]*/
 
@@ -672,7 +748,7 @@ header {
 }
 
     .timeline:before {
-        top: 0;/**/
+        top: 0; /**/
         bottom: 0;
         position: absolute;
         content: " ";
@@ -693,7 +769,6 @@ header {
         .timeline > li:after {
             content: " ";
             display: table;
-            
         }
 
         .timeline > li:after {
@@ -747,11 +822,10 @@ header {
                 right: -14px;
                 display: inline-block;
                 border-top: 14px solid transparent;
-                border-left: 14px solid  rgb(242,242,242);
+                border-left: 14px solid rgb(242,242,242);
                 border-right: 0 solid rgb(242,242,242);
                 border-bottom: 14px solid transparent;
                 content: " ";
-                
             }
 
         .timeline > li > .timeline-badge {
@@ -790,35 +864,36 @@ header {
             -o-border-bottom-left-radius: 50%;
             border-bottom-left-radius: 50%;
         }
-        
-        .timeline > li > .start.timeline-badge{
+
+        .timeline > li > .start.timeline-badge {
             padding: 1%;
             background-color: rgb(242,242,242);
         }
-        .timeline > li > .start.timeline-badge > .glyphicon.glyphicon-circle-arrow-up{
-            background-color: #e6e6e6;
-            -webkit-border-top-right-radius: 50%;
-            -moz-border-top-right-radius: 50%;
-            -ms-border-top-right-radius: 50%;
-            -o-border-top-right-radius: 50%;
-            border-top-right-radius: 50%;
-            -webkit-border-top-left-radius: 50%;
-            -moz-border-top-left-radius: 50%;
-            -ms-border-top-left-radius: 50%;
-            -o-border-top-left-radius: 50%;
-            border-top-left-radius: 50%;
-            -webkit-border-bottom-right-radius: 50%;
-            -moz-border-bottom-right-radius: 50%;
-            -ms-border-bottom-right-radius: 50%;
-            -o-border-bottom-right-radius: 50%;
-            border-bottom-right-radius: 50%;
-            -webkit-border-bottom-left-radius: 50%;
-            -moz-border-bottom-left-radius: 50%;
-            -ms-border-bottom-left-radius: 50%;
-            -o-border-bottom-left-radius: 50%;
-            border-bottom-left-radius: 50%;
-            border: 5px solid #e6e6e6;
-        }
+
+            .timeline > li > .start.timeline-badge > .glyphicon.glyphicon-circle-arrow-up {
+                background-color: #e6e6e6;
+                -webkit-border-top-right-radius: 50%;
+                -moz-border-top-right-radius: 50%;
+                -ms-border-top-right-radius: 50%;
+                -o-border-top-right-radius: 50%;
+                border-top-right-radius: 50%;
+                -webkit-border-top-left-radius: 50%;
+                -moz-border-top-left-radius: 50%;
+                -ms-border-top-left-radius: 50%;
+                -o-border-top-left-radius: 50%;
+                border-top-left-radius: 50%;
+                -webkit-border-bottom-right-radius: 50%;
+                -moz-border-bottom-right-radius: 50%;
+                -ms-border-bottom-right-radius: 50%;
+                -o-border-bottom-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+                -webkit-border-bottom-left-radius: 50%;
+                -moz-border-bottom-left-radius: 50%;
+                -ms-border-bottom-left-radius: 50%;
+                -o-border-bottom-left-radius: 50%;
+                border-bottom-left-radius: 50%;
+                border: 5px solid #e6e6e6;
+            }
 
         .timeline > li.timeline-inverted > .timeline-panel {
             float: right;

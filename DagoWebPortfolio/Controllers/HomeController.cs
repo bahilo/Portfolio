@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
+using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -105,15 +106,21 @@ namespace DagoWebPortfolio.Controllers
                 myMessage.Html = "<p>" + contactsViewModel.Comments + "</p>";
                 myMessage.Html += "<p>Phone: "+ contactsViewModel.Phone + "</p>";
                 //myMessage.Text = contactsViewModel.Comments;
-                
-                // Send the email, which returns an awaitable task.
-                await transportWeb.DeliverAsync(myMessage);
+                try
+                {
+                    // Send the email, which returns an awaitable task.
+                    await transportWeb.DeliverAsync(myMessage);
 
-                ViewBag.EmailConfirmation = true;
-                ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
-
-                db.Contacts.Add(contactsViewModel);
-                db.SaveChanges();
+                    ViewBag.EmailConfirmation = true;
+                    ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
+                                    
+                    db.Contacts.Add(contactsViewModel);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                }
 
                 return RedirectToAction("Index", new { isContactSend = true });
 

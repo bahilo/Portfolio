@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
 using DagoWebPortfolio.Models.DisplayViewModel;
+using System.IO;
+using QCBDManagementCommon.Classes;
+using DagoWebPortfolio.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -29,8 +32,7 @@ namespace DagoWebPortfolio.Controllers
         {
             foreach (var picture in pictures)
             {
-
-                picture.Skill = db.Skills.Where(x => x.ID == picture.SkillsViewModelID ).DefaultIfEmpty().Single();
+                picture.Skill = db.Skills.Where(x => x.ID == picture.SkillsViewModelID).DefaultIfEmpty().Single();
                 picture.Education = db.Education.Where(x => x.ID == picture.EducationViewModelID).DefaultIfEmpty().Single();
                 picture.Experience = db.Experiences.Where(x => x.ID == picture.ExperiencesViewModelID).DefaultIfEmpty().Single();
                 picture.ProjectDetail = db.DetailsProject.Where(x => x.ID == picture.ProjectDetailsViewModelID).DefaultIfEmpty().Single();
@@ -47,8 +49,16 @@ namespace DagoWebPortfolio.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PicturesViewModel picturesViewModel = db.PicturesApp.Where(x=>x.ID == id).Include("Education").Include("Experience").Include("ProjectDetail").Include("Skill").DefaultIfEmpty().Single();
-            populateSinglePictureWithObjects(picturesViewModel);
+            PicturesViewModel picturesViewModel = db.PicturesApp.Where(x => x.ID == id).Include("Education").Include("Experience").Include("ProjectDetail").Include("Skill").SingleOrDefault();
+            try
+            {
+                populateSinglePictureWithObjects(picturesViewModel);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+                return View("Error");
+            }
             if (picturesViewModel == null)
             {
                 return HttpNotFound();
@@ -58,12 +68,13 @@ namespace DagoWebPortfolio.Controllers
 
         private void populateSinglePictureWithObjects(PicturesViewModel picture)
         {
-            if ( picture != null ) { 
-            picture.Skill = db.Skills.Where(x => x.ID == picture.SkillsViewModelID).DefaultIfEmpty().Single();
-            picture.Education = db.Education.Where(x => x.ID == picture.EducationViewModelID).DefaultIfEmpty().Single();
-            picture.Experience = db.Experiences.Where(x => x.ID == picture.ExperiencesViewModelID).DefaultIfEmpty().Single();
-            picture.ProjectDetail = db.DetailsProject.Where(x => x.ID == picture.ProjectDetailsViewModelID).DefaultIfEmpty().Single();
-           }
+            if (picture != null)
+            {
+                picture.Skill = db.Skills.Where(x => x.ID == picture.SkillsViewModelID).DefaultIfEmpty().Single();
+                picture.Education = db.Education.Where(x => x.ID == picture.EducationViewModelID).DefaultIfEmpty().Single();
+                picture.Experience = db.Experiences.Where(x => x.ID == picture.ExperiencesViewModelID).DefaultIfEmpty().Single();
+                picture.ProjectDetail = db.DetailsProject.Where(x => x.ID == picture.ProjectDetailsViewModelID).DefaultIfEmpty().Single();
+            }
         }
 
 
@@ -87,8 +98,6 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid && file != null)
             {
-                
-
                 try
                 {
                     var picture = projectPicturesViewModel;
@@ -109,10 +118,16 @@ namespace DagoWebPortfolio.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
-
-                    throw raise;
+                    ViewBag.ErrorMessage = raise.Message;
+                    Log.write(raise.Message, "ERR");
+                    return View("Error");
+                    //throw raise;
                 }
-
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                    return View("Error");
+                }
 
                 return RedirectToAction("Index");
             }
@@ -126,11 +141,12 @@ namespace DagoWebPortfolio.Controllers
 
         private void addPictureTable(PicturesViewModel picture, HttpPostedFileBase file, string link_picture_to)
         {
+            picture.path = "/Content/Images/";
             switch (link_picture_to)
             {
                 case "project":
-                    var projectDetail = db.DetailsProject.Where(x=>x.ID == picture.ProjectDetailsViewModelID).DefaultIfEmpty().Single();
-                    picture.path = "/Content/Images/Projects/";
+                    var projectDetail = db.DetailsProject.Where(x => x.ID == picture.ProjectDetailsViewModelID).DefaultIfEmpty().Single();
+                    picture.path += "Projects/";
                     picture.ProjectDetail = projectDetail;
                     picture.Education = null;
                     picture.EducationViewModelID = null;
@@ -142,7 +158,7 @@ namespace DagoWebPortfolio.Controllers
                     break;
                 case "education":
                     var education = db.Education.Find(picture.EducationViewModelID);
-                    picture.path = "/Content/Images/Education/";
+                    picture.path += "Education/";
                     picture.Education = education;
                     picture.ProjectDetail = null;
                     picture.ProjectDetailsViewModelID = null;
@@ -154,7 +170,7 @@ namespace DagoWebPortfolio.Controllers
                     break;
                 case "experience":
                     var experience = db.Experiences.Find(picture.ExperiencesViewModelID);
-                    picture.path = "/Content/Images/Experiences/";
+                    picture.path += "Experiences/";
                     picture.Experience = experience;
                     picture.Education = null;
                     picture.EducationViewModelID = null;
@@ -166,7 +182,7 @@ namespace DagoWebPortfolio.Controllers
                     break;
                 case "skill":
                     var skill = db.Skills.Find(picture.SkillsViewModelID);
-                    picture.path = "/Content/Images/Skills/";
+                    picture.path += "Skills/";
                     picture.Skill = skill;
                     picture.Education = null;
                     picture.EducationViewModelID = null;
@@ -178,7 +194,10 @@ namespace DagoWebPortfolio.Controllers
             }
 
             picture.FileName = file.FileName;
-            file.SaveAs(HttpContext.Server.MapPath(picture.path + file.FileName));
+            //if (!Directory.Exists(picture.path))
+            //    Directory.CreateDirectory(picture.path);
+
+            file.SaveAs(HttpContext.Server.MapPath(Utility.getFileFullPath(Utility.getDirectory(picture.path), file.FileName)));
 
         }
 
@@ -210,7 +229,6 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     picturesViewModel.FileName = fileName;
@@ -232,7 +250,15 @@ namespace DagoWebPortfolio.Controllers
                         }
                     }
 
-                    throw raise;
+                    ViewBag.ErrorMessage = raise.Message;
+                    Log.write(raise.Message, "ERR");
+                    return View("Error");
+                    //throw raise;
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                    return View("Error");
                 }
 
 
@@ -247,7 +273,7 @@ namespace DagoWebPortfolio.Controllers
 
         private void updatePictureTable(PicturesViewModel picture, HttpPostedFileBase file, string link_picture_to, string origineFileName)
         {
-           switch (link_picture_to)
+            switch (link_picture_to)
             {
                 case "project":
                     var projectDetail = db.DetailsProject.Find(picture.ProjectDetailsViewModelID);
@@ -351,8 +377,15 @@ namespace DagoWebPortfolio.Controllers
                     System.IO.File.Delete(f);
             }
 
-            db.PicturesApp.Remove(projectPicturesViewModel);
-            db.SaveChanges();
+            try
+            {
+                db.PicturesApp.Remove(projectPicturesViewModel);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
             return RedirectToAction("Index");
         }
 

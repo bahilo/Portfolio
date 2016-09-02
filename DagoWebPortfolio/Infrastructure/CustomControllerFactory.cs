@@ -26,7 +26,16 @@ namespace DagoWebPortfolio.Infrastructure
             }
 
             var defaultController = new DefaultControllerFactory();
-            return defaultController.CreateController(requestContext, controllerName);
+            IController controllerFound = null;
+            try
+            {
+                controllerFound = defaultController.CreateController(requestContext, controllerName);
+            }
+            catch (Exception)
+            {
+                controllerFound = defaultController.CreateController(requestContext, "Home");
+            }
+            return controllerFound;
 
         }
 

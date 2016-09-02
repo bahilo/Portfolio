@@ -1,75 +1,196 @@
 ﻿@model DagoWebPortfolio.Models.ProjectsViewModel
+@using DagoWebPortfolio.Models.CustomHelpers
 
 @{
-    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutProjectDetails.cshtml";
+    ViewBag.Title = Model.Title;
+    var count = 0;
+    var count2 = 0;
 }
 
-<div class="container">
-    <h2>Details</h2>
+
+<div class="projects-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-2">
+                        <div class="title">
+                            <h1 class="text">@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section>
+        <div class="container">
+            <div class="row">
+
+                @foreach (var picture in Model.ProjectDetail.Pictures)
+                {
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <a href="#section[@count]" title="@Html.DisplayFor(modelItem => picture.Subject)">
+                                <div class="panel-thumbnail">
+                                    <img src="@Html.DisplayFor(modelItem => picture.path)@Html.DisplayFor(modelItem => picture.FileName)" class="img-responsive">
+                                </div>
+                                <div class="panel-body text-center">
+                                    <h4 class="title">@Html.DisplayFor(modelItem => picture.Subject)</h4>
+                                    <p></p>
+                                </div>
+                            </a>
+                        </div><!--/panel-->
+                    </div><!--/col-->
+                    count++;
+                }
 
 
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <!--
+        <section class="bg-1">
+            <div class="col-sm-6 col-sm-offset-3 text-center"></div>
+        </section>
+    -->
 
-    <fieldset>
-        <legend class="clickable-project">Project</legend>
-        <table id="project-detail" class="table table-hover">
-            <thead>
-            </thead>
-            <thead>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Html.DisplayNameFor(model => model.Title)</td>
-                    <td>@Html.DisplayFor(model => model.Title)</td>
-                </tr>
-                <tr>
-                    <td>@Html.DisplayNameFor(model => model.link)</td>
-                    <td>@Html.DisplayFor(model => model.link)</td>
-                </tr>
-                <tr>
-                    <td>@Html.DisplayNameFor(model => model.Resume)</td>
-                    <td>@Html.DisplayFor(model => model.Resume)</td>
-                </tr>
-            </tbody>
-        </table>
-    </fieldset>
-
-    @if (Model.ProjectDetail != null)
+    @foreach (var picture in Model.ProjectDetail.Pictures)
     {
+        <div class="section-divider" id="section[@count2]"></div>
+
+        <section class="bg-3">
+            <div class="row">
+                <div class="col-m text-center">
+                    <h2 class="title"><span>@Html.DisplayFor(modelItem => picture.Subject)</span></h2>
+                </div>
+            </div>
+        </section>
+
+        @*<section class="bg-3">
+                <div class="col-md-12 col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">@Html.DisplayFor(modelItem => project.Title)</h2></div>
+            </section>*@
+        <section class="bg-4">
+            @*<div class="row">
+                    <div class="col-md-12">
+                        @Html.DisplayFor(modelItem => project.Resume)
+                    </div>
+                </div>*@
+            <div class="row">
+                <div class="col-md-8">
+
+                    <div class="row">
+
+                        <div class="col-md-12 img-layout">
+                            <img src="@Html.DisplayFor(modelItem => picture.path)@Html.DisplayFor(modelItem => picture.FileName)" class="img-responsive" />
+                        </div><!--/panel-->
+
+
+                    </div>
+                    <div class="divider"></div>
+                </div><!--/col-->
+                <div class="col-md-4">
+                    <div class="project-title">
+                        @if (picture.link != null)
+                        {
+                            <h3 class="title"> <a target="_blank" href="@Html.DisplayFor(modelItem => picture.link)"><span>@Html.DisplayFor(modelItem => picture.Subject)</span>  </a></h3>
+
+                        }
+                        else
+                        {
+                            <h3 class="no-link title">@Html.DisplayFor(modelItem => picture.Subject) </h3>
+
+                        }
+                    </div><!--/panel-->
+                    <div class="summary-head">
+                        @Html.DisplayHtml(picture.Description)
+                    </div><!--/panel-->
+                    @*@Html.DisplayHtml(picture.)*@
+
+                </div><!--/col-->
+            </div>
+            @*<div class="row">
+                <div class="col-md-12">
+                    @Html.DisplayHtml(picture.Description)
+                </div>
+            </div>*@
+        </section>
+
+        count2++;
+    }
+
+
+</div>
+
+<div class="divider"></div>
+@*<div class="container">
+        <h2>Details</h2>
+
         <fieldset>
-            <legend class="clickable-more">More Informations</legend>
-            <table id="more-detail" class="table table-hover">
+            <legend class="clickable-project">Project[ID=@Html.DisplayFor(model => model.ID)]</legend>
+            <table id="project-detail" class="table table-hover">
                 <thead>
                 </thead>
                 <thead>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Subject)</td>
-                        <td>@Html.DisplayFor(model => model.ProjectDetail.Subject)</td>
+                        <td>@Html.DisplayNameFor(model => model.Title)</td>
+                        <td>@Html.DisplayFor(model => model.Title)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Status)</td>
-                        <td>@Html.DisplayFor(model => model.ProjectDetail.Status)</td>
+                        <td>@Html.DisplayNameFor(model => model.link)</td>
+                        <td>@Html.DisplayFor(model => model.link)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Client)</td>
-                        <td>@Html.DisplayFor(model => model.ProjectDetail.Client)</td>
-                    </tr>
-                    <tr>
-                        <td>@Html.DisplayNameFor(model => model.ProjectDetail.Description)</td>
-                        <td>@Html.DisplayFor(model => model.ProjectDetail.Description)</td>
+                        <td>@Html.DisplayNameFor(model => model.Resume)</td>
+                        <td>@Html.DisplayFor(model => model.Resume)</td>
                     </tr>
                 </tbody>
             </table>
         </fieldset>
-    }
 
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+        @if (Model.ProjectDetail != null)
+        {
+            <fieldset>
+                <legend class="clickable-more">More Informations</legend>
+                <table id="more-detail" class="table table-hover">
+                    <thead>
+                    </thead>
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.ProjectDetail.Subject)</td>
+                            <td>@Html.DisplayFor(model => model.ProjectDetail.Subject)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.ProjectDetail.Status)</td>
+                            <td>@Html.DisplayFor(model => model.ProjectDetail.Status)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.ProjectDetail.Client)</td>
+                            <td>@Html.DisplayFor(model => model.ProjectDetail.Client)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.ProjectDetail.Description)</td>
+                            <td>@Html.DisplayFor(model => model.ProjectDetail.Description)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        }
 
-</div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    </div>*@
 
 
 <script>

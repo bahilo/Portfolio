@@ -20,11 +20,11 @@ namespace DagoWebPorfolio
                 defaults: new { controller = "Home", action = "_Welcome", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-               name: "Admin",
-               url: "{controller}/{action}/{from}/{target}/{id}",
-               defaults: new { controller = "Account", action = "Login", from = "View" , target = "Details", id = UrlParameter.Optional }
-           );
+           // routes.MapRoute(
+           //    name: "Admin",
+           //    url: "{controller}/{action}/{from}/{target}/{id}",
+           //    defaults: new { controller = "Account", action = "Login", from = "View" , target = "Details", id = UrlParameter.Optional }
+           //);
         }
     }
 }

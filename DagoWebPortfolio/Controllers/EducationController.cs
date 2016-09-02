@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using DagoWebPortfolio.Models.DisplayViewModel;
+using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -29,8 +30,17 @@ namespace DagoWebPortfolio.Controllers
             {
                 ViewBag.AvatarUrl = Ddb.DisplayWelcome.OrderByDescending(x=>x.ID).First().Path + Ddb.DisplayWelcome.OrderByDescending(x => x.ID).First().FileName;
             }
-            var educationList = db.Education.Include("Pictures").ToList();
-            populateEducationWithPicture(educationList);
+            List<EducationViewModel> educationList = new List<EducationViewModel>();
+            try
+            {
+                educationList = db.Education.Include("Pictures").ToList();
+                populateEducationWithPicture(educationList);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+                return View("Error");
+            }
             return View(educationList.OrderByDescending(x=>x.YearGraduate));
         }
 
@@ -73,8 +83,15 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Education.Add(educationViewModel);
-                db.SaveChanges();
+                try
+                {
+                    db.Education.Add(educationViewModel);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -105,8 +122,15 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(educationViewModel).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(educationViewModel).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                }
                 return RedirectToAction("Index");
             }
             return View(educationViewModel);
@@ -133,8 +157,15 @@ namespace DagoWebPortfolio.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             EducationViewModel educationViewModel = db.Education.Find(id);
-            db.Education.Remove(educationViewModel);
-            db.SaveChanges();
+            try
+            {
+                db.Education.Remove(educationViewModel);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
             return RedirectToAction("Index");
         }
 

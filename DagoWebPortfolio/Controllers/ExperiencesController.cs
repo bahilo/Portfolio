@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using DagoWebPortfolio.Models.DisplayViewModel;
 using System.Data.Entity.Validation;
+using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -29,7 +30,14 @@ namespace DagoWebPortfolio.Controllers
         {
             //var exp = db.Experiences.Include(d=>d.Pictures);
             var skills = db.Skills.Include("Experiences").Include("LevelsViewModel").Include("CategoryViewModel").ToList();
-            populateExperienceWithPicture(skills);           
+            try
+            {
+                populateExperienceWithPicture(skills);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }           
             return View(getExperiencesOrderByDate(skills));
         }
 
@@ -97,8 +105,15 @@ namespace DagoWebPortfolio.Controllers
             {
                 addOrUpdateSkillWithObjects(experiencesViewModel, listSkillOfExperiencesId, isSkillSelected);
 
-                db.Experiences.Add(experiencesViewModel);
-                db.SaveChanges();
+                try
+                {
+                    db.Experiences.Add(experiencesViewModel);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -132,14 +147,8 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                addOrUpdateSkillWithObjects(experiencesViewModel, listSkillOfExperiencesId, isSkillSelected);
-
-
-
-
-                var origineExperience = db.Experiences.Where(x => x.ID == experiencesViewModel.ID).DefaultIfEmpty().Single();
-
-                
+                addOrUpdateSkillWithObjects(experiencesViewModel, listSkillOfExperiencesId, isSkillSelected);                
+                var origineExperience = db.Experiences.Where(x => x.ID == experiencesViewModel.ID).DefaultIfEmpty().Single();              
 
                 try
                 {
@@ -167,8 +176,14 @@ namespace DagoWebPortfolio.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
-
-                    throw raise;
+                    ViewBag.ErrorMessage = raise.Message;
+                    Log.write(raise.Message, "ERR");
+                    return View("Error");
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                    return View("Error");
                 }
                 return RedirectToAction("Index");
             }
@@ -239,8 +254,15 @@ namespace DagoWebPortfolio.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ExperiencesViewModel experiencesViewModel = db.Experiences.Find(id);
-            db.Experiences.Remove(experiencesViewModel);
-            db.SaveChanges();
+            try
+            {
+                db.Experiences.Remove(experiencesViewModel);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
             return RedirectToAction("Index");
         }
 

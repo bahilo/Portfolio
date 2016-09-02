@@ -41,7 +41,7 @@
             @foreach (var item in Model)
             {
 
-                <a href="/Projects/@ViewBag.Target/@item.ID">@item.ID
+                @*<a href="/Projects/@ViewBag.Target/@item.ID">@item.ID*@
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
@@ -52,8 +52,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Resume)
                         </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
                     </tr>
-                </a>
+                @*</a>*@
             }
 
         </table>

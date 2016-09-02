@@ -1,7 +1,7 @@
 ﻿
 $(document).ready(function () {
 
-
+    //alert("test");
 
 
     /*----[ Welcome Page ]*/
@@ -43,4 +43,17 @@ $(document).ready(function () {
         $(this).removeClass('animated infinite pulse');
     });/**/
 
+    
 });
+
+function setMenuActive(element) {
+    resetMenuActive();
+    element.classList.add("active");
+}
+
+function resetMenuActive() {
+    menuElements = document.getElementsByClassName("menuElement");
+    for (i = 0; i < menuElements.length; i++) {
+        menuElements[i].classList.remove("active");
+    }
+}

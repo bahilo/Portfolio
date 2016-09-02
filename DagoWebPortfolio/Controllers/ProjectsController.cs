@@ -10,6 +10,7 @@ using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
 using DagoWebPortfolio.Models.DisplayViewModel;
 using DagoWebPortfolio.Interfaces;
+using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers 
 {
@@ -25,12 +26,12 @@ namespace DagoWebPortfolio.Controllers
             ProjectRepository.setContext(db);
         }
 
-        public ActionResult Index(string target, string from, string action)
+        public ActionResult Index()
         {
 
-            ViewBag.Target = target;
-            ViewBag.From = from;
-            ViewBag.Action = action;
+            //ViewBag.Target = target;
+            //ViewBag.From = from;
+            //ViewBag.Action = action;
 
             return View(db.Projects.ToList());
         }
@@ -44,7 +45,7 @@ namespace DagoWebPortfolio.Controllers
             ProjectRepository.populateProjectsWithPicture(skills);
             return View(ProjectRepository.getProjectsOrderByDate(skills));
         }
-        
+                
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {
@@ -52,7 +53,18 @@ namespace DagoWebPortfolio.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectsViewModel projectsViewModel = db.Projects.Where(x=>x.ID == id).Include("ProjectDetail").DefaultIfEmpty().Single();
+            ProjectsViewModel projectsViewModel = new ProjectsViewModel();
+            try
+            {
+                projectsViewModel = db.Projects.Where(x => x.ID == id).Include(x => x.ProjectDetail).Include(x => x.ProjectDetail.Pictures).SingleOrDefault();
+                var pictures = db.PicturesApp.Include(x => x.ProjectDetail).Where(x => x.ProjectDetail.ID == projectsViewModel.ProjectDetail.ID).ToList();
+                projectsViewModel.ProjectDetail.Pictures = pictures;
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "WAR");
+                return RedirectToAction("Index");
+            }
             if (projectsViewModel == null)
             {
                 return HttpNotFound();
@@ -77,10 +89,17 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                ProjectRepository.addOrUpdateSkillWithObjects(projectsViewModel, listSkillOfProjectsId, isSkillSelected);
+                try
+                {
+                    ProjectRepository.addOrUpdateSkillWithObjects(projectsViewModel, listSkillOfProjectsId, isSkillSelected);
 
-                db.Projects.Add(projectsViewModel);
-                db.SaveChanges();
+                    db.Projects.Add(projectsViewModel);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -121,14 +140,13 @@ namespace DagoWebPortfolio.Controllers
                 dictionary["projectDetailID"] = projectDetailID;
                 dictionary["listSkillOfProjectsId"] = listSkillOfProjectsId;
                 dictionary["isSkillSelected"] = isSkillSelected;
-
-                var origineProject = db.Projects.Where(x => x.ID == projectsViewModel.ID).Include(x=>x.ProjectDetail).Include(x=>x.Skills).DefaultIfEmpty().Single();
-
-                ProjectRepository.populateDBWithDataFromForm(dictionary, origineProject);
-
+                            
                 try
                 {
-                    UpdateModel(origineProject,new string[]{ "ID","Title","link","Resume","ProjectDetail" });
+                    var origineProject = db.Projects.Where(x => x.ID == projectsViewModel.ID).Include(x => x.ProjectDetail).Include(x => x.Skills).DefaultIfEmpty().Single();
+                    ProjectRepository.populateDBWithDataFromForm(dictionary, origineProject);
+                    //UpdateModel(origineProject,new string[]{ "ID","Title","link","Resume","ProjectDetail", "Skills" });
+                    db.Entry(origineProject).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 catch (DbEntityValidationException dbEx)
@@ -144,7 +162,12 @@ namespace DagoWebPortfolio.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
-                    throw raise;
+                    Log.write(raise.Message, "ERR");
+                    //throw raise;
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR" );
                 }
 
                 return RedirectToAction("Index");
@@ -156,14 +179,22 @@ namespace DagoWebPortfolio.Controllers
         // GET: Projects/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            ProjectsViewModel projectsViewModel = new ProjectsViewModel();
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                projectsViewModel = db.Projects.Find(id);
+                if (projectsViewModel == null)
+                {
+                    return HttpNotFound();
+                }
             }
-            ProjectsViewModel projectsViewModel = db.Projects.Find(id);
-            if (projectsViewModel == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                Log.write(ex.Message, "ERR");
             }
             return View(projectsViewModel);
         }
@@ -173,7 +204,14 @@ namespace DagoWebPortfolio.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProjectRepository.deleteProject(id, Server);
+            try
+            {
+                ProjectRepository.deleteProject(id, Server);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
             return RedirectToAction("Index");
         }
         

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
 using DagoWebPortfolio.Models.DisplayViewModel;
+using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -83,7 +84,14 @@ namespace DagoWebPortfolio.Controllers
                         }
                     }
 
-                    throw raise;
+                    ViewBag.ErrorMessage = raise.Message;
+                    Log.write(raise.Message, "ERR");
+                    return View("Error");
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                    return View("Error");
                 }
 
 
@@ -163,11 +171,12 @@ namespace DagoWebPortfolio.Controllers
                 origineParentLevel.comments = skillsViewModel.LevelsViewModel.comments;
                 skillsViewModel.LevelsViewModel = origineParentLevel;
 
-                addOrUpdateSkillWithObjects(skillsViewModel, listExperiencesOfSkillId, listProjectsOfSkillId, isExperienceSelected, isProjectSelected);
-
-                var origineSkill = db.Skills.Where(x => x.ID == skillsViewModel.ID).Include("Projects").Include("Experiences").DefaultIfEmpty().Single();
                 try
                 {
+                    addOrUpdateSkillWithObjects(skillsViewModel, listExperiencesOfSkillId, listProjectsOfSkillId, isExperienceSelected, isProjectSelected);
+
+                    var origineSkill = db.Skills.Where(x => x.ID == skillsViewModel.ID).Include("Projects").Include("Experiences").DefaultIfEmpty().Single();
+
                     origineSkill.LevelsViewModel = skillsViewModel.LevelsViewModel;
                     origineSkill.CategoryViewModel = skillsViewModel.CategoryViewModel;
                     origineSkill.Projects = skillsViewModel.Projects;
@@ -192,7 +201,14 @@ namespace DagoWebPortfolio.Controllers
                         }
                     }
 
-                    throw raise;
+                    ViewBag.ErrorMessage = raise.Message;
+                    Log.write(raise.Message, "ERR");
+                    return View("Error");
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                    return View("Error");
                 }
                 return RedirectToAction("Index");
             }
@@ -328,7 +344,14 @@ namespace DagoWebPortfolio.Controllers
                     }
                 }
 
-                throw raise;
+                ViewBag.ErrorMessage = raise.Message;
+                Log.write(raise.Message, "ERR");
+                return View("Error");
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+                return View("Error");
             }
             return RedirectToAction("Index");
         }

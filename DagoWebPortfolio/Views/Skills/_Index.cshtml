@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<DagoWebPortfolio.Models.SkillsViewModel>
 
 @{
-        Layout = "";
-        ViewBag.Title = "SKILLS";
+    Layout = "";
+    ViewBag.Title = "SKILLS";
 
     int count = 0;
 }
 @*
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-*@ 
+*@
 
 <div class="skills-home">
     <div class="container">
@@ -28,23 +28,23 @@
 
     <div class="divider"></div>
 
-      
 
-        
+    @if (Model.Where(x => x.CategoryViewModel.Title == "Coding").Count() > 0)
+    {
         <section class="bg-3">
-            <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Coding</h2></div>
+            <div class="col-sm-6 col-sm-offset-3 text-center"><h3 style="padding:20px;background-color:rgba(5,5,5,.8)">Coding</h3></div>
         </section>
-            <!--<div class="col-sm-10 col-sm-offset-1">
-                <h2>Coding</h2>
-                <div class="divider"></div>
-            </div>/col-->
-        
+        <!--<div class="col-sm-10 col-sm-offset-1">
+            <h2>Coding</h2>
+            <div class="divider"></div>
+        </div>/col-->
+
         <section class="bg-4">
             <div class="row coding">
-           @foreach (var item in Model)
-            {
-                if (item.CategoryViewModel.Title == "Coding")
+                @foreach (var item in Model)
                 {
+                    if (item.CategoryViewModel.Title == "Coding")
+                    {
                         <div class="col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
@@ -76,20 +76,25 @@
                 }
             </div>
         </section>
+    }
 
-        <div class="divider"></div>
 
-    <section class="bg-3">
-        <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Business</h2></div>
-    </section>
+
+    <div class="divider"></div>
+
+    @if (Model.Where(x => x.CategoryViewModel.Title == "Business").Count() > 0)
+    {
+        <section class="bg-3">
+            <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Business</h2></div>
+        </section>
 
 
         <div class="bg-4">
             <div class="row business">
                 @foreach (var item in Model)
-            {
-                if (item.CategoryViewModel.Title == "Business")
                 {
+                    if (item.CategoryViewModel.Title == "Business")
+                    {
 
                         <div class="col-md-4">
                             <div class="panel panel-default">
@@ -121,20 +126,24 @@
                 }
             </div>
         </div>
+    }
+    <div class="divider"></div>
 
-        <div class="divider"></div>
 
-    <section class="bg-3">
-        <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Others</h2></div>
-    </section>
-       
+    @if (Model.Where(x => x.CategoryViewModel.Title == "Others").Count() > 0)
+    {
+
+        <section class="bg-3">
+            <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Others</h2></div>
+        </section>
+
 
         <div class="bg-4">
             <div class="row others">
                 @foreach (var item in Model)
-            {
-                if (item.CategoryViewModel.Title == "Others")
                 {
+                    if (item.CategoryViewModel.Title == "Others")
+                    {
 
                         <div class="col-md-4">
                             <div class="panel panel-default">
@@ -146,33 +155,33 @@
                             </div><!--/panel-->
                         </div>
 
-                <!--/col
-                        <div class="col-md-4 col-sm-6">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @Html.DisplayFor(model => item.Title)
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @Html.DisplayFor(model => item.CategoryViewModel.Description)
-                                </div>
-                            </div>
-                        </div>
--->
+                        <!--/col
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            @Html.DisplayFor(model => item.Title)
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            @Html.DisplayFor(model => item.CategoryViewModel.Description)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        -->
                     }
 
                 }
             </div>
         </div>
 
-   
-</div>
+    }
+    </div>
+    
 
+    <div class="divider"></div>
 
-<div class="divider"></div>
-
-@Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -180,7 +189,7 @@
             var value = 0;
             var name = "";
             var listColor = ['#33f5fe', '#E53238', '#7F677F', '#c1fc2f', '#88E000'];
-            $("canvas[id^=demo]").each(function () {                
+            $("canvas[id^=demo]").each(function () {
                 value = $(this).attr("property");
                 name = $(this).attr("name");
                 param = value / 100;
@@ -215,13 +224,12 @@
 
                 });
             });
-            
-            
-            
-            
+
+
+
+
             //alert(param);
-            
+
 
         });
     </script>
-

@@ -120,14 +120,14 @@ namespace DagoWebPortfolio.Infrastructure
             outputProjectModel.Title = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Title;
             outputProjectModel.Skills = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Skills;
 
-            ProjectDetailsViewModel newProjectDetail = new ProjectDetailsViewModel();
-            newProjectDetail.Subject = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Subject;
-            newProjectDetail.Status = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Status;
-            newProjectDetail.Description = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Description;
-            newProjectDetail.Date = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Date;
-            newProjectDetail.Client = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Client;
+            //ProjectDetailsViewModel newProjectDetail = new ProjectDetailsViewModel();
+            outputProjectModel.ProjectDetail.Subject = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Subject;
+            outputProjectModel.ProjectDetail.Status = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Status;
+            outputProjectModel.ProjectDetail.Description = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Description;
+            outputProjectModel.ProjectDetail.Date = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Date;
+            outputProjectModel.ProjectDetail.Client = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Client;
 
-            outputProjectModel.ProjectDetail = newProjectDetail;
+            //outputProjectModel.ProjectDetail = newProjectDetail;
 
         }
 
@@ -223,7 +223,7 @@ namespace DagoWebPortfolio.Infrastructure
                     }
                 }
             }
-            var projectsListFinalDistict = projectsListFinal.Distinct().Reverse().ToList();
+            var projectsListFinalDistict = projectsListFinal.Distinct().OrderByDescending(x=>x.ProjectDetail.Date).ToList();
 
             return projectsListFinalDistict;
         }      

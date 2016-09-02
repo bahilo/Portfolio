@@ -91,12 +91,12 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav nav-justified">
-                        <li id="About"><a href="/Home/Index">Home</a></li>
-                        <li id="Skills"><a>Skills</a></li>
-                        <li id="Experiences"><a>Experience</a></li>
-                        <li id="Projects"><a>Projects</a></li>
-                        <li id="Education"><a>Education</a></li>
+                    <ul id="menuElementContainer" class="nav navbar-nav nav-justified">
+                        <li onclick="setMenuActive(this);" class="menuElement" id="About"><a href="/Home/Index">Home</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Skills"><a>Skills</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Experiences"><a>Experience</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Projects"><a>Projects</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Education"><a>Education</a></li>
                         @if (Request.IsAuthenticated) { 
                         <li class="dropdown">
                             <a href ="/Admin/Index" target="_blank">Admin</a>

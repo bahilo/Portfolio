@@ -20,7 +20,7 @@ namespace DagoWebPortfolio.Models
         [Display(Name = "Active Project")]
         public bool Status { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] 
         [DataType(DataType.Date)]
         public DateTime Date { get; set; } 
                
