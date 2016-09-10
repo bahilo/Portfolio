@@ -25,6 +25,21 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.IsAbout, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsAbout, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsAbout, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsWelcome, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsWelcome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsWelcome, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="control-label col-md-2">
                     File
                 </div>

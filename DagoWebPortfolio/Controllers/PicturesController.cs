@@ -94,7 +94,7 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Subject,link,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID,Skill,ProjectDetail,Education,Experience")] PicturesViewModel projectPicturesViewModel, HttpPostedFileBase file, string link_picture_to)
+        public ActionResult Create([Bind(Include = "ID,Subject,link,IsAbout,IsWelcome,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID,Skill,ProjectDetail,Education,Experience")] PicturesViewModel projectPicturesViewModel, HttpPostedFileBase file, string link_picture_to)
         {
             if (ModelState.IsValid && file != null)
             {
@@ -120,15 +120,15 @@ namespace DagoWebPortfolio.Controllers
                     }
                     ViewBag.ErrorMessage = raise.Message;
                     Log.write(raise.Message, "ERR");
-                    return View("Error");
-                    //throw raise;
+                    //return View("Error");
+                    throw raise;
                 }
                 catch (Exception ex)
                 {
                     Log.write(ex.Message, "ERR");
                     return View("Error");
                 }
-
+                //return Content(Utility.getFileFullPath(Utility.getDirectory(projectPicturesViewModel.path), file.FileName));
                 return RedirectToAction("Index");
             }
 
@@ -137,11 +137,23 @@ namespace DagoWebPortfolio.Controllers
             ViewBag.ProjectDetailsViewModelID = new SelectList(db.DetailsProject, "ID", "Subject", projectPicturesViewModel.ProjectDetailsViewModelID);
             ViewBag.SkillsViewModelID = new SelectList(db.Skills, "ID", "Title", projectPicturesViewModel.SkillsViewModelID);
             return View(projectPicturesViewModel);
+                
         }
 
         private void addPictureTable(PicturesViewModel picture, HttpPostedFileBase file, string link_picture_to)
         {
+            //picture.path = Utility.getDirectory("Content","Images");
             picture.path = "/Content/Images/";
+            picture.Education = null;
+            picture.ProjectDetail = null;
+            picture.Skill = null;
+            picture.Experience = null;
+            
+            //picture.EducationViewModelID = null;
+            //picture.ExperiencesViewModelID = null;
+            //picture.SkillsViewModelID = null;
+            //picture.ProjectDetailsViewModelID = null;
+
             switch (link_picture_to)
             {
                 case "project":
@@ -191,14 +203,41 @@ namespace DagoWebPortfolio.Controllers
                     picture.Experience = null;
                     picture.ExperiencesViewModelID = null;
                     break;
+                default:
+                    picture.EducationViewModelID = null;
+                    picture.ExperiencesViewModelID = null;
+                    picture.SkillsViewModelID = null;
+                    picture.ProjectDetailsViewModelID = null;
+                    break;
             }
 
-            picture.FileName = file.FileName;
-            //if (!Directory.Exists(picture.path))
-            //    Directory.CreateDirectory(picture.path);
+            if (file != null)
+            {
+                List<string> pathElementList = picture.path.Split('/').ToList();
+                
+                //string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + picture.path));
+                string[] savedFiles = System.IO.Directory.GetFiles(Utility.getDirectory(pathElementList[0], pathElementList.ToArray()));
+                if (!string.IsNullOrEmpty(picture.FileName))
+                {
+                    pathElementList.Add(picture.FileName);
+                    var origineFileWithPath = Utility.getDirectory(pathElementList[0], pathElementList.ToArray()); //Server.MapPath("~" + picture.path) + picture.FileName;
 
-            file.SaveAs(HttpContext.Server.MapPath(Utility.getFileFullPath(Utility.getDirectory(picture.path), file.FileName)));
+                    foreach (var f in savedFiles)
+                    {
+                        if (origineFileWithPath.Equals(f))
+                            System.IO.File.Delete(f);
+                    }
+                }
+                
+                picture.FileName = file.FileName.Replace(" ", "_");
+                file.SaveAs(Utility.getDirectory(picture.path, picture.FileName));
 
+                //picture.FileName = file.FileName;
+                //file.SaveAs(HttpContext.Server.MapPath(picture.path + file.FileName));
+            }
+
+            
+            
         }
 
         // GET: Pictures/Edit/5
@@ -225,14 +264,15 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Subject,link,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] PicturesViewModel picturesViewModel, HttpPostedFileBase file, string link_picture_to, string fileName)
+        public ActionResult Edit([Bind(Include = "ID,Subject,IsAbout,IsWelcome,link,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] PicturesViewModel picturesViewModel, HttpPostedFileBase file, string link_picture_to, string fileName)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     picturesViewModel.FileName = fileName;
-                    updatePictureTable(picturesViewModel, file, link_picture_to, fileName);
+                    addPictureTable(picturesViewModel, file, link_picture_to);
+                    //updatePictureTable(picturesViewModel, file, link_picture_to, fileName);
                     db.Entry(picturesViewModel).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -252,8 +292,8 @@ namespace DagoWebPortfolio.Controllers
 
                     ViewBag.ErrorMessage = raise.Message;
                     Log.write(raise.Message, "ERR");
-                    return View("Error");
-                    //throw raise;
+                    //return View("Error");
+                    throw raise;
                 }
                 catch (Exception ex)
                 {
@@ -318,6 +358,12 @@ namespace DagoWebPortfolio.Controllers
                     picture.ProjectDetailsViewModelID = null;
                     picture.Experience = null;
                     picture.ExperiencesViewModelID = null;
+                    break;
+                default:
+                    picture.EducationViewModelID = null;
+                    picture.ExperiencesViewModelID = null;
+                    picture.SkillsViewModelID = null;
+                    picture.ProjectDetailsViewModelID = null;
                     break;
             }
 

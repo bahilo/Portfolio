@@ -3,10 +3,6 @@
 @using DagoWebPortfolio.Models.CustomHelpers 
 @{
     ViewBag.Title = "E. DAGO - PORTFOLIO";
-    ViewBag.AboutHeadZone1 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone1 : "Head Zone 1";
-    ViewBag.AboutHeadZone2 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone2 : "Head Zone 2";
-    ViewBag.AboutHeadZone3 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone3 : "Head Zone 3";
-
 }  
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +18,14 @@
     
     <link rel="stylesheet" href="~/Content/Css/styles.css">
     <link rel="stylesheet" href="~/Content/Css/animate.css">
-
+    @*<script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/respond.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/Carousel.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/Site.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/waterbubble.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/scripts.js"></script>*@
 
     @*<link rel="stylesheet" type="text/css" href="~/Temp/miminium-master/asset/css/plugins/font-awesome.min.css" />*@
     @*<link rel="stylesheet" type="text/css" href="~/Temp/miminium-master/asset/css/plugins/simple-line-icons.css" />*@
@@ -45,7 +48,7 @@
             <!-- Carousel
             ================================================== -->
            
-            <div class="portfolio" id="portfolio"><a href="/">@Html.DisplayHtml((string)ViewBag.AboutHeadZone1)</a></div>
+            <div class="portfolio" id="portfolio"><a href="/"><h2>Portfolio</h2></a></div>
             
             <div id="myCarousel" class="carousel slide">
                 <!-- Indicators -->
@@ -70,10 +73,10 @@
                 <div class="logo">
                     <div class="divider"></div>
                     <div class="divider"></div>
-                    <h1 class="title" style="color: white;">@Html.DisplayHtml((string)ViewBag.AboutHeadZone2)</h1>
+                    <p><h1 class="title" style="color: white;"><em>ERIC DAGO</em></h1></p>
                     <div class="divider"></div>
                     <div class="divider"></div>
-                    <h1 class="description" style="color: white; background-color: rgba(0,0,0,0.7)">@Html.DisplayHtml((string)ViewBag.AboutHeadZone3)</h1>
+                    <h1 class="description" style="color: white; background-color: rgba(0,0,0,0.7)"><p>I Am a C# Developer</p></h1>
                 </div>
             </div>
 
@@ -119,26 +122,12 @@
         <!-- Begin page content -->
     </div><!--/wrap--> 
 
-
+    @* hosting is not taking the bundle into account *@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
-    <!-- script references 
-    <script src="/Content/Scripts/bootstrap.min.js"></script>-->
-    <script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="/Content/Scripts/scripts.js"></script>
-    -->
-    <script>
-      tinymce.init({
-          selector: 'textarea',
-          plugin: 'a_tinymce_plugin',
-          a_plugin_option: true,
-          a_configuration_option: 400
-      });
-    </script>
-
+        
     @RenderSection("scripts", required: false)
 
 

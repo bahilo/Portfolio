@@ -22,10 +22,10 @@ namespace DagoWebPortfolio.Controllers
 
         public AccountController()
         {
-            initDisplay();
+            
         }
 
-        private void initDisplay()
+        /*private void initDisplay()
         {
             var display = dbD.Displays.Include("AboutView").Where(x => x.AboutView.FileName != null).ToList().LastOrDefault();
 
@@ -57,7 +57,7 @@ namespace DagoWebPortfolio.Controllers
                 ViewBag.WelcomeZone3 = display.WelcomeView.Zone3;
             }
 
-        }
+        }*/
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {

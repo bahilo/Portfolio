@@ -11,55 +11,83 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
 using QCBDManagementCommon.Classes;
+using System.Globalization;
 
 namespace DagoWebPortfolio.Controllers
 {
     public class HomeController : Controller
     {
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
-        private  DBDisplayModelContext dbD = new DBDisplayModelContext();
+        private string _countryName;
+        //private  DBDisplayModelContext dbD = new DBDisplayModelContext();
 
         public HomeController()
         {
-            initDisplay();
+            _countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault() ?? "en";
         }
 
         public ActionResult Index(bool isContactSend = false)
         {            
-            ViewBag.EmailConfirmation = isContactSend;
-            ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
+            ViewBag.EmailConfirmation = isContactSend;            
+            try
+            {
+                ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
             return View();
         }
 
         public ActionResult _Welcome()
         {
-            return View();
+            string countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
+            var picture = new PicturesViewModel();
+            try
+            {
+                picture = db.PicturesApp.Where(x => x.IsWelcome).SingleOrDefault() ?? new PicturesViewModel();
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
+            return View(_countryName + "/_Welcome", picture);
         }
 
         public ActionResult About()
         {
-            
-            return View();
+            string countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
+            var picture = new PicturesViewModel();
+            try
+            {
+                picture = db.PicturesApp.Where(x => x.IsAbout).SingleOrDefault() ?? new PicturesViewModel();
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
+            return View(_countryName + "/About", picture);
         }
 
-        private void initDisplay()
-        {
-            var display = dbD.Displays.Include("AboutView").ToList().LastOrDefault();
+        //private void initDisplay()
+        //{
+        //    var display = dbD.Displays.Include("AboutView").ToList().LastOrDefault();
 
-            if (display != null)
-            {
-                ViewBag.Display = display;
-            }
+        //    if (display != null)
+        //    {
+        //        ViewBag.Display = display;
+        //    }
 
-            display = dbD.Displays.Include("WelcomeView").Where(x => x.WelcomeView.FileName != null).ToList().LastOrDefault();
+        //    display = dbD.Displays.Include("WelcomeView").Where(x => x.WelcomeView.FileName != null).ToList().LastOrDefault();
 
-            if (display != null)
-            {
-                ViewBag.Display = display;
-                ViewBag.WelcomePictureUrl = display.WelcomeView.Path + display.WelcomeView.FileName;
-            }
+        //    if (display != null)
+        //    {
+        //        ViewBag.Display = display;
+        //        ViewBag.WelcomePictureUrl = display.WelcomeView.Path + display.WelcomeView.FileName;
+        //    }
 
-        }
+        //}
 
         [HttpGet]
         public ActionResult Contact()
@@ -78,8 +106,8 @@ namespace DagoWebPortfolio.Controllers
             if (ModelState.IsValid)
             {
                 // Create network credentials to access your SendGrid account
-                var username = "azure_412716207eb27d53ea3852e66901d62c@azure.com";
-                var pswd = "sY91OZ4x1V43nAd";
+                var username = "postmaster@e-dago.com";
+                var pswd = "Bahilo225!";
 
                 var credentials = new NetworkCredential(username, pswd);
                 // Create an Web transport for sending email.

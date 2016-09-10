@@ -7,9 +7,12 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For the complete reference:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
+    config.language = 'en';
+    config.uiColor = '#AADC6E';
+    config.width = 500;     // 500 pixels wide.
+    config.extraPlugins = 'autogrow';
 	// The toolbar groups arrangement, optimized for two toolbar rows.
-	config.toolbarGroups = [
+	/*config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
 		{ name: 'links' },
@@ -28,5 +31,5 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
+	config.removeButtons = 'Underline,Subscript,Superscript';*/
 };

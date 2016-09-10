@@ -1,34 +1,27 @@
-﻿using System;
+﻿using DagoWebPortfolio.Models;
+using QCBDManagementCommon.Classes;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DagoWebPortfolio.Models;
-using DagoWebPortfolio.Models.DisplayViewModel;
-using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
-    
-    public class EducationController : Controller
+    public class TestController : Controller
     {
-        //private DBModelPortfolioContext db = new DBModelPortfolioContext();
-
-        
-        // GET: Education
         public ActionResult Index()
         {
             using (DBModelPortfolioContext db = new DBModelPortfolioContext())
             {
+                Log.write("education list count = "+ db.Education.Count(), "WAR");
                 return View(db.Education.ToList());
             }
             //return Content("Education page");
         }
-
-
+        
         public ActionResult _Index()
         {
             //using (var Ddb = new DBDisplayModelContext())
@@ -38,11 +31,8 @@ namespace DagoWebPortfolio.Controllers
             List<EducationViewModel> educationList = new List<EducationViewModel>();
             try
             {
-                using (DBModelPortfolioContext db = new DBModelPortfolioContext())
-                {
-                    educationList = db.Education.Include("Pictures").ToList();
-                    populateEducationWithPicture(educationList);
-                }
+                //educationList = db.Education.Include("Pictures").ToList();
+                //populateEducationWithPicture(educationList);
             }
             catch (Exception ex)
             {
@@ -50,9 +40,9 @@ namespace DagoWebPortfolio.Controllers
                 return View("Error");
             }
             //return Content("Education page");
-            return View(educationList.OrderByDescending(x => x.YearGraduate).ToList());
+            return View(educationList.OrderByDescending(x => x.YearGraduate));
         }
-                        
+
         private void populateEducationWithPicture(List<EducationViewModel> educationList)
         {
             using (DBModelPortfolioContext db = new DBModelPortfolioContext())
@@ -62,7 +52,7 @@ namespace DagoWebPortfolio.Controllers
                     education.Pictures = db.PicturesApp.Where(x => x.EducationViewModelID == education.ID).ToList();
 
                 }
-            }            
+            }
         }
 
         // GET: Education/Details/5
@@ -77,7 +67,7 @@ namespace DagoWebPortfolio.Controllers
             {
                 educationViewModel = db.Education.Find(id);
             }
-            
+
             if (educationViewModel == null)
             {
                 return HttpNotFound();
@@ -89,8 +79,8 @@ namespace DagoWebPortfolio.Controllers
         // GET: Education/Create
         public ActionResult Create()
         {
-            return View();
-            //return Content("Education page");
+            //return View();
+            return Content("Education page");
         }
 
         // POST: Education/Create
@@ -108,7 +98,7 @@ namespace DagoWebPortfolio.Controllers
                     {
                         db.Education.Add(educationViewModel);
                         db.SaveChanges();
-                    }                    
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -118,6 +108,7 @@ namespace DagoWebPortfolio.Controllers
             }
 
             return View(educationViewModel);
+            //return Content("Education page");
         }
 
         // GET: Education/Edit/5
@@ -132,12 +123,13 @@ namespace DagoWebPortfolio.Controllers
             {
                 educationViewModel = db.Education.Find(id);
             }
-            
+
             if (educationViewModel == null)
             {
                 return HttpNotFound();
             }
             return View(educationViewModel);
+            //return Content("Education page");
         }
 
         // POST: Education/Edit/5
@@ -155,7 +147,7 @@ namespace DagoWebPortfolio.Controllers
                     {
                         db.Entry(educationViewModel).State = EntityState.Modified;
                         db.SaveChanges();
-                    }                    
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -184,13 +176,14 @@ namespace DagoWebPortfolio.Controllers
                 return HttpNotFound();
             }
             return View(educationViewModel);
+            //return Content("Education page");
         }
 
         // POST: Education/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             try
             {
                 using (DBModelPortfolioContext db = new DBModelPortfolioContext())
@@ -198,13 +191,14 @@ namespace DagoWebPortfolio.Controllers
                     EducationViewModel educationViewModel = db.Education.Find(id);
                     db.Education.Remove(educationViewModel);
                     db.SaveChanges();
-                }                
+                }
             }
             catch (Exception ex)
             {
                 Log.write(ex.Message, "ERR");
             }
             return RedirectToAction("Index");
+            //return Content("Education page");
         }
 
         protected override void Dispose(bool disposing)
@@ -214,7 +208,7 @@ namespace DagoWebPortfolio.Controllers
                 using (DBModelPortfolioContext db = new DBModelPortfolioContext())
                 {
                     db.Dispose();
-                }        
+                }
             }
             base.Dispose(disposing);
         }

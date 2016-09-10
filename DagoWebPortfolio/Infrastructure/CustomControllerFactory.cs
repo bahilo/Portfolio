@@ -17,26 +17,13 @@ namespace DagoWebPortfolio.Infrastructure
         {
             if (controllerName.ToLower().StartsWith("projects"))
             {
-                //using (DBModelPortfolioContext db = new DBModelPortfolioContext())
-                //{
                 ProjectsRepository rep = new ProjectsRepository();
                 var controller = new ProjectsController(rep);
                 return controller;
-                //}             
             }
-
             var defaultController = new DefaultControllerFactory();
-            IController controllerFound = null;
-            try
-            {
-                controllerFound = defaultController.CreateController(requestContext, controllerName);
-            }
-            catch (Exception)
-            {
-                controllerFound = defaultController.CreateController(requestContext, "Home");
-            }
+            IController controllerFound = defaultController.CreateController(requestContext, controllerName);
             return controllerFound;
-
         }
 
         public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)

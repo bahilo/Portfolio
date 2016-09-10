@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models.DisplayViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -23,9 +25,15 @@ namespace DagoWebPortfolio.Controllers
             ViewBag.From = from;
             ViewBag.Action = action;
 
-            var display = db.Displays.Include("AboutView").Include("WelcomeView").ToList();
+            string countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
+            if (!string.IsNullOrEmpty(countryName))
+                return View(countryName+"");
+            else
+                return RedirectToAction("Index");
 
-            return View(display);
+            //var display = db.Displays.Include("AboutView").Include("WelcomeView").ToList();
+
+            //return View();
         }
 
         // GET: Displays/Details/5

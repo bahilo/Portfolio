@@ -90,7 +90,18 @@
 
 }
 
-
+<script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/Content/Scripts/scripts.js"></script>
+-->
+<script>
+      tinymce.init({
+          selector: 'textarea',
+          //plugins: 'a_tinymce_plugin',
+          a_plugin_option: true,
+          a_configuration_option: 400
+      });
+</script>
 
 
 

@@ -9,7 +9,7 @@
 }
 
 
-<div class="projects-details">
+<div class="projects project-details">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider" id="section[top]"></div>
 
     <section>
         <div class="container">
@@ -34,7 +34,7 @@
                 {
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                            <a href="#section[@count]" title="@Html.DisplayFor(modelItem => picture.Subject)">
+                            <a href="#section[@count]">
                                 <div class="panel-thumbnail">
                                     <img src="@Html.DisplayFor(modelItem => picture.path)@Html.DisplayFor(modelItem => picture.FileName)" class="img-responsive">
                                 </div>
@@ -65,8 +65,11 @@
 
         <section class="bg-3">
             <div class="row">
-                <div class="col-m text-center">
+                <div class="col-md-11 text-center">
                     <h2 class="title"><span>@Html.DisplayFor(modelItem => picture.Subject)</span></h2>
+                </div>
+                <div class="col-md-1 button-back">
+                    <a href="#section[top]">Top</a>
                 </div>
             </div>
         </section>

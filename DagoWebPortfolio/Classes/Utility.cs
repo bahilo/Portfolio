@@ -13,23 +13,27 @@ namespace DagoWebPortfolio.Classes
 
         public static string getDirectory(string directory,  params string[] pathElements)
         {
-            string path = Path.Combine(_baseDirectory, directory);
-            foreach (string pathElement in pathElements)
+            var dirElements = directory.Replace("/", @"\").Split('\\');
+            var allPathElements = dirElements.Concat(pathElements).ToArray();
+            string path = _baseDirectory;
+            foreach (string pathElement in allPathElements)
             {
                 path = Path.Combine(path, pathElement);
             }
 
-            string pathBase = Path.GetDirectoryName(path);
+            var pathChecking = path.Split('.'); // check if it is a full path file or only directory 
 
-            if (!Directory.Exists(pathBase))
-                Directory.CreateDirectory(pathBase);
+            if (!Directory.Exists(path) && pathChecking.Count() == 1)
+            {
+                Directory.CreateDirectory(path);
+            }                
 
-            return pathBase;
+            return Path.GetFullPath(path);
         }
 
         public static string getFileFullPath(string directory, string fileName)
         {
-            return Path.Combine(_baseDirectory, directory, fileName);
+            return Path.Combine(directory, fileName);
         }
     }
 }

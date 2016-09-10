@@ -51,17 +51,12 @@
                                     <li>
                                         <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
                                         <div class="timeline-panel animated rotateInDownLeft">
-                                            @if (item.Pictures.Count > 0)
-                                            {
-                                                //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
-                                                string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
-                                                <div class="row">
-                                                    <div class="col-md-12 img-layout">
-                                                        <img src="@fullPath" class="img-responsive">
-                                                    </div>
-                                                </div>
-                                            }
 
+                                            <div class="row">
+                                                <div class="col-md-12 img-layout">
+                                                    <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -90,17 +85,12 @@
                                     <li class="timeline-inverted">
                                         <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
                                         <div class="timeline-panel animated rotateInDownRight">
-                                            @if (item.Pictures.Count > 0)
-                                            {
-                                                //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
-                                                string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
-                                                <div class="row">
-                                                    <div class="col-md-12 img-layout">
-                                                        <img src="@fullPath" class="img-responsive">
-                                                    </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12 img-layout">
+                                                    <img src="@Html.DisplayFor(modelItem => item.Pictures.Max().path)@Html.DisplayFor(modelItem => item.Pictures.Max().FileName)" class="img-responsive">
                                                 </div>
-                                            }
-                                            
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-md-12">

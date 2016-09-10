@@ -49,15 +49,6 @@
                                         <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownLeft">
 
-
-                                            @if (experience.Pictures.Count() > 0)
-                                            {
-                                                <div class="row">
-                                                    <div class="col-md-12 img-layout">
-                                                        <img src="@Html.DisplayFor(modelItem => experience.Pictures.Max().path)@Html.DisplayFor(modelItem => experience.Pictures.Max().FileName)" class="img-responsive">
-                                                    </div>
-                                                </div>
-                                            }
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="timeline-heading">
@@ -92,12 +83,13 @@
                                         <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownRight">
 
-
-                                            @if (experience.Pictures.Count() > 0)
+                                            @if (experience.Pictures.Count > 0)
                                             {
+                                                //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                                string fullPath = experience.Pictures.LastOrDefault().path + experience.Pictures.LastOrDefault().FileName;
                                                 <div class="row">
                                                     <div class="col-md-12 img-layout">
-                                                        <img src="@Html.DisplayFor(modelItem => experience.Pictures.Max().path)@Html.DisplayFor(modelItem => experience.Pictures.Max().FileName)" class="img-responsive">
+                                                        <img src="@fullPath" class="img-responsive">
                                                     </div>
                                                 </div>
                                             }

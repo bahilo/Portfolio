@@ -41,7 +41,8 @@ namespace DagoWebPorfolio
                       "~/Content/AdminTheme/js/gritter.js",
                       "~/Content/AdminTheme/js/scripts.js",
                       "~/Content/AdminTheme/assets/chart-master/Chart.js",
-                      "~/Content/AdminTheme/js/chartjs-custom.js"
+                      "~/Content/AdminTheme/js/chartjs-custom.js",
+                      "~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"
                       ));
 
             bundles.Add(new StyleBundle("~/bundles/Content/css").Include(

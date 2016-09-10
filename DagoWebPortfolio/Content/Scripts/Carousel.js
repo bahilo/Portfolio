@@ -11,9 +11,9 @@ $(document).ready(function () {
             type: sendMethod,
             url: targetCOntroller,
             datatype: "html",
-            /*error: function (status) {
+            error: function (status) {
                 targetElement.html(status.responseText);
-            },*/
+            },/**/
             success: function (data) {
                 targetElement.html(data);
             }
@@ -64,6 +64,7 @@ $(document).ready(function () {
         //Education
         $("#Education").click(function () {
             $('.carousel-home-body').carousel(3);
+            //alert("yes");
             AjaxRequest($('#page3'), "/Education/_Index", "POST");
         });
 

@@ -20,8 +20,13 @@ namespace DagoWebPortfolio.Models
         public string path { get; set; }
         public string FileName { get; set; } 
 
-        public string link { get; set; }   
-             
+        public string link { get; set; }
+
+        [Display(Name = "About Page")]
+        public bool IsAbout { get; set; }
+        [Display(Name = "Welcome Page")]
+        public bool IsWelcome { get; set; }
+
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string Description { get; set; }

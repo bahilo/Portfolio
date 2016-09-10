@@ -24,16 +24,16 @@
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", placeholder = "Password" })
             </div>
-            <label class="checkbox">
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe)
-                <span class="pull-right"> <a href="/Account/ForgotPassword"> Forgot Password?</a></span>
-            </label>
-            @*<button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-                <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>*@
+            @*<label class="checkbox">
+        @Html.CheckBoxFor(m => m.RememberMe)
+        @Html.LabelFor(m => m.RememberMe)
+        <span class="pull-right"> <a href="/Account/ForgotPassword"> Forgot Password?</a></span>
+    </label>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+        <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>*@
 
             <button class="btn btn-primary btn-lg btn-group" type="submit">Login</button>
-            <a href="/Account/Register" class="btn btn-info btn-lg btn-group">Signup</a>
+            @*<a href="/Account/Register" class="btn btn-info btn-lg btn-group">Signup</a>*@
         </div>
 
     }

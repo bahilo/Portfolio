@@ -45,8 +45,9 @@ namespace DagoWebPortfolio.Controllers
             ProjectRepository.populateProjectsWithPicture(skills);
             return View(ProjectRepository.getProjectsOrderByDate(skills));
         }
-                
+
         // GET: Projects/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
