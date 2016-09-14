@@ -43,9 +43,6 @@ $(document).ready(function () {
         $(this).removeClass('animated infinite pulse');
     });/**/
 
-
-    /*----[ Projects Page ]*/
-    $("")
     
 });
 

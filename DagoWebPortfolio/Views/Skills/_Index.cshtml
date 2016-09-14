@@ -32,12 +32,8 @@
     @if (Model.Where(x => x.CategoryViewModel.Title == "Coding").Count() > 0)
     {
         <section class="bg-3">
-            <div class="col-sm-6 col-sm-offset-3 text-center"><h3 style="padding:20px;background-color:rgba(5,5,5,.8)">Coding</h3></div>
+            <div class="col-sm-6 col-sm-offset-3 text-center section-title"><h3>Coding</h3></div>
         </section>
-        <!--<div class="col-sm-10 col-sm-offset-1">
-            <h2>Coding</h2>
-            <div class="divider"></div>
-        </div>/col-->
 
         <section class="bg-4">
             <div class="row coding">
@@ -47,30 +43,14 @@
                     {
                         <div class="col-md-4">
                             <div class="panel panel-default">
-                                <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
+                                <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
                                 <div class="panel-body text-center">
-                                    <h2 class="title">@Html.DisplayFor(model => item.Title)</h2>
+                                    <h3 class="title">@Html.DisplayFor(model => item.Title)</h3>
                                     <p></p>
                                 </div>
                             </div><!--/panel-->
                         </div><!--/col-->
-
-
-                        <!--
-
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                @Html.DisplayFor(model => item.Title)
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas>
-                                            </div>
-                                        </div>
-                                     </div>
-                                       -->
+                        
                     }
                     count++;
                 }
@@ -85,7 +65,7 @@
     @if (Model.Where(x => x.CategoryViewModel.Title == "Business").Count() > 0)
     {
         <section class="bg-3">
-            <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Business</h2></div>
+            <div class="col-sm-6 col-sm-offset-3 text-center section-title"><h3>Business</h3></div>
         </section>
 
 
@@ -98,29 +78,13 @@
 
                         <div class="col-md-4">
                             <div class="panel panel-default">
-                                <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
+                                <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
                                 <div class="panel-body text-center">
-                                    <h2 class="title">@Html.DisplayFor(model => item.Title)</h2>
+                                    <h3 class="title">@Html.DisplayFor(model => item.Title)</h3>
                                     <p></p>
                                 </div>
                             </div><!--/panel-->
                         </div>
-
-
-                        <!--/col
-                                            <div class="col-md-4 col-sm-6 glyphicon-check">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @Html.DisplayFor(model => item.Title)
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @Html.DisplayFor(model => item.CategoryViewModel.Description)
-                                                    </div>
-                                                </div>
-                                            </div>
-                        -->
                     }
                     count++;
                 }
@@ -134,7 +98,7 @@
     {
 
         <section class="bg-3">
-            <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Others</h2></div>
+            <div class="col-sm-6 col-sm-offset-3 text-center section-title"><h3 >Others</h3></div>
         </section>
 
 
@@ -147,28 +111,13 @@
 
                         <div class="col-md-4">
                             <div class="panel panel-default">
-                                <div class="panel-thumbnail"><a title="@Html.DisplayFor(model => item.Title)"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></a></div>
+                                <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
                                 <div class="panel-body text-center">
-                                    <h2 class="title">@Html.DisplayFor(model => item.Title)</h2>
+                                    <h3 class="title">@Html.DisplayFor(model => item.Title)</h3>
                                     <p></p>
                                 </div>
                             </div><!--/panel-->
                         </div>
-
-                        <!--/col
-                                                <div class="col-md-4 col-sm-6">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            @Html.DisplayFor(model => item.Title)
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            @Html.DisplayFor(model => item.CategoryViewModel.Description)
-                                                        </div>
-                                                    </div>
-                                                </div>
-                        -->
                     }
 
                 }
@@ -180,8 +129,6 @@
     
 
     <div class="divider"></div>
-
-    @Scripts.Render("~/bundles/bootstrap")
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -224,12 +171,6 @@
 
                 });
             });
-
-
-
-
-            //alert(param);
-
-
+            
         });
     </script>

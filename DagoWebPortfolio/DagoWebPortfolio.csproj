@@ -186,6 +186,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\AccountInitializeDbContext.cs" />
     <Compile Include="Classes\Log.cs" />
+    <Compile Include="Classes\Mailer.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />

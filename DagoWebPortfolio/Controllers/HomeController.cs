@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System;
 using QCBDManagementCommon.Classes;
 using System.Globalization;
+using DagoWebPortfolio.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -26,12 +27,13 @@ namespace DagoWebPortfolio.Controllers
             _countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault() ?? "en";
         }
 
-        public ActionResult Index(bool isContactSend = false)
-        {            
-            ViewBag.EmailConfirmation = isContactSend;            
+        public ActionResult Index(string page = "About", bool? isContactSend = null)
+        {
+            //ViewBag.EmailConfirmation = isContactSend;
             try
             {
-                ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
+                ViewBag.Object = JsonConvert.SerializeObject(isContactSend);
+                ViewBag.Page = JsonConvert.SerializeObject(page);
             }
             catch (Exception ex)
             {
@@ -92,20 +94,63 @@ namespace DagoWebPortfolio.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            //ModelState.
+            /*ContactViewModel contact = new ContactViewModel();
+            foreach (var field in paramList)
+            {
+                if(field.Equals(contact.Company.ToString()))
+                    ModelState.AddModelError(contact.Company, "Please give an organization or a company name.");
+                if (field.Equals(contact.Email.ToString()))
+                    ModelState.AddModelError(contact.Email, "Please give an Email.");
+                if (field.Equals(contact.Name.ToString()))
+                    ModelState.AddModelError(contact.Name, "Please give a name.");
+            }*/
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Contact([Bind(Include = "ID,Name,Company,Email,Phone,Comments")] ContactViewModel contactsViewModel)
+        public ActionResult Contact([Bind(Include = "ID,Name,Company,Email,Phone,Comments")] ContactViewModel contactsViewModel)
         {
             ViewBag.EmailConfirmation = false;
 
             if (ModelState.IsValid)
             {
-                // Create network credentials to access your SendGrid account
+                try
+                {
+                    // smtp host config
+                    Mailer mail = new Mailer("mail.e-dago.com");//("smtp.gmail.com");
+                    mail.Login = "contact@e-dago.com";// "sisi.bahilo@gmail.com";
+                    mail.Password = "Contact225!"; // "bahilo225";
+
+                    mail.Subject = contactsViewModel.Name + " - " + contactsViewModel.Company;
+                    mail.Body = contactsViewModel.Comments;
+                    mail.Body += "<p>Phone: " + contactsViewModel.Phone + "</p>";
+                    mail.Body += "<p>Email: " + contactsViewModel.Email + "</p>";
+                    mail.From = mail.Login;// contactsViewModel.Email;
+                    mail.FromName = contactsViewModel.Name;
+                    mail.IsHtml = true;
+                    mail.addAnAddress(new Dictionary<string, List<string>> {
+                        { "To", new List<string> { "joel.dago@yahoo.fr" } },
+                        { "Reply-To",new List<string> { contactsViewModel.Email } }
+                    });
+                    //mail.addAttachment(new List<string> { Utility.getDirectory("bin", "Logs", "log_2016_09.txt") });
+                    mail.initialize();
+                    
+                    ViewBag.EmailConfirmation = mail.send();
+
+                    db.Contacts.Add(contactsViewModel);
+                    db.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    Log.write(ex.Message, "ERR");
+                }
+
+                return RedirectToAction("Index", new { isContactSend = ViewBag.EmailConfirmation, page = "Contact" });
+
+                /*// Create network credentials to access your SendGrid account
                 var username = "postmaster@e-dago.com";
                 var pswd = "Bahilo225!";
 
@@ -189,10 +234,11 @@ namespace DagoWebPortfolio.Controllers
                     
                 }*/
             }
-            return View(contactsViewModel);
+            return RedirectToAction("Index", new { page = "Contact" });
+            //return View(contactsViewModel);
         }
 
 
-     }
+    }
 
 }

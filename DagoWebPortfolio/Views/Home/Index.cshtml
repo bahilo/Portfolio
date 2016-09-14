@@ -15,22 +15,22 @@
         <!-- class of slide for animation -->
         <div class="carousel-inner">
             <div class="item">
-                <div id="page0">HERE PAGE 0</div>
+                <div id="page0">Loading...</div>
             </div>
             <div class="item">
-                <div id="page1">HERE PAGE 1</div>
+                <div id="page1">Loading...</div>
             </div>
             <div class="item">
-                <div id="page2">HERE PAGE 2</div>
+                <div id="page2">Loading...</div>
             </div>
             <div class="item">
-                <div id="page3">HERE PAGE 3</div>
+                <div id="page3">Loading...</div>
             </div>
             <div class="item">
-                <div id="page4">HERE PAGE 4</div>
+                <div id="page4">Loading...</div>
             </div>
             <div class="item active">
-                <div id="page5">HERE PAGE 5</div>
+                <div id="page5">Loading...</div>
                 <!--<div class="carousel-caption">
                     <p></p>
                 </div>-->
@@ -49,10 +49,22 @@
             <div class="item">
                 <div id="contact-confirm">
                     <div class="container">
+                        <a href="/Home/Index" class="close" data-dismiss="alert" style="font-size:35px;"><i class="glyphicon glyphicon-remove"></i></a>
                         <div class="row">
                             <div class="col-md-12 alert alert-success  vcenter">
-                                <a href="#" class="close" data-dismiss="alert">&times;</a>
                                 <strong>Success!</strong> Your message has been sent successfully.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div id="contact-confirm">
+                    <div class="container">
+                        <a href="/Home/Index" class="close" data-dismiss="alert" style="font-size:35px;"><i class="glyphicon glyphicon-remove"></i></a>
+                        <div class="row">
+                            <div class="col-md-12 alert alert-danger  vcenter">
+                                <strong>Faild!</strong> Your message has not been sent.
                             </div>
                         </div>
                     </div>
@@ -62,32 +74,44 @@
     </div><!-- /.carousel -->
 </div>
 
-
 @section Scripts {
     <script type="text/javascript">
-        $(document).ready(function () {
-
+        $(document).ready(function () {            
             $('.carousel-home-body').carousel({ interval: false });
+            
             var obj = @Html.Raw(ViewBag.Object);
             if ( obj == true ) {
                 $('.carousel-home-body').carousel(7);
-            }else{
+            }
+            else if(obj == false){
+                $('.carousel-home-body').carousel(8);
+            }
+            else
+            {                
+                var page = "About";
+                var pageContainer = $('#page5');
+                if(@Html.Raw(ViewBag.Page) == "Contact"){
+                    page = "Contact";
+                    pageContainer = $('#page4');
+                    $('.carousel-home-body').carousel(4);
+                }
+
                 var loding = $("#loading-pages").html();
-                $('#page5').html(loding);
+                pageContainer.html(loding);
+                
                 $.ajax({
-                    type: "POST",
-                    url: "/Home/About",
+                    type: "GET",
+                    url: "/Home/"+ page,
                     datatype: "html",
                     success: function (data) {
-                        $('#page5').html(data);
+                        pageContainer.html(data);
+                        eval(document.getElementById("contactError").style.display = "block");
+                    },
+                    error: function (status) {
+                        alert(status.responseText);
                     }
                 });
             }
-
-            $('.alert .close').click(function(){
-                $(location).attr('href', '/Home/Index');
-            });
-
         });
 
     </script>

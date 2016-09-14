@@ -60,11 +60,6 @@
             </div>
         </section>
         <div class="divider"></div>
-        <!--
-            <section class="bg-1">
-                <div class="col-sm-6 col-sm-offset-3 text-center"></div>
-            </section>
-        -->
         @foreach (var project in Model)
         {
         <div class="divider" id="section[@count2]"></div>
@@ -78,15 +73,8 @@
                 </div>
             </div>
         </section>
-
         
-
         <section class="bg-4">
-            @*<div class="row">
-                <div class="col-md-12">
-                    @Html.DisplayFor(modelItem => project.Resume)
-                </div>
-            </div>*@
             <div class="row">
                 <div class="col-md-5 img-layout">
 
@@ -104,30 +92,13 @@
                 <div class="col-md-7">
                     <div class="project-title">
                         <h3 class=""> <a target="_blank" href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)"><span>@Html.DisplayFor(modelItem => project.Title)</span>  <span class="date">@Html.ValueFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</span></a></h3>
-                        @*@Html.ActionLink("Projects", "Index", "Projects")
-                        @if (project.link != null)
-                        {
-                        <h2 class="title"> <a target="_blank" href="@Html.DisplayFor(modelItem => project.link)"><span>@Html.DisplayFor(modelItem => project.Title)</span>  <span class="date">@Html.ValueFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</span></a></h2>
-
-                        }
-                        else
-                        {
-                        <h2 class="no-link title">@Html.DisplayFor(modelItem => project.Title) @Html.ValueFor(modelItem => project.ProjectDetail.Date, "{0:dd/MM/yyyy}")</h2>
-
-                        }*@
-
-                    </div><!--/panel-->
+                   </div><!--/panel-->
 
                     <div class="summary-head">
                         @Html.DisplayHtml(project.Resume)
                     </div><!--/panel-->
 
                 </div><!--/col-->
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    @Html.DisplayHtml(project.ProjectDetail.Description)
-                </div>
             </div>
         </section>
 
@@ -139,6 +110,5 @@
 
     <div class="divider"></div>
 
-    @*@Scripts.Render("~/bundles/bootstrap")*@
 
 

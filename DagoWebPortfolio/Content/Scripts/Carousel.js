@@ -11,9 +11,9 @@ $(document).ready(function () {
             type: sendMethod,
             url: targetCOntroller,
             datatype: "html",
-            error: function (status) {
+            /*error: function (status) {
                 targetElement.html(status.responseText);
-            },/**/
+            },*/
             success: function (data) {
                 targetElement.html(data);
             }

@@ -48,8 +48,7 @@
                                     <li>
                                         <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownLeft">
-
-                                            <div class="row">
+                                        <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="timeline-heading">
 
@@ -82,46 +81,46 @@
                                     <li class="timeline-inverted">
                                         <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                         <div class="timeline-panel animated rotateInDownRight">
-
-                                            @if (experience.Pictures.Count > 0)
-                                            {
-                                                //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
-                                                string fullPath = experience.Pictures.LastOrDefault().path + experience.Pictures.LastOrDefault().FileName;
+                                       
+                                                @if (experience.Pictures.Count > 0)
+                                                {
+                                                    //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                                    string fullPath = experience.Pictures.LastOrDefault().path + experience.Pictures.LastOrDefault().FileName;
+                                                    <div class="row">
+                                                        <div class="col-md-12 img-layout">
+                                                            <img src="@fullPath" class="img-responsive">
+                                                        </div>
+                                                    </div>
+                                                }
                                                 <div class="row">
-                                                    <div class="col-md-12 img-layout">
-                                                        <img src="@fullPath" class="img-responsive">
+                                                    <div class="col-md-12">
+                                                        <div class="timeline-heading">
+
+                                                            @if (experience.link != null)
+                                                            {
+                                                                <h2 class="timeline-title"><span class="link title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h2>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h2>
+
+                                                            }
+                                                            <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i> @Html.DisplayFor(modelItem => experience.Company)  @Html.ValueFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.ValueFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}") </small></p>
+                                                        </div>
+                                                        <div class="timeline-body">
+
+                                                            @Html.DisplayHtml(experience.Responsabilities)
+                                                        </div>
+
+                                                        <p></p>
                                                     </div>
+
                                                 </div>
-                                            }
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="timeline-heading">
 
-                                                        @if (experience.link != null)
-                                                        {
-                                                            <h2 class="timeline-title"><span class="link title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h2>
 
-                                                        }
-                                                        else
-                                                        {
-                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h2>
-
-                                                        }
-                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i> @Html.DisplayFor(modelItem => experience.Company)  @Html.ValueFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.ValueFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}") </small></p>
-                                                    </div>
-                                                    <div class="timeline-body">
-                                                        
-                                                        @Html.DisplayHtml(experience.Responsabilities)
-                                                    </div>
-
-                                                    <p></p>
-                                                </div>
 
                                             </div>
-
-
-
-                                        </div>
                                     </li>
                                 }
 
@@ -143,13 +142,7 @@
     </div>
 </div>
 
-
-
-
         <div class="divider"></div>
-
-
-        @Scripts.Render("~/bundles/bootstrap")
 
 
 

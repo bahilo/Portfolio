@@ -29,16 +29,5 @@ $(document).ready(function () {
             $('#modalCarousel').carousel(id); // slide carousel to selected
   	        return false;
         });
-
-       
-       
-      /*tinymce.init({
-          selector: 'textarea',
-          plugin: 'a_tinymce_plugin',
-          a_plugin_option: true,
-          a_configuration_option: 400
-      });*/
-
-   
-
+    
 });

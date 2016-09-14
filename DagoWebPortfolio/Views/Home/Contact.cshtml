@@ -43,21 +43,26 @@
 
                 <div class="divider"></div>
 
+                <div id="contactError" style="color:red; display:none;">
+                    <div>Please fill the mandatory fields.</div>
+                    <div class="divider"></div>
+                </div>
+
                 <div class="row form-group">
                     <div class="col-xs-4 col-md-offset12">
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "firstName", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Name, "*", new { @class = "text-danger" })
                     </div>
                     <div class="col-xs-6">
                         @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @id = "organization", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Company, "*", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-xs-5">
                         <!--<input type="text" class="form-control" name="email" placeholder="Email"><!---->
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "Email", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Email, "*", new { @class = "text-danger" })
                     </div>
                     <div class="col-xs-5">
                         <!--<input type="text" class="form-control" name="phone" placeholder="Phone"><!---->
@@ -68,7 +73,7 @@
                 <div class="row form-group">
                     <div class="col-xs-10">
                         <!--<textarea class="form-control" placeholder="Comments"></textarea><!---->
-                        @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @id = "Comments", @class = "form-control" }, @style = "width: 100%; height: 200px;" })
+                        @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @id = "ContactComments", @class = "form-control" }, @style = "width: 100%; height: 200px;" })
                         @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -96,10 +101,11 @@
 -->
 <script>
       tinymce.init({
-          selector: 'textarea',
+          selector: "textarea"
+          /*,
           //plugins: 'a_tinymce_plugin',
           a_plugin_option: true,
-          a_configuration_option: 400
+          a_configuration_option: 400*/
       });
 </script>
 
