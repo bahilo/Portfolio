@@ -6,8 +6,28 @@
     <div class="form-group">
         @Html.LabelFor(model => Model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => Model.Title, new SelectList(new string[] { "Coding", "Business", "Others" }, Model.Title), Model.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @*@Html.se(model => model.CategoryViewModel.Title, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.DropDownListFor(model => Model.Title, new SelectList(new string[] { "Coding", "Business", "Others" }, Model.Title ?? "--None--"), "--None--", new { htmlAttributes = new { @class = "form-control" } })*@
+            <select name="categoryTitle">
+                @{ int cpt = 0;}
+                @foreach (var category in new string[] { "Coding", "Business", "Others"})
+                {
+                    if (Model.Title == null && cpt == 0)
+                    {
+                        <option selected>--None--</option>
+                    }
+
+                    if (Model.Title != null && Model.Title.Equals(category))
+                    {
+                        <option selected>@category</option>
+                    }
+                    else
+                    {
+                        <option>@category</option>
+                    }
+                    cpt++;
+                }
+            </select>        
+    @*@Html.se(model => model.CategoryViewModel.Title, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => Model.Title, "", new { @class = "text-danger" })
         </div>
     </div>

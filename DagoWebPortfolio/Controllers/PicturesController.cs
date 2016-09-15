@@ -310,78 +310,7 @@ namespace DagoWebPortfolio.Controllers
             ViewBag.SkillsViewModelID = new SelectList(db.Skills, "ID", "Title", picturesViewModel.SkillsViewModelID);
             return View(picturesViewModel);
         }
-
-        private void updatePictureTable(PicturesViewModel picture, HttpPostedFileBase file, string link_picture_to, string origineFileName)
-        {
-            switch (link_picture_to)
-            {
-                case "project":
-                    var projectDetail = db.DetailsProject.Find(picture.ProjectDetailsViewModelID);
-                    picture.ProjectDetail = projectDetail;
-                    picture.path = "/Content/Images/Projects/";
-                    picture.Education = null;
-                    picture.EducationViewModelID = null;
-                    picture.Experience = null;
-                    picture.ExperiencesViewModelID = null;
-                    picture.Skill = null;
-                    picture.SkillsViewModelID = null;
-                    break;
-                case "education":
-                    var education = db.Education.Find(picture.EducationViewModelID);
-                    picture.Education = education;
-                    picture.path = "/Content/Images/Education/";
-                    picture.ProjectDetail = null;
-                    picture.ProjectDetailsViewModelID = null;
-                    picture.Experience = null;
-                    picture.ExperiencesViewModelID = null;
-                    picture.Skill = null;
-                    picture.SkillsViewModelID = null;
-                    break;
-                case "experience":
-                    var experience = db.Experiences.Find(picture.ExperiencesViewModelID);
-                    picture.path = "/Content/Images/Experiences/";
-                    picture.Experience = experience;
-                    picture.Education = null;
-                    picture.EducationViewModelID = null;
-                    picture.ProjectDetail = null;
-                    picture.ProjectDetailsViewModelID = null;
-                    picture.Skill = null;
-                    picture.SkillsViewModelID = null;
-                    break;
-                case "skill":
-                    var skill = db.Skills.Find(picture.SkillsViewModelID);
-                    picture.Skill = skill;
-                    picture.path = "/Content/Images/Skills/";
-                    picture.Education = null;
-                    picture.EducationViewModelID = null;
-                    picture.ProjectDetail = null;
-                    picture.ProjectDetailsViewModelID = null;
-                    picture.Experience = null;
-                    picture.ExperiencesViewModelID = null;
-                    break;
-                default:
-                    picture.EducationViewModelID = null;
-                    picture.ExperiencesViewModelID = null;
-                    picture.SkillsViewModelID = null;
-                    picture.ProjectDetailsViewModelID = null;
-                    break;
-            }
-
-            if (file != null)
-            {
-                string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + picture.path));
-                var origineFileWithPath = Server.MapPath("~" + picture.path) + origineFileName;
-
-                foreach (var f in savedFiles)
-                {
-                    if (origineFileWithPath.Equals(f))
-                        System.IO.File.Delete(f);
-                }
-                picture.FileName = file.FileName;
-                file.SaveAs(HttpContext.Server.MapPath(picture.path + file.FileName));
-            }
-
-        }
+        
 
         // GET: Pictures/Delete/5
         public ActionResult Delete(int? id)

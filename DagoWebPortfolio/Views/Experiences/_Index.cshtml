@@ -19,23 +19,9 @@
 
 
 <div class="experiences-home">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="title">
-                            <h1 class="text">@ViewBag.Title</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="divider"></div>
 
-    <div class="col-md-12 top-20 padding-0">
+    <div class="col-md-12">
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-body">
@@ -54,12 +40,12 @@
 
                                                         @if (experience.link != null)
                                                         {
-                                                            <h2 class="timeline-title"><span class="link title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h2>
+                                                            <h3 class="timeline-title"><span class="link"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h3>
 
                                                         }
                                                         else
                                                         {
-                                                            <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h2>
+                                                            <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h3>
 
                                                         }
                                                         <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i> @Html.DisplayFor(modelItem => experience.Company)  @Html.ValueFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.ValueFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}") </small></p>
@@ -98,12 +84,12 @@
 
                                                             @if (experience.link != null)
                                                             {
-                                                                <h2 class="timeline-title"><span class="link title"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h2>
+                                                                <h3 class="timeline-title"><span class="link"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h3>
 
                                                             }
                                                             else
                                                             {
-                                                                <h2 class="timeline-title"><span class="no-link title">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h2>
+                                                                <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h3>
 
                                                             }
                                                             <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i> @Html.DisplayFor(modelItem => experience.Company)  @Html.ValueFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.ValueFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}") </small></p>
@@ -129,10 +115,10 @@
                                 count++;
                             }
                             <li>
-                                <div class="start timeline-badge "><i class="glyphicon glyphicon-circle-arrow-up"></i></div>
+                                <div class="start timeline-badge ">@*<i class="glyphicon glyphicon-circle-arrow-up"></i>*@</div>
                             </li>
                         </ul>
-                        <div class="divider"></div>
+                        @*<div class="divider"></div>*@
                     </div>
 
                 </div>
@@ -142,7 +128,7 @@
     </div>
 </div>
 
-        <div class="divider"></div>
+        @*<div class="divider"></div>*@
 
 
 

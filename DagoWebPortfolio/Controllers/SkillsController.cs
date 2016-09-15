@@ -153,12 +153,13 @@ namespace DagoWebPortfolio.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,Description,LevelsViewModel,CategoryViewModel")] SkillsViewModel skillsViewModel
-                                    , string categoryID, string levelID
+                                    , string categoryID, string levelID, string categoryTitle
                                     , IEnumerable<string> listExperiencesOfSkillId, IEnumerable<string> listProjectsOfSkillId
                                     , IEnumerable<string> isExperienceSelected, IEnumerable<string> isProjectSelected)
         {
             if (ModelState.IsValid)
             {
+                skillsViewModel.CategoryViewModel.Title = categoryTitle;
                 var id = Int32.Parse(categoryID);
                 var origineParentCateg = db.Categories.Where(x => x.ID == id).Single();
                 origineParentCateg.Title = skillsViewModel.CategoryViewModel.Title;

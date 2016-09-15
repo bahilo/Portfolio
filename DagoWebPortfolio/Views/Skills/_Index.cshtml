@@ -12,24 +12,109 @@
 *@
 
 <div class="skills-home">
-    <div class="container">
+    @*<div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="title">
-                            <h1>@ViewBag.Title</h1>
+                            <h3>@ViewBag.Title</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div class="divider"></div>
 
+    @*<div class="container">*@
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3>Development</h3>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row coding">
+                    @foreach (var item in Model)
+            {
+                if (item.CategoryViewModel.Title == "Coding")
+                {
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="panel panel-default">
+                                    <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
+                                    <div class="panel-body text-center">
+                                        <h4 class="">@Html.DisplayFor(model => item.Title)</h4>
+                                        <p></p>
+                                    </div>
+                                </div><!--/panel-->
+                            </div><!--/col-->
 
-    @if (Model.Where(x => x.CategoryViewModel.Title == "Coding").Count() > 0)
+                        }
+                        count++;
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3>Design</h3>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row business">
+                    @foreach (var item in Model)
+            {
+                if (item.CategoryViewModel.Title == "Business")
+                {
+
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="panel panel-default">
+                                    <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
+                                    <div class="panel-body text-center">
+                                        <h4 class="">@Html.DisplayFor(model => item.Title)</h4>
+                                        <p></p>
+                                    </div>
+                                </div><!--/panel-->
+                            </div>
+                        }
+                        count++;
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3>Personal skills</h3>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row others">
+                    @foreach (var item in Model)
+                    {
+                        if (item.CategoryViewModel.Title == "Others")
+                        {
+
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="panel panel-default">
+                                    <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
+                                    <div class="panel-body text-center">
+                                        <h4 class="">@Html.DisplayFor(model => item.Title)</h4>
+                                        <p></p>
+                                    </div>
+                                </div><!--/panel-->
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+        </div>
+    @*</div>*@
+
+    @*@if (Model.Where(x => x.CategoryViewModel.Title == "Coding").Count() > 0)
     {
         <section class="bg-3">
             <div class="col-sm-6 col-sm-offset-3 text-center section-title"><h3>Coding</h3></div>
@@ -70,17 +155,17 @@
 
 
         <div class="bg-4">
-            <div class="row business">
+           <div class="row business">
                 @foreach (var item in Model)
                 {
                     if (item.CategoryViewModel.Title == "Business")
                     {
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-md-offset-4">
                             <div class="panel panel-default">
                                 <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
                                 <div class="panel-body text-center">
-                                    <h3 class="title">@Html.DisplayFor(model => item.Title)</h3>
+                                    <h4 class="title">@Html.DisplayFor(model => item.Title)</h4>
                                     <p></p>
                                 </div>
                             </div><!--/panel-->
@@ -109,11 +194,11 @@
                     if (item.CategoryViewModel.Title == "Others")
                     {
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-md-offset-8">
                             <div class="panel panel-default">
                                 <div class="panel-thumbnail"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
                                 <div class="panel-body text-center">
-                                    <h3 class="title">@Html.DisplayFor(model => item.Title)</h3>
+                                    <h4 class="title">@Html.DisplayFor(model => item.Title)</h4>
                                     <p></p>
                                 </div>
                             </div><!--/panel-->
@@ -128,7 +213,7 @@
     </div>
     
 
-    <div class="divider"></div>
+    <div class="divider"></div>*@
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -143,7 +228,7 @@
                 $(this).waterbubble({
 
                     // bubble size
-                    radius: 100,
+                    radius: 50,
 
                     // border width
                     lineWidth: undefined,
