@@ -603,9 +603,11 @@
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="Content\Scripts\Carousel.js" />
     <Content Include="Content\Scripts\gmaps.js" />
+    <Content Include="Content\Scripts\popcorn.js" />
     <Content Include="Content\Scripts\scripts.js" />
     <Content Include="Content\Scripts\Site.js" />
     <Content Include="Content\Scripts\waterbubble.js" />
+    <Content Include="Content\Videos\Projects\2016-08-31_at_01-09-44.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -685,6 +687,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Pictures\2016-08-31_at_01-09-44.mp4" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

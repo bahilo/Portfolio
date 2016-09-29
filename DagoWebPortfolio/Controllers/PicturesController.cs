@@ -19,6 +19,7 @@ namespace DagoWebPortfolio.Controllers
     public class PicturesController : Controller
     {
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
+        private List<string> extensionList = new List<string> { "png", "jpg", "jpeg", "gif", "mp4" };
 
         // GET: Pictures
         public ActionResult Index()
@@ -96,12 +97,25 @@ namespace DagoWebPortfolio.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Subject,link,IsAbout,IsWelcome,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID,Skill,ProjectDetail,Education,Experience")] PicturesViewModel projectPicturesViewModel, HttpPostedFileBase file, string link_picture_to)
         {
+            bool isVideo = false;
+            string ext = file.FileName.Split('.')[1];
+            //if (file.FileName.Split('.').Count() > 0 && file.FileName.Split('.')[1] != "mp4")
+            if (!(extensionList.Contains(ext.ToLower())))
+            {
+                ModelState.AddModelError("FileName", "Must be the following format (*.png, *.jpg, *.jpeg, *.gif, *.mp4).");
+            }
+
+            if (ext.Equals("mp4"))
+                isVideo = true;
+                
+
+
             if (ModelState.IsValid && file != null)
             {
                 try
                 {
                     var picture = projectPicturesViewModel;
-                    addPictureTable(picture, file, link_picture_to);
+                    addOrUpdatePictureTable(picture, file, link_picture_to, isVideo);
                     db.PicturesApp.Add(picture);
                     db.SaveChanges();
                 }
@@ -137,18 +151,24 @@ namespace DagoWebPortfolio.Controllers
             ViewBag.ProjectDetailsViewModelID = new SelectList(db.DetailsProject, "ID", "Subject", projectPicturesViewModel.ProjectDetailsViewModelID);
             ViewBag.SkillsViewModelID = new SelectList(db.Skills, "ID", "Title", projectPicturesViewModel.SkillsViewModelID);
             return View(projectPicturesViewModel);
-                
+
         }
 
-        private void addPictureTable(PicturesViewModel picture, HttpPostedFileBase file, string link_picture_to)
+        private void addOrUpdatePictureTable(PicturesViewModel picture, HttpPostedFileBase file, string link_picture_to, bool isVideo)
         {
             //picture.path = Utility.getDirectory("Content","Images");
-            picture.path = "/Content/Images/";
+            string oldPath = picture.path;
+
+            if (isVideo)
+                picture.path = "/Content/Videos/";
+            else
+                picture.path = "/Content/Images/";
+
             picture.Education = null;
             picture.ProjectDetail = null;
             picture.Skill = null;
             picture.Experience = null;
-            
+
             //picture.EducationViewModelID = null;
             //picture.ExperiencesViewModelID = null;
             //picture.SkillsViewModelID = null;
@@ -211,34 +231,30 @@ namespace DagoWebPortfolio.Controllers
                     break;
             }
 
-            if (file != null)
+            if (!string.IsNullOrEmpty(picture.FileName))
             {
-                List<string> pathElementList = picture.path.Split('/').ToList();
-                
-                //string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + picture.path));
-                string[] savedFiles = System.IO.Directory.GetFiles(Utility.getDirectory(pathElementList[0], pathElementList.ToArray()));
-                if (!string.IsNullOrEmpty(picture.FileName))
+                var origineFileWithPath = Utility.getDirectory(oldPath, picture.FileName);// (pathElementList[0], pathElementList.Skip(1).ToArray()); //Server.MapPath("~" + picture.path) + picture.FileName;
+                if (System.IO.File.Exists(origineFileWithPath))
                 {
-                    pathElementList.Add(picture.FileName);
-                    var origineFileWithPath = Utility.getDirectory(pathElementList[0], pathElementList.ToArray()); //Server.MapPath("~" + picture.path) + picture.FileName;
-
-                    foreach (var f in savedFiles)
-                    {
-                        if (origineFileWithPath.Equals(f))
-                            System.IO.File.Delete(f);
-                    }
+                    var newFileWithPath = Utility.getDirectory(picture.path, picture.FileName);// (pathElementList[0], pathElementList.Skip(1).ToArray());
+                    System.IO.File.Move(origineFileWithPath, newFileWithPath);
                 }
-                
-                picture.FileName = file.FileName.Replace(" ", "_");
-                file.SaveAs(Utility.getDirectory(picture.path, picture.FileName));
-
-                //picture.FileName = file.FileName;
-                //file.SaveAs(HttpContext.Server.MapPath(picture.path + file.FileName));
             }
 
-            
-            
+            if (file != null)
+            {
+                var origineFileWithPath = Utility.getDirectory(picture.path, picture.FileName);
+                if (System.IO.File.Exists(origineFileWithPath))
+                {
+                    System.IO.File.Delete(origineFileWithPath);
+                }
+
+                picture.FileName = file.FileName.Replace(" ", "_");
+                file.SaveAs(Utility.getDirectory(picture.path, picture.FileName));
+            }
         }
+
+        //private 
 
         // GET: Pictures/Edit/5
         public ActionResult Edit(int? id)
@@ -264,16 +280,51 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Subject,IsAbout,IsWelcome,link,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] PicturesViewModel picturesViewModel, HttpPostedFileBase file, string link_picture_to, string fileName)
+        public ActionResult Edit([Bind(Include = "ID,Subject,FileName,path,IsAbout,IsWelcome,link,Description,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] PicturesViewModel picturesViewModel, HttpPostedFileBase file, string link_picture_to)
         {
+            bool isVideo = false;
+            if (file != null)
+            {
+                string ext = file.FileName.Split('.')[1];
+                //if (file.FileName.Split('.').Count() > 0 && file.FileName.Split('.')[1] != "mp4")
+                if (!(extensionList.Contains(ext.ToLower())))
+                {
+                    ModelState.AddModelError("FileName", "Must be the following format (*.png, *.jpg, *.jpeg, *.gif, *.mp4).");
+                }
+
+                if (ext.Equals("mp4"))
+                    isVideo = true;
+            }
+            
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    picturesViewModel.FileName = fileName;
-                    addPictureTable(picturesViewModel, file, link_picture_to);
-                    //updatePictureTable(picturesViewModel, file, link_picture_to, fileName);
-                    db.Entry(picturesViewModel).State = EntityState.Modified;
+                    //picturesViewModel.FileName = fileName;
+                    var oldPicture = db.PicturesApp.Where(x => x.ID == picturesViewModel.ID).Single();
+
+                    picturesViewModel.FileName = oldPicture.FileName;
+                    picturesViewModel.path = oldPicture.path;
+                    addOrUpdatePictureTable(picturesViewModel, file, link_picture_to, isVideo);
+
+                    oldPicture.Subject = picturesViewModel.Subject;
+                    oldPicture.FileName = picturesViewModel.FileName;
+                    oldPicture.path = picturesViewModel.path;
+                    oldPicture.IsAbout = picturesViewModel.IsAbout;
+                    oldPicture.IsWelcome = picturesViewModel.IsWelcome;
+                    oldPicture.link = picturesViewModel.link;
+                    oldPicture.Description = picturesViewModel.Description;
+                    oldPicture.ProjectDetailsViewModelID = picturesViewModel.ProjectDetailsViewModelID;
+                    oldPicture.ProjectDetail = picturesViewModel.ProjectDetail;
+                    oldPicture.EducationViewModelID = picturesViewModel.EducationViewModelID;
+                    oldPicture.Education = picturesViewModel.Education;
+                    oldPicture.ExperiencesViewModelID = picturesViewModel.ExperiencesViewModelID;
+                    oldPicture.Experience = picturesViewModel.Experience;
+                    oldPicture.SkillsViewModelID = picturesViewModel.SkillsViewModelID;
+                    oldPicture.Skill = picturesViewModel.Skill;
+
+                    db.Entry(oldPicture).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 catch (DbEntityValidationException dbEx)
@@ -310,7 +361,7 @@ namespace DagoWebPortfolio.Controllers
             ViewBag.SkillsViewModelID = new SelectList(db.Skills, "ID", "Title", picturesViewModel.SkillsViewModelID);
             return View(picturesViewModel);
         }
-        
+
 
         // GET: Pictures/Delete/5
         public ActionResult Delete(int? id)
@@ -343,13 +394,20 @@ namespace DagoWebPortfolio.Controllers
             projectPicturesViewModel.Skill = null;
             projectPicturesViewModel.SkillsViewModelID = null;
 
-            string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + projectPicturesViewModel.path));
-            var origineFileWithPath = Server.MapPath("~" + projectPicturesViewModel.path) + projectPicturesViewModel.FileName;
-
-            foreach (var f in savedFiles)
+            try
             {
-                if (origineFileWithPath.Equals(f))
-                    System.IO.File.Delete(f);
+                string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + projectPicturesViewModel.path));
+                var origineFileWithPath = Server.MapPath("~" + projectPicturesViewModel.path) + projectPicturesViewModel.FileName;
+
+                foreach (var f in savedFiles)
+                {
+                    if (origineFileWithPath.Equals(f))
+                        System.IO.File.Delete(f);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
             }
 
             try

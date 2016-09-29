@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QCBDManagementCommon.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,22 +12,30 @@ namespace DagoWebPortfolio.Classes
     {
         static string _baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-        public static string getDirectory(string directory,  params string[] pathElements)
+        public static string getDirectory(string directory, params string[] pathElements)
         {
-            var dirElements = directory.Replace("/", @"\").Split('\\');
+            var dirElements = directory.Split('/');//.Replace("/", @"\").Split('\\');
             var allPathElements = dirElements.Concat(pathElements).ToArray();
             string path = _baseDirectory;
             foreach (string pathElement in allPathElements)
             {
-                path = Path.Combine(path, pathElement);
+                if (!string.IsNullOrEmpty(pathElement))
+                    path = Path.Combine(path, pathElement);
             }
 
             var pathChecking = path.Split('.'); // check if it is a full path file or only directory 
 
-            if (!Directory.Exists(path) && pathChecking.Count() == 1)
+            if (!File.Exists(path) && !Directory.Exists(path))
             {
-                Directory.CreateDirectory(path);
-            }                
+
+                if (pathChecking.Count() > 1)
+                {
+                    var dir = Path.GetDirectoryName(path);
+                    Directory.CreateDirectory(Path.GetDirectoryName(path));
+                }
+                else
+                    Directory.CreateDirectory(path);
+            }
 
             return Path.GetFullPath(path);
         }

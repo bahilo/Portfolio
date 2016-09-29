@@ -39,12 +39,24 @@
                     @Html.ValidationMessageFor(model => model.IsWelcome, "", new { @class = "text-danger" })
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="control-label col-md-2">
                     File
                 </div>
                 <div class="col-md-10">
                     <input id="ImagePath" title="Upload a project image" type="file" name="file" required />
+                    @Html.ValidationMessage("FileName", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    Video
+                </div>
+                <div class="col-md-10">
+                    <input id="video" title="Is the file a video?" type="checkbox" name="isVideo" value="true"/>
+                    <input title="Is the file a video?" type="hidden" name="isVideo" value="false" />
                 </div>
             </div>
 

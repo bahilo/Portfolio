@@ -1,5 +1,5 @@
 ﻿@model DagoWebPortfolio.Models.PicturesViewModel
-
+@using DagoWebPortfolio.Classes
 @{
     ViewBag.Title = "Edit";
 }
@@ -8,7 +8,7 @@
 
 
     @using (Html.BeginForm("Edit", "Pictures", FormMethod.Post,
-                                                                new { enctype = "multipart/form-data" }))
+                                                                        new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -19,7 +19,7 @@
             @Html.HiddenFor(model => model.ID)
 
 
-            <input type="hidden" name="origineFileName" value="@Html.DisplayFor(model => model.FileName)" />
+            @*<input type="hidden" name="origineFileName" value="@Html.DisplayFor(model => model.FileName)" />*@
 
 
             <div class="form-group">
@@ -52,9 +52,47 @@
                 </div>
                 <div class="col-md-4">
                     <input id="ImagePath" title="Upload a project image" type="file" name="file" />
+                    @Html.ValidationMessage("FileName", "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
-                    <img style="height:100px;width:100%;" src="@Html.DisplayFor(model=>model.path)@Html.DisplayFor(model=>model.FileName)" />
+                    @if (Model != null && Model.FileName != null)
+                    {                      
+                        if (Model.FileName.Split('.').Count() > 1 && Model.FileName.Split('.')[1] == "mp4")
+                        {
+                            string fileFullPath = Utility.getDirectory(Model.path, Model.FileName);
+                            <p>Mp4 preview.</p>                            
+                            <video id="ourvideo" style="height:200px;width:100%;" autoplay loop preload="auto" controls = "controls" >
+                                <source src = "@Html.DisplayFor(model=>model.path)@Html.DisplayFor(model=>model.FileName)" type='video/mp4' />
+                            </video >
+                            <div id="footnote"></div> 
+                        }
+                        else if (File.Exists(Utility.getDirectory(Model.path, Model.FileName)))
+                        {
+                            <p>Image preview.</p>                            
+                            <img style="height:200px;width:100%;" src="cc@Html.DisplayFor(model=>model.FileName)" />
+                        }
+                    }
+                    else
+                    {
+                        <p>No preview avalable.</p>
+                    }  
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    Video (*.webm)
+                </div>
+                <div class="col-md-10">
+                    @if (Model != null && Model.path != null && Model.path.Split('.').Count() > 1 && Model.path.Split('.')[1] == "mp4")
+                    {
+                        <input id="video" title="Is the file a video?" type="checkbox" name="isVideo" value="true" checked />
+                    }
+                    else
+                    {
+                        <input id="video_" title="Is the file a video?" type="checkbox" name="isVideo" value="true" />
+                    }
+                    <input title="Is the file a video?" type="hidden" name="isVideo" value="false" />
                 </div>
             </div>
 
@@ -93,12 +131,12 @@
             <div class="form-group">
                 <div class="col-md-1">
                     Linked to None
-                </div>                
+                </div>
                 <div class="col-md-9">
-                    
-                    @if (Model.ProjectDetailsViewModelID.Equals(null) && Model.ExperiencesViewModelID.Equals(null) && Model.EducationViewModelID.Equals(null) && Model.SkillsViewModelID.Equals(null) )
+
+                    @if (Model.ProjectDetailsViewModelID.Equals(null) && Model.ExperiencesViewModelID.Equals(null) && Model.EducationViewModelID.Equals(null) && Model.SkillsViewModelID.Equals(null))
                     {
-                        <input type="radio" name="link_picture_to" value="none"checked />
+                        <input type="radio" name="link_picture_to" value="none" checked />
                     }
                     else
                     {
@@ -202,3 +240,16 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+@*<script src="http://popcornjs.org/code/dist/popcorn-complete.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var popcorn = Popcorn("#ourvideo");
+        popcorn.footnote({
+            start: 2,
+            end: 5,
+            target: "footnote",
+            text: "Popoooooooooooooooooooo!"
+        });
+    }, false);
+</script>*@

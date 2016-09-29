@@ -1,5 +1,6 @@
 ﻿using DagoWebPortfolio.Controllers;
 using DagoWebPortfolio.Models;
+using QCBDManagementCommon.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,17 @@ namespace DagoWebPortfolio.Infrastructure
                 return controller;
             }
             var defaultController = new DefaultControllerFactory();
-            IController controllerFound = defaultController.CreateController(requestContext, controllerName);
-            return controllerFound;
+            try
+            {
+                IController controllerFound = defaultController.CreateController(requestContext, controllerName);
+                return controllerFound;
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
+
+            return new HomeController();
         }
 
         public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)
