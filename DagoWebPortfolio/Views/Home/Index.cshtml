@@ -1,120 +1,804 @@
-﻿@{
+﻿@using DagoWebPortfolio.Models;
+@using DagoWebPortfolio.Models.CustomHelpers
+@model DagoWebPortfolio.Models.ContactViewModel
+@{
 
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    // projects variables
+    var projects = (List<ProjectsViewModel>)ViewBag.Projects;
 
+    // pictures variables
+    PicturesViewModel picture = (PicturesViewModel)ViewBag.Picture;
+
+    // education variables
+    List<EducationViewModel> education = (List<EducationViewModel>)ViewBag.Education;
+    string[] _glyphicons = new string[4];
+    _glyphicons[0] = "glyphicon-check";
+    _glyphicons[1] = "glyphicon-credit-card";
+    _glyphicons[2] = "glyphicon-floppy-disk";
+    _glyphicons[3] = "glyphicon-thumbs-up";
+
+    // experiences variables
+    List<ExperiencesViewModel> experiences = (List<ExperiencesViewModel>)ViewBag.Experiences;
+    string[] _colors_class = new string[5];
+    var rd = new Random();
+    var count = 0;
+    _colors_class[0] = "primary";
+    _colors_class[1] = "success";
+    _colors_class[2] = "warning";
+    _colors_class[3] = "danger";
+    _colors_class[4] = "info";
+
+    List<SkillsViewModel> skills = (List<SkillsViewModel>)ViewBag.Skills;
 }
-<!--
-<div class="ar"> < </div>
-<div class="av"> > </div>
--->
-<div  id="content-section">
-    <!--  Carousel - consult the Twitter Bootstrap docs at
-          http://twitter.github.com/bootstrap/javascript.html#carousel -->
-    <div id="this-carousel-id" class="carousel-home-body slide">
-        <!-- class of slide for animation -->
-        <div class="carousel-inner">
-            <div class="item">
-                <div id="page0">Loading...</div>
-            </div>
-            <div class="item">
-                <div id="page1">Loading...</div>
-            </div>
-            <div class="item">
-                <div id="page2">Loading...</div>
-            </div>
-            <div class="item">
-                <div id="page3">Loading...</div>
-            </div>
-            <div class="item">
-                <div id="page4">Loading...</div>
-            </div>
-            <div class="item active">
-                <div id="page5">Loading...</div>
-                <!--<div class="carousel-caption">
-                    <p></p>
-                </div>-->
-            </div>
-            <div class="item" id="loading-pages">
-                <div class="info">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-4 vcenter">
-                                <img class="ajax-loader" src="/Content/Images/ajax-loader.gif" />
+
+<section class="emailError" id="emailSendingError"></section>
+
+@*================[  About me section ]=======================*@
+
+<section class="about-us" id="aboutme">
+    <div class="container">
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <h2 class="white-text">About Me</h2><div class="white-text section-legend">Here is my history.</div>
+        </div><!-- / END SECTION HEADER -->
+        <!-- 3 COLUMNS OF ABOUT US-->
+
+        <div class="row">
+
+            <!-- COLUMN 1 - BIG MESSAGE ABOUT THE COMPANY-->
+            @*<div class="col-lg-4 col-md-4 column zerif-rtl-big-title">
+                    <div class="big-intro" data-scrollreveal="enter left after 0s over 1s">
+                        Everything you see here is responsive and mobile-friendly.
+                    </div>
+                </div>*@
+            <div class="about-me">
+
+                <div class="container">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        @if (!string.IsNullOrEmpty(picture.FileName))
+                        {
+                            string fullPath = picture.path + picture.FileName;
+                            <div class="section-header">
+                                <img class="picture-home" src="@fullPath" />
                             </div>
+                            @*<div class="page-header text-center">
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <img class="picture-home" alt="Me" src="@fullPath" />
+                                        </div>
+                                    </div>
+                                </div>*@
+            <!---->
+
+                        }
+
+                        <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
+                            <p class="">
+                                I was raised in France where I completed my master in computer science degree in 2014 as an apprentice in the french company Orange(France Telecom).<br /><br />
+                                I started my career as a developer for a company specialized in softwares for banks and insurances. I always wanted to visit UK, so I decided to continue
+                                my career in London since 2015.<br /><br />
+
+                                In order to further develop my skills and enhance my English, I started a self funded training with Just IT.<br />Having the fundamentals of programming well structured,
+                                my dream is not only to become a better programmer, but also to build my lifestyle around it.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="our-clients">
+                    <h5>
+                        <span class="section-footer-title">PROFILE</span>
+                    </h5>
+                </div>
+                <div class="client-list">
+                    <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
+
+                        <div class="col-md-4">
+                            <h4><span class="glyphicon glyphicon-send"></span>Ambition</h4>
+                            <p>To consolidate my future career in development, I am currently enrolled on a self-funded courses working towards a Microsoft Certified Technology Specialist (MCTS) qualification through Just IT.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4><span class="glyphicon glyphicon-retweet"></span>Motivation</h4>
+                            <p><span>I always wanted to work in IT industry, so after my Master in Computer science I decided to become a c# developer beside having the fundamentals programming in PHP language. In my spare time I like to further my skills by developing applications (web or desktop).</span></p>
+                            <p>&nbsp;</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4><span class="glyphicon glyphicon-ok-sign"></span>Quality</h4>
+                            <p class="MsoNormal"><span lang="EN-GB">The various projects I have been involved in have built up my adaptability, my problems solving skills and my ability to be a good team player.</span></p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="item" id="contact-confirm-success">
-                <div class="info">
-                    <div class="container">
-                        <a href="/Home/Index" class="close" data-dismiss="alert" style="font-size:35px;"><i class="glyphicon glyphicon-remove"></i></a>
-                        <div class="row">
-                            <div class="col-md-12 alert alert-success  vcenter">
-                                <strong>Success!</strong> Your message has been sent successfully.
-                            </div>
-                        </div>
+                <div class="divider" id="section4"></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="info" id="contact-confirm-faild">
-                    <div class="container">
-                        <a href="/Home/Index" data-dismiss="alert" style="font-size:35px;"><i class="glyphicon glyphicon-remove"></i></a>
-                        <div class="row">
-                            <div class="col-md-12 alert alert-danger  vcenter">
-                                <strong>Faild!</strong> Your message has not been sent.
-                            </div>
+        </div> <!-- / END 3 COLUMNS OF ABOUT US-->
+    </div> <!-- / END CONTAINER -->
+</section> <!-- END ABOUT US SECTION -->
+@*================[ Experience section ]=======================*@
+
+@{count = 0; }
+<section class="focus" id="experiencesbackground">
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <!-- SECTION TITLE AND SUBTITLE -->
+
+            <h2 class="dark-text">Experiences</h2><div class="section-legend">Here is my work background.</div>
+        </div>
+        <div class="row" data-scrollreveal="enter right after 0s over 1s">
+            <div class="row">
+                <ul class="timeline">
+                    @foreach (var experience in experiences)
+                    {
+                        if (count % 2 == 0)
+                        {
+                            <li>
+
+                                <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                <div class="timeline-panel animated rotateInDownRight">
+
+                                    @if (experience.Pictures.Count > 0)
+                                    {
+                                        //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                        string fullPath = experience.Pictures.LastOrDefault().path + experience.Pictures.LastOrDefault().FileName;
+                                        <div class="row">
+                                            <div class="col-md-12 img-layout">
+                                                <img src="@fullPath" class="img-responsive">
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="timeline-heading">
+
+                                                @if (experience.link != null)
+                                                {
+                                                    <h3 class="timeline-title"><span class="link"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h3>
+
+                                                }
+                                                else
+                                                {
+                                                    <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h3>
+
+                                                }
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i> @Html.DisplayFor(modelItem => experience.Company)  @Html.ValueFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.ValueFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}") </small></p>
+                                            </div>
+                                            <div class="timeline-body">
+
+                                                @Html.DisplayHtml(experience.Responsabilities)
+                                            </div>
+
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                <div class="timeline-panel animated rotateInDownRight">
+
+                                    @if (experience.Pictures.Count > 0)
+                                    {
+                                        //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                        string fullPath = experience.Pictures.LastOrDefault().path + experience.Pictures.LastOrDefault().FileName;
+                                        <div class="row">
+                                            <div class="col-md-12 img-layout">
+                                                <img src="@fullPath" class="img-responsive">
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="timeline-heading">
+
+                                                @if (experience.link != null)
+                                                {
+                                                    <h3 class="timeline-title"><span class="link"><a target="_blank" href="@Html.DisplayFor(modelItem => experience.link)">@Html.DisplayFor(modelItem => experience.Title)  @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</a></span></h3>
+
+                                                }
+                                                else
+                                                {
+                                                    <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => experience.Title) @Html.ValueFor(model => experience.EndDate, "{0:dd/MM/yyyy}")</span></h3>
+
+                                                }
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i> @Html.DisplayFor(modelItem => experience.Company)  @Html.ValueFor(modelItem => experience.StartDate, "{0:dd/MM/yyyy}") - @Html.ValueFor(modelItem => experience.EndDate, "{0:dd/MM/yyyy}") </small></p>
+                                            </div>
+                                            <div class="timeline-body">
+
+                                                @Html.DisplayHtml(experience.Responsabilities)
+                                            </div>
+
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        }
+                        count++;
+                    }
+                    <li>
+                        <div class="start timeline-badge ">@*<i class="glyphicon glyphicon-circle-arrow-up"></i>*@</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div> <!-- / END CONTAINER -->
+</section>  <!-- / END FOCUS SECTION -->
+@*<section class="separator-one" id="ribbon_bottom"><div class="color-overlay"><h3 class="container text" data-scrollreveal="enter left after 0s over 1s">Check out this cool parallax scrolling effect. Plus, you can change the background image.</h3><div data-scrollreveal="enter right after 0s over 1s"><a href="#" class="btn btn-primary custom-button green-btn">button</a></div></div></section>*@
+
+
+
+
+@*================[  Education section ]=======================*@
+@{count = 0; }
+<section class="testimonial" id="educationbackground">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="white-text">Education</h2>
+            <h6 class="white-text section-legend">Here is my education background.</h6>
+        </div>
+        <div class="row" data-scrollreveal="enter right after 0s over 1s">
+            <div class="row">
+                <ul class="timeline">
+                    @foreach (var item in education)
+                    {
+                        if (count % 2 == 0)
+                        {
+                            <li>
+                                <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                <div class="timeline-panel animated rotateInDownLeft">
+                                    @if (item.Pictures.Count > 0)
+                                    {
+                                        //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                        string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
+                                        <div class="row">
+                                            <div class="col-md-12 img-layout">
+                                                <img src="@fullPath" class="img-responsive">
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="timeline-heading">
+
+                                                @if (item.link != null)
+                                                {
+                                                    <h3 class="timeline-title"><span><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h3>
+                                                }
+                                                else
+                                                {
+                                                    <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
+
+                                                }
+
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
+                                                <p>@Html.DisplayHtml(item.Description)</p>
+                                            </div><!--/panel-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
+                                <div class="timeline-panel animated rotateInDownRight">
+                                    @if (item.Pictures.Count > 0)
+                                    {
+                                        //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                        string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
+                                        <div class="row">
+                                            <div class="col-md-12 img-layout">
+                                                <img src="@fullPath" class="img-responsive">
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="timeline-heading">
+
+                                                @if (item.link != null)
+                                                {
+                                                    <h3 class="timeline-title"><span><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h3>
+                                                }
+                                                else
+                                                {
+                                                    <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
+
+                                                }
+
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
+
+                                            </div><!--timeline-heading-->
+                                            <p>@Html.DisplayHtml(item.Description)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+                        @*<div class="divider"></div>*@
+
+                        count++;
+                    }
+                    <li>
+                        <div class="start timeline-badge "></div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<section class="purchase-now" id="ribbon_right"><div class="container"><div class="row"><div class="col-md-9" data-scrollreveal="enter left after 0s over 1s"><h3 class="white-text">Use these ribbons to display calls to action mid-page. </h3></div><div class="col-md-3" data-scrollreveal="enter right after 0s over 1s"><a href="http://www.codeinwp.com/blog/top-custom-post-types-plugins-for-wordpress/" class="btn btn-primary custom-button red-btn">View article</a></div></div></div></section>*@
+
+
+@*================[  Skills section ]=======================*@
+
+<section class="focus" id="skillsets">
+
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <!-- SECTION TITLE AND SUBTITLE -->
+
+            <h2 class="dark-text">Skills</h2><div class="section-legend">Here are my skill sets.</div>
+        </div>
+
+        <div class="row" data-scrollreveal="enter right after 0s over 1s">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Development</h3>
                         </div>
                     </div>
+                    <div class="divider"></div>
+                    <div class="row coding">
+                        @foreach (var item in skills)
+                        {
+                            if (item.CategoryViewModel.Title == "Coding")
+                            {
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-thumbnail" style="padding: 8px;"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
+                                        <div class="panel-body">
+                                            <h4 class="text-center" style="">@Html.DisplayFor(model => item.Title)</h4>
+                                            <p></p>
+                                        </div>
+                                    </div><!--/panel-->
+                                </div>
+
+                            }
+                            count++;
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Web design</h3>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row business">
+                        @foreach (var item in skills)
+            {
+                if (item.CategoryViewModel.Title == "Business")
+                {
+
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-thumbnail" style="padding: 8px;"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
+                                        <div class="panel-body">
+                                            <h4 class="text-center">@Html.DisplayFor(model => item.Title)</h4>
+                                            <p></p>
+                                        </div>
+                                    </div><!--/panel-->
+                                </div>
+                            }
+                            count++;
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Personal skills</h3>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row others">
+                        @foreach (var item in skills)
+                        {
+                            if (item.CategoryViewModel.Title == "Others")
+                            {
+
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-thumbnail" style="padding: 8px;"><canvas name="@Html.DisplayFor(model => item.Title)" id="demo[@count]" property="@Html.DisplayFor(model => item.LevelsViewModel.Level)"></canvas></div>
+                                        <div class="panel-body latestnews-title">
+                                            <h4 class="">@Html.DisplayFor(model => item.Title)</h4>
+                                            <p></p>
+                                        </div>
+                                    </div><!--/panel-->
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- / END CONTAINER -->
+</section>  <!-- / END FOCUS SECTION -->
+@*<section class="purchase-now" id="ribbon_right"><div class="container"><div class="row"><div class="col-md-9" data-scrollreveal="enter left after 0s over 1s"><h3 class="white-text">Use these ribbons to display calls to action mid-page. </h3></div><div class="col-md-3" data-scrollreveal="enter right after 0s over 1s"><a href="http://www.codeinwp.com/blog/top-custom-post-types-plugins-for-wordpress/" class="btn btn-primary custom-button red-btn">View article</a></div></div></div></section>*@
+
+<section class="separator-one" id="ribbon_bottom">
+    <div class="color-overlay">
+        <h3 class="container text" data-scrollreveal="enter left after 0s over 1s"></h3>
+        <div data-scrollreveal="enter left after 0s over 1s">
+            <p>By Muhammad Ali.</p>
+        </div>
+        <div data-scrollreveal="enter right after 0s over 1s">
+            <blockquote>
+                It's the repetition of affirmations that leads to belief. And once that belief becomes a deep conviction, things begin to happen.
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+
+@*================[  Projects section ]=======================*@
+
+<section class="latest-news" id="latestprojects">
+    <div class="container">
+        <div class="section-header"><h2 class="dark-text">Projects</h2><div class="dark-text section-legend">Here are my latest projects.</div></div><!-- END .section-header --><div class="clear"></div>
+        <div data-scrollreveal="enter right after 0s over 1s">
+            <div id="carousel-homepage-latestnews" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active" role="option">
+                        @foreach (var project in projects.OrderByDescending(x => x.ProjectDetail.Date).ToList())
+                        {
+                            <div class="col-sm-3 latestnews-box">
+                                <div class="latestnews-img">
+                                    <a class="latestnews-img-a" href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
+                                        @*<img width="250" height="250" src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ElementAt(0).FileName)" data-lazy-src="~/Content/Images/Carousel/Singapour.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="contact" />*@
+                                        @*@if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
+                                        {
+                                            <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(x=>x.ProjectDetail.Pictures.Where(y=>y.FileName.Split('.')[1] != "mp4").Count() > 0).ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(x=>x.ProjectDetail.Pictures.Where(y=>y.FileName.Split('.')[1] != "mp4").Count() > 0).ElementAt(0).FileName)" class="img-responsive">
+                                        }*@
+                                        @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
+                                        {
+                                            //var imagePath = project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path;
+                                            //var imageName = project.ProjectDetail.Pictures.Where(x => x.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName;
+                                            
+                                            <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" class="img-responsive">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive">
+                                        }
+                                        <noscript>
+                                            <img width="250" height="250" src="~/Content/Images/Carousel/Singapour.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="@Html.DisplayFor(modelItem => project.Title)" />
+                                        </noscript>
+                                    </a>
+                                </div>
+                                <div class="latesnews-content">
+                                    <h3 class="latestnews-title">
+                                        <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
+                                            @Html.DisplayFor(modelItem => project.Title)
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div><!-- .latestnews-box"> -->
+                        }
+                    </div><!-- #carousel-homepage-latestnews -->
                 </div>
             </div>
         </div>
-    </div><!-- /.carousel -->
-</div>
+    </div><!-- .container -->
+</section>
 
-@section Scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {            
-            $('.carousel-home-body').carousel({ interval: false });
-            
-            var obj = @Html.Raw(ViewBag.Object);
-            if ( obj == true ) {
-                $('.carousel-home-body').carousel(7);
-            }
-            else if(obj == false){
-                $('.carousel-home-body').carousel(8);
-            }
-            else
-            {                
-                var page = "About";
-                var pageContainer = $('#page5');
-                if(@Html.Raw(ViewBag.Page) == "Contact"){
-                    page = "Contact";
-                    pageContainer = $('#page4');
-                    $('.carousel-home-body').carousel(4);
-                }
 
-                var loding = $("#loading-pages").html();
-                pageContainer.html(loding);
-                
-                $.ajax({
-                    type: "GET",
-                    url: "/Home/"+ page,
-                    datatype: "html",
-                    success: function (data) {
-                        pageContainer.html(data);
-                        eval(document.getElementById("contactError").style.display = "block");
-                    },
-                    error: function (status) {
-                        alert(status.responseText);
-                    }
-                });
-            }
+@*================[  Contact section ]=======================*@
+
+<section class="contact-us" id="contactform">
+    <div class="container">
+        <!-- SECTION HEADER -->
+        <div class="section-header">
+
+            <h2 class="white-text">Get in touch</h2><div class="white-text section-legend"> </div>
+        </div>
+        <!-- / END SECTION HEADER -->
+        <div data-scrollreveal="enter right after 0s over 1s">
+            <div class="row">
+                <div class="pirate_forms_wrap">
+                    <form action="/Home/Contact" class="pirate_forms" method="post">
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div>
+                            <div class="row form-group">
+                                <div class="col-xs-4 col-md-offset12 form_field_wrap contact_name_wrap pirate_forms_three_inputs">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "firstName", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-xs-8">
+                                    @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @id = "pirate-forms-contact-name", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-6">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "Email", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-xs-6">
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @id = "Phone", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-12">
+                                    @Html.TextAreaFor(model => model.Comments, new { htmlAttributes = new { @id = "ContactComments", @class = "form-control" }, @style = "width: 100%; height: 200px;" })
+                                    @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-12 col-sm-6 col-lg-6 form_field_wrap contact_submit_wrap">
+                                    <button class="pirate-forms-submit-button">Send Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="pirate_forms_clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- / END CONTAINER -->
+
+</section> <!-- / END CONTACT US SECTION-->
+
+
+<script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var param = 0;
+        var value = 0;
+        var name = ""; // ,
+        var listColor = [ '#e96656', '#c1fc2f', '#7F677F' ];
+        $("canvas[id^=demo]").each(function () {
+            value = $(this).attr("property");
+            name = $(this).attr("name");
+            param = value / 100;
+            $(this).waterbubble({
+
+                // bubble size
+                radius: 50,
+
+                // border width
+                lineWidth: undefined,
+
+                // data to present
+                data: param,
+
+                // color of the water bubble
+                waterColor: listColor[Math.floor(Math.random() * listColor.length)],//'rgba(25, 139, 201, 1)',
+
+                // text color
+                textColor: 'rgba(06, 85, 128, 0.8)',
+
+                // custom font family
+                font: '',
+
+                // show wave
+                wave: true,
+
+                // custom text displayed inside the water bubble
+                txt: value + "%",
+
+                // enable water fill animation
+                animation: true
+
+            });
         });
 
-    </script>
-}
+
+        var obj = @Html.Raw(ViewBag.Object);
+
+        var errorContainer = $("#emailSendingError");
+        errorContainer.hide();
+
+        if ( obj == true ) {
+            errorContainer.show();
+            // show success sending email
+            var emailSendingSuccessed = "<div class=\"info\" id=\"contact-confirm-faild\">"+
+                "<div class=\"container\"> "+
+                    "<a href=\"/Home/Index\" data-dismiss=\"alert\" style=\"font-size:35px;\">" +
+                        "<i class=\"glyphicon glyphicon-remove\"></i>" +
+                    "</a>" +
+                    "<div class=\"row\"> " +
+                        "<div class=\"col-md-12 alert alert-success  vcenter\"> " +
+                            "<strong>Successful!</strong> Your message has been sent successfully." +
+                        "</div> " +
+                    "</div>" +
+                 "</div> " +
+            "</div>";
+            errorContainer.html(emailSendingSuccessed);
+        }
+        else if(obj == false){
+            // show fail sending email
+            errorContainer.show();
+            var emailSendingFailed = "<div class=\"info\" id=\"contact-confirm-faild\">"+
+                "<div class=\"container\"> "+
+                    "<a href=\"/Home/Index\" data-dismiss=\"alert\" style=\"font-size:35px;\">" +
+                        "<i class=\"glyphicon glyphicon-remove\"></i>" +
+                    "</a>" +
+                    "<div class=\"row\"> " +
+                        "<div class=\"col-md-12 alert alert-danger\"> " +
+                            "<strong>Failed!</strong> Your message has not been sent." +
+                        "</div> " +
+                    "</div>" +
+                 "</div> " +
+            "</div>";
+            errorContainer.html(emailSendingFailed);
+        }
+
+    });
+
+    tinymce.init({
+        selector: "textarea"
+        /*,
+        //plugins: 'a_tinymce_plugin',
+        a_plugin_option: true,
+        a_configuration_option: 400*/
+    });
+</script>
+
+
+
+
+@*<div  id="content-section">
+        <!--  Carousel - consult the Twitter Bootstrap docs at
+              http://twitter.github.com/bootstrap/javascript.html#carousel -->
+        <div id="this-carousel-id" class="carousel-home-body slide">
+            <!-- class of slide for animation -->
+            <div class="carousel-inner">
+                <div class="item">
+                    <div id="page0">Loading...</div>
+                </div>
+                <div class="item">
+                    <div id="page1">Loading...</div>
+                </div>
+                <div class="item">
+                    <div id="page2">Loading...</div>
+                </div>
+                <div class="item">
+                    <div id="page3">Loading...</div>
+                </div>
+                <div class="item">
+                    <div id="page4">Loading...</div>
+                </div>
+                <div class="item active">
+                    <div id="page5">Loading...</div>
+                    <!--<div class="carousel-caption">
+                        <p></p>
+                    </div>-->
+                </div>
+                <div class="item" id="loading-pages">
+                    <div class="info">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4 vcenter">
+                                    <img class="ajax-loader" src="/Content/Images/ajax-loader.gif" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" id="contact-confirm-success">
+                    <div class="info">
+                        <div class="container">
+                            <a href="/Home/Index" class="close" data-dismiss="alert" style="font-size:35px;"><i class="glyphicon glyphicon-remove"></i></a>
+                            <div class="row">
+                                <div class="col-md-12 alert alert-success  vcenter">
+                                    <strong>Success!</strong> Your message has been sent successfully.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="info" id="contact-confirm-faild">
+                        <div class="container">
+                            <a href="/Home/Index" data-dismiss="alert" style="font-size:35px;"><i class="glyphicon glyphicon-remove"></i></a>
+                            <div class="row">
+                                <div class="col-md-12 alert alert-danger  vcenter">
+                                    <strong>Faild!</strong> Your message has not been sent.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel -->
+    </div>
+
+    @section Scripts {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.carousel-home-body').carousel({ interval: false });
+
+                var obj = @Html.Raw(ViewBag.Object);
+                if ( obj == true ) {
+                    // show success sending email
+                    $('.carousel-home-body').carousel(7);
+                }
+                else if(obj == false){
+                    // show fail sending email
+                    $('.carousel-home-body').carousel(8);
+                }
+                else
+                {
+                    var page = "About";
+                    var pageContainer = $('#page5');
+                    if(@Html.Raw(ViewBag.Page) == "Contact"){
+                        page = "Contact";
+                        pageContainer = $('#page4');
+                        $('.carousel-home-body').carousel(4);
+                    }
+
+                    var loding = $("#loading-pages").html();
+                    pageContainer.html(loding);
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/"+ page,
+                        datatype: "html",
+                        success: function (data) {
+                            pageContainer.html(data);
+                            eval(document.getElementById("contactError").style.display = "block");
+                        },
+                        error: function (status) {
+                            //alert(status.responseText);
+                        }
+                    });
+                }
+            });
+
+        </script>
+    }*@
 
 

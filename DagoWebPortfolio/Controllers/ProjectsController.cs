@@ -40,7 +40,7 @@ namespace DagoWebPortfolio.Controllers
         [AllowAnonymous]
         public ActionResult _Index()
         {
-            var skills = db.Skills.ToList();
+            var skills = db.Skills.Include(x=>x.Projects).Include(x => x.Experiences).Include(x => x.Pictures).ToList();
             ProjectRepository.populateProjectsWithProjectdetails(skills);
             ProjectRepository.populateProjectsWithPicture(skills);
             return View(ProjectRepository.getProjectsOrderByDate(skills));

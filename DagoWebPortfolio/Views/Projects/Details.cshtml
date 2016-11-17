@@ -5,7 +5,6 @@
 @{
     Layout = "~/Views/Shared/_LayoutProjectDetails.cshtml";
     ViewBag.Title = Model.Title;
-    var count = 0;
 }
 
 
@@ -31,33 +30,26 @@
         <div class="col-md-6">
             <p>
                 @Html.DisplayHtml(Model.Resume)
-            @Html.DisplayHtml(Model.ProjectDetail.Description)
-        </p>
-    </div>
-    <div class="col-md-6">
+                @Html.DisplayHtml(Model.ProjectDetail.Description)
+            </p>
+        </div>
+        <div class="col-md-6">
 
-        @foreach (var picture in Model.ProjectDetail.Pictures)
-        {
-            if (count == 0)
+            @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
             {
-                <img src="@Html.DisplayFor(modelItem => picture.path)@Html.DisplayFor(modelItem => picture.FileName)" class="">
+                <img src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" width="600">
             }
-            else
-            {
-                if (picture.FileName.Split('.').Count() > 1 && picture.FileName.Split('.')[1] == "mp4")
-                {
-                    string fileFullPath = Utility.getDirectory(picture.path, picture.FileName);
-                    <video style="margin-top: 50px;" width="750" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
-                        <source src="@Html.DisplayFor(model=>picture.path)@Html.DisplayFor(model=>picture.FileName)" type='video/mp4' />
-                    </video>
-                            <div id="footnote"></div>
-                }
-            }
-            count++;
-        }
 
+            @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
+            {
+               <video style="margin-top: 50px;" width="600" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                    <source src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
+                </video>
+                    <div id="footnote"></div>
+            }
+
+        </div>
     </div>
-</div>
 
 </div>
 

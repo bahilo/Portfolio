@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNet.Identity
+@using DagoWebPortfolio.Models
+@using DagoWebPortfolio.Models.CustomHelpers
+@{
+    // FRENCH
+    ViewBag.Title = " DAGO - PORTFOLIO";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Themes/zerif_lite/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Themes/zerif_lite/css/style.css" rel="stylesheet" />
+    <link href="~/Content/Themes/Site/css/timeline.css" rel="stylesheet" />
+    <link rel="icon" href="~/Content/Images/icone.png.ico" />
+    <link rel='stylesheet' id='zerif_style-css' href='https://demot-vertigostudio.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/style.css?ver=v1' type='text/css' media='all' />
+    @*<link href="~/Content/Themes/zerif_lite/css/style2.css" rel="stylesheet" type='text/css' media='all' />*@
+
+    <link href="~/Content/Themes/zerif_lite/css/dashicons.min.css" rel="stylesheet" />
+    <link href="~/Content/Themes/zerif_lite/css/admin-bar.min.css" rel="stylesheet" />
+    <link href="~/Content/Themes/zerif_lite/css/megamenu.css" rel="stylesheet" />
+    <link href="~/Content/Themes/zerif_lite/css/cssFonts.css" rel="stylesheet" />
+
+    <link href="~/Content/Themes/Site/css/styles.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Content/Scripts/waterbubble.min.js"></script>
+
+</head>
+
+
+<body class="home blog custom-background">
+
+
+
+    <div id="mobilebgfix">
+        <div class="mobile-bg-fix-img-wrap">
+            <div class="mobile-bg-fix-img"></div>
+        </div>
+        <div class="mobile-bg-fix-whole-site">
+
+
+            <header id="home" class="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+
+                <div id="main-nav" class="navbar navbar-inverse bs-docs-nav" role="banner">
+
+                    <div class="container">
+
+                        <div class="navbar-header responsive-logo">
+
+                            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+
+                                <span class="sr-only">Toggle navigation</span>
+
+                                <span class="icon-bar"></span>
+
+                                <span class="icon-bar"></span>
+
+                                <span class="icon-bar"></span>
+
+                            </button>
+                            <div class="portfolio">
+                                <a href="/" class="navbar-brand">
+                                <span class="name-letter" style="">J</span> <span class="name">oel Dago</span></a>
+                            </div>
+                        </div>
+
+                        <nav class="navbar-collapse bs-navbar-collapse collapse" id="site-navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                            <div id="mega-menu-wrap-primary" class="mega-menu-wrap">
+                                <div class="mega-menu-toggle"><div class='mega-toggle-block mega-menu-toggle-block mega-toggle-block-right' id='mega-toggle-block-1'></div></div>
+                                <ul id="mega-menu-primary" class="mega-menu mega-menu-horizontal mega-no-js" data-event="hover" data-effect="disabled" data-second-click="close" data-document-click="collapse" data-reverse-mobile-items="true" data-vertical-behaviour="standard" data-breakpoint="768">
+
+                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18243'><a class="mega-menu-link" href="/Home/Index">Accueil</a></li>
+                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18247'><a class="mega-menu-link" href="#experiencesbackground">Experience Professionnelle</a></li>
+                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18249'><a class="mega-menu-link" href="#educationbackground">Education</a></li>
+                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18244'><a class="mega-menu-link" href="#skillsets">Competences</a></li>
+                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18248'><a class="mega-menu-link" href="#latestprojects">Projets</a></li>
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                    <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18250"><a class="mega-menu-link" href="/Admin/Index" target="_blank">Admin</a> </li>
+                                    }
+                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18251'><a class="mega-menu-link" href="#contactform">Contact</a></li>
+</ul>
+                            </div>
+                        </nav>
+
+                    </div>
+
+                </div>
+                <!-- / END TOP BAR --><div class="home-header-wrap">
+
+                    <div class="header-content-wrap">
+                        <div class="container">
+                            <h1 class="intro-text">
+                                Je suis un developpeur C#
+                            </h1>
+                        </div>
+                    </div><!-- .header-content-wrap -->
+                    <div class="clear"></div>
+                </div>
+            </header> <!-- / END HOME SECTION  -->
+            <div id="content" class="site-content">
+
+                @RenderBody()
+
+            </div><!-- .site-content -->
+
+
+            <footer id="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+
+
+                <div class="container">
+                    <div class="col-md-3 company-details">
+                        <div class="icon-top red-text">
+                            <img src="https://demot-vertigostudio.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/images/map25-redish.png" alt="" />
+                        </div>
+                        <div class="zerif-footer-address">
+                            Joel Dago - Adress - St Michel Sur Orge, Paris
+                        </div>
+                    </div>
+                    <div class="col-md-3 company-details">
+                        <div class="icon-top green-text">
+                            <img src="https://demot-vertigostudio.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/images/envelope4-green.png" alt="" />
+                        </div>
+                        <div class="zerif-footer-email">
+                            joel.dago@yahoo.fr
+                        </div>
+                    </div>
+                    <div class="col-md-6 copyright">
+                        <p id="zerif-copyright">
+                            ©2015 J. DAGO
+                        </p>
+                        <div class="zerif-copyright-box">
+                            <a class="zerif-copyright" href="mailto:#">
+                                joel.dago@yahoo.fr
+                            </a>
+                        </div>
+                    </div>
+                </div> <!-- / END CONTAINER -->
+
+            </footer> <!-- / END FOOOTER  -->
+
+
+        </div><!-- mobile-bg-fix-whole-site -->
+    </div><!-- .mobile-bg-fix-wrap -->
+
+    
+    <script src="~/Content/Themes/zerif_lite/js/scrollReveal.js"></script>
+    <script src="~/Content/Themes/zerif_lite/js/smoothscroll.js"></script>
+    <script src="~/Content/Themes/zerif_lite/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

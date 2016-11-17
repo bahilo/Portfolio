@@ -16,24 +16,33 @@ namespace DagoWebPortfolio.Infrastructure
     {
         public IController CreateController(RequestContext requestContext, string controllerName)
         {
-            if (controllerName.ToLower().StartsWith("projects"))
-            {
-                ProjectsRepository rep = new ProjectsRepository();
-                var controller = new ProjectsController(rep);
-                return controller;
-            }
-            var defaultController = new DefaultControllerFactory();
+            ProjectsRepository rep = new ProjectsRepository();
+            IController controller = default(IController);
+            string language = "en-GB";
+            System.Web.HttpRequestBase Request = requestContext.HttpContext.Request;
+
+            if (Request.UserLanguages != null)
+                language = Request.UserLanguages[0];
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(language);
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(language);
+            
             try
             {
-                IController controllerFound = defaultController.CreateController(requestContext, controllerName);
-                return controllerFound;
+                if (controllerName.ToLower().StartsWith("projects"))
+                    controller = new ProjectsController(rep);
+                else if (controllerName.ToLower().StartsWith("home"))
+                    controller = new HomeController(rep);
+                else
+                    controller = new DefaultControllerFactory().CreateController(requestContext, controllerName);
             }
             catch (Exception ex)
             {
-                Log.write(ex.Message, "ERR");
-            }
+                Log.error(ex.Message);
+            }   
 
-            return new HomeController();
+            return controller;
+            
         }
 
         public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)

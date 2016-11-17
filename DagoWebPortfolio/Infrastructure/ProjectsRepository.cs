@@ -32,7 +32,9 @@ namespace DagoWebPortfolio.Infrastructure
             {
                 foreach (var project in skill.Projects)
                 {
-                    project.ProjectDetail = db.DetailsProject.Where(x => x.ID == project.ProjectDetail.ID).DefaultIfEmpty().Single();
+                    //project = db.Projects.Where().Include("ProjectDetail");
+                    project.ProjectDetail = db.Projects.Where(x => x.ID == project.ID).Include("ProjectDetail").Select(x=>x.ProjectDetail).Single();
+                    //project.ProjectDetail = db.DetailsProject.Where(x => x.ID == project.ProjectDetail.ID).Single();
                 }
             }
         }

@@ -13,38 +13,115 @@ using System;
 using QCBDManagementCommon.Classes;
 using System.Globalization;
 using DagoWebPortfolio.Classes;
+using DagoWebPortfolio.Interfaces;
 
 namespace DagoWebPortfolio.Controllers
 {
     public class HomeController : Controller
     {
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
-        private string _countryName;
-        //private  DBDisplayModelContext dbD = new DBDisplayModelContext();
+        private IProjectsRepository _projectRepository;
 
-        public HomeController()
+        private string _culture;
+        private string _cultureDefault;
+
+        public HomeController(IProjectsRepository rep)
         {
-            _countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault() ?? "en";
+            _culture = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
+            _cultureDefault = "en";
+            _projectRepository = rep;
+            _projectRepository.setContext(db);
         }
 
-        public ActionResult Index(string page = "About", bool? isContactSend = null)
+        public ActionResult Index(bool? isMessageSent = null)
         {
-            //ViewBag.EmailConfirmation = isContactSend;
+            if (System.IO.File.Exists(Utility.getDirectory("Views", "Shared", _culture, "_Layout.cshtml")))
+                ViewBag.Culture = _culture;
+            else
+            {
+                ViewBag.Culture = _cultureDefault;
+                try
+                {
+                    System.IO.Directory.Delete(Utility.getDirectory("Views", "Shared", _culture));
+                }
+                catch (Exception ex)
+                {
+                    Log.error(ex.Message);
+                }
+            }
+                
+
+            // education
+            List<EducationViewModel> educationList = new List<EducationViewModel>();
             try
             {
-                ViewBag.Object = JsonConvert.SerializeObject(isContactSend);
-                ViewBag.Page = JsonConvert.SerializeObject(page);
+                educationList = db.Education.Include("Pictures").ToList();
+                populateEducationWithPicture(educationList);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+                return View("Error");
+            }
+            ViewBag.Education = educationList.OrderByDescending(x => x.YearGraduate).ToList();
+
+            // projects
+            var projectSkills = db.Skills.ToList();
+            _projectRepository.populateProjectsWithProjectdetails(projectSkills);
+            _projectRepository.populateProjectsWithPicture(projectSkills);
+            ViewBag.Projects = _projectRepository.getProjectsOrderByDate(projectSkills);
+
+            // skills
+            ViewBag.Skills = db.Skills.Include("LevelsViewModel").Include("CategoryViewModel").ToList();
+
+            // experiences
+            var experienceSkills = db.Skills.Include("Experiences").Include("LevelsViewModel").Include("CategoryViewModel").ToList();
+            try
+            {
+                populateExperienceWithPicture(experienceSkills);
             }
             catch (Exception ex)
             {
                 Log.write(ex.Message, "ERR");
             }
-            return View();
+            ViewBag.Experiences = getExperiencesOrderByDate(experienceSkills);
+            
+            try
+            {
+                ViewBag.Object = JsonConvert.SerializeObject(isMessageSent);
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
+
+            // about page
+            try
+            {
+                ViewBag.Picture = db.PicturesApp.Where(x => x.IsAbout).SingleOrDefault() ?? new PicturesViewModel();
+            }
+            catch (Exception ex)
+            {
+                Log.write(ex.Message, "ERR");
+            }
+
+            if(System.IO.File.Exists(Utility.getDirectory("Views", "Home",_culture , "Index.cshtml")))
+                return View(_culture + "/Index");
+            else
+                return View(_cultureDefault + "/Index");
+            
+            //try
+            //{
+            //    return View(_culture + "/Index");
+            //}
+            //catch (Exception)
+            //{
+            //    return View(_cultureDefault + "/Index");
+            //}
         }
 
         public ActionResult _Welcome()
         {
-            string countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
             var picture = new PicturesViewModel();
             try
             {
@@ -54,57 +131,20 @@ namespace DagoWebPortfolio.Controllers
             {
                 Log.write(ex.Message, "ERR");
             }
-            return View(_countryName + "/_Welcome", picture);
-        }
 
-        public ActionResult About()
-        {
-            string countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
-            var picture = new PicturesViewModel();
             try
             {
-                picture = db.PicturesApp.Where(x => x.IsAbout).SingleOrDefault() ?? new PicturesViewModel();
+                return View(_culture + "/_Welcome", picture);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Log.write(ex.Message, "ERR");
+                return View(_cultureDefault + "/_Welcome", picture);
             }
-            return View(_countryName + "/About", picture);
         }
-
-        //private void initDisplay()
-        //{
-        //    var display = dbD.Displays.Include("AboutView").ToList().LastOrDefault();
-
-        //    if (display != null)
-        //    {
-        //        ViewBag.Display = display;
-        //    }
-
-        //    display = dbD.Displays.Include("WelcomeView").Where(x => x.WelcomeView.FileName != null).ToList().LastOrDefault();
-
-        //    if (display != null)
-        //    {
-        //        ViewBag.Display = display;
-        //        ViewBag.WelcomePictureUrl = display.WelcomeView.Path + display.WelcomeView.FileName;
-        //    }
-
-        //}
 
         [HttpGet]
         public ActionResult Contact()
-        {
-            //ModelState.
-            /*ContactViewModel contact = new ContactViewModel();
-            foreach (var field in paramList)
-            {
-                if(field.Equals(contact.Company.ToString()))
-                    ModelState.AddModelError(contact.Company, "Please give an organization or a company name.");
-                if (field.Equals(contact.Email.ToString()))
-                    ModelState.AddModelError(contact.Email, "Please give an Email.");
-                if (field.Equals(contact.Name.ToString()))
-                    ModelState.AddModelError(contact.Name, "Please give a name.");
-            }*/
+        {            
             return View();
         }
 
@@ -136,7 +176,7 @@ namespace DagoWebPortfolio.Controllers
                     });
                     //mail.addAttachment(new List<string> { Utility.getDirectory("bin", "Logs", "log_2016_09.txt") });
                     mail.initialize();
-                    
+
                     ViewBag.EmailConfirmation = mail.send();
 
                     db.Contacts.Add(contactsViewModel);
@@ -146,96 +186,54 @@ namespace DagoWebPortfolio.Controllers
                 catch (Exception ex)
                 {
                     Log.write(ex.Message, "ERR");
-                }
-
-                return RedirectToAction("Index", new { isContactSend = ViewBag.EmailConfirmation, page = "Contact" });
-
-                /*// Create network credentials to access your SendGrid account
-                var username = "postmaster@e-dago.com";
-                var pswd = "Bahilo225!";
-
-                var credentials = new NetworkCredential(username, pswd);
-                // Create an Web transport for sending email.
-                var transportWeb = new Web(credentials);
-
-                // Create the email object first, then add the properties.
-                var myMessage = new SendGridMessage();
-
-                // Add the message properties.
-                myMessage.From = new MailAddress(contactsViewModel.Email);
-
-                // Add multiple addresses to the To field.
-                List<String> recipients = new List<String>
-                                            {
-                                                @"joel.dago@yahoo.fr",
-                                                @"eric.dago.225@gmail.com"
-                                            };
-
-                myMessage.AddTo(recipients);
-
-                myMessage.Subject = contactsViewModel.Name + " - " + contactsViewModel.Company;
-
-                //Add the HTML and Text bodies
-                myMessage.Html = "<p>" + contactsViewModel.Comments + "</p>";
-                myMessage.Html += "<p>Phone: "+ contactsViewModel.Phone + "</p>";
-                //myMessage.Text = contactsViewModel.Comments;
-                try
-                {
-                    // Send the email, which returns an awaitable task.
-                    await transportWeb.DeliverAsync(myMessage);
-
-                    ViewBag.EmailConfirmation = true;
-                    ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
-                                    
-                    db.Contacts.Add(contactsViewModel);
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Log.write(ex.Message, "ERR");
-                }
-
-                return RedirectToAction("Index", new { isContactSend = true });
-
-                /*var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
-                var message = new MailMessage();
-                //message.To.Add(new MailAddress("eric.dago.225@gmail.com"));  // replace with valid value 
-                message.To.Add(new MailAddress("joel.dago@yahoo.fr"));  // replace with valid value 
-                message.From = new MailAddress(contactsViewModel.Email);  // replace with valid value
-                message.Subject = "Your email subject";
-                message.Body = string.Format(body, contactsViewModel.Name, contactsViewModel.Email, contactsViewModel.Comments);
-                message.IsBodyHtml = true;
-
-                using (var smtp = new SmtpClient())
-                {
-                    var credential = new NetworkCredential
-                    {
-                        //UserName = "eric.dago.225@gmail.com",  // replace with valid value
-                        //Password = "!bahilo225"  // replace with valid value smtp-mail.outlook.com
-
-                        UserName = "azure_412716207eb27d53ea3852e66901d62c@azure.com",  // replace with valid value
-                        Password = "sY91OZ4x1V43nAd"  // replace with valid value smtp-mail.outlook.com
-
-                    };
-                    smtp.Credentials = credential;
-                    //smtp.Host = "smtp.gmail.com";
-                    smtp.Host = "smtp.sendgrid.net";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    await smtp.SendMailAsync(message);
-
-                ViewBag.EmailConfirmation = true;
-                    ViewBag.Object = JsonConvert.SerializeObject(ViewBag.EmailConfirmation);
-
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index", new { isContactSend = true });
-
-                    
-                }*/
+                }   
             }
-            return RedirectToAction("Index", new { page = "Contact" });
+            return RedirectToAction("Index", new { isMessageSent = ViewBag.EmailConfirmation });
+            //return RedirectToAction("Index", new { page = "Contact" });
             //return View(contactsViewModel);
+        }
+
+        private void populateEducationWithPicture(List<EducationViewModel> educationList)
+        {
+            using (DBModelPortfolioContext db = new DBModelPortfolioContext())
+            {
+                foreach (var education in educationList)
+                {
+                    education.Pictures = db.PicturesApp.Where(x => x.EducationViewModelID == education.ID).ToList();
+
+                }
+            }
+        }
+
+        private void populateExperienceWithPicture(List<SkillsViewModel> skills)
+        {
+            foreach (var skill in skills)
+            {
+                foreach (var experience in skill.Experiences)
+                {
+                    experience.Pictures = db.PicturesApp.Where(x => x.ExperiencesViewModelID == experience.ID).ToList();
+                }
+            }
+        }
+
+        private IEnumerable<ExperiencesViewModel> getExperiencesOrderByDate(List<SkillsViewModel> skills)
+        {
+            var experiencesListFromSkills = (from e in (from d in skills select d.Experiences).Distinct() select e).ToList();
+
+            List<ExperiencesViewModel> experiencesListFinal = new List<ExperiencesViewModel>();
+            foreach (var experiencesList in experiencesListFromSkills)
+            {
+                foreach (var experience in experiencesList.ToList())
+                {
+                    if (experience != null)
+                    {
+                        experiencesListFinal.Add(experience);
+                    }
+                }
+            }
+            var experiencesListFinalDistict = experiencesListFinal.Distinct().OrderByDescending(x => x.EndDate).ToList();
+
+            return experiencesListFinalDistict;
         }
 
 

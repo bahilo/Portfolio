@@ -69,7 +69,7 @@
                         else if (File.Exists(Utility.getDirectory(Model.path, Model.FileName)))
                         {
                             <p>Image preview.</p>                            
-                            <img style="height:200px;width:100%;" src="cc@Html.DisplayFor(model=>model.FileName)" />
+                            <img style="height:200px;width:100%;" src="@Html.DisplayFor(model=>model.path)@Html.DisplayFor(model=>model.FileName)" />
                         }
                     }
                     else
