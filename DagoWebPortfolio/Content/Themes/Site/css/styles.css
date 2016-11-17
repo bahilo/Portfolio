@@ -1,0 +1,248 @@
+
+/*______________________________________________________________________________________________*/
+
+
+@-webkit-keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+    }
+
+    25% {
+        border-radius: 50% 0 0 0;
+    }
+
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+
+    75% {
+        border-radius: 50% 50% 50% 0;
+    }
+
+    100% {
+        border-radius: 50%;
+        background-color: #414141;
+    }
+}
+
+@-webkit-keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+    }
+
+    25% {
+        border-radius: 50% 0 0 0;
+    }
+
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+
+    75% {
+        border-radius: 50% 50% 50% 0;
+    }
+
+    100% {
+        border-radius: 50%;
+        background-color: #414141;
+    }
+}
+
+@-moz-keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+    }
+
+    25% {
+        border-radius: 50% 0 0 0;
+    }
+
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+
+    75% {
+        border-radius: 50% 50% 50% 0;
+    }
+
+    100% {
+        border-radius: 50%;
+        background-color: #414141;
+    }
+}
+
+@-ms-keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+    }
+
+    25% {
+        border-radius: 50% 0 0 0;
+    }
+
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+
+    75% {
+        border-radius: 50% 50% 50% 0;
+    }
+
+    100% {
+        border-radius: 50%;
+        background-color: #414141;
+    }
+}
+
+@-o-keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+    }
+
+    25% {
+        border-radius: 50% 0 0 0;
+    }
+
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+
+    75% {
+        border-radius: 50% 50% 50% 0;
+    }
+
+    100% {
+        border-radius: 50%;
+        background-color: #414141;
+    }
+}
+
+@keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+    }
+
+    25% {
+        border-radius: 50% 0 0 0;
+    }
+
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+
+    75% {
+        border-radius: 50% 50% 50% 0;
+    }
+
+    100% {
+        border-radius: 50%;
+        background-color: #414141;
+    }
+}
+/*______________________________________________________________________________________________*/
+
+
+html,
+body.custom-background {
+            background-image: url('http://demo.themeisle.com/zerif-lite/wp-content/themes/zerif-lite/images/bg.jpg');
+            background-repeat: repeat;
+            background-position: top center;
+            background-attachment: fixed;
+        }
+
+
+/*__________________________________________________________________________________[ welcome page ]*/
+.welcome .vcenter-welcome-page {
+    margin-top: 15%; /**/
+    text-align: center;
+}
+
+    .welcome-page .picture img {
+        border-radius: 40px;
+        opacity: 0.7;
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+
+/*.welcome-page {
+    background-image: url("/Content/Images/f4769_paris night.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 600px;
+    background-size: 100% 800px;
+    z-index: -1;
+    margin: 0;
+    background-position: right center;
+}*/
+
+
+/*__________________________________________________________________________________[ Home page ]*/
+
+
+
+/* ____________[ general ]*/
+
+.portfolio{
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.portfolio .name{
+    color:black;
+    font-size: 20px; 
+    opacity:0.7; 
+}
+
+.portfolio .name-letter{
+    padding:5px; 
+    background-color:#e96656;
+    color:white;
+    font-size: 20px; 
+    opacity:0.7;
+}
+
+/* ____________[ About ]*/
+
+.about-me .glyphicon {
+    color: rgba(0,64,64,.8);
+    font-size: 50px;
+    margin-right: 20px;
+}
+
+
+
+.about-me .picture-home {
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+
+/* ____________[ Login ]*/
+
+.login-home label {
+    color: black;
+}
+
+
+/* ____________[ Skills ]*/
+
+.panel-thumbnail{
+    padding: 8px;
+}
+
+/*.panel .text-center{
+    border-bottom: 2px solid red;
+}*/
+/* ____________[ Contact ]*/
+
+.contact-us #Name, .contact-us #Company, .contact-us #Email{
+    border: 2px solid #cb4332;
+}
+
+/*#mega-menu-primary{
+    width: 700px;
+    border: 2px solid black;
+}*/

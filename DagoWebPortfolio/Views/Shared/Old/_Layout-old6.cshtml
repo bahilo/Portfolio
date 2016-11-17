@@ -1,0 +1,192 @@
+﻿@using Microsoft.AspNet.Identity
+@using DagoWebPortfolio.Models
+@using DagoWebPortfolio.Models.CustomHelpers 
+@{
+    ViewBag.Title = "E. DAGO - PORTFOLIO";
+}  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8"> 
+    <title>@ViewBag.Title</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--<link href="/Content/Css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="~/Content/Bootstrap/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="~/Content/Css/styles.css">
+    <link rel="stylesheet" href="~/Content/Css/animate.css">
+    @*<script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/respond.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/Carousel.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/Site.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/waterbubble.js"></script>
+    <script type="text/javascript" src="~/Content/Scripts/scripts.js"></script>*@
+
+    @*<link rel="stylesheet" type="text/css" href="~/Temp/miminium-master/asset/css/plugins/font-awesome.min.css" />*@
+    @*<link rel="stylesheet" type="text/css" href="~/Temp/miminium-master/asset/css/plugins/simple-line-icons.css" />*@
+    @*<link rel="stylesheet" type="text/css" href="~/Temp/miminium-master/asset/css/plugins/mediaelementplayer.css" />*@
+    @*<link rel="stylesheet" type="text/css" href="~/Temp/miminium-master/asset/css/plugins/animate.min.css" />*@
+    @*<link href="~/Temp/miminium-master/asset/css/style.css" rel="stylesheet">*@
+    
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--<link href="/Content/Css/styles.css" rel="stylesheet" />-->
+    <script src="//use.edgefonts.net/aguafina-script;playball.js"></script>
+    @*@Styles.Render("~/Content/css")*@
+</head>
+<body>
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+        <header class="masthead">
+            <!-- Carousel
+            ================================================== -->
+           
+            <div class="portfolio" id="portfolio"><a href="/"><h4>Portfolio</h4></a></div>
+            
+            <div id="myCarousel" class="carousel slide">
+                <!-- Indicators -->
+                @*<ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0"></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>*@
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="~/Content/Images/Carousel/green-lit-numbers.jpg">
+                    </div>
+                    @*<div class="item active">
+        <img src="~/Content/Images/Carousel/o-NEW-YORK-facebook.jpg">
+    </div>
+    <div class="item">
+        <img src="~/Content/Images/Carousel/New-York-City-Image.jpg">
+    </div>
+    <div class="item">
+        <img src="~/Content/Images/Carousel/4-brasilia.jpg">
+    </div>*@
+                    
+                    
+                </div><!-- /.carousel-inner -->
+                <div class="logo">
+                    <span class="title" style="color: white;"><em>ERIC DAGO</em></span>
+                    <h3 class="description" style="color: white; background-color: rgba(0,0,0,0.7)">I Am a C# Developer</h3>
+                </div>
+            </div>
+
+        </header>
+
+       
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-custom navbar-inverse navbar-static-top" id="nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul id="menuElementContainer" class="nav navbar-nav nav-justified">
+                        <li onclick="setMenuActive(this);" class="menuElement active" id="Home"><a href="/Home/Index">Home</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Skills"><a>Skills</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Experiences"><a>Experience</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Projects"><a>Projects</a></li>
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Education"><a>Education</a></li>
+                        @if (Request.IsAuthenticated) { 
+                        <li class="dropdown">
+                            <a href ="/Admin/Index" target="_blank">Admin</a>
+                            @*<ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
+                                <li>@Html.ActionLink("Experiences", "Index", "Experiences")</li>
+                                <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                                <li>@Html.ActionLink("Education", "Index", "Education")</li>
+                                <li>@Html.ActionLink("Pictures", "Index", "Pictures")</li>
+                                <li>@Html.ActionLink("Displays", "Index", "Displays")</li>
+                                @Html.Partial("_LoginPartial")
+                            </ul>*@
+                        </li>                            
+                        }
+                        <li onclick="setMenuActive(this);" class="menuElement" id="Contact"><a>Contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container -->
+        </div><!--/.navbar -->
+        <!-- Begin page content -->
+    </div><!--/wrap--> 
+
+    @* hosting is not taking the bundle into account *@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+        
+    @RenderSection("scripts", required: false)
+
+
+
+
+    
+
+    <div class="home-page">
+        @RenderBody()
+    </div>
+
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <ul class="list-inline center-block">
+                <li><a href="http://facebook.com/bootply" target="_blank"><img src="~/Content/Images/facebook.png"></a></li>
+                <li><a href="http://twitter.com/bootply" target="_blank"><img src="~/Content/Images/twitter.png"></a></li>
+                <li><a href="http://google.com/+bootply" target="_blank"><img src="~/Content/Images/gooplus.png"></a></li>
+                <!--<li><a href="http://pinterest.com/in1"><img src="/assets/example/soc_pin.png"></a></li>-->
+            </ul>
+        </div><!--/col-->
+    </div><!--/container-->
+
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">Copyright ©2015 E.DAGO - eric.dago.225@gmail.com.</p>
+        </div>
+    </div>
+    <!--<ul class="nav pull-right scroll-top">
+        <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
+    </ul>
+--> 
+    <!--
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">×</button>
+                    <h3 class="modal-title"></h3>
+                </div>
+                <div class="modal-body">
+                    <div id="modalCarousel" class="carousel">
+
+                        <div class="carousel-inner">
+
+                        </div>
+
+                        <a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                        <a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ --> 
+    
+
+</body>
+</html>
