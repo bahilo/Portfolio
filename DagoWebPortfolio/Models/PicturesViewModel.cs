@@ -27,9 +27,12 @@ namespace DagoWebPortfolio.Models
         [Display(Name = "Welcome Page")]
         public bool IsWelcome { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        [AllowHtml]
-        public string Description { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //[AllowHtml]
+        //public string Description { get; set; }
+
+
+        public virtual ICollection<DisplayViewModel> Descriptions { get; set; }
 
         [Display(Name="Link To Project")]
         public int? ProjectDetailsViewModelID { get; set; }
@@ -54,14 +57,6 @@ namespace DagoWebPortfolio.Models
 
         [ForeignKey("SkillsViewModelID")]
         public virtual SkillsViewModel Skill { get; set; }
-
-
-        public PicturesViewModel()
-        {
-            ProjectDetail = new ProjectDetailsViewModel();
-            Education = new EducationViewModel();
-            Experience = new ExperiencesViewModel();
-            Skill = new SkillsViewModel();/**/
-        }
+        
     }
 }

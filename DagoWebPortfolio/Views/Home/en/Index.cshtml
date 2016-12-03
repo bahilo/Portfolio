@@ -177,7 +177,10 @@
                                             </div>
                                             <div class="timeline-body">
 
-                                                @Html.DisplayHtml(experience.Responsabilities)
+                                                @if (experience.Descriptions.Count > 0)
+                                                {
+                                                    <p>@Html.DisplayHtml(experience.Descriptions.First().Description)</p>
+                                                }
                                             </div>
 
                                             <p></p>
@@ -221,7 +224,10 @@
                                             </div>
                                             <div class="timeline-body">
 
-                                                @Html.DisplayHtml(experience.Responsabilities)
+                                                @if (experience.Descriptions.Count > 0)
+                                                {
+                                                    <p>@Html.DisplayHtml(experience.Descriptions.First().Description)</p>
+                                                }
                                             </div>
 
                                             <p></p>
@@ -291,7 +297,10 @@
                                                 }
 
                                                 <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
-                                                <p>@Html.DisplayHtml(item.Description)</p>
+                                                @if (item.Descriptions.Count > 0)
+                                                {
+                                                    <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
+                                                }
                                             </div><!--/panel-->
                                         </div>
                                     </div>
@@ -332,7 +341,10 @@
                                                 <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
 
                                             </div><!--timeline-heading-->
-                                            <p>@Html.DisplayHtml(item.Description)</p>
+                                            @if (item.Descriptions.Count > 0)
+                                            {
+                                                <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
+                                            }
                                         </div>
                                     </div>
                                 </div>

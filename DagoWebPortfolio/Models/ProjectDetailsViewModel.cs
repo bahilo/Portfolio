@@ -27,16 +27,8 @@ namespace DagoWebPortfolio.Models
         [Display(Name = "Client Name")] 
         public string Client { get; set; }
 
-        [Required(ErrorMessage = "You must give a project description.")]
-        [DataType(DataType.MultilineText)]
-        [AllowHtml]
-        public string Description { get; set; }
-
         public virtual ICollection<PicturesViewModel> Pictures { get; set; }
-
-        public ProjectDetailsViewModel()
-        {
-            Pictures = new HashSet<PicturesViewModel>();
-        }
+        public virtual ICollection<DisplayViewModel> Descriptions { get; set; }
+        
     }
 }

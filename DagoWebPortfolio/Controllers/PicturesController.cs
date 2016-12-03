@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
-using DagoWebPortfolio.Models.DisplayViewModel;
 using System.IO;
 using QCBDManagementCommon.Classes;
 using DagoWebPortfolio.Classes;
@@ -314,7 +313,7 @@ namespace DagoWebPortfolio.Controllers
                     oldPicture.IsAbout = picturesViewModel.IsAbout;
                     oldPicture.IsWelcome = picturesViewModel.IsWelcome;
                     oldPicture.link = picturesViewModel.link;
-                    oldPicture.Description = picturesViewModel.Description;
+                    //oldPicture.Description = picturesViewModel.Description;
                     oldPicture.ProjectDetailsViewModelID = picturesViewModel.ProjectDetailsViewModelID;
                     oldPicture.ProjectDetail = picturesViewModel.ProjectDetail;
                     oldPicture.EducationViewModelID = picturesViewModel.EducationViewModelID;

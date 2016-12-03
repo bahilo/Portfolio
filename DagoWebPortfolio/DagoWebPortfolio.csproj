@@ -206,17 +206,32 @@
     </Compile>
     <Compile Include="Infrastructure\AnalyticService.cs" />
     <Compile Include="Infrastructure\CustomControllerFactory.cs" />
+    <Compile Include="Infrastructure\EPopulateDisplay.cs" />
     <Compile Include="Infrastructure\ProjectsRepository.cs" />
     <Compile Include="Interfaces\IAnalyticService.cs" />
     <Compile Include="Interfaces\IProjectsRepository.cs" />
+    <Compile Include="Migrations\201511070928162_InitialCreate.cs" />
+    <Compile Include="Migrations\201511070928162_InitialCreate.Designer.cs">
+      <DependentUpon>201511070928162_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611231923042_InitialCreate1.cs" />
+    <Compile Include="Migrations\201611231923042_InitialCreate1.Designer.cs">
+      <DependentUpon>201611231923042_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611240551068_InitialCreate2.cs" />
+    <Compile Include="Migrations\201611240551068_InitialCreate2.Designer.cs">
+      <DependentUpon>201611240551068_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611271121125_InitialCreate3.cs" />
+    <Compile Include="Migrations\201611271121125_InitialCreate3.Designer.cs">
+      <DependentUpon>201611271121125_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomHelpers\HtmlDisplayHelper.cs" />
     <Compile Include="Models\DBModelPortfolioContext.cs" />
-    <Compile Include="Models\DisplayViewModel\DBDisplayModelContext.cs" />
-    <Compile Include="Models\DisplayViewModel\DisplayViewAbout.cs" />
-    <Compile Include="Models\DisplayViewModel\DisplayViewModel.cs" />
-    <Compile Include="Models\DisplayViewModel\DisplayViewWelcome.cs" />
+    <Compile Include="Models\DisplayViewModel.cs" />
     <Compile Include="Models\EducationModel.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
     <Compile Include="Models\ExperiencesViewModel.cs" />
@@ -561,10 +576,8 @@
     <Content Include="Views\Experiences\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TextArea.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DisplayViewAbout.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayViewAbout.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayViewWelcome.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DisplayViewWelcome.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SkillsViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SkillsViewModel.cshtml" />
@@ -575,7 +588,7 @@
     <None Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Skills\_ViewStart.cshtml" />
     <Content Include="Views\Details\_ViewStart.cshtml" />
-    <Content Include="Views\Experiences\_ViewStart.cshtml" />
+    <Content Include="Views\Displays\_ViewStart.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Pictures\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutProjectDescriptor.cshtml" />
@@ -598,6 +611,11 @@
     <Content Include="Views\Home\en\Index.cshtml" />
     <Content Include="Views\Shared\en\_Layout.cshtml" />
     <Content Include="Views\Shared\fr\_Layout.cshtml" />
+    <Content Include="Views\Displays\Create.cshtml" />
+    <Content Include="Views\Displays\Delete.cshtml" />
+    <Content Include="Views\Displays\Details.cshtml" />
+    <Content Include="Views\Displays\Edit.cshtml" />
+    <Content Include="Views\Displays\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\Old\" />
@@ -614,6 +632,20 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201511070928162_InitialCreate.resx">
+      <DependentUpon>201511070928162_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611231923042_InitialCreate1.resx">
+      <DependentUpon>201611231923042_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611240551068_InitialCreate2.resx">
+      <DependentUpon>201611240551068_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611271121125_InitialCreate3.resx">
+      <DependentUpon>201611271121125_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

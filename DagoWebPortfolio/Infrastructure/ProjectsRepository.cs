@@ -118,14 +118,14 @@ namespace DagoWebPortfolio.Infrastructure
             addOrUpdateSkillWithObjects(((ProjectsViewModel)formDataDictionary["projectsViewModel"]), (IEnumerable<string>)formDataDictionary["listSkillOfProjectsId"], (IEnumerable<string>)formDataDictionary["isSkillSelected"]);
 
             outputProjectModel.link = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).link;
-            outputProjectModel.Resume = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Resume;
+            //outputProjectModel.Resume = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Resume;
             outputProjectModel.Title = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Title;
             outputProjectModel.Skills = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Skills;
 
             //ProjectDetailsViewModel newProjectDetail = new ProjectDetailsViewModel();
             outputProjectModel.ProjectDetail.Subject = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Subject;
             outputProjectModel.ProjectDetail.Status = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Status;
-            outputProjectModel.ProjectDetail.Description = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Description;
+            outputProjectModel.ProjectDetail.Descriptions = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Descriptions;
             outputProjectModel.ProjectDetail.Date = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Date;
             outputProjectModel.ProjectDetail.Client = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Client;
 

@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
-using DagoWebPortfolio.Models.DisplayViewModel;
 using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
@@ -183,7 +182,7 @@ namespace DagoWebPortfolio.Controllers
                     origineSkill.Projects = skillsViewModel.Projects;
                     origineSkill.Experiences = skillsViewModel.Experiences;
                     origineSkill.Title = skillsViewModel.Title;
-                    origineSkill.Description = skillsViewModel.Description;
+                    //origineSkill.Description = skillsViewModel.Description;
                     
                     db.Entry(origineSkill).State = EntityState.Modified;
                     db.SaveChanges();

@@ -150,7 +150,7 @@ namespace DagoWebPortfolio.Controllers
 
                 try
                 {
-                    origineExperience.Responsabilities = experiencesViewModel.Responsabilities;
+                    //origineExperience.Responsabilities = experiencesViewModel.Responsabilities;
                     origineExperience.link = experiencesViewModel.link;
                     origineExperience.Company = experiencesViewModel.Company;
                     origineExperience.Title = experiencesViewModel.Title;

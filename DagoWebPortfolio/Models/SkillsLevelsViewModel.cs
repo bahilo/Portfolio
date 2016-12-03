@@ -19,18 +19,6 @@ namespace DagoWebPortfolio.Models
 
         [AllowHtml]
         public string comments { get; set; }
-        //[Display(Name = "Skill Involves")]
-        //public int SkillsRefId { get; set; }
-
-        //[ForeignKey("SkillsRefId")]        
-        //public int SkillsViewModelID { get; set; }
-
-        //[ForeignKey("SkillsViewModelID")]
-        //public virtual SkillsViewModel SkillsViewModel { get; set; }
-                                           /* public LevelsViewModel()
-                                            {
-                                                Skills = new SkillsViewModel();
-                                            }*/
 
     }
     

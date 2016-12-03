@@ -8,20 +8,26 @@ using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
-using DagoWebPortfolio.Models.DisplayViewModel;
 using DagoWebPortfolio.Interfaces;
 using QCBDManagementCommon.Classes;
+using System.Globalization;
+using DagoWebPortfolio.Classes;
 
-namespace DagoWebPortfolio.Controllers 
+namespace DagoWebPortfolio.Controllers
 {
     [Authorize]
-    public class ProjectsController : Controller 
+    public class ProjectsController : Controller
     {
         private IProjectsRepository ProjectRepository;
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
 
+        private string _culture;
+        private string _cultureDefault;
+
         public ProjectsController(IProjectsRepository rep)
         {
+            _culture = CultureInfo.CurrentCulture.Name.Split('-').First();
+            _cultureDefault = "en";
             ProjectRepository = rep;
             ProjectRepository.setContext(db);
         }
@@ -40,7 +46,7 @@ namespace DagoWebPortfolio.Controllers
         [AllowAnonymous]
         public ActionResult _Index()
         {
-            var skills = db.Skills.Include(x=>x.Projects).Include(x => x.Experiences).Include(x => x.Pictures).ToList();
+            var skills = db.Skills.Include(x => x.Projects).Include(x => x.Experiences).Include(x => x.Pictures).ToList();
             ProjectRepository.populateProjectsWithProjectdetails(skills);
             ProjectRepository.populateProjectsWithPicture(skills);
             return View(ProjectRepository.getProjectsOrderByDate(skills));
@@ -60,16 +66,31 @@ namespace DagoWebPortfolio.Controllers
                 projectsViewModel = db.Projects.Where(x => x.ID == id).Include(x => x.ProjectDetail).Include(x => x.ProjectDetail.Pictures).SingleOrDefault();
                 var pictures = db.PicturesApp.Include(x => x.ProjectDetail).Where(x => x.ProjectDetail.ID == projectsViewModel.ProjectDetail.ID).ToList();
                 projectsViewModel.ProjectDetail.Pictures = pictures;
+
+                projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.StartsWith(_culture)).ToList();
+                if (projectsViewModel.ProjectDetail.Descriptions.Count == 0)
+                    projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.StartsWith(_cultureDefault)).ToList();
+                
+                projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.StartsWith(_culture)).ToList();
+                if (projectsViewModel.Summaries.Count == 0)
+                    projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.StartsWith(_cultureDefault)).ToList();
+
             }
             catch (Exception ex)
             {
-                Log.write(ex.Message, "WAR");
+                Log.debug(ex.Message);
                 return RedirectToAction("Index");
             }
             if (projectsViewModel == null)
             {
                 return HttpNotFound();
             }
+
+            //if (System.IO.File.Exists(Utility.getDirectory("Views", "Projects", _culture, "Details.cshtml")))
+            //    return View(_culture + "/Details", projectsViewModel);
+            //else
+            //    return View(_cultureDefault + "/Details", projectsViewModel);
+
             return View(projectsViewModel);
         }
 
@@ -105,7 +126,7 @@ namespace DagoWebPortfolio.Controllers
             }
 
             return View(projectsViewModel);
-        }       
+        }
 
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
@@ -135,13 +156,13 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dictionary = new Dictionary<string,object>();
+                var dictionary = new Dictionary<string, object>();
 
                 dictionary["projectsViewModel"] = projectsViewModel;
                 dictionary["projectDetailID"] = projectDetailID;
                 dictionary["listSkillOfProjectsId"] = listSkillOfProjectsId;
                 dictionary["isSkillSelected"] = isSkillSelected;
-                            
+
                 try
                 {
                     var origineProject = db.Projects.Where(x => x.ID == projectsViewModel.ID).Include(x => x.ProjectDetail).Include(x => x.Skills).DefaultIfEmpty().Single();
@@ -168,14 +189,14 @@ namespace DagoWebPortfolio.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Log.write(ex.Message, "ERR" );
+                    Log.write(ex.Message, "ERR");
                 }
 
                 return RedirectToAction("Index");
             }
             return View(projectsViewModel);
         }
-        
+
 
         // GET: Projects/Delete/5
         public ActionResult Delete(int? id)
@@ -215,7 +236,7 @@ namespace DagoWebPortfolio.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
 
         protected override void Dispose(bool disposing)
         {

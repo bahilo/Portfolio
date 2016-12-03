@@ -3,8 +3,15 @@
 @using DagoWebPortfolio.Classes
 
 @{
+    
     Layout = "~/Views/Shared/_LayoutProjectDetails.cshtml";
     ViewBag.Title = Model.Title;
+    if (Model.ProjectDetail.Descriptions.Count > 0)
+    {
+        ViewBag.Title = Model.ProjectDetail.Descriptions.First().Subject;
+    }
+
+
 }
 
 
@@ -29,35 +36,42 @@
     <div class="row">
         <div class="col-md-6">
             <p>
-                @Html.DisplayHtml(Model.Resume)
-                @Html.DisplayHtml(Model.ProjectDetail.Description)
-            </p>
-        </div>
-        <div class="col-md-6">
 
-            @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
-            {
-                <img src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" width="600">
-            }
+                @if (Model.Summaries.Count > 0)
+                {
+                    @Html.DisplayHtml(Model.Summaries.First().Description)
+                }
+                @if (Model.ProjectDetail.Descriptions.Count > 0)
+                {
+                <p>@Html.DisplayHtml(Model.ProjectDetail.Descriptions.First().Description)</p>
+                }
+                </p>
+            </div>
+            <div class="col-md-6">
 
-            @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
+                @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
             {
-               <video style="margin-top: 50px;" width="600" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
-                    <source src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
-                </video>
+                    <img src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" width="600">
+                }
+
+                @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
+            {
+                    <video style="margin-top: 50px;" width="600" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                        <source src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
+                    </video>
                     <div id="footnote"></div>
-            }
+                }
 
+            </div>
         </div>
+
     </div>
 
-</div>
+    <div class="divider"></div>
 
-<div class="divider"></div>
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
     function close_winwow() {
         window.close();
     }
-</script>
+    </script>

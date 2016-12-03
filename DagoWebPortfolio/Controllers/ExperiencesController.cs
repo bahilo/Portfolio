@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
-using DagoWebPortfolio.Models.DisplayViewModel;
 using System.Data.Entity.Validation;
 using QCBDManagementCommon.Classes;
 
@@ -152,7 +151,7 @@ namespace DagoWebPortfolio.Controllers
 
                 try
                 {
-                    origineExperience.Responsabilities = experiencesViewModel.Responsabilities;
+                    //origineExperience.Responsabilities = experiencesViewModel.Responsabilities;
                     origineExperience.link = experiencesViewModel.link;
                     origineExperience.Company = experiencesViewModel.Company;
                     origineExperience.Title = experiencesViewModel.Title;

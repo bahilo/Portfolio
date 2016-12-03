@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
-using DagoWebPortfolio.Models.DisplayViewModel;
 using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers

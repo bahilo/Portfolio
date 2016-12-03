@@ -28,17 +28,9 @@ namespace DagoWebPortfolio.Models
 
         public string link { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        [AllowHtml]
-        public string Description { get; set; }
-
         public virtual ICollection<PicturesViewModel> Pictures { get; set; }
-
-        public EducationViewModel()
-        {
-            Pictures = new HashSet<PicturesViewModel>();
-            this.YearGraduate = DateTime.Now;
-        }
+        public virtual ICollection<DisplayViewModel> Descriptions { get; set; }
+        
     }
     
 }

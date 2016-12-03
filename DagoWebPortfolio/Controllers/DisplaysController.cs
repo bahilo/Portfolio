@@ -6,34 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DagoWebPortfolio.Models.DisplayViewModel;
-using System.Threading;
+using DagoWebPortfolio.Models;
 using System.Globalization;
+using DagoWebPortfolio.Classes;
+using System.Data.Entity.Validation;
+using QCBDManagementCommon.Classes;
 
 namespace DagoWebPortfolio.Controllers
 {
-    [Authorize]
     public class DisplaysController : Controller
     {
-        private DBDisplayModelContext db = new DBDisplayModelContext();
+        private DBModelPortfolioContext db = new DBModelPortfolioContext();
+
+        public DisplaysController()
+        {
+            ViewBag.Cultures = CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures).ToList();
+        }
 
         // GET: Displays
-        public ActionResult Index(string target, string from, string action)
+        public ActionResult Index()
         {
-
-            ViewBag.Target = target;
-            ViewBag.From = from;
-            ViewBag.Action = action;
-
-            string countryName = CultureInfo.CurrentCulture.Name.Split('-').FirstOrDefault();
-            if (!string.IsNullOrEmpty(countryName))
-                return View(countryName+"");
-            else
-                return RedirectToAction("Index");
-
-            //var display = db.Displays.Include("AboutView").Include("WelcomeView").ToList();
-
-            //return View();
+            return View(db.Displays.Include("Picture").Include("Education").Include("Experience").Include("ProjectDetail").Include("Skill").ToList());
         }
 
         // GET: Displays/Details/5
@@ -43,7 +36,7 @@ namespace DagoWebPortfolio.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DisplayViewModel displayViewModel = db.Displays.Where( x=>x.ID == id ).Include("AboutView").Include("WelcomeView").DefaultIfEmpty().Single();
+            DisplayViewModel displayViewModel = db.Displays.Find(id);
             if (displayViewModel == null)
             {
                 return HttpNotFound();
@@ -52,170 +45,90 @@ namespace DagoWebPortfolio.Controllers
         }
 
         // GET: Displays/Create
-        public ActionResult Create(string target, string from, string action)
+        public ActionResult Create()
         {
+            setSourceDropDownList(new DisplayViewModel());
 
-            ViewBag.Target = target;
-            ViewBag.From = from;
-            ViewBag.Action = action;
-            //db.Displays.Include("AboutView").Include("WelcomeView")
             return View();
         }
 
-        // POST: Displays/Create 
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Displays/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,lang,AboutView,WelcomeView")] DisplayViewModel displayViewModel, HttpPostedFileBase fileAbout, HttpPostedFileBase fileWelcome )
+        public ActionResult Create([Bind(Include = "ID,Subject,Lang,Description,ProjectsViewModelID,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] DisplayViewModel displayViewModel, string selectedLang, string link_display_to)
         {
             if (ModelState.IsValid)
             {
-                addPictureTable(displayViewModel, fileAbout, fileWelcome);
-                db.Displays.Add(displayViewModel);
-                db.SaveChanges();
+                try
+                {
+                    var display = displayViewModel;
+                    addOrUpdateDisplayTable(display, selectedLang, link_display_to);
+                    db.Entry(display).State = EntityState.Added;
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    ViewBag.ErrorMessage = retrievePropertiesErrors(dbEx);
+                    return View("Error");
+                }
+                catch (Exception ex)
+                {
+                    Log.error(ex.Message);
+                    return View("Error");
+                }
                 return RedirectToAction("Index");
             }
-
+            setSourceDropDownList(displayViewModel);
             return View(displayViewModel);
         }
 
-        private void addPictureTable(DisplayViewModel display, HttpPostedFileBase fileAbout, HttpPostedFileBase fileWelcome)
-        {            
-
-            if (fileAbout != null)
-            {
-                display.AboutView.Path = "/Content/Images/About/";
-                display.AboutView.FileName = fileAbout.FileName;
-                fileAbout.SaveAs(HttpContext.Server.MapPath(display.AboutView.Path + display.AboutView.FileName));
-            }
-
-            if (fileWelcome != null)
-            {
-                display.WelcomeView.Path = "/Content/Images/Welcome/";
-                display.WelcomeView.FileName = fileWelcome.FileName;
-                fileWelcome.SaveAs(HttpContext.Server.MapPath(display.WelcomeView.Path + display.WelcomeView.FileName));
-            }            
-            
-        }
-
-
         // GET: Displays/Edit/5
-        public ActionResult Edit(int? id, string target, string from, string action)
+        public ActionResult Edit(int? id)
         {
-
-            ViewBag.Target = target;
-            ViewBag.From = from;
-            ViewBag.Action = action;
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DisplayViewModel displayViewModel = db.Displays.Include("AboutView").Include("WelcomeView").Where(x => x.ID == id).DefaultIfEmpty().Single();
+            DisplayViewModel displayViewModel = db.Displays.Find(id);
             if (displayViewModel == null)
             {
                 return HttpNotFound();
             }
+            setSourceDropDownList(displayViewModel);
             return View(displayViewModel);
         }
 
         // POST: Displays/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(
-                                    [Bind(Include = "ID,lang,AboutView,WelcomeView")] DisplayViewModel displayViewModel
-                                    , HttpPostedFileBase fileAbout
-                                    , HttpPostedFileBase fileWelcome
-                                    , string origineFileAbout
-                                    , string origineFileWelcome
-                                    , string aboutID
-                                    , string welcomeID
-                                 )
+        public ActionResult Edit([Bind(Include = "ID,Subject,Lang,Description,ProjectsViewModelID,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] DisplayViewModel displayViewModel, string selectedLang, string link_display_to)
         {
             if (ModelState.IsValid)
             {
-
-                addOrUpdateDisplay(displayViewModel, fileAbout, fileWelcome, origineFileAbout, origineFileWelcome, aboutID, welcomeID);
-
-                db.Entry(displayViewModel).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    var display = displayViewModel;
+                    addOrUpdateDisplayTable(display, selectedLang, link_display_to);
+                    db.Entry(display).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    ViewBag.ErrorMessage = retrievePropertiesErrors(dbEx);
+                    return View("Error");
+                }
+                catch (Exception ex)
+                {
+                    Log.error(ex.Message);
+                    return View("Error");
+                }
                 return RedirectToAction("Index");
             }
             return View(displayViewModel);
-        }
-
-        private void addOrUpdateDisplay(DisplayViewModel display, HttpPostedFileBase fileAbout
-                                    , HttpPostedFileBase fileWelcome
-                                    , string origineFileAbout
-                                    , string origineFileWelcome
-                                    , string aboutID
-                                    , string welcomeID)
-        {
-            
-
-
-            /***** Welcome Page Dispay ****/
-
-            int idAbout = Int32.Parse(aboutID);
-            var origineAboutDisplay = db.DisplayAbout.Where(x => x.ID == idAbout).Single();
-           
-            origineAboutDisplay.Name = display.AboutView.Name;
-            origineAboutDisplay.HeadZone1 = display.AboutView.HeadZone1;
-            origineAboutDisplay.HeadZone2 = display.AboutView.HeadZone2;
-            origineAboutDisplay.HeadZone3 = display.AboutView.HeadZone3;
-
-            origineAboutDisplay.BodyZone1 = display.AboutView.BodyZone1;
-            origineAboutDisplay.BodyZone2 = display.AboutView.BodyZone2;
-            origineAboutDisplay.BodyZone3 = display.AboutView.BodyZone3;
-            origineAboutDisplay.BodyZone4 = display.AboutView.BodyZone4;
-            origineAboutDisplay.BodyZone5 = display.AboutView.BodyZone5;
-
-            display.AboutView = origineAboutDisplay;
-
-            if (fileAbout != null)
-            {
-                display.AboutView.Path = "/Content/Images/About/";
-                string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + display.AboutView.Path));
-                var origineFileWithPath = Server.MapPath("~" + display.AboutView.Path) + origineFileAbout;
-
-                foreach (var f in savedFiles)
-                {
-                    if (origineFileWithPath.Equals(f))
-                        System.IO.File.Delete(f);
-                }
-                display.AboutView.FileName = fileAbout.FileName;
-                fileAbout.SaveAs(HttpContext.Server.MapPath(display.AboutView.Path + display.AboutView.FileName));
-            }
-
-
-            /***** Welcome Page Dispay ****/
-
-            int idWelcome = Int32.Parse(welcomeID);
-            var origineWelcometDisplay = db.DisplayWelcome.Where(x => x.ID == idWelcome).Single();
-
-            origineWelcometDisplay.Name = display.WelcomeView.Name;
-            origineWelcometDisplay.Zone1 = display.WelcomeView.Zone1;
-            origineWelcometDisplay.Zone2 = display.WelcomeView.Zone2;
-            origineWelcometDisplay.Zone3 = display.WelcomeView.Zone3;
-            display.WelcomeView = origineWelcometDisplay;
-
-            if (fileWelcome != null)
-            {
-                display.WelcomeView.Path = "/Content/Images/Welcome/";
-                string[] savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + display.WelcomeView.Path));
-                var origineFileWithPath = Server.MapPath("~" + display.WelcomeView.Path) + origineFileWelcome;
-
-                foreach (var f in savedFiles)
-                {
-                    if (origineFileWithPath.Equals(f))
-                        System.IO.File.Delete(f);
-                }
-                display.WelcomeView.FileName = fileWelcome.FileName;
-                fileWelcome.SaveAs(HttpContext.Server.MapPath(display.WelcomeView.Path + display.WelcomeView.FileName));
-            }
         }
 
         // GET: Displays/Delete/5
@@ -238,9 +151,29 @@ namespace DagoWebPortfolio.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DisplayViewModel displayViewModel = db.Displays.Find(id);
-            db.Displays.Remove(displayViewModel);
-            db.SaveChanges();
+            DisplayViewModel display = db.Displays.Find(id);
+            display.Education = null;
+            display.EducationViewModelID = null;
+            display.ProjectDetail = null;
+            display.ProjectDetailsViewModelID = null;
+            display.Experience = null;
+            display.ExperiencesViewModelID = null;
+            display.Skill = null;
+            display.SkillsViewModelID = null;
+            display.Project = null;
+            display.ProjectsViewModelID = null;
+
+            try
+            {
+                db.Displays.Remove(display);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.error(ex.Message);
+                return View("Error");
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -252,5 +185,104 @@ namespace DagoWebPortfolio.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //===============================
+
+        private void setSourceDropDownList(DisplayViewModel display)
+        {
+            ViewBag.EducationViewModelID = new SelectList(db.Education, "ID", "SchoolName", display.EducationViewModelID);
+            ViewBag.ExperiencesViewModelID = new SelectList(db.Experiences, "ID", "Title", display.ExperiencesViewModelID);
+            ViewBag.ProjectsViewModelID = new SelectList(db.Projects, "ID", "Title", display.ProjectsViewModelID);
+            ViewBag.ProjectDetailsViewModelID = new SelectList(db.DetailsProject, "ID", "Subject", display.ProjectDetailsViewModelID);
+            ViewBag.SkillsViewModelID = new SelectList(db.Skills, "ID", "Title", display.SkillsViewModelID);
+            ViewBag.PicturesViewModelID = new SelectList(db.PicturesApp, "ID", "Subject", display.PicturesViewModelID);
+        }
+
+        private string retrievePropertiesErrors(DbEntityValidationException dbEx)
+        {
+            string message = "";
+            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            {
+                foreach (var validationError in validationErrors.ValidationErrors)
+                {
+                    message += string.Format("Property: {0} Error: {1} {2}",
+                                            validationError.PropertyName,
+                                            validationError.ErrorMessage,
+                                            Environment.NewLine);
+                }
+            }            
+            Log.error(message);
+            return message;
+        }
+
+        private void addOrUpdateDisplayTable(DisplayViewModel display, string selectedLang, string link_display_to)
+        {
+            display.Lang = selectedLang;
+
+            switch (link_display_to)
+            {
+                case "project":
+                    display.Project = db.Projects.Find(display.ProjectsViewModelID);// (display.ProjectDetailsViewModelID);
+                    display.EducationViewModelID = null;
+                    display.ExperiencesViewModelID = null;
+                    display.ProjectDetailsViewModelID = null;
+                    display.SkillsViewModelID = null;
+                    display.PicturesViewModelID = null;
+                    break;
+                case "project-detail":
+                    display.ProjectDetail = db.DetailsProject.Find(display.ProjectDetailsViewModelID);// (display.ProjectDetailsViewModelID);
+                    display.EducationViewModelID = null;
+                    display.ProjectsViewModelID = null;
+                    display.ExperiencesViewModelID = null;
+                    display.SkillsViewModelID = null;
+                    display.PicturesViewModelID = null;
+                    break;
+                case "education":
+                    display.Education = db.Education.Find(display.EducationViewModelID);//db.Education.Find(display.EducationViewModelID);
+                    display.ProjectDetailsViewModelID = null;
+                    display.ExperiencesViewModelID = null;
+                    display.SkillsViewModelID = null;
+                    display.PicturesViewModelID = null;
+                    display.ProjectsViewModelID = null;
+                    break;
+                case "experience":
+                    display.Experience = db.Experiences.Find(display.ExperiencesViewModelID);
+                    display.ProjectDetailsViewModelID = null;
+                    display.EducationViewModelID = null;
+                    display.SkillsViewModelID = null;
+                    display.PicturesViewModelID = null;
+                    display.ProjectsViewModelID = null;
+                    break;
+                case "skill":
+                    display.Skill = db.Skills.Find(display.SkillsViewModelID);
+                    display.ProjectDetailsViewModelID = null;
+                    display.EducationViewModelID = null;
+                    display.ExperiencesViewModelID = null;
+                    display.PicturesViewModelID = null;
+                    display.ProjectsViewModelID = null;
+                    break;
+                case "picture":
+                    display.Picture = db.PicturesApp.Find(display.PicturesViewModelID);
+                    display.ProjectDetailsViewModelID = null;
+                    display.EducationViewModelID = null;
+                    display.SkillsViewModelID = null;
+                    display.ExperiencesViewModelID = null;
+                    display.ProjectsViewModelID = null;
+                    break;
+                default:
+                    display.PicturesViewModelID = null;
+                    display.ProjectDetailsViewModelID = null;
+                    display.EducationViewModelID = null;
+                    display.SkillsViewModelID = null;
+                    display.ExperiencesViewModelID = null;
+                    display.ProjectsViewModelID = null;
+                    break;
+            }
+        }
+
+
+
+
     }
 }

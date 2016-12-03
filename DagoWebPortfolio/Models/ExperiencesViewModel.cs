@@ -19,11 +19,6 @@ namespace DagoWebPortfolio.Models
 
         public string Company { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        [Display(Name = "Description")]
-        [AllowHtml]
-        public string Responsabilities { get; set; }
-
         [Required(ErrorMessage = "You must specify a start date.")]
         [DataType(DataType.Date)]
         [Display(Name = "Start date")]
@@ -40,12 +35,7 @@ namespace DagoWebPortfolio.Models
 
         public virtual ICollection<SkillsViewModel> Skills { get; set; }
         public virtual ICollection<PicturesViewModel> Pictures { get; set; }
+        public virtual ICollection<DisplayViewModel> Descriptions { get; set; }
         
-
-        public ExperiencesViewModel()
-        {
-            Skills = new HashSet<SkillsViewModel>();
-            Pictures = new HashSet<PicturesViewModel>();
-        }
     }
 }

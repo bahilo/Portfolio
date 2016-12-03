@@ -44,7 +44,7 @@
 
         <div class="section-header">
 
-            <h2 class="white-text">Me connaitre</h2><div class="white-text section-legend">Ci-dessous mon histoire.</div>
+            <h2 class="white-text">Me connaître</h2><div class="white-text section-legend">Ci-dessous mon histoire.</div>
         </div><!-- / END SECTION HEADER -->
         <!-- 3 COLUMNS OF ABOUT US-->
 
@@ -79,7 +79,11 @@
 
                         <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
                             <p class="">
-                                French here
+                                Après obtention de mon diplôme d'ingénieur en informatique de l'école ISEP,&nbsp; j'ai débuté ma carrière en tant que développeur
+                                dans un environnement Oracle pour la société Infoelsa. La société Infoelsa développe des logiciels pour des banques et assurances.<br /><br />
+
+                                Afin d'élargir mes compétences de développeur et parfaire mon niveau d'anglais,&nbsp; j'ai effectué un sejour de 2 ans en Angleterre dans la ville de Londre où j'ai suivie une formation de 1 an de développeur C# avec la société Just IT.<br />
+                                Ce séjour m'a permit de non seulement améliorer mon anglais,&nbsp; de découvrir une autre culture mais également de faire de moi un meilleur développeur. 
                             </p>
                         </div>
 
@@ -96,16 +100,16 @@
 
                         <div class="col-md-4">
                             <h4><span class="glyphicon glyphicon-send"></span>Ambition</h4>
-                            <p>French here.</p>
+                            <p>Afin de consolider mes competences, J'ai suivi une formation de développeur avec la société privée Just IT, à travers laquelle j'ai obtenu mes certifications Microsoft 70-463 et 98-361.</p>
                         </div>
                         <div class="col-md-4">
                             <h4><span class="glyphicon glyphicon-retweet"></span>Motivation</h4>
-                            <p><span>French here.</span></p>
+                            <p><span>J'ai toujours aimé travailler avec les nouvelles technologies. Après avoir été diplômé, j'ai cherché à devenir développeur.</span></p>
                             <p>&nbsp;</p>
                         </div>
                         <div class="col-md-4">
-                            <h4><span class="glyphicon glyphicon-ok-sign"></span>Qualite</h4>
-                            <p class="MsoNormal"><span lang="EN-GB">French here.</span></p>
+                            <h4><span class="glyphicon glyphicon-ok-sign"></span>Qualités</h4>
+                            <p class="MsoNormal"><span lang="fr-fr">Les différents projets auxquels j'ai participé m'ont permit de développer mon adaptabilité, ma capacité à résoudre des problèmes et à travailler en équipe.</span></p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +134,7 @@
 
             <!-- SECTION TITLE AND SUBTITLE -->
 
-            <h2 class="dark-text">Experience Professionnelle</h2><div class="section-legend">Ci-dessous mon parcours professionnel.</div>
+            <h2 class="dark-text">Expérience Professionnelle</h2><div class="section-legend">Ci-dessous mon parcours professionnel.</div>
         </div>
         <div class="row" data-scrollreveal="enter right after 0s over 1s">
             <div class="row">
@@ -171,7 +175,10 @@
                                             </div>
                                             <div class="timeline-body">
 
-                                                @Html.DisplayHtml(experience.Responsabilities)
+                                                @if (experience.Descriptions.Count > 0)
+                                                {
+                                                    <p>@Html.DisplayHtml(experience.Descriptions.First().Description)</p>
+                                                }
                                             </div>
 
                                             <p></p>
@@ -214,7 +221,10 @@
                                             </div>
                                             <div class="timeline-body">
 
-                                                @Html.DisplayHtml(experience.Responsabilities)
+                                                @if (experience.Descriptions.Count > 0)
+                                                {
+                                                    <p>@Html.DisplayHtml(experience.Descriptions.First().Description)</p>
+                                                }
                                             </div>
 
                                             <p></p>
@@ -284,7 +294,11 @@
                                                 }
 
                                                 <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
-                                                <p>@Html.DisplayHtml(item.Description)</p>
+                                                @if (item.Descriptions.Count > 0)
+                                                {
+                                                    <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
+                                                }
+                                            
                                             </div><!--/panel-->
                                         </div>
                                     </div>
@@ -325,7 +339,10 @@
                                                 <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
 
                                             </div><!--timeline-heading-->
-                                            <p>@Html.DisplayHtml(item.Description)</p>
+                                            @if (item.Descriptions.Count > 0)
+                                            {
+                                                <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -462,7 +479,7 @@
         </div>
         <div data-scrollreveal="enter right after 0s over 1s">
             <blockquote>
-                C'est la repetition d'une affirmation qui conduit a une croyance. Une fois cette croyance devient une profonde conviction, c'est le debut d'une realite.
+                C'est la répétition d'une affirmation qui conduit a une croyance. Une fois cette croyance devient une profonde conviction, c'est le début d'une réalité.
             </blockquote>
         </div>
     </div>
@@ -482,17 +499,16 @@
                         {
                             <div class="col-sm-3 latestnews-box">
                                 <div class="latestnews-img">
-                                    <a class="latestnews-img-a" href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
-                                        @*<img width="250" height="250" src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.ElementAt(0).FileName)" data-lazy-src="~/Content/Images/Carousel/Singapour.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="contact" />*@
-                                        @*@if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
+                                    @{
+                                        string title = project.Title;
+                                        if (project.ProjectDetail.Descriptions.Count > 0)
                                         {
-                                            <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(x=>x.ProjectDetail.Pictures.Where(y=>y.FileName.Split('.')[1] != "mp4").Count() > 0).ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(x=>x.ProjectDetail.Pictures.Where(y=>y.FileName.Split('.')[1] != "mp4").Count() > 0).ElementAt(0).FileName)" class="img-responsive">
-                                        }*@
+                                            title = project.ProjectDetail.Descriptions.First().Subject;
+                                        }
+                                    }
+                                    <a class="latestnews-img-a" href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@title" target="_blank">
                                         @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
                                         {
-                                            //var imagePath = project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path;
-                                            //var imageName = project.ProjectDetail.Pictures.Where(x => x.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName;
-                                            
                                             <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" class="img-responsive">
                                         }
                                         else
@@ -506,8 +522,8 @@
                                 </div>
                                 <div class="latesnews-content">
                                     <h3 class="latestnews-title">
-                                        <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
-                                            @Html.DisplayFor(modelItem => project.Title)
+                                        <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@title)" target="_blank">
+                                            @title
                                         </a>
                                     </h3>
                                 </div>

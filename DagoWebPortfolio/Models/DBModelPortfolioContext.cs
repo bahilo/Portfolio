@@ -1,5 +1,4 @@
 ﻿
-using DagoWebPortfolio.Models.DisplayViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,14 +21,20 @@ namespace DagoWebPortfolio.Models
         public DbSet<ProjectDetailsViewModel> DetailsProject { get; set; }
         public DbSet<PicturesViewModel> PicturesApp { get; set; }
         public DbSet<ContactViewModel> Contacts { get; set; }
+        public DbSet<DisplayViewModel> Displays { get; set; }
 
     } 
 
     public class MockInitializer : DropCreateDatabaseIfModelChanges<DBModelPortfolioContext>
+        //public class MockInitializer : DropCreateDatabaseAlways<DBModelPortfolioContext>
     {
         protected override void Seed(DBModelPortfolioContext context)
         {
-            base.Seed(context);  
+            base.Seed(context);
+            
+            //EducationViewModel education = new EducationViewModel { SchoolName="test", NbYearsToGraduate=2};
+            //context.Education.Add(education);
+            //context.SaveChanges();
         }
     }
 }

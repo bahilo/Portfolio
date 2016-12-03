@@ -33,7 +33,7 @@
                     @Html.DisplayNameFor(model => model.link)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Resume)
+                    @Html.DisplayNameFor(model => model.Summaries)
                 </th>
                 <th></th>
             </tr>
@@ -50,7 +50,11 @@
                             @Html.DisplayFor(modelItem => item.link)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Resume)
+                            @if (Model.Where(x=>x.Summaries.Count() > 0).Count() > 0)
+                            {
+                                @Html.DisplayFor(modelItem => item.Summaries.First().Description)
+                            }
+                            
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

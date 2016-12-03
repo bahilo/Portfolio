@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DagoWebPortfolio.Models;
-using DagoWebPortfolio.Models.DisplayViewModel;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -18,7 +17,6 @@ namespace DagoWebPortfolio.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private DBDisplayModelContext dbD = new DBDisplayModelContext();
 
         public AccountController()
         {

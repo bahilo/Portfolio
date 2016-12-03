@@ -20,19 +20,15 @@ namespace DagoWebPortfolio.Models
 
         public string link { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        [AllowHtml]
-        public string Resume { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //[AllowHtml]
+        //public string Summary { get; set; }
         
 
         public virtual ICollection<SkillsViewModel> Skills { get; set; }
         public virtual ProjectDetailsViewModel ProjectDetail { get; set; }
-
-        public ProjectsViewModel()
-        {
-            Skills = new HashSet<SkillsViewModel>();
-            ProjectDetail = new ProjectDetailsViewModel();
-        }
+        public virtual ICollection<DisplayViewModel> Summaries { get; set; }
+        
     }
 
 }

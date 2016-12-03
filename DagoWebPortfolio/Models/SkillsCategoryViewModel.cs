@@ -19,13 +19,5 @@ namespace DagoWebPortfolio.Models
 
         [AllowHtml]
         public string Description { get; set; }
-
-        //[ForeignKey("SkillsViewModel")]
-        //public int SkillsViewModelID { get; set; }
-
-        /*public CategoryViewModel()
-        {
-            Skill = new SkillsViewModel();
-        }*/
     }
 }
