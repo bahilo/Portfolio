@@ -200,6 +200,7 @@
     <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
+    <Compile Include="Controllers\TechnoEnvironmentsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -226,13 +227,20 @@
     <Compile Include="Migrations\201611271121125_InitialCreate3.Designer.cs">
       <DependentUpon>201611271121125_InitialCreate3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612051050229_InitialCreate4.cs" />
+    <Compile Include="Migrations\201612051050229_InitialCreate4.Designer.cs">
+      <DependentUpon>201612051050229_InitialCreate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612060645569_InitialCreate5.cs" />
+    <Compile Include="Migrations\201612060645569_InitialCreate5.Designer.cs">
+      <DependentUpon>201612060645569_InitialCreate5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomHelpers\HtmlDisplayHelper.cs" />
     <Compile Include="Models\DBModelPortfolioContext.cs" />
     <Compile Include="Models\DisplayViewModel.cs" />
-    <Compile Include="Models\EducationModel.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
     <Compile Include="Models\ExperiencesViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -243,6 +251,7 @@
     <Compile Include="Models\SkillsCategoryViewModel.cs" />
     <Compile Include="Models\SkillsLevelsViewModel.cs" />
     <Compile Include="Models\SkillsViewModel.cs" />
+    <Compile Include="Models\TechnoEnvironmentsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -616,6 +625,11 @@
     <Content Include="Views\Displays\Details.cshtml" />
     <Content Include="Views\Displays\Edit.cshtml" />
     <Content Include="Views\Displays\Index.cshtml" />
+    <Content Include="Views\TechnoEnvironments\Create.cshtml" />
+    <Content Include="Views\TechnoEnvironments\Delete.cshtml" />
+    <Content Include="Views\TechnoEnvironments\Details.cshtml" />
+    <Content Include="Views\TechnoEnvironments\Edit.cshtml" />
+    <Content Include="Views\TechnoEnvironments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\Old\" />
@@ -645,6 +659,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611271121125_InitialCreate3.resx">
       <DependentUpon>201611271121125_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612051050229_InitialCreate4.resx">
+      <DependentUpon>201612051050229_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612060645569_InitialCreate5.resx">
+      <DependentUpon>201612060645569_InitialCreate5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

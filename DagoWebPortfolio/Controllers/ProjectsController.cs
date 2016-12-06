@@ -70,11 +70,13 @@ namespace DagoWebPortfolio.Controllers
                 projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.StartsWith(_culture)).ToList();
                 if (projectsViewModel.ProjectDetail.Descriptions.Count == 0)
                     projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.StartsWith(_cultureDefault)).ToList();
-                
+
                 projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.StartsWith(_culture)).ToList();
                 if (projectsViewModel.Summaries.Count == 0)
                     projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.StartsWith(_cultureDefault)).ToList();
 
+                projectsViewModel.TechnoEnv = db.TechnoEnv.Include(x=>x.Picture).Where(x => x.ProjectsViewModelID == projectsViewModel.ID).ToList();
+               
             }
             catch (Exception ex)
             {

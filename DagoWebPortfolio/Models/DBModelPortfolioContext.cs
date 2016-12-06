@@ -15,13 +15,13 @@ namespace DagoWebPortfolio.Models
         public DbSet<ProjectsViewModel> Projects { get; set; }
         public DbSet<SkillsViewModel> Skills { get; set; }
         public DbSet<EducationViewModel> Education { get; set; }
-        public DbSet<EducationModel> EducationModel { get; set; }
         public DbSet<SkillsLevelsViewModel> Level { get; set; }
         public DbSet<SkillsCategoryViewModel> Categories { get; set; }
         public DbSet<ProjectDetailsViewModel> DetailsProject { get; set; }
         public DbSet<PicturesViewModel> PicturesApp { get; set; }
         public DbSet<ContactViewModel> Contacts { get; set; }
         public DbSet<DisplayViewModel> Displays { get; set; }
+        public DbSet<TechnoEnvironmentsViewModel> TechnoEnv { get; set; }
 
     } 
 

@@ -3,33 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace DagoWebPortfolio.Models
 {
-    public class PicturesViewModel
+    public class TechnoEnvironmentsViewModel
     {
-        public int ID { get; set; }        
-
-        [Required][Display(Name ="File Subject")]
-        public string Subject { get; set; }    
-            
+        public int ID { get; set; }
+        public string Subject { get; set; }
+        public string Category { get; set; }
         public string path { get; set; }
-        public string FileName { get; set; } 
+        public string FileName { get; set; }
 
         public string link { get; set; }
 
-        [Display(Name = "About Page")]
-        public bool IsAbout { get; set; }
-        [Display(Name = "Welcome Page")]
-        public bool IsWelcome { get; set; }
-
         public virtual ICollection<DisplayViewModel> Descriptions { get; set; }
 
-        [Display(Name="Link To Project")]
+        [Display(Name = "Link To Project")]
+        public int? ProjectsViewModelID { get; set; }
+
+        [Display(Name = "Link To Project detail")]
         public int? ProjectDetailsViewModelID { get; set; }
 
         [Display(Name = "Link To Education")]
@@ -41,8 +35,11 @@ namespace DagoWebPortfolio.Models
         [Display(Name = "Link To Skills")]
         public int? SkillsViewModelID { get; set; }
 
-        //[Display(Name = "Link To Techno. Env.")]
-        //public int? TechnoEnvViewModelID { get; set; }
+        [Display(Name = "Link To Pictures")]
+        public int? PicturesViewModelID { get; set; }
+
+        [ForeignKey("ProjectsViewModelID")]
+        public virtual ProjectsViewModel Project { get; set; }
 
         [ForeignKey("ProjectDetailsViewModelID")]
         public virtual ProjectDetailsViewModel ProjectDetail { get; set; }
@@ -56,9 +53,7 @@ namespace DagoWebPortfolio.Models
         [ForeignKey("SkillsViewModelID")]
         public virtual SkillsViewModel Skill { get; set; }
 
-        //[ForeignKey("TechnoEnvViewModelID")]
-        //public virtual TechnoEnvironmentsViewModel TechnoEnv { get; set; }
-
-
+        [ForeignKey("PicturesViewModelID")]
+        public virtual PicturesViewModel Picture { get; set; }
     }
 }

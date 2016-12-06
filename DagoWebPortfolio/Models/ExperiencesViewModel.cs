@@ -36,6 +36,7 @@ namespace DagoWebPortfolio.Models
         public virtual ICollection<SkillsViewModel> Skills { get; set; }
         public virtual ICollection<PicturesViewModel> Pictures { get; set; }
         public virtual ICollection<DisplayViewModel> Descriptions { get; set; }
-        
+        public virtual ICollection<TechnoEnvironmentsViewModel> TechnoEnv { get; set; }
+
     }
 }

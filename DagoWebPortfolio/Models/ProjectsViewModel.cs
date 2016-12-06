@@ -19,16 +19,12 @@ namespace DagoWebPortfolio.Models
         public string Title { get; set; }
 
         public string link { get; set; }
-
-        //[DataType(DataType.MultilineText)]
-        //[AllowHtml]
-        //public string Summary { get; set; }
         
-
         public virtual ICollection<SkillsViewModel> Skills { get; set; }
         public virtual ProjectDetailsViewModel ProjectDetail { get; set; }
         public virtual ICollection<DisplayViewModel> Summaries { get; set; }
-        
+        public virtual ICollection<TechnoEnvironmentsViewModel> TechnoEnv { get; set; }
+
     }
 
 }

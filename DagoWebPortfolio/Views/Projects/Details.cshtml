@@ -3,75 +3,233 @@
 @using DagoWebPortfolio.Classes
 
 @{
-    
+
     Layout = "~/Views/Shared/_LayoutProjectDetails.cshtml";
     ViewBag.Title = Model.Title;
     if (Model.ProjectDetail.Descriptions.Count > 0)
     {
         ViewBag.Title = Model.ProjectDetail.Descriptions.First().Subject;
     }
-
-
 }
 
 
 <div class="projects project-details">
     <div class="row">
-        <div class="col-md-11">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title">
-                        <h1 class="text">@ViewBag.Title</h1>
+        <div class="col-md-offset-11">
+            <a href="javascript:close_winwow();"><i class="glyphicon glyphicon-remove" style="font-size:50px;"></i></a>
+        </div>
+    </div>
+    @*<div class="row">
+            <div class="col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title">
+                            <h1 class="text">@ViewBag.Title</h1>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-1">
+                <a href="javascript:close_winwow();"><i class="glyphicon glyphicon-remove" style="font-size:50px;"></i></a>
+            </div>
+        </div>*@
+
+    @*<div class="divider" style="margin-top: 50px;"></div>*@
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="row">
+                <div class="col-md-12" style="border: 2px solid black;text-align: center;border-top: 10px solid rgba(0,64,64,.8);border-right: 10px solid rgba(0,64,64,.8)">
+                    <h1>@ViewBag.Title</h1>
+                </div>
+            </div>
+
+            <div class="divider" style="height: 50px; "></div>
+
+            <div class="row">
+                <div class="col-md-12" style="border: 20px solid #e6e6e6;">
+                    @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
+                    {
+                        <img src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" style="width:100%;">
+                    }
+                </div>
+            </div>
+
+            <div class="divider" style="height: 50px;"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.Summaries.Count > 0)
+                    {
+                        <p> @Html.DisplayHtml(Model.Summaries.First().Description)</p>
+                    }
+                </div>
+            </div>
+
+            <div class="divider" style="height: 50px;"></div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.TechnoEnv.Where(x => x.Category == "Language").Count() > 0)
+                    {
+                        var languageList = Model.TechnoEnv.Where(x => x.Category == "Language").ToList();
+
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Languages</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var language in languageList)
+                                {
+                                    <div class="col-md-4">
+                                        @if (language.link != null)
+                                        {
+                                            <a href="@language.link" target="_blank"><img src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)" style="height:65px;"></a>
+                                        }
+                                        else
+                                        {
+                                            <img src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)" style="height:65px;">
+                                        }
+                                        
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    @if (Model.TechnoEnv.Where(x => x.Category == "Technology").Count() > 0)
+                    {
+                        var technologyList = Model.TechnoEnv.Where(x => x.Category == "Technology").ToList();
+
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Technologies</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var technology in technologyList)
+                                {
+                                    <div class="col-md-4">
+                                        @if (technology.link != null)
+                                        {
+                                            <a href="@technology.link" target="_blank"><img src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)" style="height:65px;"></a>
+                                        }
+                                        else
+                                        {
+                                            <img src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)" style="height:65px;">
+                                        }
+                                        
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    @if (Model.TechnoEnv.Where(x => x.Category == "Version Control").Count() > 0)
+                    {
+                        var versionControlList = Model.TechnoEnv.Where(x => x.Category == "Version Control").ToList();
+
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Version Controls</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var versionControl in versionControlList)
+                                {
+                                    <div class="col-md-4">
+                                        @if (versionControl.link != null)
+                                        {
+                                            <a href="@versionControl.link" target="_blank"><img src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)" style="height:65px;"></a>
+                                        }
+                                        else
+                                        {
+                                            <img src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)" style="height:65px;">
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    @if (Model.TechnoEnv.Where(x => x.Category == "Web Service").Count() > 0)
+                    {
+                        var webServiceList = Model.TechnoEnv.Where(x => x.Category == "Web Service").ToList();
+
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Web Services</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var webService in webServiceList)
+                                {
+                                    <div class="col-md-4">
+                                        @if (webService.link != null)
+                                        {
+                                            <a href="@webService.link" target="_blank"><img src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)" style="height:65px;"></a>
+                                        }
+                                        else
+                                        {
+                                            <img src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)" style="height:65px;">
+                                        }
+                                        
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="divider" style="height: 50px;"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.ProjectDetail.Descriptions.Count > 0)
+                    {
+                        <p>@Html.DisplayHtml(Model.ProjectDetail.Descriptions.First().Description)</p>
+                    }
+                </div>
+            </div>
+
+            <div class="divider" style="height: 50px;"></div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
+                    {
+                        <div style="text-align:center;"><h3>Live demo</h3></div>
+                        <div style="border: 20px solid rgba(0,64,64,.8)">
+                            <video style="width: 100%;" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                                <source src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
+                            </video>
+                            <div id="footnote"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
         </div>
-        <div class="col-md-1">
+    </div>
+
+    <div class="divider" style="height: 50px;"></div>
+
+    <div class="row">
+        <div class="col-md-offset-11">
             <a href="javascript:close_winwow();"><i class="glyphicon glyphicon-remove" style="font-size:50px;"></i></a>
         </div>
     </div>
 
-    <div class="divider" id="section[top]"></div>
+</div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <p>
-
-                @if (Model.Summaries.Count > 0)
-                {
-                    @Html.DisplayHtml(Model.Summaries.First().Description)
-                }
-                @if (Model.ProjectDetail.Descriptions.Count > 0)
-                {
-                <p>@Html.DisplayHtml(Model.ProjectDetail.Descriptions.First().Description)</p>
-                }
-                </p>
-            </div>
-            <div class="col-md-6">
-
-                @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
-            {
-                    <img src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" width="600">
-                }
-
-                @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
-            {
-                    <video style="margin-top: 50px;" width="600" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
-                        <source src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
-                    </video>
-                    <div id="footnote"></div>
-                }
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="divider"></div>
-
-    <script type="text/javascript">
+<script type="text/javascript">
 
     function close_winwow() {
         window.close();
     }
-    </script>
+</script>

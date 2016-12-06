@@ -1,0 +1,106 @@
+﻿@model DagoWebPortfolio.Models.TechnoEnvironmentsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TechnoEnvironmentsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Education.SchoolName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education.SchoolName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectDetail.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectDetail.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skill.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skill.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -3,10 +3,7 @@
 @using DagoWebPortfolio.Models.CustomHelpers
 @{
     ViewBag.Title = "E. DAGO";
-    ViewBag.AboutHeadZone1 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone1 : "Head Zone 1";
-    ViewBag.AboutHeadZone2 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone2 : "Head Zone 2";
-    ViewBag.AboutHeadZone3 = (ViewBag.Display != null) ? ViewBag.Display.AboutView.HeadZone3 : "Head Zone 3";
-
+    
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -349,6 +346,7 @@
                 <li>@Html.ActionLink("Education", "Index", "Education")</li>
                 <li>@Html.ActionLink("Pictures", "Index", "Pictures")</li>
                 <li>@Html.ActionLink("Displays", "Index", "Displays")</li>
+                <li>@Html.ActionLink("Technology Env.", "Index", "TechnoEnvironments")</li>
                 @*<li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_documents_alt"></i>
