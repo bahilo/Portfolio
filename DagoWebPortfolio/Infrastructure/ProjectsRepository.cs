@@ -1,4 +1,5 @@
-﻿using DagoWebPortfolio.Interfaces;
+﻿using DagoWebPortfolio.Classes;
+using DagoWebPortfolio.Interfaces;
 using DagoWebPortfolio.Models;
 using System;
 using System.Collections.Generic;
@@ -144,12 +145,12 @@ namespace DagoWebPortfolio.Infrastructure
         /// <param name="Server"></param>
         public void deleteProject(int id, HttpServerUtilityBase Server)
         {
-            var projectsViewModelWithIncludes = db.Projects.Include("ProjectDetail");
-            var projectsViewModel = projectsViewModelWithIncludes.First(x => x.ID == id);
-            var detailWithIncludes = db.DetailsProject.Include("Pictures").Where(x => x.ID == projectsViewModel.ProjectDetail.ID).Single();
             try
             {
-                var listPictures = detailWithIncludes.Pictures.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID).DefaultIfEmpty();
+                var projectsViewModel = db.Projects.First(x => x.ID == id);
+                var detailWithPictures = db.DetailsProject.Include("Pictures").Where(x => x.ID == projectsViewModel.ProjectDetail.ID).Single();
+
+                var listPictures = detailWithPictures.Pictures.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID).ToList();
 
                 foreach (var picture in listPictures)
                 {
@@ -187,19 +188,19 @@ namespace DagoWebPortfolio.Infrastructure
         {
             if (picture != null)
             {
+                string origineFileWithPath = Utility.getDirectory(picture.path, picture.FileName);// Server.MapPath("~" + picture.path) + picture.FileName;
 
-                string[] savedFiles;
-                string origineFileWithPath;
-
-                savedFiles = System.IO.Directory.GetFiles(Server.MapPath("~" + picture.path));
-                origineFileWithPath = Server.MapPath("~" + picture.path) + picture.FileName;
-
-                foreach (var f in savedFiles)
-                {
-                    if (origineFileWithPath.Equals(f))
-                        System.IO.File.Delete(f);
-                }
-
+                foreach (var f in System.IO.Directory.GetFiles(Utility.getDirectory(picture.path)).Where(x=> x == origineFileWithPath).ToList())
+                    System.IO.File.Delete(f);
+                
+                picture.Education = null;
+                picture.EducationViewModelID = null;
+                picture.ProjectDetail = null;
+                picture.ProjectDetailsViewModelID = null;
+                picture.Experience = null;
+                picture.ExperiencesViewModelID = null;
+                picture.Skill = null;
+                picture.SkillsViewModelID = null;
                 db.PicturesApp.Remove(picture);
             }
         }

@@ -190,10 +190,9 @@
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\DetailsController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DisplaysController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
-    <Compile Include="Controllers\EducationViewModelsController.cs" />
     <Compile Include="Controllers\ExperiencesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -201,7 +200,6 @@
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Controllers\TechnoEnvironmentsController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -502,6 +500,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\Images\icon.ico" />
+    <Content Include="Views\Shared\fr\icon_fr.ico" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -566,11 +566,6 @@
     <Content Include="Views\Shared\DisplayTemplates\ProjectDetailsViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ProjectPicturesViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PicturesViewModel.cshtml" />
-    <Content Include="Views\Details\Create.cshtml" />
-    <Content Include="Views\Details\Delete.cshtml" />
-    <Content Include="Views\Details\Details.cshtml" />
-    <Content Include="Views\Details\Edit.cshtml" />
-    <Content Include="Views\Details\Index.cshtml" />
     <Content Include="Views\Pictures\Delete.cshtml" />
     <Content Include="Views\Pictures\Details.cshtml" />
     <Content Include="Views\Pictures\Edit.cshtml" />
@@ -596,7 +591,6 @@
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <None Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Skills\_ViewStart.cshtml" />
-    <Content Include="Views\Details\_ViewStart.cshtml" />
     <Content Include="Views\Displays\_ViewStart.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Pictures\_ViewStart.cshtml" />
@@ -614,8 +608,6 @@
     <Content Include="Views\Education\Index.cshtml" />
     <Content Include="Views\Education\_Index.cshtml" />
     <Content Include="Views\Education\_Index2.cshtml" />
-    <Content Include="Views\Test\_Index .cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Home\fr\Index.cshtml" />
     <Content Include="Views\Home\en\Index.cshtml" />
     <Content Include="Views\Shared\en\_Layout.cshtml" />
@@ -630,6 +622,16 @@
     <Content Include="Views\TechnoEnvironments\Details.cshtml" />
     <Content Include="Views\TechnoEnvironments\Edit.cshtml" />
     <Content Include="Views\TechnoEnvironments\Index.cshtml" />
+    <Content Include="Views\Experiences\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\DisplayViewModel.cshtml" />
+    <Content Include="Views\Projects\_ViewStart.cshtml" />
+    <Content Include="Views\Education\_ViewStart.cshtml" />
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
+    <Content Include="Views\Contacts\Details.cshtml" />
+    <Content Include="Views\Contacts\Edit.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Contacts\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\Old\" />

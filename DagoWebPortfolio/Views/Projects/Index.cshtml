@@ -50,7 +50,7 @@
                             @Html.DisplayFor(modelItem => item.link)
                         </td>
                         <td>
-                            @if (Model.Where(x=>x.Summaries.Count() > 0).Count() > 0)
+                            @if (item.Summaries.Count > 0)
                             {
                                 @Html.DisplayFor(modelItem => item.Summaries.First().Description)
                             }

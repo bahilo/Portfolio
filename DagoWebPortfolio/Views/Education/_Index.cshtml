@@ -76,9 +76,6 @@
                                                             <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
 
                                                         }
-
-                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
-                                                        <p>@Html.DisplayHtml(item.Description)</p>
                                                     </div><!--/panel-->
                                                 </div>
                                             </div>
@@ -119,7 +116,6 @@
                                                         <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
 
                                                     </div><!--timeline-heading-->
-                                                    <p>@Html.DisplayHtml(item.Description)</p>
                                                 </div>
                                             </div>
                                         </div>

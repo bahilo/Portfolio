@@ -34,7 +34,7 @@
                     @Html.DisplayNameFor(model => model.Company)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Responsabilities)
+                    @Html.DisplayNameFor(model => model.Descriptions)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.StartDate)
@@ -58,7 +58,10 @@
                         @Html.DisplayFor(modelItem => item.Company)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Responsabilities)
+                       @if (item.Descriptions.Count > 0)
+                       {
+                        <p>@Html.DisplayFor(modelItem => item.Descriptions.First().Description)</p>
+                       }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.StartDate)

@@ -14,9 +14,6 @@ namespace DagoWebPortfolio.Controllers
     
     public class EducationController : Controller
     {
-        //private DBModelPortfolioContext db = new DBModelPortfolioContext();
-
-        
         // GET: Education
         public ActionResult Index()
         {
@@ -24,16 +21,11 @@ namespace DagoWebPortfolio.Controllers
             {
                 return View(db.Education.ToList());
             }
-            //return Content("Education page");
         }
 
 
         public ActionResult _Index()
         {
-            //using (var Ddb = new DBDisplayModelContext())
-            //{
-            //    ViewBag.AvatarUrl = Ddb.DisplayWelcome.OrderByDescending(x=>x.ID).First().Path + Ddb.DisplayWelcome.OrderByDescending(x => x.ID).First().FileName;
-            //}
             List<EducationViewModel> educationList = new List<EducationViewModel>();
             try
             {
@@ -48,7 +40,6 @@ namespace DagoWebPortfolio.Controllers
                 Log.write(ex.Message, "ERR");
                 return View("Error");
             }
-            //return Content("Education page");
             return View(educationList.OrderByDescending(x => x.YearGraduate).ToList());
         }
                         
@@ -82,14 +73,12 @@ namespace DagoWebPortfolio.Controllers
                 return HttpNotFound();
             }
             return View(educationViewModel);
-            //return Content("Education page");
         }
 
         // GET: Education/Create
         public ActionResult Create()
         {
             return View();
-            //return Content("Education page");
         }
 
         // POST: Education/Create
@@ -97,7 +86,7 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,SchoolName,YearGraduate,NbYearsToGraduate,link,Description")] EducationViewModel educationViewModel)
+        public ActionResult Create([Bind(Include = "ID,SchoolName,YearGraduate,NbYearsToGraduate,link")] EducationViewModel educationViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -144,7 +133,7 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,SchoolName,YearGraduate,NbYearsToGraduate,link,Description")] EducationViewModel educationViewModel)
+        public ActionResult Edit([Bind(Include = "ID,SchoolName,YearGraduate,NbYearsToGraduate,link")] EducationViewModel educationViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -163,7 +152,6 @@ namespace DagoWebPortfolio.Controllers
                 return RedirectToAction("Index");
             }
             return View(educationViewModel);
-            //return Content("Education page");
         }
 
         // GET: Education/Delete/5

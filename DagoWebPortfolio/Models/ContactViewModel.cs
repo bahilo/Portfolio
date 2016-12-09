@@ -23,6 +23,7 @@ namespace DagoWebPortfolio.Models
         public string Phone { get; set; }
 
         [AllowHtml]
+        [DataType(DataType.MultilineText)]
         public string Comments { get; set; }
     }
 }

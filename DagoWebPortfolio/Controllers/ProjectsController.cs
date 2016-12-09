@@ -109,12 +109,13 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,link,Resume,ProjectDetail")] ProjectsViewModel projectsViewModel, IEnumerable<string> listSkillOfProjectsId, IEnumerable<string> isSkillSelected)
+        public ActionResult Create([Bind(Include = "ID,Title,link,ProjectDetail")] ProjectsViewModel projectsViewModel, IEnumerable<string> listSkillOfProjectsId, IEnumerable<string> isSkillSelected)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    projectsViewModel.Skills = new List<SkillsViewModel>();
                     ProjectRepository.addOrUpdateSkillWithObjects(projectsViewModel, listSkillOfProjectsId, isSkillSelected);
 
                     db.Projects.Add(projectsViewModel);
@@ -160,14 +161,19 @@ namespace DagoWebPortfolio.Controllers
             {
                 var dictionary = new Dictionary<string, object>();
 
-                dictionary["projectsViewModel"] = projectsViewModel;
-                dictionary["projectDetailID"] = projectDetailID;
-                dictionary["listSkillOfProjectsId"] = listSkillOfProjectsId;
-                dictionary["isSkillSelected"] = isSkillSelected;
+                
 
                 try
                 {
-                    var origineProject = db.Projects.Where(x => x.ID == projectsViewModel.ID).Include(x => x.ProjectDetail).Include(x => x.Skills).DefaultIfEmpty().Single();
+                    var origineProject = db.Projects.Include(x => x.ProjectDetail).Include(x => x.Skills).Include(x => x.Summaries).Where(x => x.ID == projectsViewModel.ID).Single();
+                    origineProject.link = projectsViewModel.link;
+                    origineProject.Title = projectsViewModel.Title;
+
+                    dictionary["projectsViewModel"] = origineProject;
+                    dictionary["projectDetailID"] = projectDetailID;
+                    dictionary["listSkillOfProjectsId"] = listSkillOfProjectsId;
+                    dictionary["isSkillSelected"] = isSkillSelected;
+
                     ProjectRepository.populateDBWithDataFromForm(dictionary, origineProject);
                     //UpdateModel(origineProject,new string[]{ "ID","Title","link","Resume","ProjectDetail", "Skills" });
                     db.Entry(origineProject).State = EntityState.Modified;

@@ -10,109 +10,107 @@ using DagoWebPortfolio.Models;
 
 namespace DagoWebPortfolio.Controllers
 {
-    [Authorize]
-    public class DetailsController : Controller
+    public class ContactsController : Controller
     {
         private DBModelPortfolioContext db = new DBModelPortfolioContext();
-               
 
-        // GET: Details
+        // GET: Contacts
         public ActionResult Index()
         {
-            return View(db.DetailsProject.ToList());
+            return View(db.Contacts.ToList());
         }
 
-        // GET: Details/Details/5
+        // GET: Contacts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectDetailsViewModel projectDetailsViewModel = db.DetailsProject.Find(id);
-            if (projectDetailsViewModel == null)
+            ContactViewModel contactViewModel = db.Contacts.Find(id);
+            if (contactViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(projectDetailsViewModel);
+            return View(contactViewModel);
         }
 
-        // GET: Details/Create
+        // GET: Contacts/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Details/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Subject,Status,Date,Client,Description")] ProjectDetailsViewModel projectDetailsViewModel)
+        public ActionResult Create([Bind(Include = "ID,Name,Company,Email,Phone,Comments")] ContactViewModel contactViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.DetailsProject.Add(projectDetailsViewModel);
+                db.Contacts.Add(contactViewModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(projectDetailsViewModel);
+            return View(contactViewModel);
         }
 
-        // GET: Details/Edit/5
+        // GET: Contacts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectDetailsViewModel projectDetailsViewModel = db.DetailsProject.Find(id);
-            if (projectDetailsViewModel == null)
+            ContactViewModel contactViewModel = db.Contacts.Find(id);
+            if (contactViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(projectDetailsViewModel);
+            return View(contactViewModel);
         }
 
-        // POST: Details/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Subject,Status,Date,Client,Description")] ProjectDetailsViewModel projectDetailsViewModel)
+        public ActionResult Edit([Bind(Include = "ID,Name,Company,Email,Phone,Comments")] ContactViewModel contactViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(projectDetailsViewModel).State = EntityState.Modified;
+                db.Entry(contactViewModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(projectDetailsViewModel);
+            return View(contactViewModel);
         }
 
-        // GET: Details/Delete/5
+        // GET: Contacts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectDetailsViewModel projectDetailsViewModel = db.DetailsProject.Find(id);
-            if (projectDetailsViewModel == null)
+            ContactViewModel contactViewModel = db.Contacts.Find(id);
+            if (contactViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(projectDetailsViewModel);
+            return View(contactViewModel);
         }
 
-        // POST: Details/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProjectDetailsViewModel projectDetailsViewModel = db.DetailsProject.Find(id);
-            db.DetailsProject.Remove(projectDetailsViewModel);
+            ContactViewModel contactViewModel = db.Contacts.Find(id);
+            db.Contacts.Remove(contactViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

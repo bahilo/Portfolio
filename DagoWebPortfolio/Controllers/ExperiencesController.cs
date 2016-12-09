@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using DagoWebPortfolio.Models;
 using System.Data.Entity.Validation;
 using QCBDManagementCommon.Classes;
+using DagoWebPortfolio.Classes;
+using DagoWebPortfolio.Infrastructure;
 
 namespace DagoWebPortfolio.Controllers
 {
@@ -98,7 +100,7 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Company,Responsabilities,StartDate,EndDate,link")] ExperiencesViewModel experiencesViewModel, IEnumerable<string> listSkillOfExperiencesId, IEnumerable<string> isSkillSelected)
+        public ActionResult Create([Bind(Include = "ID,Title,Company,StartDate,EndDate,link")] ExperiencesViewModel experiencesViewModel, IEnumerable<string> listSkillOfExperiencesId, IEnumerable<string> isSkillSelected)
         {
             if (ModelState.IsValid)
             {
@@ -130,6 +132,7 @@ namespace DagoWebPortfolio.Controllers
             }
             ExperiencesViewModel experiencesViewModel = db.Experiences.Find(id);
             experiencesViewModel.Skills = db.Skills.Include(p => p.Experiences).ToList();
+            Utility.populateWithDescription(EPopulateDisplay.Experiences, new List<ExperiencesViewModel> { experiencesViewModel });
             if (experiencesViewModel == null)
             {
                 return HttpNotFound();
@@ -142,22 +145,20 @@ namespace DagoWebPortfolio.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,Company,Responsabilities,StartDate,EndDate,link")] ExperiencesViewModel experiencesViewModel, IEnumerable<string> listSkillOfExperiencesId, IEnumerable<string> isSkillSelected)
+        public ActionResult Edit([Bind(Include = "ID,Title,Company,StartDate,EndDate,link")] ExperiencesViewModel experiencesViewModel, IEnumerable<string> listSkillOfExperiencesId, IEnumerable<string> isSkillSelected)
         {
             if (ModelState.IsValid)
             {
-                addOrUpdateSkillWithObjects(experiencesViewModel, listSkillOfExperiencesId, isSkillSelected);                
-                var origineExperience = db.Experiences.Where(x => x.ID == experiencesViewModel.ID).DefaultIfEmpty().Single();              
-
                 try
                 {
-                    //origineExperience.Responsabilities = experiencesViewModel.Responsabilities;
-                    origineExperience.link = experiencesViewModel.link;
-                    origineExperience.Company = experiencesViewModel.Company;
+                    var origineExperience = db.Experiences.Include(x => x.Skills).Where(x => x.ID == experiencesViewModel.ID).Single();
                     origineExperience.Title = experiencesViewModel.Title;
-                    origineExperience.Skills = experiencesViewModel.Skills;
+                    origineExperience.Company = experiencesViewModel.Company;
                     origineExperience.StartDate = experiencesViewModel.StartDate;
                     origineExperience.EndDate = experiencesViewModel.EndDate;
+                    origineExperience.link = experiencesViewModel.link;
+
+                    addOrUpdateSkillWithObjects(origineExperience, listSkillOfExperiencesId, isSkillSelected);
 
                     db.Entry(origineExperience).State = EntityState.Modified;
                     db.SaveChanges();
@@ -201,8 +202,8 @@ namespace DagoWebPortfolio.Controllers
                 for (int i = 0; i < isSkillSelected.Count(); i++)
                 {
                     string isSelected = isSkillSelected.ElementAt(i).Split('-').ToList()[0];
-                    string isSelectedId = isSkillSelected.ElementAt(i).Split('-').ToList()[1];
-                    id = Int32.Parse(isSelectedId);
+                    string selectedId = isSkillSelected.ElementAt(i).Split('-').ToList()[1];
+                    id = Int32.Parse(selectedId);
                     newSkill = db.Skills.Where(y => y.ID == id).Include("CategoryViewModel").Include("LevelsViewModel").Include(x => x.Projects).Include(x => x.Projects.Select(s => s.ProjectDetail)).Include(x => x.Experiences).DefaultIfEmpty().Single();
                     //var projectWithDetail = db.Projects.Where(p => p.Skills.Where(y => y.ID == newSkill.ID).Join(p.ProjectDetail)).Include(z=>z.);
                     
