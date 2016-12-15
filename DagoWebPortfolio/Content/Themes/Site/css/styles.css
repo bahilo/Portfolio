@@ -142,20 +142,38 @@
 /*______________________________________________________________________________________________*/
 
 
-html,
 body.custom-background {
             background-image: url('http://demo.themeisle.com/zerif-lite/wp-content/themes/zerif-lite/images/bg.jpg');
+            /*background-image: url('/Content/Images/f4769_paris night.jpg');*/
+            /*background-image: url('/Content/Images/bg-1.jpg');*/
             background-repeat: repeat;
-            background-position: top center;
+            background-position: bottom;
             background-attachment: fixed;
         }
 
 
 /*__________________________________________________________________________________[ welcome page ]*/
+
+.welcome {
+        background: url('/Content/Images/bg-1.jpg') no-repeat center center fixed; 
+    }
+
 .welcome .vcenter-welcome-page {
-    margin-top: 15%; /**/
+    margin-top: 2%; /**/
     text-align: center;
 }
+
+.welcome a {
+    text-decoration: none;
+    color: rgba(0,64,64,.8);
+}
+
+    .welcome a:hover {
+        cursor: pointer;
+        text-decoration: none;
+        color: rgba(197,186,166,1);
+        border-bottom: 2px solid rgba(0,64,64,.8);
+    }
 
     .welcome-page .picture img {
         border-radius: 40px;
@@ -183,6 +201,28 @@ body.custom-background {
 
 /* ____________[ general ]*/
 
+
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.divider{
+    height: 50px;
+}
+
+.video{
+    width: 100%;
+}
+
+.video-box{
+    border: 20px solid rgba(0,64,64,.8)
+}
+
+
+
+
 .portfolio{
     text-transform: uppercase;
     font-weight: bold;
@@ -201,6 +241,10 @@ body.custom-background {
     color:white;
     font-size: 20px; 
     opacity:0.7;
+}
+
+.text-center{
+    text-align:center;
 }
 
 /* ____________[ About ]*/
@@ -246,3 +290,71 @@ body.custom-background {
     width: 700px;
     border: 2px solid black;
 }*/
+
+
+/* ____________[ Project Details ]*/
+
+.remove{
+    font-size:80px;
+}
+
+.img-techno-env{
+    height:65px;
+}
+
+.img-home-layout{
+    border: 20px solid #e6e6e6;
+}
+
+.title{
+    border: 2px solid black;
+    text-align: center;
+    border-top: 10px solid rgba(0,64,64,.8);
+    border-right: 10px solid rgba(0,64,64,.8)
+}
+
+.project-details {        
+            font-size: 18px;
+            background-color: rgb(242,242,242);
+    }
+
+.project-details a {
+    text-decoration: none;
+    color: rgba(0,64,64,.8);
+}
+
+    .project-details a:hover {
+        cursor: pointer;
+        text-decoration: none;
+        color: rgba(197,186,166,1);
+        border-bottom: 2px solid rgba(0,64,64,.8);
+    }
+
+.project-details .bg-3 {
+        background: none;
+        background-color: #e6e6e6;
+    }
+
+    .project-details section.bg-3 {
+        min-height: 150px;
+        padding: 0;
+    }
+
+    .project-details .bg-4 {
+        min-height: 650px;
+    }
+
+
+    .project-details .section-divider {
+        height: 100px;
+        background-color: #414141;
+    }
+
+    .project-details .carousel-caption {
+        padding: 20px;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .project-details section.bg-3 .title {
+        color: rgba(5,5,5,.8);
+    }

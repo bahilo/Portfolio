@@ -16,39 +16,23 @@
 <div class="projects project-details">
     <div class="row">
         <div class="col-md-offset-11">
-            <a href="javascript:close_winwow();"><i class="glyphicon glyphicon-remove" style="font-size:50px;"></i></a>
+            <a href="javascript:close_winwow();"><i class="remove">X</i></a>
         </div>
     </div>
-    @*<div class="row">
-            <div class="col-md-offset-1">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="title">
-                            <h1 class="text">@ViewBag.Title</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <a href="javascript:close_winwow();"><i class="glyphicon glyphicon-remove" style="font-size:50px;"></i></a>
-            </div>
-        </div>*@
-
-    @*<div class="divider" style="margin-top: 50px;"></div>*@
-
+    
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
             <div class="row">
-                <div class="col-md-12" style="border: 2px solid black;text-align: center;border-top: 10px solid rgba(0,64,64,.8);border-right: 10px solid rgba(0,64,64,.8)">
+                <div class="col-md-12 title">
                     <h1>@ViewBag.Title</h1>
                 </div>
             </div>
 
-            <div class="divider" style="height: 50px; "></div>
+            <div class="divider"></div>
 
             <div class="row">
-                <div class="col-md-12" style="border: 20px solid #e6e6e6;">
+                <div class="col-md-12 img-home-layout">
                     @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
                     {
                         <img src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" style="width:100%;">
@@ -56,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="divider" style="height: 50px;"></div>
+            <div class="divider"></div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -67,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="divider" style="height: 50px;"></div>
+            <div class="divider"></div>
             
             <div class="row">
                 <div class="col-md-12">
@@ -87,11 +71,11 @@
                                     <div class="col-md-4">
                                         @if (language.link != null)
                                         {
-                                            <a href="@language.link" target="_blank"><img src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)" style="height:65px;"></a>
+                                            <a href="@language.link" target="_blank"><img title="@language.Subject" alt="@language.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)"></a>
                                         }
                                         else
                                         {
-                                            <img src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)" style="height:65px;">
+                                            <img title="@language.Subject" alt="@language.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)">
                                         }
                                         
                                     </div>
@@ -115,11 +99,11 @@
                                     <div class="col-md-4">
                                         @if (technology.link != null)
                                         {
-                                            <a href="@technology.link" target="_blank"><img src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)" style="height:65px;"></a>
+                                            <a href="@technology.link" target="_blank"><img title="@technology.Subject" alt="@technology.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)"></a>
                                         }
                                         else
                                         {
-                                            <img src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)" style="height:65px;">
+                                            <img title="@technology.Subject" alt="@technology.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)">
                                         }
                                         
                                     </div>
@@ -143,11 +127,11 @@
                                     <div class="col-md-4">
                                         @if (versionControl.link != null)
                                         {
-                                            <a href="@versionControl.link" target="_blank"><img src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)" style="height:65px;"></a>
+                                            <a href="@versionControl.link" target="_blank"><img title="@versionControl.Subject" alt="@versionControl.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)"></a>
                                         }
                                         else
                                         {
-                                            <img src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)" style="height:65px;">
+                                            <img class="img-techno-env" title="@versionControl.Subject" alt="@versionControl.Subject" src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)">
                                         }
                                     </div>
                                 }
@@ -170,11 +154,11 @@
                                     <div class="col-md-4">
                                         @if (webService.link != null)
                                         {
-                                            <a href="@webService.link" target="_blank"><img src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)" style="height:65px;"></a>
+                                            <a href="@webService.link" target="_blank"><img alt="@webService.Subject"  title="@webService.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)"></a>
                                         }
                                         else
                                         {
-                                            <img src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)" style="height:65px;">
+                                            <img title="@webService.Subject" alt="@webService.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)">
                                         }
                                         
                                     </div>
@@ -185,7 +169,7 @@
                 </div>
             </div>
 
-            <div class="divider" style="height: 50px;"></div>
+            <div class="divider"></div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -196,15 +180,14 @@
                 </div>
             </div>
 
-            @*<div class="divider" style="height: 50px;"></div>*@
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     @if (Model.ProjectDetail != null && Model.ProjectDetail.Pictures.Count() > 0 && Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
                     {
-                        <div style="text-align:center;"><h3>Live demo</h3></div>
-                        <div style="border: 20px solid rgba(0,64,64,.8)">
-                            <video style="width: 100%;" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                        <div class="text-center"><h3>Live demo</h3></div>
+                        <div class="video-box">
+                            <video class="video" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
                                 <source src="@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => Model.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
                             </video>
                             <div id="footnote"></div>
@@ -217,11 +200,11 @@
         </div>
     </div>
 
-    <div class="divider" style="height: 50px;"></div>
+    <div class="divider"></div>
 
     <div class="row">
         <div class="col-md-offset-11">
-            <a href="javascript:close_winwow();"><i class="glyphicon glyphicon-remove" style="font-size:50px;"></i></a>
+            <a href="javascript:close_winwow();"><i class="remove">X</i></a>
         </div>
     </div>
 

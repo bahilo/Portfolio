@@ -3,11 +3,6 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_WelcomePageLayout.cshtml";
-
-    ViewBag.WelcomeMe = (ViewBag.Display != null) ? ViewBag.Display.AboutView.Name : "Name Zone";
-    ViewBag.WelcomeZone1 = (ViewBag.Display != null) ? ViewBag.Display.WelcomeView.Zone1 : "Zone 1";
-    ViewBag.WelcomeZone2 = (ViewBag.Display != null) ? ViewBag.Display.WelcomeView.Zone2 : "Zone 2";
-    ViewBag.WelcomeZone3 = (ViewBag.Display != null) ? ViewBag.Display.WelcomeView.Zone3 : "Zone 3";
 } 
 <div class="welcome">
     <div class="container"> 
@@ -39,9 +34,7 @@
                             <div class="col-md-4 col-md-offset-4">
                                 <p><a href="/Home/Index">en savoir+</a></p>
                             </div>
-                        </div>
-                        <!--<p class="home-link">@Html.ActionLink("Learn More", "Index", "Home")</p>-->
-                        
+                        </div>                        
                     </div>
                 </div>
             </div>

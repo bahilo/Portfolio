@@ -180,7 +180,7 @@ namespace DagoWebPortfolio.Controllers
                     mail.FromName = contactsViewModel.Name;
                     mail.IsHtml = true;
                     mail.addAnAddress(new Dictionary<string, List<string>> {
-                        { "To", new List<string> { "joel.dago@yahoo.fr" } },
+                        { "To", new List<string> { "eric.dago.225@gmail.com" } },
                         { "Reply-To",new List<string> { contactsViewModel.Email } }
                     });
                     //mail.addAttachment(new List<string> { Utility.getDirectory("bin", "Logs", "log_2016_09.txt") });
@@ -198,8 +198,6 @@ namespace DagoWebPortfolio.Controllers
                 }   
             }
             return RedirectToAction("Index", new { isMessageSent = ViewBag.EmailConfirmation });
-            //return RedirectToAction("Index", new { page = "Contact" });
-            //return View(contactsViewModel);
         }
 
         private void populateWithPicture(EPopulateDisplay targetType, object param)
@@ -226,77 +224,17 @@ namespace DagoWebPortfolio.Controllers
                             project.ProjectDetail.Pictures = db.PicturesApp.Where(x => x.ProjectDetailsViewModelID == project.ProjectDetail.ID).ToList();
                         }
                         break;
-                    case EPopulateDisplay.Skills:
-                        foreach (var skill in (List<SkillsViewModel>)param)
-                        {
-                            skill.Pictures = db.PicturesApp.Where(x => x.SkillsViewModelID == skill.ID).ToList();
-                        }
-                        break;
+                    //case EPopulateDisplay.Skills:
+                        //foreach (var skill in (List<SkillsViewModel>)param)
+                        //{
+                        //    skill.Pictures = db.PicturesApp.Where(x => x.SkillsViewModelID == skill.ID).ToList();
+                        //}
+                        //break;
                 }
             }
         }
 
-        //private void populateWithDescription( EPopulateDisplay targetType, object param)
-        //{
-        //    using (DBModelPortfolioContext db = new DBModelPortfolioContext())
-        //    {
-        //        string cultureName = CultureInfo.CurrentCulture.Name.Split('-')[0];
-
-        //        switch (targetType)
-        //        {
-        //            case EPopulateDisplay.Education:
-        //                foreach (var education in (List<EducationViewModel>)param)
-        //                {
-        //                    education.Descriptions = db.Displays.Where(x => x.EducationViewModelID == education.ID && x.Lang.StartsWith(cultureName)).ToList();
-        //                    if (education.Descriptions.Count == 0)
-        //                        education.Descriptions = db.Displays.Where(x => x.EducationViewModelID == education.ID && x.Lang.StartsWith("en")).ToList();
-        //                }
-        //                break;
-        //            case EPopulateDisplay.Experiences:
-        //                foreach (var experience in (List<ExperiencesViewModel>)param)
-        //                {
-        //                    experience.Descriptions = db.Displays.Where(x => x.ExperiencesViewModelID == experience.ID && x.Lang.StartsWith(cultureName)).ToList();
-        //                    if (experience.Descriptions.Count == 0)
-        //                        experience.Descriptions = db.Displays.Where(x => x.ExperiencesViewModelID == experience.ID && x.Lang.StartsWith("en")).ToList();
-        //                }
-        //                break;
-        //            case EPopulateDisplay.Projects:
-        //                foreach (var project in (List<ProjectsViewModel>)param)
-        //                {
-        //                    project.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == project.ID && x.Lang.StartsWith(cultureName)).ToList();
-        //                    if (project.Summaries.Count == 0)
-        //                        project.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == project.ID && x.Lang.StartsWith("en")).ToList();
-        //                }
-        //                break;
-        //            case EPopulateDisplay.ProjectDetails:
-        //                foreach (var project in (List<ProjectsViewModel>)param)
-        //                {
-        //                    project.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == project.ProjectDetail.ID && x.Lang.StartsWith(cultureName)).ToList();
-        //                    if (project.ProjectDetail.Descriptions.Count == 0)
-        //                        project.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == project.ProjectDetail.ID && x.Lang.StartsWith("en")).ToList();
-        //                }
-        //                break;
-        //            case EPopulateDisplay.Pictures:
-        //                foreach (var picture in (List<PicturesViewModel>)param)
-        //                {
-        //                    picture.Descriptions = db.Displays.Where(x => x.PicturesViewModelID == picture.ID && x.Lang.StartsWith(cultureName)).ToList();
-        //                    if (picture.Descriptions.Count == 0)
-        //                        picture.Descriptions = db.Displays.Where(x => x.PicturesViewModelID == picture.ID && x.Lang.StartsWith("en")).ToList();
-        //                }
-        //                break;
-        //            case EPopulateDisplay.Skills:
-        //                foreach (var skill in (List<SkillsViewModel>)param)
-        //                {
-        //                    skill.Descriptions = db.Displays.Where(x => x.SkillsViewModelID == skill.ID && x.Lang.StartsWith(cultureName)).ToList();
-        //                    if (skill.Descriptions.Count == 0)
-        //                        skill.Descriptions = db.Displays.Where(x => x.SkillsViewModelID == skill.ID && x.Lang.StartsWith("en")).ToList();
-        //                }
-        //                break;
-        //        }
-                
-        //    }
-        //}
-
+        
         private IEnumerable<ExperiencesViewModel> getExperiencesOrderByDate(List<SkillsViewModel> skills)
         {
             var experiencesListFromSkills = (from e in (from d in skills select d.Experiences).Distinct() select e).ToList();

@@ -5,10 +5,10 @@ $(document).ready(function () {
 
 
     /*----[ Welcome Page ]*/
-    setInterval(function () {
-        $('.welcome-page').animate({ 'background-size': '400%' }, 30000, 'linear');
-        $('.welcome-page').animate({ 'background-size': '105%' }, 30000, 'linear');
-    }, 1000);
+    //setInterval(function () {
+    //    $('.welcome-page').animate({ 'background-size': '400%' }, 30000, 'linear');
+    //    $('.welcome-page').animate({ 'background-size': '105%' }, 30000, 'linear');
+    //}, 1000);
 
     $('.welcome-page').hover(
      function () {

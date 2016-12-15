@@ -47,8 +47,11 @@ namespace DagoWebPortfolio.Controllers
         public ActionResult Create()
         {
             var skill = new SkillsViewModel();
+            skill.CategoryViewModel = new SkillsCategoryViewModel();
+            skill.LevelsViewModel = new SkillsLevelsViewModel();
             skill.Experiences = db.Experiences.ToList();
             skill.Projects = db.Projects.ToList();
+            setSourceDropDownList(new SkillsCategoryViewModel());
             return View(skill);
         }
 
@@ -65,6 +68,8 @@ namespace DagoWebPortfolio.Controllers
             {       
                 try
                 {
+                    skillsViewModel.Projects = new List<ProjectsViewModel>();
+                    skillsViewModel.Experiences = new List<ExperiencesViewModel>();
                     addOrUpdateSkillWithObjects(skillsViewModel, listExperiencesOfSkillId, listProjectsOfSkillId, isExperienceSelected, isProjectSelected);
                     db.Skills.Add(skillsViewModel);
                     db.SaveChanges();
@@ -101,28 +106,7 @@ namespace DagoWebPortfolio.Controllers
             skillsViewModel.Projects = db.Projects.ToList();
             return View(skillsViewModel);
         }
-
-        /*private void populateSkillWithObjects(SkillsViewModel skill
-                                    , IEnumerable<string> listExperiencesOfSkillId, IEnumerable<string> listProjectsIdOfSkill
-                                    , IEnumerable<string> isExperienceSelected, IEnumerable<string> isProjectSelected)
-        {
-            if ( isExperienceSelected  )
-            {
-                var id = Int32.Parse(experienceId);
-                var experience = db.Experiences.First(x=>x.ID == id);
-                experience.Skills.Add(skill);
-                skill.Experiences.Add(experience);
-            }
-
-            if ( isProjectSelected  )
-            {
-                var id = Int32.Parse(projectId);
-                var project = db.Projects.Where(x => x.ID == id).Include("ProjectDetail").DefaultIfEmpty().Single(); ;
-                project.Skills.Add(skill);
-                skill.Projects.Add(project);
-            }
-        }*/
-
+        
         // GET: Skills/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -132,11 +116,10 @@ namespace DagoWebPortfolio.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var skillsViewModelWithIncludes = db.Skills.Include("CategoryViewModel").Include("LevelsViewModel");
-            var skillsViewModel = skillsViewModelWithIncludes.Where(x => x.ID == id).Single();
+            var skillsViewModel = db.Skills.Include("CategoryViewModel").Include("LevelsViewModel").Where(x => x.ID == id).Single();
             skillsViewModel.Experiences = db.Experiences.Include(p=>p.Skills).ToList();
             skillsViewModel.Projects = db.Projects.Include(p => p.Skills).ToList();
-
+            setSourceDropDownList(skillsViewModel.CategoryViewModel);
             if (skillsViewModel == null)
             {
                 return HttpNotFound();
@@ -158,32 +141,33 @@ namespace DagoWebPortfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                skillsViewModel.CategoryViewModel.Title = categoryTitle;
-                var id = Int32.Parse(categoryID);
-                var origineParentCateg = db.Categories.Where(x => x.ID == id).Single();
-                origineParentCateg.Title = skillsViewModel.CategoryViewModel.Title;
-                origineParentCateg.Description = skillsViewModel.CategoryViewModel.Description;
-                skillsViewModel.CategoryViewModel = origineParentCateg;
-
-                id = Int32.Parse(levelID);
-                var origineParentLevel = db.Level.Where(x => x.ID == id).Single();
-                origineParentLevel.Level = skillsViewModel.LevelsViewModel.Level;
-                origineParentLevel.comments = skillsViewModel.LevelsViewModel.comments;
-                skillsViewModel.LevelsViewModel = origineParentLevel;
-
                 try
                 {
-                    addOrUpdateSkillWithObjects(skillsViewModel, listExperiencesOfSkillId, listProjectsOfSkillId, isExperienceSelected, isProjectSelected);
-
                     var origineSkill = db.Skills.Where(x => x.ID == skillsViewModel.ID).Include("Projects").Include("Experiences").DefaultIfEmpty().Single();
-
-                    origineSkill.LevelsViewModel = skillsViewModel.LevelsViewModel;
-                    origineSkill.CategoryViewModel = skillsViewModel.CategoryViewModel;
-                    origineSkill.Projects = skillsViewModel.Projects;
-                    origineSkill.Experiences = skillsViewModel.Experiences;
                     origineSkill.Title = skillsViewModel.Title;
+
+                    skillsViewModel.CategoryViewModel.Title = categoryTitle;
+                    var id = Int32.Parse(categoryID);
+                    var origineParentCateg = db.Categories.Where(x => x.ID == id).Single();
+                    origineParentCateg.Title = skillsViewModel.CategoryViewModel.Title;
+                    origineParentCateg.Description = skillsViewModel.CategoryViewModel.Description;
+                    origineSkill.CategoryViewModel = origineParentCateg;
+
+                    id = Int32.Parse(levelID);
+                    var origineParentLevel = db.Level.Where(x => x.ID == id).Single();
+                    origineParentLevel.Level = skillsViewModel.LevelsViewModel.Level;
+                    origineParentLevel.comments = skillsViewModel.LevelsViewModel.comments;
+                    origineSkill.LevelsViewModel = origineParentLevel;
+
+                    //origineSkill.LevelsViewModel = skillsViewModel.LevelsViewModel;
+                    //origineSkill.CategoryViewModel = skillsViewModel.CategoryViewModel;
+                    //origineSkill.Projects = skillsViewModel.Projects;
+                    //origineSkill.Experiences = skillsViewModel.Experiences;
+                    
                     //origineSkill.Description = skillsViewModel.Description;
                     
+                    addOrUpdateSkillWithObjects(origineSkill, listExperiencesOfSkillId, listProjectsOfSkillId, isExperienceSelected, isProjectSelected);
+
                     db.Entry(origineSkill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -380,5 +364,16 @@ namespace DagoWebPortfolio.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //===============================
+
+        private void setSourceDropDownList(SkillsCategoryViewModel category)
+        {
+            ViewBag.Categories = new SelectList(new List<string> { "Coding", "Business", "Others", "Certification" }, category.Title);
+         }
+
+
+
     }
 }

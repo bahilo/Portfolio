@@ -259,6 +259,7 @@
       <DependentUpon>aspnet-DagoWebPortfolio-20151104125639.mdf</DependentUpon>
     </Content>
     <Content Include="Content\Css\timeline.css" />
+    <Content Include="Content\Images\bg-1.jpg" />
     <Content Include="Content\Images\icone.png.ico" />
     <Content Include="Content\Themes\AdminTheme\css\bootstrap.min.css" />
     <Content Include="Content\Themes\AdminTheme\fonts\glyphicons-halflings-regular.svg" />
@@ -273,9 +274,9 @@
     <Content Include="Content\Themes\AdminTheme\img\icons\weather.png" />
     <Content Include="Content\Themes\AdminTheme\img\left-arrow.png" />
     <Content Include="Content\Themes\AdminTheme\img\search-icon.jpg" />
-    <Content Include="Content\Css\animate.css" />
+    <Content Include="Content\Themes\Site\css\animate.css" />
     <Content Include="Content\Css\bootstrap-theme.css" />
-    <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Themes\Site\css\bootstrap.min.css" />
     <Content Include="Content\Css\AdminStyles.css" />
     <Content Include="Content\Css\PorjectDetailStyle.css" />
     <Content Include="Content\Css\styles.css" />
@@ -501,7 +502,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Content\Images\icon.ico" />
-    <Content Include="Views\Shared\fr\icon_fr.ico" />
+    <Content Include="Content\Images\icon_fr.ico" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -515,7 +516,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -594,7 +594,6 @@
     <Content Include="Views\Displays\_ViewStart.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Pictures\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_LayoutProjectDescriptor.cshtml" />
     <Content Include="Views\Shared\_ProjectDescriptor.cshtml" />
     <Content Include="Views\Shared\_LayoutProjectDetails.cshtml" />
     <Content Include="Views\Home\en\_Welcome.cshtml" />
