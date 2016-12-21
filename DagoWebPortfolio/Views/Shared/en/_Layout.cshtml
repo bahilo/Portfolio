@@ -9,22 +9,23 @@
 <head>
 
     <title>@ViewBag.Title</title>
-    <link href="~/Content/Themes/zerif_lite/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Themes/zerif_lite/css/style.css" rel="stylesheet" />
     <link rel="icon" href="~/Content/Images/icon.ico" />
-    <link rel='stylesheet' id='zerif_style-css' href='https://demot-vertigostudio.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/style.css?ver=v1' type='text/css' media='all' />
-    @*<link href="~/Content/Themes/zerif_lite/css/style2.css" rel="stylesheet" type='text/css' media='all' />*@
 
     <link href="~/Content/Themes/zerif_lite/css/dashicons.min.css" rel="stylesheet" />
     <link href="~/Content/Themes/zerif_lite/css/admin-bar.min.css" rel="stylesheet" />
     <link href="~/Content/Themes/zerif_lite/css/megamenu.css" rel="stylesheet" />
-    <link href="~/Content/Themes/zerif_lite/css/cssFonts.css" rel="stylesheet" />
+    @*<link href="~/Content/Themes/zerif_lite/css/cssFonts.css" rel="stylesheet" />*@
 
     <link href="~/Content/Themes/Site/css/timeline.css" rel="stylesheet" />
     <link href="~/Content/Themes/Site/css/styles.css" rel="stylesheet" />
 
+    <link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline|Monoton|Merienda" rel="stylesheet">
+
     <script src="~/Scripts/jquery-2.1.4.js"></script>
     <script src="~/Content/Scripts/waterbubble.min.js"></script>
+
 
 </head>
 
@@ -72,16 +73,16 @@
                                 <div class="mega-menu-toggle"><div class='mega-toggle-block mega-menu-toggle-block mega-toggle-block-right' id='mega-toggle-block-1'></div></div>
                                 <ul id="mega-menu-primary" class="mega-menu mega-menu-horizontal mega-no-js" data-event="hover" data-effect="disabled" data-second-click="close" data-document-click="collapse" data-reverse-mobile-items="true" data-vertical-behaviour="standard" data-breakpoint="768">
 
-                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18243'><a class="mega-menu-link" href="/Home/Index">Home</a></li>
-                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18247'><a class="mega-menu-link" href="#experiencesbackground">Experience</a></li>
-                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18249'><a class="mega-menu-link" href="#educationbackground">Education</a></li>
-                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18244'><a class="mega-menu-link" href="#skillsets">Skills</a></li>
-                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18248'><a class="mega-menu-link" href="#latestprojects">Projects</a></li>
+                                    <li onclick="setMenuActive(this);" class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18243'><a class="mega-menu-link" href="#aboutme">Home</a></li>
+                                    <li onclick="setMenuActive(this);" class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18247'><a class="mega-menu-link" href="#experiencesbackground">Experience</a></li>
+                                    <li onclick="setMenuActive(this);" class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18249'><a class="mega-menu-link" href="#educationbackground">Education</a></li>
+                                    <li onclick="setMenuActive(this);" class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18244'><a class="mega-menu-link" href="#skillsets">Skills</a></li>
+                                    <li onclick="setMenuActive(this);" class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18248'><a class="mega-menu-link" href="#latestprojects">Projects</a></li>
                                     @if (Request.IsAuthenticated)
                                     {
-                                        <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18250"><a class="mega-menu-link" href="/Admin/Index" target="_blank">Admin</a> </li>
+                                        <li onclick="setMenuActive(this);" class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18250"><a class="mega-menu-link" href="/Admin/Index" target="_blank">Admin</a> </li>
                                     }
-                                    <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18251'><a class="mega-menu-link" href="#contactform">Contact</a></li>
+                                    <li onclick="setMenuActive(this);" class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-18251'><a class="mega-menu-link" href="#contactform">Contact</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -93,9 +94,9 @@
 
                     <div class="header-content-wrap">
                         <div class="container">
-                            <h1 class="intro-text">
-                                <span class="title-letter-one">I</span> <span class="title-letter-two">Am</span> <span class="title-letter-three">a </span> <span class="title-letter-four">C#</span> <span class="title-letter-five">Developer</span>
-                            </h1>
+                            <p class="intro-text">
+                                I &nbsp; Am &nbsp; a &nbsp; C# &nbsp; Developer
+                            </p>
                         </div>
                     </div><!-- .header-content-wrap -->
                     <div class="clear"></div>
@@ -112,23 +113,33 @@
 
 
                 <div class="container">
-                    <div class="col-md-3 company-details">
+                    <div class="col-md-3 my-details">
                         <div class="icon-top red-text">
-                            <img src="https://demot-vertigostudio.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/images/map25-redish.png" alt="" />
+                            <img src="~/Content/Themes/zerif_lite/images/map25-redish.png" />
                         </div>
                         <div class="zerif-footer-address">
                             Eric Dago - Address - Essex
                         </div>
                     </div>
-                    <div class="col-md-3 company-details">
+                    <div class="col-md-3 my-details">
                         <div class="icon-top green-text">
-                            <img src="https://demot-vertigostudio.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/images/envelope4-green.png" alt="" />
+                            <img src="~/Content/Themes/zerif_lite/images/envelope4-green.png" />
                         </div>
                         <div class="zerif-footer-email">
-                            eric.dago.225@gmail.com
+                            <a class="zerif-copyright" href="mailto:eric.dago.225@gmail.com">
+                                eric.dago.225@gmail.com
+                            </a>
                         </div>
                     </div>
-                    <div class="col-md-6 copyright">
+                    <div class="col-md-3 my-details">
+                        <div class="icon-top green-text">
+                            <img src="~/Content/Themes/zerif_lite/images/telephone65-blue.png" />
+                        </div>
+                        <div class="zerif-footer-email">
+                            07404539589
+                        </div>
+                    </div>
+                    <div class="col-md-3 copyright">
                         @*<ul class="social">
                                 <li>
                                     <a>
@@ -176,13 +187,11 @@
                                     </a>
                                 </li>
                             </ul>*@
-                        <p id="zerif-copyright">
+                        @*<p id="zerif-copyright">
                             ©2015 E.DAGO
-                        </p>
+                        </p>*@
                         <div class="zerif-copyright-box">
-                            <a class="zerif-copyright" href="mailto:#">
-                                eric.dago.225@gmail.com
-                            </a>
+                            ©2015 E.DAGO
                         </div>
                     </div>
                 </div> <!-- / END CONTAINER -->
@@ -193,11 +202,109 @@
         </div><!-- mobile-bg-fix-whole-site -->
     </div><!-- .mobile-bg-fix-wrap -->
 
+    @RenderSection("scripts", required: false)
 
     <script src="~/Content/Themes/zerif_lite/js/scrollReveal.js"></script>
     <script src="~/Content/Themes/zerif_lite/js/smoothscroll.js"></script>
-    <script src="~/Content/Themes/zerif_lite/js/bootstrap.min.js"></script>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
+    <script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var param = 0;
+            var value = 0;
+            var name = ""; // ,
+            var listColor = [ '#E1BEE7', '#F8BBD0', '#7F677F' ];
+            $("canvas[id^=demo]").each(function () {
+                value = $(this).attr("property");
+                name = $(this).attr("name");
+                param = value / 100;
+                $(this).waterbubble({
+
+                    // bubble size
+                    radius: 50,
+
+                    // border width
+                    lineWidth: undefined,
+
+                    // data to present
+                    data: param,
+
+                    // color of the water bubble
+                    waterColor: listColor[Math.floor(Math.random() * listColor.length)],//'rgba(25, 139, 201, 1)',
+
+                    // text color
+                    textColor: 'rgba(06, 85, 128, 0.8)',
+
+                    // custom font family
+                    font: '',
+
+                    // show wave
+                    wave: true,
+
+                    // custom text displayed inside the water bubble
+                    txt: value + "%",
+
+                    // enable water fill animation
+                    animation: true
+
+                });
+            });
+
+
+            var obj = @Html.Raw(ViewBag.Object);
+
+            var errorContainer = $("#emailSendingError");
+            errorContainer.hide();
+
+            if ( obj == true ) {
+                errorContainer.show();
+                // show success sending email
+                var emailSendingSuccessed = "<div class=\"info\" id=\"contact-confirm-faild\">"+
+                    "<div class=\"container\"> "+
+                        "<a href=\"/Home/Index\" data-dismiss=\"alert\" style=\"font-size:35px;\">" +
+                            "<i class=\"glyphicon glyphicon-remove\"></i>" +
+                        "</a>" +
+                        "<div class=\"row\"> " +
+                            "<div class=\"col-md-12 alert alert-success  vcenter\"> " +
+                                "<strong>Successful!</strong> Your message has been sent successfully." +
+                            "</div> " +
+                        "</div>" +
+                     "</div> " +
+                "</div>";
+                errorContainer.html(emailSendingSuccessed);
+            }
+            else if(obj == false){
+                // show fail sending email
+                errorContainer.show();
+                var emailSendingFailed = "<div class=\"info\" id=\"contact-confirm-faild\">"+
+                    "<div class=\"container\"> "+
+                        "<a href=\"/Home/Index\" data-dismiss=\"alert\" style=\"font-size:35px;\">" +
+                            "<i class=\"glyphicon glyphicon-remove\"></i>" +
+                        "</a>" +
+                        "<div class=\"row\"> " +
+                            "<div class=\"col-md-12 alert alert-danger\"> " +
+                                "<strong>Failed!</strong> Your message has not been sent." +
+                            "</div> " +
+                        "</div>" +
+                     "</div> " +
+                "</div>";
+                errorContainer.html(emailSendingFailed);
+                //window.location = "http://localhost:65399/Home/index#contactform";
+            }
+
+        });
+
+        tinymce.init({
+            selector: "textarea"
+            /*,
+            //plugins: 'a_tinymce_plugin',
+            a_plugin_option: true,
+            a_configuration_option: 400*/
+        });
+    </script>
 
 </body>
 </html>

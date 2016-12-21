@@ -14,7 +14,7 @@ namespace DagoWebPortfolio.Models
         [Required(ErrorMessage = "Please give a name.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please give a organization or company name.")]
+        [Required(ErrorMessage = "Please give organization or company name.")]
         public string Company { get; set; }
 
         [Required(ErrorMessage = "Please give an email.")]

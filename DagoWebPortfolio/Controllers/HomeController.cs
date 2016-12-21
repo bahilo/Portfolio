@@ -35,6 +35,8 @@ namespace DagoWebPortfolio.Controllers
 
         public ActionResult Index(bool? isMessageSent = null)
         {
+            ContactViewModel ContactViewModel = new ContactViewModel();
+
             if (System.IO.File.Exists(Utility.getDirectory("Views", "Shared", _culture, "_Layout.cshtml")))
                 ViewBag.Culture = _culture;
             else
@@ -115,9 +117,9 @@ namespace DagoWebPortfolio.Controllers
             }
 
             if(System.IO.File.Exists(Utility.getDirectory("Views", "Home",_culture , "Index.cshtml")))
-                return View(_culture + "/Index");
+                return View(_culture + "/Index", ContactViewModel);
             else
-                return View(_cultureDefault + "/Index");
+                return View(_cultureDefault + "/Index", ContactViewModel);
             
             //try
             //{
@@ -190,14 +192,15 @@ namespace DagoWebPortfolio.Controllers
 
                     db.Contacts.Add(contactsViewModel);
                     db.SaveChanges();
-
+                    return RedirectToAction("Index", new { isMessageSent = ViewBag.EmailConfirmation, contact = new ContactViewModel() });
                 }
                 catch (Exception ex)
                 {
                     Log.write(ex.Message, "ERR");
                 }   
             }
-            return RedirectToAction("Index", new { isMessageSent = ViewBag.EmailConfirmation });
+
+            return RedirectToAction("Index", new { isMessageSent = ViewBag.EmailConfirmation});
         }
 
         private void populateWithPicture(EPopulateDisplay targetType, object param)

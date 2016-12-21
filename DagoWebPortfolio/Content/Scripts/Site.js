@@ -43,6 +43,7 @@ $(document).ready(function () {
         $(this).removeClass('animated infinite pulse');
     });/**/
 
+       
     
 });
 
@@ -52,10 +53,13 @@ function setMenuActive(element) {
 }
 
 function resetMenuActive() {
-    menuElements = document.getElementsByClassName("menuElement");
+    menuElements = document.getElementsByClassName("mega-menu-item");
     for (i = 0; i < menuElements.length; i++) {
         menuElements[i].classList.remove("active");
     }
 }
+
+
+
 
 
