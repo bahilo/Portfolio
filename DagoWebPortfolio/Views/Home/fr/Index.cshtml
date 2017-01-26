@@ -49,76 +49,60 @@
             </div><!-- / END SECTION HEADER -->
             <!-- 3 COLUMNS OF ABOUT US-->
 
+
+
             <div class="row">
-
-                <!-- COLUMN 1 - BIG MESSAGE ABOUT THE COMPANY-->
-                @*<div class="col-lg-4 col-md-4 column zerif-rtl-big-title">
-                        <div class="big-intro" data-scrollreveal="enter left after 0s over 1s">
-                            Everything you see here is responsive and mobile-friendly.
-                        </div>
-                    </div>*@
-                <div class="about-me">
-
-                    <div class="container">
-                        <div class="col-sm-10 col-sm-offset-1">
-                            @if (!string.IsNullOrEmpty(picture.FileName))
-                            {
-                                string fullPath = picture.path + picture.FileName;
-                                <div class="section-header">
-                                    <img class="picture-home" src="@fullPath" />
-                                </div>
-                                @*<div class="page-header text-center">
-                                        <div class="row">
-                                            <div class="col-md-4 col-md-offset-4">
-                                                <img class="picture-home" alt="Me" src="@fullPath" />
-                                            </div>
+                <div class="row">
+                    <div data-scrollreveal="enter left move 60px after 0.00s over 2.5s">
+                        <div class="about-me">
+                            <div class="container">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    @if (!string.IsNullOrEmpty(picture.FileName))
+                                    {
+                                        string fullPath = picture.path + picture.FileName;
+                                        <div class="section-header">
+                                            <img class="picture-home" src="@fullPath" />
                                         </div>
-                                    </div>*@
-            <!---->
+                                    }
+                                    <p class="text-center">
+                                        <span>
+                                            Après obtention de mon diplôme d'ingénieur en informatique de l'école ISEP,&nbsp; j'ai débuté ma carrière en tant que développeur
+                                            dans un environnement Oracle pour la société Infoelsa. La société Infoelsa développe des logiciels pour des banques et assurances.<br /><br />
 
-                            }
+                                            Afin d'élargir mes compétences de développeur et parfaire mon niveau d'anglais,&nbsp; j'ai effectué un sejour de 2 ans en Angleterre dans la ville de Londre où j'ai suivie une formation de 1 an de développeur C# avec la société Just IT.<br />
+                                            Ce séjour m'a permit de non seulement améliorer mon anglais,&nbsp; de découvrir une autre culture mais également de faire de moi un meilleur développeur.
+                                        </span>
+                                    </p>
+                                </div>
 
-                            <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
-                                <p class="text-center">
-                                    Après obtention de mon diplôme d'ingénieur en informatique de l'école ISEP,&nbsp; j'ai débuté ma carrière en tant que développeur
-                                    dans un environnement Oracle pour la société Infoelsa. La société Infoelsa développe des logiciels pour des banques et assurances.<br /><br />
-
-                                    Afin d'élargir mes compétences de développeur et parfaire mon niveau d'anglais,&nbsp; j'ai effectué un sejour de 2 ans en Angleterre dans la ville de Londre où j'ai suivie une formation de 1 an de développeur C# avec la société Just IT.<br />
-                                    Ce séjour m'a permit de non seulement améliorer mon anglais,&nbsp; de découvrir une autre culture mais également de faire de moi un meilleur développeur.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="our-clients">
-                        <h5>
-                            <span class="section-footer-title">PROFILE</span>
-                        </h5>
-                    </div>
-                    <div class="client-list">
-                        <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
-
-                            <div class="col-md-4">
-                                <h4><span class="glyphicon glyphicon-send"></span>Ambition</h4>
-                                <p>Afin de consolider mes competences, J'ai suivi une formation de développeur avec la société privée Just IT, à travers laquelle j'ai obtenu les certifications Microsoft 70-463 et 98-361.</p>
-                            </div>
-                            <div class="col-md-4">
-                                <h4><span class="glyphicon glyphicon-retweet"></span>Motivation</h4>
-                                <p><span>J'ai toujours aimé travailler avec les nouvelles technologies. Après avoir été diplômé, j'ai cherché à devenir développeur informatique.</span></p>
-                                <p>&nbsp;</p>
-                            </div>
-                            <div class="col-md-4">
-                                <h4><span class="glyphicon glyphicon-ok-sign"></span>Qualités</h4>
-                                <p class="MsoNormal"><span lang="fr-fr">Les différents projets auxquels j'ai participé m'ont permit de développer mon adaptabilité, ma capacité à résoudre des problèmes et à travailler en équipe.</span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="divider" id="section4"></div>
+
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-1">
+                        <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
+                            <div class="our-clients">
+                                <h3>
+                                    <span class="section-footer-title">PROFILE</span>
+                                </h3>
+                            </div>
+                            <div class="client-list">
+                                <div class="col-md-4">
+                                    <h3><span class="glyphicon glyphicon-send"></span>Ambition</h3>
+                                    <p><span>Afin de consolider mes competences, J'ai suivi une formation de développeur avec la société privée Just IT, à travers laquelle j'ai obtenu les certifications Microsoft 70-463 et 98-361.</span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3><span class="glyphicon glyphicon-retweet"></span>Motivation</h3>
+                                    <p><span>J'ai toujours aimé travailler avec les nouvelles technologies. Après avoir été diplômé, j'ai cherché à devenir développeur informatique.</span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3><span class="glyphicon glyphicon-ok-sign"></span>Qualités</h3>
+                                    <p class="MsoNormal"><span lang="fr-fr">Les différents projets auxquels j'ai participé m'ont permit de développer mon adaptabilité, ma capacité à résoudre des problèmes et à travailler en équipe.</span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div> <!-- / END 3 COLUMNS OF ABOUT US-->
         </div> <!-- / END CONTAINER -->
@@ -137,7 +121,7 @@
 
                 <h2 class="dark-text">Expérience Professionnelle</h2><div class="section-legend">Ci-dessous mon parcours professionnel.</div>
             </div>
-            <div class="row" data-scrollreveal="enter right after 0s over 1s">
+            <div data-scrollreveal="enter right after 0s over 1s">
                 <div class="row">
                     <ul class="timeline">
                         @foreach (var experience in experiences)
@@ -146,7 +130,7 @@
                             {
                                 <li>
 
-                                    <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                    <div class="timeline-badge">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                     <div class="timeline-panel animated rotateInDownRight">
 
                                         @if (experience.Pictures.Count > 0)
@@ -192,7 +176,7 @@
                             else
                             {
                                 <li class="timeline-inverted">
-                                    <div class="timeline-badge @_colors_class[rd.Next(0, 4)]">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
+                                    <div class="timeline-badge">@Html.DisplayFor(modelItem => experience.EndDate.Year)</div>
                                     <div class="timeline-panel animated rotateInDownRight">
 
                                         @if (experience.Pictures.Count > 0)
@@ -254,112 +238,111 @@
     @{count = 0; }
     <section class="testimonial" id="educationbackground">
         <div class="container">
-            <div class="row" data-scrollreveal="enter right after 0s over 1s">
-                <div class="section-header">
+            <div class="section-header">
                     <h2 class="white-text">Formation</h2>
                     <h6 class="white-text section-legend">Ci-dessous mon parcours scolaire.</h6>
                 </div>
                 <div class="row">
-                    <ul class="timeline">
-                        @foreach (var item in education)
-                        {
-                            if (count % 2 == 0)
+                    <div data-scrollreveal="enter right after 0s over 1s">
+                        <ul class="timeline">
+                            @foreach (var item in education)
                             {
-                                <li>
-                                    <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
-                                    <div class="timeline-panel animated rotateInDownLeft">
-                                        @if (item.Pictures.Count > 0)
-                                        {
-                                            //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
-                                            string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
+                                if (count % 2 == 0)
+                                {
+                                    <li>
+                                        <div class="timeline-badge">@Html.DisplayFor(modelItem => item.YearGraduate.Year)</div>
+                                        <div class="timeline-panel animated rotateInDownLeft">
+                                            @if (item.Pictures.Count > 0)
+                                            {
+                                                //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                                string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
+                                                <div class="row">
+                                                    <div class="col-md-12 img-layout">
+                                                        <img src="@fullPath" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            }
+
+
                                             <div class="row">
-                                                <div class="col-md-12 img-layout">
-                                                    <img src="@fullPath" class="img-responsive">
+                                                <div class="col-md-12">
+                                                    <div class="timeline-heading">
+
+                                                        @if (item.link != null)
+                                                        {
+                                                            <h3 class="timeline-title"><span><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h3>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
+
+                                                        }
+
+                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
+                                                        @if (item.Descriptions.Count > 0)
+                                                        {
+                                                            <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
+                                                        }
+
+                                                    </div><!--/panel-->
                                                 </div>
                                             </div>
-                                        }
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge">@Html.DisplayFor(modelItem => item.YearGraduate.Year)</div>
+                                        <div class="timeline-panel animated rotateInDownRight">
+                                            @if (item.Pictures.Count > 0)
+                                            {
+                                                //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
+                                                string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
+                                                <div class="row">
+                                                    <div class="col-md-12 img-layout">
+                                                        <img src="@fullPath" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            }
 
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="timeline-heading">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="timeline-heading">
 
-                                                    @if (item.link != null)
-                                                    {
-                                                        <h3 class="timeline-title"><span><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h3>
-                                                    }
-                                                    else
-                                                    {
-                                                        <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
+                                                        @if (item.link != null)
+                                                        {
+                                                            <h3 class="timeline-title"><span><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h3>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
 
-                                                    }
+                                                        }
 
-                                                    <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s)</small>  </p>
+                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
+
+                                                    </div><!--timeline-heading-->
                                                     @if (item.Descriptions.Count > 0)
                                                     {
                                                         <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
                                                     }
-
-                                                </div><!--/panel-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge @_colors_class[rd.Next(0, 4)]"><i class="glyphicon @_glyphicons[rd.Next(0,3)]"></i></div>
-                                    <div class="timeline-panel animated rotateInDownRight">
-                                        @if (item.Pictures.Count > 0)
-                                        {
-                                            //string fullPath = "/Content"+"/Images"+"/Education/"+ item.Pictures.LastOrDefault().FileName;
-                                            string fullPath = item.Pictures.LastOrDefault().path + item.Pictures.LastOrDefault().FileName;
-                                            <div class="row">
-                                                <div class="col-md-12 img-layout">
-                                                    <img src="@fullPath" class="img-responsive">
                                                 </div>
                                             </div>
-                                        }
-
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="timeline-heading">
-
-                                                    @if (item.link != null)
-                                                    {
-                                                        <h3 class="timeline-title"><span><a target="_blank" href="@Html.DisplayFor(modelItem => item.link)">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</a></span></h3>
-                                                    }
-                                                    else
-                                                    {
-                                                        <h3 class="timeline-title"><span class="no-link">@Html.DisplayFor(modelItem => item.SchoolName) - @Html.ValueFor(model => item.YearGraduate, "{0:dd/MM/yyyy}")</span></h3>
-
-                                                    }
-
-                                                    <p><small class="text-muted"><i class="glyphicon glyphicon-check"></i>  @Html.DisplayFor(model => item.NbYearsToGraduate) Year(s) </small></p>
-
-                                                </div><!--timeline-heading-->
-                                                @if (item.Descriptions.Count > 0)
-                                                {
-                                                    <p>@Html.DisplayHtml(item.Descriptions.First().Description)</p>
-                                                }
-                                            </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                }
+                                
+                                count++;
                             }
 
-                            @*<div class="divider"></div>*@
+                            <li>
+                                <div class="start timeline-badge "><i class="glyphicon glyphicon-circle-arrow-up"></i></div>
+                            </li>
+                        </ul>
 
-                            count++;
-                        }
-                        <li>
-                            <div class="start timeline-badge "></div>
-                        </li>
-                    </ul>
-
-                </div>
+                    </div>
             </div>
         </div>
     </section>
@@ -383,7 +366,7 @@
                 <h2 class="dark-text">Competences</h2><div class="section-legend">Ci-dessous mes competences.</div>
             </div>
 
-            <div class="row" data-scrollreveal="enter right after 0s over 1s">
+            <div data-scrollreveal="enter right after 0s over 1s">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="row">
@@ -499,12 +482,11 @@
 
     <section class="separator-one" id="ribbon_bottom">
         <div class="color-overlay">
-            <h3 class="container text" data-scrollreveal="enter left after 0s over 1s"></h3>
             <div data-scrollreveal="enter left after 0s over 1s">
                 <p>Par Muhammad Ali.</p>
             </div>
             <div data-scrollreveal="enter right after 0s over 1s">
-                <blockquote>
+                <blockquote class="quote">
                     C'est la répétition d'une affirmation qui conduit a une croyance. Une fois cette croyance devient une profonde conviction, c'est le début d'une réalité.
                 </blockquote>
             </div>
@@ -514,49 +496,41 @@
 
     @*================[  Projects section ]=======================*@
 
-    <section class="latest-news" id="latestprojects">
+    <section class="latest-news project" id="latestprojects">
         <div class="container">
             <div class="section-header"><h2 class="dark-text">Projets</h2><div class="dark-text section-legend">Ci-dessous mes derniers projects.</div></div><!-- END .section-header --><div class="clear"></div>
             <div data-scrollreveal="enter right after 0s over 1s">
-                <div id="carousel-homepage-latestnews" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active" role="option">
-                            @foreach (var project in projects.OrderByDescending(x => x.ProjectDetail.Date).ToList())
-                            {
-                                <div class="col-sm-3 latestnews-box">
-                                    <div class="latestnews-img">
-                                        @{
-                                            string title = project.Title;
-                                            if (project.ProjectDetail.Descriptions.Count > 0)
-                                            {
-                                                title = project.ProjectDetail.Descriptions.First().Subject;
-                                            }
-                                        }
-                                        <a class="latestnews-img-a" href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@title" target="_blank">
-                                            @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
-                                            {
-                                                <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" class="img-responsive">
-                                            }
-                                            else
-                                            {
-                                                <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive">
-                                            }
-                                            <noscript>
-                                                <img width="250" height="250" src="~/Content/Images/Carousel/Singapour.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="@Html.DisplayFor(modelItem => project.Title)" />
-                                            </noscript>
+                <div class="row">
+                    @foreach (var project in projects.OrderByDescending(x => x.ProjectDetail.Date).ToList())
+                    {
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-thumbnail">
+                                    @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
+                                    {
+                                        var img = project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").ElementAt(0);
+                                        <img src="@img.path@img.FileName" class="img-responsive">
+                                        @*<a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
+                                        </a>*@
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive">
+                                        @*<a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
+                                        </a>*@
+                                    }
+
+                                </div>
+                                <div class="panel-body latesnews-content">
+                                    <span class="latestnews-title">
+                                        <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
+                                            @Html.DisplayFor(modelItem => project.Title)
                                         </a>
-                                    </div>
-                                    <div class="latesnews-content">
-                                        <h3 class="latestnews-title">
-                                            <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@title)" target="_blank">
-                                                @title
-                                            </a>
-                                        </h3>
-                                    </div>
-                                </div><!-- .latestnews-box"> -->
-                                            }
-                        </div><!-- #carousel-homepage-latestnews -->
-                    </div>
+                                    </span>
+                                </div>
+                            </div><!--/panel-->
+                        </div>
+                    }
                 </div>
             </div>
         </div><!-- .container -->
@@ -565,7 +539,7 @@
 
     @*================[  Contact section ]=======================*@
 
-    <section class="contact-us" id="contactform">
+    <section class="contact" id="contactform">
         <div class="container">
             <!-- SECTION HEADER -->
             <div class="section-header">
@@ -576,7 +550,7 @@
             <div data-scrollreveal="enter right after 0s over 1s">
                 <div class="row">
                     <div class="pirate_forms_wrap">
-                        <form action="/Home/Contact" class="pirate_forms" method="post">
+                        <form action="/Home/Contact" class="pirate_forms" method="post" name="contactForm" onsubmit="return validateForm();">
                             @Html.AntiForgeryToken()
 
 
@@ -585,21 +559,21 @@
 
                             <div>
                                 <div class="row form-group">
-                                    <div class="col-xs-4 col-md-offset12 form_field_wrap contact_name_wrap pirate_forms_three_inputs">
+                                    <div class="col-md-6">
                                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @id = "firstName", @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-8">
+                                    <div class="col-md-6">
                                         @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @id = "pirate-forms-contact-name", @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col-xs-6">
+                                    <div class="col-md-6">
                                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "Email", @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-6">
+                                    <div class="col-md-6">
                                         @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @id = "Phone", @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                                     </div>
@@ -611,8 +585,8 @@
                                     </div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col-xs-12 col-sm-6 col-lg-6 form_field_wrap contact_submit_wrap">
-                                        <button class="pirate-forms-submit-button">Envoyer Message</button>
+                                    <div class="col-md-offset-10 col-md-2 form_field_wrap contact_submit_wrap">
+                                        <button type="submit" class="pirate-forms-submit-button">Envoyer</button>
                                     </div>
                                 </div>
                             </div>
@@ -627,101 +601,61 @@
 
 </div>
 
-<script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        var param = 0;
-        var value = 0;
-        var name = ""; // ,
-        var listColor = [ '#e96656', '#c1fc2f', '#7F677F' ];
-        $("canvas[id^=demo]").each(function () {
-            value = $(this).attr("property");
-            name = $(this).attr("name");
-            param = value / 100;
-            $(this).waterbubble({
+        function resetFormError()
+        {
+            var errorName = document.getElementById("NameError");
+            errorName.style.display = "none";
 
-                // bubble size
-                radius: 50,
+            var errorCompany = document.getElementById("CompanyError");
+            errorCompany.style.display = "none";
 
-                // border width
-                lineWidth: undefined,
-
-                // data to present
-                data: param,
-
-                // color of the water bubble
-                waterColor: listColor[Math.floor(Math.random() * listColor.length)],//'rgba(25, 139, 201, 1)',
-
-                // text color
-                textColor: 'rgba(06, 85, 128, 0.8)',
-
-                // custom font family
-                font: '',
-
-                // show wave
-                wave: true,
-
-                // custom text displayed inside the water bubble
-                txt: value + "%",
-
-                // enable water fill animation
-                animation: true
-
-            });
-        });
-
-
-        var obj = @Html.Raw(ViewBag.Object);
-
-        var errorContainer = $("#emailSendingError");
-        errorContainer.hide();
-
-        if ( obj == true ) {
-            errorContainer.show();
-            // show success sending email
-            var emailSendingSuccessed = "<div class=\"info\" id=\"contact-confirm-faild\">"+
-                "<div class=\"container\"> "+
-                    "<a href=\"/Home/Index\" data-dismiss=\"alert\" style=\"font-size:35px;\">" +
-                        "<i class=\"glyphicon glyphicon-remove\"></i>" +
-                    "</a>" +
-                    "<div class=\"row\"> " +
-                        "<div class=\"col-md-12 alert alert-success  vcenter\"> " +
-                            "<strong>Succes!</strong> Votre message a bien ete envoye." +
-                        "</div> " +
-                    "</div>" +
-                 "</div> " +
-            "</div>";
-            errorContainer.html(emailSendingSuccessed);
-        }
-        else if(obj == false){
-            // show fail sending email
-            errorContainer.show();
-            var emailSendingFailed = "<div class=\"info\" id=\"contact-confirm-faild\">"+
-                "<div class=\"container\"> "+
-                    "<a href=\"/Home/Index\" data-dismiss=\"alert\" style=\"font-size:35px;\">" +
-                        "<i class=\"glyphicon glyphicon-remove\"></i>" +
-                    "</a>" +
-                    "<div class=\"row\"> " +
-                        "<div class=\"col-md-12 alert alert-danger\"> " +
-                            "<strong>Echec!</strong> Votre message n'a pas ete envoye." +
-                        "</div> " +
-                    "</div>" +
-                 "</div> " +
-            "</div>";
-            errorContainer.html(emailSendingFailed);
+            var errorEmail = document.getElementById("EmailError");
+            errorEmail.style.display = "none";
         }
 
-    });
+        resetFormError();
 
-    tinymce.init({
-        selector: "textarea"
-        /*,
-        //plugins: 'a_tinymce_plugin',
-        a_plugin_option: true,
-        a_configuration_option: 400*/
-    });
-</script>
+        function validateForm() {
+            var errorDetected = "";
+            resetFormError();
+            var name = document.forms["contactForm"]["Name"].value;
+            if (name == "")
+            {
+                var errorName = document.getElementById("NameError");
+                errorName.innerHTML = "Veuillez fournir un nom de contact.";
+                errorName.style.display = "block";
+                errorDetected += "name;";
+            }
+
+            var company = document.forms["contactForm"]["Company"].value;
+            if (company == "") {
+                var errorCompany = document.getElementById("CompanyError");
+                errorCompany.innerHTML = "Veuillez fournir le nom d'une organisation ou d'une société.";
+                errorCompany.style.display = "block";
+                errorDetected += "company;";
+            }
+
+            var email = document.forms["contactForm"]["Email"].value;
+            if (email == "") {
+                var errorEmail = document.getElementById("EmailError");
+                errorEmail.innerHTML = "Veuillez fournir un email.";
+                errorEmail.style.display = "block";
+                errorDetected += "email;";
+            }
+
+            if (errorDetected == "")
+                return true;
+            else
+                return false;
+
+        }
+
+    </script>
+}
 
 
 

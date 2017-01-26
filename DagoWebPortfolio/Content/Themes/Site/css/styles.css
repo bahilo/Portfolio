@@ -237,7 +237,7 @@
         font-family: 'Ewert', cursive;
         background-color: gray;
     }
-}*/
+}
 
 @keyframes font-to-font {
     0% {
@@ -260,7 +260,7 @@
         font-family: Rage, cursive;
         background-color: #414141;
     }
-}
+}*/
 /*______________________________________________________________________________________________*/
 
 
@@ -339,7 +339,7 @@ body.custom-background {
 }
 
 .video-box{
-    border: 20px solid rgba(0,64,64,.8)
+    border: 20px solid rgba(128,90,174,1);
 }
 
 /* ____________[ header ] square-to-circle 4s 15s infinite linear alternate,*/
@@ -359,19 +359,27 @@ body.custom-background {
 .portfolio .name{
     color:black;
     font-size: 20px; 
-    opacity:0.7; 
+    opacity:0.7;
 }
 
 .portfolio .name-letter{
     padding:5px; 
-    background-color:#e96656;
+    background-color:rgba(128,90,174,1);
     color:white;
     font-size: 20px; 
-    opacity:0.7;
+    opacity:0.7; 
 }
 
 .text-center{
     text-align:center;
+}
+
+.header-content-wrap .intro-text{    
+    background:rgba(5,5,5,.6);
+    font-size: 56px;
+    font-family: 'Monoton', cursive;
+    color:rgba(128,90,174,1);
+    padding: 15px;
 }
 
 /* ____________[ About ]*/
@@ -385,9 +393,8 @@ body.custom-background {
 
 
 .about-me .picture-home {
-    border-radius: 50%;
-    max-width: 200px;
-    max-height: 200px;
+    border-radius: 20%;/**/
+    max-width: 300px;
 }
 
 
@@ -404,20 +411,37 @@ body.custom-background {
     padding: 8px;
 }
 
-/*.panel .text-center{
-    border-bottom: 2px solid red;
-}*/
+
+/* ____________[ Quote ]*/
+
+.quote{
+    font-family: 'Merienda', cursive;
+}
 /* ____________[ Contact ]*/
 
-.contact-us #Name, .contact-us #Company, .contact-us #Email{
-    border: 2px solid #cb4332;
+.contact #Name, .contact #Company, .contact #Email{
+    border: 2px solid rgba(128,90,174,1);
 }
 
-/*#mega-menu-primary{
-    width: 700px;
-    border: 2px solid black;
-}*/
 
+/* ____________[ Project ]*/
+
+.project .img-responsive{
+    height:270px;
+}
+
+.project .panel-thumbnail{
+    padding: 8px;
+}
+
+.panel:hover{
+    opacity: 0.8;
+    border: 1px solid rgba(128,90,174,1);
+}
+
+.project .panel-body{
+    font-size: 2px;
+}
 
 /* ____________[ Project Details ]*/
 
@@ -436,8 +460,8 @@ body.custom-background {
 .title{
     border: 2px solid black;
     text-align: center;
-    border-top: 10px solid rgba(0,64,64,.8);
-    border-right: 10px solid rgba(0,64,64,.8)
+    border-top: 10px solid rgba(128,90,174,1);
+    border-right: 10px solid rgba(128,90,174,1);
 }
 
 .project-details {        
@@ -447,14 +471,14 @@ body.custom-background {
 
 .project-details a {
     text-decoration: none;
-    color: rgba(0,64,64,.8);
+    color: rgba(128,90,174,1);
 }
 
-    .project-details a:hover {
+    .project-details .exit-page a:hover {
         cursor: pointer;
         text-decoration: none;
         color: rgba(197,186,166,1);
-        border-bottom: 2px solid rgba(0,64,64,.8);
+        border-bottom: 2px solid rgba(128,90,174,1);
     }
 
 .project-details .bg-3 {
