@@ -1362,7 +1362,7 @@ object {
  **   Header               -----
 -----------------------------------------*/
 /*** SECTION HEADERS ***/
-.focus,.works,.about-us,.features,.packages,.products,.testimonial,.contact-us {
+.focus,.works,.about-us,.features,.packages,.products,.testimonial,.contact {
 	padding-top: 100px;
 }
 .section-header {
@@ -2936,23 +2936,23 @@ width: -webkit-calc(100% / 4);
 /*----------------------------------------
  **   Contact us             -----
 -----------------------------------------*/
-.contact-us {
+.contact {
 	background: rgba(0, 0, 0, 0.5);
 	padding-bottom: 95px;
 }
-.contact-us .section-header .section-legend {
+.contact .section-header .section-legend {
 	color: #FFF;
 }
-.contact-us .input-box,textarea {
+.contact .input-box,textarea {
 	width: 100%;
 	margin: auto;
 	margin-bottom: 20px;
 	border-radius: 4px;
 }
-.contact-us textarea {
+.contact textarea {
 	border: 1px solid transparent;
 }
-.contact-us .custom-button {
+.contact .custom-button {
 	float: right;
 	margin-right: 15px;
 }
@@ -2960,17 +2960,17 @@ width: -webkit-calc(100% / 4);
 	margin-left: 15px;
 	display: none;
 }
-.contact-us .notification p {
+.contact .notification p {
 	border-radius: 3px;
 	color: #FFF;
 	padding: 5px 10px;
 	display: inline-block;
 	margin-bottom: 10px;
 }
-.contact-us .error p {
+.contact .error p {
 	background: #E96656;
 }
-.contact-us .success p {
+.contact .success p {
 	background: #34d293;
 }
 .contact_submit_wrap {
@@ -5886,7 +5886,7 @@ body.custom-background {
     .section-header {
         padding-bottom: 30px;
     }
-    .focus, .works, .about-us, .features, .packages, .products, .testimonial, .contact-us {
+    .focus, .works, .about-us, .features, .packages, .products, .testimonial, .contact {
         padding-top: 60px;
         padding-bottom: 60px;
     }
@@ -6255,7 +6255,7 @@ body.custom-background {
 	.packages,
 	.products,
 	.testimonial,
-	.contact-us {
+	.contact {
 		padding-top: 15px;
 	}
 	.focus {
@@ -6360,10 +6360,10 @@ body.custom-background {
 	.feedback-box .client {
 	    margin-top: 0;
 	}
-	.contact-us {
+	.contact {
 	    padding-bottom: 0;
 	}
-	.contact-us .input-box,
+	.contact .input-box,
 	textarea {
 	    border: 1px solid #000 !important;
 	    box-shadow: none;

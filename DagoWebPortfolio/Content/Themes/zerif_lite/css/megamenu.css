@@ -1,10 +1,10 @@
 
-#mega-menu-wrap-primary #mega-menu-primary ul, 
-#mega-menu-wrap-primary #mega-menu-primary li, 
-#mega-menu-wrap-primary #mega-menu-primary p, 
-#mega-menu-wrap-primary #mega-menu-primary img, 
-#mega-menu-wrap-primary #mega-menu-primary div, 
-#mega-menu-wrap-primary #mega-menu-primary a {
+
+
+
+
+
+#mega-menu-wrap-primary #mega-menu-primary ul, #mega-menu-wrap-primary #mega-menu-primary li, #mega-menu-wrap-primary #mega-menu-primary p, #mega-menu-wrap-primary #mega-menu-primary img, #mega-menu-wrap-primary #mega-menu-primary div, #mega-menu-wrap-primary #mega-menu-primary a {
   color: #666;
   font-family: inherit;
   font-size: 15px;
@@ -23,6 +23,7 @@
   top: auto;
   bottom: auto;
   left: auto;
+  text-align: left;
   text-transform: none;
   vertical-align: baseline;
   -webkit-box-shadow: none;
@@ -52,36 +53,16 @@
 
 
 
-#mega-menu-wrap-primary #mega-menu-primary ul:before, 
-#mega-menu-wrap-primary #mega-menu-primary li:before, 
-#mega-menu-wrap-primary #mega-menu-primary p:before, 
-#mega-menu-wrap-primary #mega-menu-primary img:before, 
-#mega-menu-wrap-primary #mega-menu-primary div:before, 
-#mega-menu-wrap-primary #mega-menu-primary a:before, 
-#mega-menu-wrap-primary #mega-menu-primary ul:after, 
-#mega-menu-wrap-primary #mega-menu-primary li:after, 
-#mega-menu-wrap-primary #mega-menu-primary p:after, 
-#mega-menu-wrap-primary #mega-menu-primary img:after, 
-#mega-menu-wrap-primary #mega-menu-primary div:after, 
-#mega-menu-wrap-primary #mega-menu-primary a:after {
+#mega-menu-wrap-primary #mega-menu-primary ul:before, #mega-menu-wrap-primary #mega-menu-primary li:before, #mega-menu-wrap-primary #mega-menu-primary p:before, #mega-menu-wrap-primary #mega-menu-primary img:before, #mega-menu-wrap-primary #mega-menu-primary div:before, #mega-menu-wrap-primary #mega-menu-primary a:before, #mega-menu-wrap-primary #mega-menu-primary ul:after, #mega-menu-wrap-primary #mega-menu-primary li:after, #mega-menu-wrap-primary #mega-menu-primary p:after, #mega-menu-wrap-primary #mega-menu-primary img:after, #mega-menu-wrap-primary #mega-menu-primary div:after, #mega-menu-wrap-primary #mega-menu-primary a:after {
   display: none;
 }
-
-#mega-menu-wrap-primary #mega-menu-primary table, 
-#mega-menu-wrap-primary #mega-menu-primary td, 
-#mega-menu-wrap-primary #mega-menu-primary tr, 
-#mega-menu-wrap-primary #mega-menu-primary th {
+#mega-menu-wrap-primary #mega-menu-primary table, #mega-menu-wrap-primary #mega-menu-primary td, #mega-menu-wrap-primary #mega-menu-primary tr, #mega-menu-wrap-primary #mega-menu-primary th {
   border: 0;
   margin: 0;
   padding: 0;
   background: none;
 }
-
-#mega-menu-wrap-primary, 
-#mega-menu-wrap-primary #mega-menu-primary, 
-#mega-menu-wrap-primary #mega-menu-primary ul.mega-sub-menu, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item, 
-#mega-menu-wrap-primary #mega-menu-primary a.mega-menu-link {
+#mega-menu-wrap-primary, #mega-menu-wrap-primary #mega-menu-primary, #mega-menu-wrap-primary #mega-menu-primary ul.mega-sub-menu, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item, #mega-menu-wrap-primary #mega-menu-primary a.mega-menu-link {
   -moz-transition: none;
   -o-transition: none;
   -webkit-transition: none;
@@ -97,16 +78,16 @@
   -o-box-shadow: none;
   box-shadow: none;
   background: none;
+  border: 0;
   bottom: auto;
   box-sizing: border-box;
   clip: auto;
-  /*color: #666;*/
+  color: #666;
   display: block;
   float: none;
   font-family: inherit;
   font-size: 15px;
   height: auto;
-  min-width: 90px;
   left: auto;
   line-height: 1.7;
   list-style-type: none;
@@ -118,26 +99,17 @@
   padding: 0;
   position: relative;
   right: auto;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   text-transform: none;
   top: auto;
   vertical-align: baseline;
   visibility: inherit;
+  width: auto;
 }
-
-#mega-menu-wrap-primary:before, 
-#mega-menu-wrap-primary #mega-menu-primary:before, 
-#mega-menu-wrap-primary #mega-menu-primary ul.mega-sub-menu:before, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item:before, 
-#mega-menu-wrap-primary #mega-menu-primary a.mega-menu-link:before, 
-#mega-menu-wrap-primary:after, #mega-menu-wrap-primary #mega-menu-primary:after, 
-#mega-menu-wrap-primary #mega-menu-primary ul.mega-sub-menu:after, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item:after, 
-#mega-menu-wrap-primary #mega-menu-primary a.mega-menu-link:after {
+#mega-menu-wrap-primary:before, #mega-menu-wrap-primary #mega-menu-primary:before, #mega-menu-wrap-primary #mega-menu-primary ul.mega-sub-menu:before, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item:before, #mega-menu-wrap-primary #mega-menu-primary a.mega-menu-link:before, #mega-menu-wrap-primary:after, #mega-menu-wrap-primary #mega-menu-primary:after, #mega-menu-wrap-primary #mega-menu-primary ul.mega-sub-menu:after, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item:after, #mega-menu-wrap-primary #mega-menu-primary a.mega-menu-link:after {
   display: none;
 }
-
 #mega-menu-wrap-primary {
   background: #fff;
   -webkit-border-radius: 0px 0px 0px 0px;
@@ -162,8 +134,7 @@
 #mega-menu-wrap-primary #mega-menu-primary p {
   margin-bottom: 10px;
 }
-#mega-menu-wrap-primary #mega-menu-primary input, 
-#mega-menu-wrap-primary #mega-menu-primary img {
+#mega-menu-wrap-primary #mega-menu-primary input, #mega-menu-wrap-primary #mega-menu-primary img {
   max-width: 100%;
 }
 #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item > ul.mega-sub-menu {
@@ -171,12 +142,8 @@
   visibility: hidden;
   opacity: 1;
 }
-#mega-menu-wrap-primary #mega-menu-primary.mega-no-js li.mega-menu-item:hover > ul.mega-sub-menu, 
-#mega-menu-wrap-primary #mega-menu-primary.mega-no-js li.mega-menu-item:focus > ul.mega-sub-menu, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-toggle-on > ul.mega-sub-menu, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu.mega-toggle-on ul.mega-sub-menu {
+#mega-menu-wrap-primary #mega-menu-primary.mega-no-js li.mega-menu-item:hover > ul.mega-sub-menu, #mega-menu-wrap-primary #mega-menu-primary.mega-no-js li.mega-menu-item:focus > ul.mega-sub-menu, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-toggle-on > ul.mega-sub-menu, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu.mega-toggle-on ul.mega-sub-menu {
   visibility: visible;
-  border-bottom: 4px solid red;
 }
 #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item a[class^='dashicons']:before {
   font-family: dashicons;
@@ -227,20 +194,13 @@
   float: right;
   margin: 0 0 0 0px;
 }
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-toggle-on > a.mega-menu-link, 
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:hover, 
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:focus {
-  /*background: #FC6D6D;*/
-  color: rgba(128,90,174,1);
+#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-toggle-on > a.mega-menu-link, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:hover, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:focus {
+  background: #fff;
+  color: #008ed6;
   font-weight: normal;
   text-decoration: none;
-  border-bottom: 3px solid rgba(128,90,174,1);
+  border-color: #fff;
 }
-#mega-menu-wrap-primary #mega-menu-primary li.active{    
-    border-bottom: 2px solid rgba(128,90,174,1);
-    color: rgba(128,90,174,1);
-}
-
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link {
   border-top: 0px solid #fff;
   border-left: 0px solid #fff;
@@ -253,10 +213,10 @@
   font-weight: normal;
   height: 70px;
   vertical-align: baseline;
-  text-align: center;
+  text-align: left;
   width: auto;
   display: block;
-  /*color: #313131;*/
+  color: #313131;
   text-transform: none;
   text-decoration: none;
   background: rgba(0, 0, 0, 0);
@@ -434,7 +394,7 @@
   margin-left: 20px;
 }
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item {
-  /*color: #666;*/
+  color: #666;
   font-family: inherit;
   font-size: 15px;
   display: block;
@@ -448,7 +408,7 @@
   /* Widget titles */
 }
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item h4.mega-block-title {
-  /*color: #555;*/
+  color: #555;
   font-family: inherit;
   font-size: 15px;
   text-transform: none;
@@ -465,7 +425,7 @@
   /* Second level menu item */
 }
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link {
-  /*color: #313131;*/
+  color: #313131;
   font-family: inherit;
   font-size: 15px;
   text-transform: none;
@@ -481,16 +441,15 @@
   border-bottom: 0px solid #555;
   /* Second level menu item hover */
 }
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link:hover, 
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link:focus {
-  /*color: #008ed6;*/
+#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link:hover, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link:focus {
+  color: #008ed6;
   font-weight: normal;
   text-decoration: none;
   background: rgba(0, 0, 0, 0);
   /* Third level menu item */
 }
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link {
-  /*color: #666;*/
+  color: #666;
   font-family: inherit;
   font-size: 15px;
   text-transform: none;
@@ -502,9 +461,8 @@
   display: block;
   /* Third level menu item hover */
 }
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link:hover, 
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link:focus {
-  /*color: #666;*/
+#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link:hover, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item > a.mega-menu-link:focus {
+  color: #666;
   font-weight: normal;
   text-decoration: none;
   background: rgba(0, 0, 0, 0);
@@ -554,7 +512,7 @@
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link {
   display: block;
   background: #fff;
-  /*color: #313131;*/
+  color: #313131;
   font-family: inherit;
   font-size: 15px;
   font-weight: normal;
@@ -584,12 +542,11 @@
     border-bottom-left-radius: 0;
   }
 }
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:hover, 
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:focus {
+#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:hover, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:focus {
   background: #fff;
   font-weight: normal;
   text-decoration: none;
-  /*color: #008ed6;*/
+  color: #008ed6;
 }
 #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item ul.mega-sub-menu {
   position: absolute;
@@ -606,8 +563,7 @@
     padding-left: 20px;
   }
 }
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children > a.mega-menu-link:after, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children > a.mega-menu-link:after {
+#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children > a.mega-menu-link:after {
   content: '\f140';
   display: inline-block;
   font: inherit;
@@ -621,27 +577,20 @@
   -ms-transform: rotate(0);
   -o-transform: rotate(0);
   transform: rotate(0);
-  /*color: inherit;*/
+  color: inherit;
 }
 @media only screen and (max-width: 768px) {
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children a.mega-menu-link:after, 
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children a.mega-menu-link:after, 
-  #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children a.mega-menu-link:after {
+  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children a.mega-menu-link:after {
     float: right;
   }
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children.mega-toggle-on > a.mega-menu-link:after, 
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children.mega-toggle-on > a.mega-menu-link:after, 
-  #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children.mega-toggle-on > a.mega-menu-link:after {
+  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children.mega-toggle-on > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children.mega-toggle-on > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children.mega-toggle-on > a.mega-menu-link:after {
     content: '\f142';
   }
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile > a.mega-menu-link:after, 
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile > a.mega-menu-link:after {
+  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile > a.mega-menu-link:after {
     display: none;
   }
 }
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children.mega-hide-arrow > a.mega-menu-link:after, 
-#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children.mega-hide-arrow > a.mega-menu-link:after, 
-#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children.mega-hide-arrow > a.mega-menu-link:after {
+#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout.mega-menu-item-has-children.mega-hide-arrow > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-flyout li.mega-menu-item-has-children.mega-hide-arrow > a.mega-menu-link:after, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item-has-children.mega-hide-arrow > a.mega-menu-link:after {
   display: none;
 }
 #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item li.mega-menu-item-has-children > a.mega-menu-link:after {
@@ -695,14 +644,12 @@
   margin-right: 8px;
 }
 @media only screen and (max-width: 768px) {
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-hide-on-mobile, 
-  #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item.mega-hide-on-mobile {
+  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-hide-on-mobile, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item.mega-hide-on-mobile {
     display: none;
   }
 }
 @media only screen and (min-width: 769px) {
-  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-hide-on-desktop, 
-  #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item.mega-hide-on-desktop {
+  #mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-hide-on-desktop, #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-item.mega-hide-on-desktop {
     display: none;
   }
 }
@@ -758,8 +705,7 @@
     visibility: visible;
     opacity: 1;
   }
-  #mega-menu-wrap-primary .mega-menu-toggle + #mega-menu-primary li.mega-menu-item.mega-toggle-on > ul.mega-sub-menu, 
-  #mega-menu-wrap-primary .mega-menu-toggle + #mega-menu-primary li.mega-menu-item.mega-menu-megamenu.mega-toggle-on ul.mega-sub-menu {
+  #mega-menu-wrap-primary .mega-menu-toggle + #mega-menu-primary li.mega-menu-item.mega-toggle-on > ul.mega-sub-menu, #mega-menu-wrap-primary .mega-menu-toggle + #mega-menu-primary li.mega-menu-item.mega-menu-megamenu.mega-toggle-on ul.mega-sub-menu {
     display: block;
   }
   #mega-menu-wrap-primary .mega-menu-toggle.mega-menu-open + #mega-menu-primary {

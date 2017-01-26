@@ -32,7 +32,7 @@ fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
 	border: 0;
 	font-family: inherit;
-	font-size: 17px;
+	font-size: 16px;
 	font-style: inherit;
 	font-weight: inherit;
 	margin: 0;
@@ -138,15 +138,15 @@ padding-left: 0 !important;
 }
 /* Selection colours (easy to forget) */
 ::selection {
-	background: rgba(128,90,174,1);
+	background: #FC6D6D;
 	color: #FFF;
 }
 ::-moz-selection {
-	background: rgba(128,90,174,1);
+	background: #FC6D6D;
 	color: #FFF;
 }
 a {
-	color: rgba(128,90,174,1);
+	color: #e96656;
 	-webkit-transition: all 700ms;
 	transition: all 700ms;
 }
@@ -154,7 +154,7 @@ a,a:hover {
 	text-decoration: none;
 }
 a:hover {
-	color: rgba(128,90,174,1);
+	color: #cb4332;
 }
 p {
     margin: 0;
@@ -692,15 +692,15 @@ textarea:focus {
  **   5.1 Links                 -----
 -----------------------------------------*/
 a {
-	color: rgba(128,90,174,1);
+	color: #e96656;
 }
 a:visited {
-	color: rgba(128,90,174,1);
+	color: #e96656;
 }
 a:hover,
 a:focus,
 a:active {
-	color: #BA68C8;
+	color: #cb4332;
 }
 /*---------------------------------------
  **   5.2 Menus                  -----
@@ -938,7 +938,7 @@ a:active {
 	right: 0;
 	padding: 0;
 	margin: 0;
-	background: url(../images/search_icon.png) no-repeat center center;
+	background: url(images/search_icon.png) no-repeat center center;
 	text-indent: -9999999px;
 }
 .widget_search label{
@@ -1404,7 +1404,7 @@ object {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	background-image: url(../images/loading.gif);
+	background-image: url(images/loading.gif);
 	background-repeat: no-repeat;
 	background-position: center;
 	margin: -100px 0 0 -100px;
@@ -1433,10 +1433,10 @@ object {
 }
 .header-content-wrap {
 	background: rgba(0, 0, 0, 0.5);
-	position: relative;  
+	position: relative;
 	-webkit-box-shadow: 0px 5px 11px 0px rgba(50, 50, 50, 0.08);
 	box-shadow: 0px 5px 11px 0px rgba(50, 50, 50, 0.08);
-	padding: 285px 0px 350px;
+	padding: 285px 0 210px;
 }
 .header_title {
     float: left;
@@ -1698,7 +1698,7 @@ ul.nav > li.current_page_item.current > a:before {
 	line-height: 65px;
 	z-index: 0;
 	text-transform: uppercase;
-	font-size: 56px;
+	font-size: 55px;
 	float:none;
 }
 /* Short Messages */
@@ -1804,14 +1804,14 @@ ul.nav > li.current_page_item.current > a:before {
 }
 #carousel-homepage-latestnews .glyphicon-chevron-left:before{
 	content: "";
-	background: url(../images/left-arrow.png) no-repeat center center;
+	background: url(images/left-arrow.png) no-repeat center center;
 	width: 30px;
 	height: 30px;
 	float: left;
 }
 #carousel-homepage-latestnews .glyphicon-chevron-right:before{
 	content: "";
-	background: url(../images/right-arrow.png) no-repeat center center;
+	background: url(images/right-arrow.png) no-repeat center center;
 	width: 30px;
 	height: 30px;
 	float: left;
@@ -1904,7 +1904,7 @@ ul.nav > li.current_page_item.current > a:before {
 }
 /*----OTHER FOCUSES ----*/
 .other-focuses {
-	background: url(../images/lines.png) repeat-x center;
+	background: url(images/lines.png) repeat-x center;
 	margin-bottom: 25px;
 }
 .other-focuses .section-footer-title {
@@ -1932,9 +1932,8 @@ ul.nav > li.current_page_item.current > a:before {
  **   Secction:  Separator one        -----
 -----------------------------------------*/
 .separator-one {
-	background: rgba(128,90,174,.8);
+	background: rgba(52, 210, 147, 0.8);
 	padding: 100px 0 100px 0;
-    color:white;
 }
 .separator-one .green-btn {
 	background: #14a168;
@@ -2135,11 +2134,10 @@ width: -webkit-calc(100% / 4);
 	color: #FFF !important;
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-    background: rgba(128,90,174,1);
 }
 .pirate_forms .pirate-forms-submit-button:hover {
 	color: #FFF;
-	background: rgba(128,90,174,.5);
+	background: #cb4332;
 }
 .pirate_forms_wrap label {
 	width: 100%;
@@ -2209,7 +2207,7 @@ width: -webkit-calc(100% / 4);
 	display: none;
 }
 #loader .loader-icon {
-	background: url(../images/loading.gif) no-repeat center center;
+	background: url(images/loading.gif) no-repeat center center;
 	background-color: #FFF;
 	margin: -22px -22px;
 	top: 50%;
@@ -2226,7 +2224,7 @@ width: -webkit-calc(100% / 4);
  **   Section: About us;              -----
 -----------------------------------------*/
 .about-us {
-	background: rgba(128,90,174,.9);
+	background: #272727;
 	color: #FFF;
 }
 .about-us .big-intro {
@@ -2241,7 +2239,7 @@ width: -webkit-calc(100% / 4);
 }
 .about-us p {
 	text-align: left;
-	color: #fff;
+	color: #939393;
 	font-size: 14px;
 	line-height: 25px;
 }
@@ -2293,14 +2291,13 @@ width: -webkit-calc(100% / 4);
 }
 /*--OUR CLIENTS --*/
 .our-clients {
-    /*background: url(/Content/Themes/zerif_lite/images/);*/
-    background: url('../images/lines.png') repeat-x center;
-    margin-bottom: 40px;
+	background: url(images/lines-dark.png) repeat-x center;
+	margin-bottom: 40px;
     float: left;
     width: 100%;
 }
 .our-clients .section-footer-title {
-	background: rgba(128,90,174,1);
+	background: #272727;
 	padding: 0 15px;
 	color: #FFF;
 }
@@ -2800,7 +2797,7 @@ width: -webkit-calc(100% / 4);
  **   Testimonial           -----
 -----------------------------------------*/
 .testimonial {
-	background: rgba(128,90,174,0.5);
+	background: #8c7620;
 	padding-bottom: 90px;
 }
 .testimonial .section-header .section-legend {
@@ -2988,20 +2985,20 @@ width: -webkit-calc(100% / 4);
 	background: #272727;
 	line-height: 20px;
 }
-.my-details {
+.company-details {
 	color: #939393;
 	padding-top: 67px;
 	padding-bottom: 30px;
 }
-.my-details a {
+.company-details a {
 	color:#939393;
 	text-decoration:none;
 }
 
-.my-details a:hover {
+.company-details a:hover {
 	color: #e96656;
 }
-.my-details .icon-top {
+.company-details .icon-top {
 	font-size: 30px;
 	margin-bottom: 10px;
 }
@@ -3562,7 +3559,7 @@ article .posted-on a:hover{
 	text-indent: 99999px;
 	position: relative;
 	overflow: hidden;
-	background: url(../images/woostars.png);
+	background: url(images/woostars.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 	margin: 0 auto;
@@ -3573,7 +3570,7 @@ article .posted-on a:hover{
 	left: 0;
 	width: 100px;
 	height: 20px;
-	background: url(../images/woostars.png);
+	background: url(images/woostars.png);
 	background-repeat: no-repeat;
 	background-position: bottom left;
 	overflow: hidden;
@@ -3790,10 +3787,10 @@ article .posted-on a:hover{
 	float: right;
 	width: 100px;
 	height: 20px;
-	background: url(../images/woostars.png) repeat-x left bottom;
+	background: url(images/woostars.png) repeat-x left bottom;
 }
 .woocommerce-page .product .comment-form .star-rating span{
-	background: url(../images/woostars.png) repeat-x left top;
+	background: url(images/woostars.png) repeat-x left top;
 	height: 0;
 	padding-top: 16px;
 	overflow: hidden;
@@ -3837,7 +3834,7 @@ article .posted-on a:hover{
 	height: 20px;
 	position: relative;
 	float: left;
-	background: url(../images/woostars.png) repeat-x left 0;
+	background: url(images/woostars.png) repeat-x left 0;
 	margin-left: 10px;
 }
 .woocommerce-page .product .comment-form p.stars span a {
@@ -3852,14 +3849,14 @@ article .posted-on a:hover{
 }
 .woocommerce-page .product .comment-form p.stars span a:hover,
 .woocommerce-page .product .comment-form p.stars span a:focus{
-	background: url(../images/woostars.png) repeat-x left bottom;
+	background: url(images/woostars.png) repeat-x left bottom;
 	-webkit-transition: initial;
 	-moz-transition: initial;
 	-o-transition: initial;
 	transition: initial;
 }
 .woocommerce-page .product .comment-form p.stars span a.active {
-	background: url(../images/woostars.png) repeat-x left bottom ;
+	background: url(images/woostars.png) repeat-x left bottom ;
 }
 .woocommerce-page .product .comment-form p.stars span a.star-1 {
 	width: 20px;
@@ -3937,7 +3934,7 @@ article .posted-on a:hover{
 	text-indent: 99999px;
 	position: relative;
 	overflow: hidden;
-	background: url(../images/woostars.png);
+	background: url(images/woostars.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }
@@ -3947,7 +3944,7 @@ article .posted-on a:hover{
 	left: 0;
 	width: 100px;
 	height: 20px;
-	background: url(../images/woostars.png);
+	background: url(images/woostars.png);
 	background-repeat: no-repeat;
 	background-position: bottom left;
 	overflow: hidden;
@@ -3965,7 +3962,7 @@ article .posted-on a:hover{
 	text-indent: 99999px;
 	position: relative;
 	overflow: hidden;
-	background: url(../images/woostars.png);
+	background: url(images/woostars.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }
@@ -3975,7 +3972,7 @@ article .posted-on a:hover{
 	left: 0;
 	width: 100px;
 	height: 20px;
-	background: url(../images/woostars.png);
+	background: url(images/woostars.png);
 	background-repeat: no-repeat;
 	background-position: bottom left;
 	overflow: hidden;
@@ -5856,7 +5853,7 @@ body.custom-background {
 	}
 
       /* FOOTER */
-	.container .my-details {
+	.container .company-details {
 		padding-top: 40px;
 		width: 33%;
 	}
@@ -5899,11 +5896,11 @@ body.custom-background {
 	.about-us .big-intro {
 		text-align: center;
 	}
-	.my-details {
+	.company-details {
 		padding-top: 0;
 		padding-bottom: 33px;
 	}
-	.container .my-details:first-child {
+	.container .company-details:first-child {
 		padding-top: 40px;
 	}
 	.copyright {
@@ -5911,7 +5908,7 @@ body.custom-background {
 		padding-top: 33px;
 		padding-bottom: 33px;
 	}
-	.container .my-details {
+	.container .company-details {
 		width: 100%;
 	}
 
@@ -6005,7 +6002,7 @@ body.custom-background {
 		margin: 0;
 		padding: 0;
 		border-radius: 3px;
-		background: url(../images/menu-icon.png) center center no-repeat #e96656;
+		background: url(images/menu-icon.png) center center no-repeat #e96656;
 	}
 	.navbar-inverse .navbar-nav ul.sub-menu li{
 		margin-right: 0;
@@ -6095,7 +6092,7 @@ body.custom-background {
 	}
 
       /* FOOTER */
-	.my-details {
+	.company-details {
 		padding-top: 0;
 		padding-bottom: 33px;
 	}
@@ -6389,7 +6386,7 @@ body.custom-background {
 	#carousel-homepage-latestnews .item {
 		height: auto !important;
 	}
-	.my-details {
+	.company-details {
 	    width: 33% !important;
 	    margin-right: 0;
 	    margin-left: 0;
