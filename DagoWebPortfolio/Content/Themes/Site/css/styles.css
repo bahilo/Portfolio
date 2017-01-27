@@ -342,6 +342,11 @@ body.custom-background {
     border: 20px solid rgba(128,90,174,1);
 }
 
+.panel:hover{
+    opacity: 0.8;
+    border: 1px solid rgba(128,90,174,1);
+}
+
 /* ____________[ header ] square-to-circle 4s 15s infinite linear alternate,*/
 
 /*.intro-text .title-letter-one{
@@ -376,10 +381,12 @@ body.custom-background {
 
 .header-content-wrap .intro-text{    
     background:rgba(5,5,5,.6);
+    border-radius: 10px;
     font-size: 56px;
     font-family: 'Monoton', cursive;
     color:rgba(128,90,174,1);
     padding: 15px;
+    text-shadow: 2px 5px black;
 }
 
 /* ____________[ About ]*/
@@ -395,6 +402,8 @@ body.custom-background {
 .about-me .picture-home {
     border-radius: 20%;/**/
     max-width: 300px;
+    border: 2px solid white;
+    padding: 2px;
 }
 
 
@@ -407,8 +416,18 @@ body.custom-background {
 
 /* ____________[ Skills ]*/
 
-.panel-thumbnail{
+/*.skill .panel{
+    background: rgba(128,90,174,1);
+    padding: 2px;
+}*/
+
+.skill .panel-thumbnail{
     padding: 8px;
+}
+
+.skill .panel-body{
+    background-color: white;
+    color: rgba(128,90,174,1);
 }
 
 
@@ -432,11 +451,6 @@ body.custom-background {
 
 .project .panel-thumbnail{
     padding: 8px;
-}
-
-.panel:hover{
-    opacity: 0.8;
-    border: 1px solid rgba(128,90,174,1);
 }
 
 .project .panel-body{
@@ -465,9 +479,9 @@ body.custom-background {
 }
 
 .project-details {        
-            font-size: 18px;
-            background-color: rgb(242,242,242);
-    }
+    font-size: 18px;
+    background-color: rgb(242,242,242);
+}
 
 .project-details a {
     text-decoration: none;
@@ -509,3 +523,13 @@ body.custom-background {
     .project-details section.bg-3 .title {
         color: rgba(5,5,5,.8);
     }
+
+/*---------------------------------------
+ **   Footer           -----
+-----------------------------------------*/
+
+.footer .glyphicon{
+    font-size: 30px;
+    margin-bottom: 10px;
+    color:rgba(128,90,174,1);
+}

@@ -34,11 +34,6 @@ namespace DagoWebPortfolio.Controllers
 
         public ActionResult Index()
         {
-
-            //ViewBag.Target = target;
-            //ViewBag.From = from;
-            //ViewBag.Action = action;
-
             return View(db.Projects.ToList());
         }
 
@@ -67,14 +62,21 @@ namespace DagoWebPortfolio.Controllers
                 var pictures = db.PicturesApp.Include(x => x.ProjectDetail).Where(x => x.ProjectDetail.ID == projectsViewModel.ProjectDetail.ID).ToList();
                 projectsViewModel.ProjectDetail.Pictures = pictures;
 
-                projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.StartsWith(_culture)).ToList();
+                // get the detail description based on the user browser language
+                projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.Substring(0, 2).Equals(_culture)).ToList();
+
+                // get the default description if the user browser language description has not been found
                 if (projectsViewModel.ProjectDetail.Descriptions.Count == 0)
-                    projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.StartsWith(_cultureDefault)).ToList();
+                    projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.Substring(0, 2).Equals(_cultureDefault)).ToList();
 
-                projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.StartsWith(_culture)).ToList();
+                // get the project summary based on the user browser language
+                projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.Substring(0, 2).Equals(_culture)).ToList();
+
+                // get the default project summary if the user browser language summary has not been found
                 if (projectsViewModel.Summaries.Count == 0)
-                    projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.StartsWith(_cultureDefault)).ToList();
+                    projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.Substring(0, 2).Equals(_cultureDefault)).ToList();
 
+                // get all techologies used within the project
                 projectsViewModel.TechnoEnv = db.TechnoEnv.Include(x=>x.Picture).Where(x => x.ProjectsViewModelID == projectsViewModel.ID).ToList();
                
             }
@@ -87,12 +89,6 @@ namespace DagoWebPortfolio.Controllers
             {
                 return HttpNotFound();
             }
-
-            //if (System.IO.File.Exists(Utility.getDirectory("Views", "Projects", _culture, "Details.cshtml")))
-            //    return View(_culture + "/Details", projectsViewModel);
-            //else
-            //    return View(_cultureDefault + "/Details", projectsViewModel);
-
             return View(projectsViewModel);
         }
 
@@ -175,7 +171,6 @@ namespace DagoWebPortfolio.Controllers
                     dictionary["isSkillSelected"] = isSkillSelected;
 
                     ProjectRepository.populateDBWithDataFromForm(dictionary, origineProject);
-                    //UpdateModel(origineProject,new string[]{ "ID","Title","link","Resume","ProjectDetail", "Skills" });
                     db.Entry(origineProject).State = EntityState.Modified;
                     db.SaveChanges();
                 }

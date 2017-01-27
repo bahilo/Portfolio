@@ -171,14 +171,25 @@
 
             <div class="divider"></div>
 
-            <div class="row">
+            @foreach (var description in Model.ProjectDetail.Descriptions)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>@Html.DisplayHtml(description.Description)</p>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+            }
+
+            @*<div class="row">
                 <div class="col-md-12">
                     @if (Model.ProjectDetail.Descriptions.Count > 0)
                     {
                         <p>@Html.DisplayHtml(Model.ProjectDetail.Descriptions.First().Description)</p>
                     }
                 </div>
-            </div>
+            </div>*@
 
 
             <div class="row">

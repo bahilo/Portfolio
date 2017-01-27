@@ -2303,6 +2303,8 @@ width: -webkit-calc(100% / 4);
 	background: rgba(128,90,174,1);
 	padding: 0 15px;
 	color: #FFF;
+    border: 2px solid white;
+    padding: 5px 15px 5px 15px;
 }
 .our-clients h2 {
 	font-weight: 700;
@@ -2984,7 +2986,7 @@ width: -webkit-calc(100% / 4);
 /*---------------------------------------
  **   Footer           -----
 -----------------------------------------*/
-#footer {
+#footer, .footer {
 	background: #272727;
 	line-height: 20px;
 }
