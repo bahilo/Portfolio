@@ -58,23 +58,27 @@ namespace DagoWebPortfolio.Controllers
             ProjectsViewModel projectsViewModel = new ProjectsViewModel();
             try
             {
-                projectsViewModel = db.Projects.Where(x => x.ID == id).Include(x => x.ProjectDetail).Include(x => x.ProjectDetail.Pictures).SingleOrDefault();
+                projectsViewModel = db.Projects.Where(x => x.ID == id)
+                    .Include(x=>x.Summaries)
+                    .Include(x => x.ProjectDetail)
+                    .Include(x=>x.ProjectDetail.Descriptions)
+                    .Include(x => x.ProjectDetail.Pictures).SingleOrDefault();
                 var pictures = db.PicturesApp.Include(x => x.ProjectDetail).Where(x => x.ProjectDetail.ID == projectsViewModel.ProjectDetail.ID).ToList();
                 projectsViewModel.ProjectDetail.Pictures = pictures;
 
                 // get the detail description based on the user browser language
-                projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.Substring(0, 2).Equals(_culture)).ToList();
-
+                projectsViewModel.ProjectDetail.Descriptions = projectsViewModel.ProjectDetail.Descriptions.Where(x => x.Lang.StartsWith(_culture)).ToList();
+                
                 // get the default description if the user browser language description has not been found
                 if (projectsViewModel.ProjectDetail.Descriptions.Count == 0)
-                    projectsViewModel.ProjectDetail.Descriptions = db.Displays.Where(x => x.ProjectDetailsViewModelID == projectsViewModel.ProjectDetail.ID && x.Lang.Substring(0, 2).Equals(_cultureDefault)).ToList();
+                    projectsViewModel.ProjectDetail.Descriptions = projectsViewModel.ProjectDetail.Descriptions.Where(x => x.Lang.StartsWith(_cultureDefault)).ToList();
 
                 // get the project summary based on the user browser language
-                projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.Substring(0, 2).Equals(_culture)).ToList();
+                projectsViewModel.Summaries = projectsViewModel.Summaries.Where(x => x.Lang.StartsWith(_culture)).ToList();
 
                 // get the default project summary if the user browser language summary has not been found
                 if (projectsViewModel.Summaries.Count == 0)
-                    projectsViewModel.Summaries = db.Displays.Where(x => x.ProjectsViewModelID == projectsViewModel.ID && x.Lang.Substring(0, 2).Equals(_cultureDefault)).ToList();
+                    projectsViewModel.Summaries = projectsViewModel.Summaries.Where(x => x.Lang.StartsWith(_cultureDefault)).ToList();
 
                 // get all techologies used within the project
                 projectsViewModel.TechnoEnv = db.TechnoEnv.Include(x=>x.Picture).Where(x => x.ProjectsViewModelID == projectsViewModel.ID).ToList();
