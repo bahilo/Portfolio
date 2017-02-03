@@ -510,6 +510,7 @@
             <div class="section-header"><h2 class="dark-text">Projects</h2><div class="dark-text section-legend">Here are my latest projects.</div></div><!-- END .section-header --><div class="clear"></div>
             <div data-scrollreveal="enter right after 0s over 1s">
                 <div class="row">
+                    @{ var i = 0;}
                     @foreach (var project in projects.OrderByDescending(x => x.ProjectDetail.Date).ToList())
                     {
                         <div class="col-md-4">
@@ -518,82 +519,241 @@
                                     @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
                                     {
                                         var img = project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").ElementAt(0);
-                                        <img src="@img.path@img.FileName" class="img-responsive">
+                                        <img src="@img.path@img.FileName" class="img-responsive" data-toggle="modal" data-target="#myProjectModal-@i" style="cursor:pointer;">
                                         @*<a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
-                                        </a>*@
+                                            </a>*@
                                     }
                                     else
                                     {
-                                        <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive">
+                                        <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive" data-toggle="modal" data-target="#myProjectModal-@i" style="cursor:pointer;">
                                         @*<a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
-                                        </a>*@
+                                            </a>*@
                                     }
                                 </div>
                                 <div class="panel-body latesnews-content">
                                     <h4 class="latestnews-title">
-                                        <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
+                                        <span data-toggle="modal" data-target="#myProjectModal-@i">
                                             @Html.DisplayFor(modelItem => project.Title)
-                                        </a>
+                                        </span>
                                     </h4>
                                 </div>
                             </div><!--/panel-->
                         </div>
+                        i++;
                     }
                 </div>
-
-
-
-
-
-
-
-
-
-                @*<div id="carousel-homepage-latestnews" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                            <div class="item active" role="option">
-                                @foreach (var project in projects.OrderByDescending(x => x.ProjectDetail.Date).ToList())
-                                {
-                                <div class="col-sm-3 latestnews-box">
-                                    <div class="latestnews-img">
-                                        <a class="latestnews-img-a" href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
-                                            @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.').Count() > 1 && y.FileName.Split('.')[1] != "mp4").Count() > 0)
-                                            {
-                                            <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != " mp4").ElementAt(0).path)@Html.DisplayFor(modelItem=> project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" class="img-responsive">
-                                            }
-                                            else
-                                            {
-                                            <img src="~/Content/Images/Carousel/Singapour.jpg" class="img-responsive">
-                                            }
-                                            <noscript>
-                                                <img width="250" height="250" src="~/Content/Images/Carousel/Singapour.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="@Html.DisplayFor(modelItem => project.Title)" />
-                                            </noscript>
-                                        </a>
-                                    </div>
-                                    <div class="latesnews-content">
-                                        <h3 class="latestnews-title">
-                                            <a href="/Projects/Details/@Html.DisplayFor(modelItem => project.ID)" title="@Html.DisplayFor(modelItem => project.Title)" target="_blank">
-                                                @Html.DisplayFor(modelItem => project.Title)
-                                            </a>
-                                        </h3>
-                                    </div>
-                                </div><!-- .latestnews-box"> -->
-                                }
-                            </div><!-- #carousel-homepage-latestnews -->
-                        </div>
-                    </div>*@
-
-
-
-
             </div>
-
-
-
-
-
         </div><!-- .container -->
     </section>
+
+    <!-- Modal -->
+    @{  i = 0; }
+    @foreach (var project in projects.OrderByDescending(x => x.ProjectDetail.Date).ToList())
+    {
+        var subject = (project.ProjectDetail.Descriptions.Count() > 0) ? project.ProjectDetail.Descriptions.First().Subject : "Here the title";
+        <div id="myProjectModal-@i" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">@subject</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="divider"></div>
+
+                        <div class="row">
+                            <div class="col-md-12 img-home-layout">
+                                @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").Count() > 0)
+                                {
+                                    <img src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] != "mp4").ElementAt(0).FileName)" style="width:100%;">
+                                }
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (project.Summaries.Count > 0)
+                                {
+                                    <p> @Html.DisplayHtml(project.Summaries.First().Description)</p>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                    @if (project.TechnoEnv.Where(x => x.Category == "Language").Count() > 0)
+                                    {
+                                        <th>Languages</th>
+                                    }
+                                    @if (project.TechnoEnv.Where(x => x.Category == "Technology").Count() > 0)
+                                    {
+                                        <th>Technologies</th>
+                                    }
+                                    @if (project.TechnoEnv.Where(x => x.Category == "Version Control").Count() > 0)
+                                    {
+                                        <th>Version Control</th>
+                                    }
+                                    @if (project.TechnoEnv.Where(x => x.Category == "Web Service").Count() > 0)
+                                    {
+                                        <th>Web Services</th>
+                                    }
+                                    </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <tr>
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Language").Count() > 0)
+                                            {
+                                                var languageList = project.TechnoEnv.Where(x => x.Category == "Language").ToList();
+
+                                                <td>
+                                                    @foreach (var language in languageList)
+                                                    {
+
+                                                        if (language.link != null)
+                                                        {
+                                                            <a href="@language.link" target="_blank"><img title="@language.Subject" alt="@language.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)"></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <img title="@language.Subject" alt="@language.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => language.Picture.path)@Html.DisplayFor(modelItem => language.Picture.FileName)">
+                                                        }
+
+                                                    }
+                                                </td>
+                                            }
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Technology").Count() > 0)
+                                            {
+                                                var technologyList = project.TechnoEnv.Where(x => x.Category == "Technology").ToList();
+                                                <td>
+
+                                                    @foreach (var technology in technologyList)
+                                                    {
+
+                                                        if (technology.link != null)
+                                                        {
+                                                            <a href="@technology.link" target="_blank"><img title="@technology.Subject" alt="@technology.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)"></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <img title="@technology.Subject" alt="@technology.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => technology.Picture.path)@Html.DisplayFor(modelItem => technology.Picture.FileName)">
+                                                        }
+
+                                                    }
+                                                </td>
+                                            }
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Version Control").Count() > 0)
+                                            {
+                                                var versionControlList = project.TechnoEnv.Where(x => x.Category == "Version Control").ToList();
+
+                                                <td>
+                                                    @foreach (var versionControl in versionControlList)
+                                                    {
+
+                                                        if (versionControl.link != null)
+                                                        {
+                                                            <a href="@versionControl.link" target="_blank"><img title="@versionControl.Subject" alt="@versionControl.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)"></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <img width="50" class="img-techno-env" title="@versionControl.Subject" alt="@versionControl.Subject" src="@Html.DisplayFor(modelItem => versionControl.Picture.path)@Html.DisplayFor(modelItem => versionControl.Picture.FileName)">
+                                                        }
+
+                                                    }
+                                                </td>
+                                            }
+
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Web Service").Count() > 0)
+                                            {
+                                                var webServiceList = project.TechnoEnv.Where(x => x.Category == "Web Service").ToList();
+
+
+                                                <td>
+                                                    @foreach (var webService in webServiceList)
+                                                    {
+
+                                                        if (webService.link != null)
+                                                        {
+                                                            <a href="@webService.link" target="_blank"><img alt="@webService.Subject" title="@webService.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)"></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <img title="@webService.Subject" alt="@webService.Subject" class="img-techno-env" src="@Html.DisplayFor(modelItem => webService.Picture.path)@Html.DisplayFor(modelItem => webService.Picture.FileName)">
+                                                        }
+
+                                                    }
+                                                </td>
+
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        @foreach (var description in project.ProjectDetail.Descriptions)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>@Html.DisplayHtml(description.Description)</p>
+                                </div>
+                            </div>
+
+                            <div class="divider"></div>
+                        }
+
+                        @*<div class="row">
+                                <div class="col-md-12">
+                                    @if (Model.ProjectDetail.Descriptions.Count > 0)
+                                    {
+                                        <p>@Html.DisplayHtml(Model.ProjectDetail.Descriptions.First().Description)</p>
+                                    }
+                                </div>
+                            </div>*@
+
+
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
+                                {
+                                    <div class="text-center"><p>Live demo</p></div>
+                                    <div class="video-box">
+                                        <video class="video" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                                            <source src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
+                                        </video>
+                                        <div id="footnote"></div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        i++;
+    }
+
+
 
 
     @*================[  Contact section ]=======================*@

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Web.Mvc;
 using DagoWebPortfolio.Models;
+using System.Data.Entity;
 using System.Net;
 using SendGrid;
 using System.Net.Mail;
@@ -51,51 +52,11 @@ namespace DagoWebPortfolio.Controllers
                     Log.error(ex.Message);
                 }
             }
-                
 
-            // education
-            List<EducationViewModel> educationList = new List<EducationViewModel>();
-            try
-            {
-                educationList = db.Education.Include("Pictures").Include("Descriptions").ToList();
-                populateWithPicture(EPopulateDisplay.Education, educationList);
-                Utility.populateWithDescription(EPopulateDisplay.Education, educationList);
-            }
-            catch (Exception ex)
-            {
-                Log.write(ex.Message, "ERR");
-                return View("Error");
-            }
-            ViewBag.Education = educationList.OrderByDescending(x => x.YearGraduate).ToList();
-
-            // projects
-            var projectSkills = db.Skills.ToList();
-            _projectRepository.populateProjectsWithProjectdetails(projectSkills);
-            populateWithPicture(EPopulateDisplay.Projects, projectSkills.SelectMany(x => x.Projects).ToList());
-            Utility.populateWithDescription(EPopulateDisplay.Projects, projectSkills.SelectMany(x => x.Projects).ToList());
-            populateWithPicture(EPopulateDisplay.ProjectDetails, projectSkills.SelectMany(x => x.Projects).ToList());
-            Utility.populateWithDescription(EPopulateDisplay.ProjectDetails, projectSkills.SelectMany(x => x.Projects).ToList());
-            //_projectRepository.populateProjectsWithPicture(projectSkills);
-            ViewBag.Projects = _projectRepository.getProjectsOrderByDate(projectSkills);
-
-            // skills
-            ViewBag.Skills = db.Skills.Include("LevelsViewModel").Include("CategoryViewModel").ToList();
-            populateWithPicture(EPopulateDisplay.Skills, ViewBag.Skills);
-            Utility.populateWithDescription(EPopulateDisplay.Skills, ViewBag.Skills);
-
-
-            // experiences
-            var experienceSkills = db.Skills.Include("Experiences").Include("LevelsViewModel").Include("CategoryViewModel").ToList();
-            try
-            {
-                populateWithPicture(EPopulateDisplay.Experiences, experienceSkills.SelectMany(x => x.Experiences).ToList());
-                Utility.populateWithDescription(EPopulateDisplay.Experiences, experienceSkills.SelectMany(x=>x.Experiences).ToList());
-            }
-            catch (Exception ex)
-            {
-                Log.write(ex.Message, "ERR");
-            }
-            ViewBag.Experiences = getExperiencesOrderByDate(experienceSkills);
+            loadEducation();
+            loadExperiences();
+            loadSkills();
+            loadProjects();      
             
             try
             {
@@ -120,7 +81,7 @@ namespace DagoWebPortfolio.Controllers
                 return View(_culture + "/Index", ContactViewModel);
             else
                 return View(_cultureDefault + "/Index", ContactViewModel);
-            
+
             //try
             //{
             //    return View(_culture + "/Index");
@@ -131,26 +92,73 @@ namespace DagoWebPortfolio.Controllers
             //}
         }
 
-        public ActionResult _Welcome()
+        private void loadExperiences()
         {
-            var picture = new PicturesViewModel();
+            // experiences
+            var experiences = db.Experiences
+                .Include(x => x.Descriptions).ToList();
             try
             {
-                picture = db.PicturesApp.Where(x => x.IsWelcome).SingleOrDefault() ?? new PicturesViewModel();
+                populateWithPicture(EPopulate.Experiences, experiences);
+                Utility.populateWithDescription(EPopulate.Experiences, experiences);
             }
             catch (Exception ex)
             {
                 Log.write(ex.Message, "ERR");
             }
+            ViewBag.Experiences = getExperiencesOrderByDate(new List<SkillsViewModel> { new SkillsViewModel { Experiences = experiences } });
+        }
 
+        private void loadEducation()
+        {
+            // education
+            List<EducationViewModel> educationList = new List<EducationViewModel>();
             try
             {
-                return View(_culture + "/_Welcome", picture);
+                educationList = db.Education
+                .Include(x => x.Descriptions)
+                .Include(x => x.Pictures).ToList();
+                populateWithPicture(EPopulate.Education, educationList);
+                Utility.populateWithDescription(EPopulate.Education, educationList);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return View(_cultureDefault + "/_Welcome", picture);
+                Log.write(ex.Message, "ERR");
+                //return View("Error");
             }
+            ViewBag.Education = educationList.OrderByDescending(x => x.YearGraduate).ToList();
+
+        }
+
+        private void loadProjects()
+        {
+            var projectsViewModels = db.Projects.Where(x=>x.ProjectDetail.Status)
+                     .Include(x => x.Summaries)
+                     .Include(x => x.ProjectDetail)
+                     .Include(x => x.ProjectDetail.Descriptions)
+                     .Include(x => x.ProjectDetail.Pictures).ToList();
+
+            // projects
+            //var projectSkills = db.Skills.ToList();
+            //_projectRepository.populateProjectsWithProjectdetails(projectSkills);
+            populateWithPicture(EPopulate.Projects, projectsViewModels);
+            Utility.populateWithDescription(EPopulate.Projects, projectsViewModels);
+            populateWithPicture(EPopulate.ProjectDetails, projectsViewModels);
+            Utility.populateWithDescription(EPopulate.ProjectDetails, projectsViewModels);
+            //_projectRepository.populateProjectsWithPicture(projectSkills);
+            ViewBag.Projects = _projectRepository.getProjectsOrderByDate(new List<SkillsViewModel> { new SkillsViewModel { Projects = projectsViewModels } });
+
+        }
+
+        private void loadSkills()
+        {
+            // skills
+            ViewBag.Skills = db.Skills
+                .Include(x => x.Descriptions)
+                .Include(x => x.LevelsViewModel)
+                .Include(x => x.CategoryViewModel).ToList();
+            populateWithPicture(EPopulate.Skills, ViewBag.Skills);
+            Utility.populateWithDescription(EPopulate.Skills, ViewBag.Skills);
         }
 
         [HttpGet]
@@ -203,25 +211,25 @@ namespace DagoWebPortfolio.Controllers
             return RedirectToAction("Index", new { isMessageSent = ViewBag.EmailConfirmation});
         }
 
-        private void populateWithPicture(EPopulateDisplay targetType, object param)
+        private void populateWithPicture(EPopulate targetType, object param)
         {
             using (DBModelPortfolioContext db = new DBModelPortfolioContext())
             {
                 switch (targetType)
                 {
-                    case EPopulateDisplay.Education:
+                    case EPopulate.Education:
                         foreach (var education in (List<EducationViewModel>)param)
                         {
                             education.Pictures = db.PicturesApp.Where(x => x.EducationViewModelID == education.ID).ToList();
                         }
                         break;
-                    case EPopulateDisplay.Experiences:
+                    case EPopulate.Experiences:
                         foreach (var experience in (List<ExperiencesViewModel>)param)
                         {
                             experience.Pictures = db.PicturesApp.Where(x => x.ExperiencesViewModelID == experience.ID).ToList();
                         }
                         break;
-                    case EPopulateDisplay.Projects:
+                    case EPopulate.Projects:
                         foreach (var project in (List<ProjectsViewModel>)param)
                         {
                             project.ProjectDetail.Pictures = db.PicturesApp.Where(x => x.ProjectDetailsViewModelID == project.ProjectDetail.ID).ToList();

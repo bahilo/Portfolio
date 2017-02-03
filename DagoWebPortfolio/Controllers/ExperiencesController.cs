@@ -132,7 +132,7 @@ namespace DagoWebPortfolio.Controllers
             }
             ExperiencesViewModel experiencesViewModel = db.Experiences.Find(id);
             experiencesViewModel.Skills = db.Skills.Include(p => p.Experiences).ToList();
-            Utility.populateWithDescription(EPopulateDisplay.Experiences, new List<ExperiencesViewModel> { experiencesViewModel });
+            Utility.populateWithDescription(EPopulate.Experiences, new List<ExperiencesViewModel> { experiencesViewModel });
             if (experiencesViewModel == null)
             {
                 return HttpNotFound();

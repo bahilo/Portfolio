@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DagoWebPortfolio.Infrastructure
 {
-    public enum EPopulateDisplay
+    public enum EPopulate
     {
         Education,
         Experiences,
