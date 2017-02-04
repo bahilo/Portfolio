@@ -166,10 +166,8 @@ namespace DagoWebPortfolio.Controllers
                 try
                 {
                     var origineProject = db.Projects.Include(x => x.ProjectDetail).Include(x => x.Skills).Include(x => x.Summaries).Where(x => x.ID == projectsViewModel.ID).Single();
-                    origineProject.link = projectsViewModel.link;
-                    origineProject.Title = projectsViewModel.Title;
-
-                    dictionary["projectsViewModel"] = origineProject;
+                    
+                    dictionary["projectsViewModel"] = projectsViewModel;
                     dictionary["projectDetailID"] = projectDetailID;
                     dictionary["listSkillOfProjectsId"] = listSkillOfProjectsId;
                     dictionary["isSkillSelected"] = isSkillSelected;

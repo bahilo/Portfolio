@@ -114,23 +114,18 @@ namespace DagoWebPortfolio.Infrastructure
         /// <param name="outputProjectModel"></param>
         public void populateDBWithDataFromForm(Dictionary<string, object> formDataDictionary, ProjectsViewModel outputProjectModel)
         {
-            var id = Int32.Parse((string)formDataDictionary["projectDetailID"]);
-
             addOrUpdateSkillWithObjects(((ProjectsViewModel)formDataDictionary["projectsViewModel"]), (IEnumerable<string>)formDataDictionary["listSkillOfProjectsId"], (IEnumerable<string>)formDataDictionary["isSkillSelected"]);
 
             outputProjectModel.link = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).link;
-            //outputProjectModel.Resume = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Resume;
             outputProjectModel.Title = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Title;
             outputProjectModel.Skills = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).Skills;
-
-            //ProjectDetailsViewModel newProjectDetail = new ProjectDetailsViewModel();
+            
             outputProjectModel.ProjectDetail.Subject = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Subject;
             outputProjectModel.ProjectDetail.Status = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Status;
             outputProjectModel.ProjectDetail.Descriptions = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Descriptions;
             outputProjectModel.ProjectDetail.Date = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Date;
             outputProjectModel.ProjectDetail.Client = ((ProjectsViewModel)formDataDictionary["projectsViewModel"]).ProjectDetail.Client;
-
-            //outputProjectModel.ProjectDetail = newProjectDetail;
+            
 
         }
 
