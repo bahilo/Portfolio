@@ -50,10 +50,9 @@ namespace DagoWebPortfolio.Classes
 
 
 
-        public static void populateWithDescription(EPopulate targetType, object param)
+        public static void populateWithDescription(object param, string cultureName, EPopulate targetType)
         {
-            string cultureName = CultureInfo.CurrentCulture.Name.Split('-')[0];
-
+            
             switch (targetType)
             {
                 case EPopulate.Education:

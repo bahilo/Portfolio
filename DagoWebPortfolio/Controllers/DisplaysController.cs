@@ -57,7 +57,7 @@ namespace DagoWebPortfolio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Subject,Lang,Description,ProjectsViewModelID,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] DisplayViewModel displayViewModel, string selectedLang, string link_display_to)
+        public ActionResult Create([Bind(Include = "ID,Subject,Lang,Description,ProjectsViewModelID,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID,PicturesViewModelID")] DisplayViewModel displayViewModel, string selectedLang, string link_display_to)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace DagoWebPortfolio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Subject,Lang,Description,ProjectsViewModelID,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID")] DisplayViewModel displayViewModel, string selectedLang, string link_display_to)
+        public ActionResult Edit([Bind(Include = "ID,Subject,Lang,Description,ProjectsViewModelID,ProjectDetailsViewModelID,EducationViewModelID,ExperiencesViewModelID,SkillsViewModelID,PicturesViewModelID")] DisplayViewModel displayViewModel, string selectedLang, string link_display_to)
         {
             if (ModelState.IsValid)
             {

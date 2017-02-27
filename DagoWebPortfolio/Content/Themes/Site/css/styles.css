@@ -392,12 +392,18 @@ body.custom-background {
 /* ____________[ About ]*/
 
 .about-me .glyphicon {
-    color: rgba(0,64,64,.8);
-    font-size: 50px;
+    color: white;
+    font-size: 20px;
     margin-right: 20px;
 }
 
-
+.about-me .techno-img{
+    background-color:rgba(237,231,246,1); 
+    border-radius: 15px; 
+    width:105px; 
+    border: 2px solid rgba(128,90,174,1);
+    opacity: .8;
+}
 
 .about-me .picture-home {
     border-radius: 20%;/**/

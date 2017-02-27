@@ -38,6 +38,12 @@ namespace DagoWebPortfolio.Controllers
         {
             ContactViewModel ContactViewModel = new ContactViewModel();
 
+            loadAboutMeInformation();
+            loadEducation();
+            loadExperiences();
+            loadSkills();
+            loadProjects();
+
             if (System.IO.File.Exists(Utility.getDirectory("Views", "Shared", _culture, "_Layout.cshtml")))
                 ViewBag.Culture = _culture;
             else
@@ -46,50 +52,18 @@ namespace DagoWebPortfolio.Controllers
                 try
                 {
                     System.IO.Directory.Delete(Utility.getDirectory("Views", "Shared", _culture));
+                    ViewBag.Object = JsonConvert.SerializeObject(isMessageSent);
                 }
                 catch (Exception ex)
                 {
                     Log.error(ex.Message);
                 }
-            }
-
-            loadEducation();
-            loadExperiences();
-            loadSkills();
-            loadProjects();      
-            
-            try
-            {
-                ViewBag.Object = JsonConvert.SerializeObject(isMessageSent);
-            }
-            catch (Exception ex)
-            {
-                Log.write(ex.Message, "ERR");
-            }
-
-            // about page
-            try
-            {
-                ViewBag.Picture = db.PicturesApp.Where(x => x.IsAbout).SingleOrDefault() ?? new PicturesViewModel();
-            }
-            catch (Exception ex)
-            {
-                Log.write(ex.Message, "ERR");
-            }
+            }       
 
             if(System.IO.File.Exists(Utility.getDirectory("Views", "Home",_culture , "Index.cshtml")))
                 return View(_culture + "/Index", ContactViewModel);
             else
-                return View(_cultureDefault + "/Index", ContactViewModel);
-
-            //try
-            //{
-            //    return View(_culture + "/Index");
-            //}
-            //catch (Exception)
-            //{
-            //    return View(_cultureDefault + "/Index");
-            //}
+                return View(_cultureDefault + "/Index", ContactViewModel);            
         }
 
         private void loadExperiences()
@@ -100,11 +74,11 @@ namespace DagoWebPortfolio.Controllers
             try
             {
                 populateWithPicture(EPopulate.Experiences, experiences);
-                Utility.populateWithDescription(EPopulate.Experiences, experiences);
+                Utility.populateWithDescription(experiences, _culture, EPopulate.Experiences);
             }
             catch (Exception ex)
             {
-                Log.write(ex.Message, "ERR");
+                Log.error(ex.Message);
             }
             ViewBag.Experiences = getExperiencesOrderByDate(new List<SkillsViewModel> { new SkillsViewModel { Experiences = experiences } });
         }
@@ -119,33 +93,46 @@ namespace DagoWebPortfolio.Controllers
                 .Include(x => x.Descriptions)
                 .Include(x => x.Pictures).ToList();
                 populateWithPicture(EPopulate.Education, educationList);
-                Utility.populateWithDescription(EPopulate.Education, educationList);
+                Utility.populateWithDescription(educationList, _culture, EPopulate.Education );
             }
             catch (Exception ex)
             {
-                Log.write(ex.Message, "ERR");
-                //return View("Error");
+                Log.error(ex.Message);
             }
             ViewBag.Education = educationList.OrderByDescending(x => x.YearGraduate).ToList();
 
         }
 
+        private void loadAboutMeInformation()
+        {
+            // about page
+            try
+            {
+                var pictures = db.PicturesApp.Where(x => x.IsAbout)
+                    .Include(x=>x.Descriptions).ToList();
+                Utility.populateWithDescription(pictures, _culture, EPopulate.Pictures);
+
+                ViewBag.Picture = pictures.SingleOrDefault() ?? new PicturesViewModel();
+            }
+            catch (Exception ex)
+            {
+                Log.error(ex.Message);
+            }            
+        }
+
         private void loadProjects()
         {
-            var projectsViewModels = db.Projects.Where(x=>x.ProjectDetail.Status)
+            var projectsViewModels = db.Projects.Where(x => x.ProjectDetail.Status)
                      .Include(x => x.Summaries)
                      .Include(x => x.ProjectDetail)
                      .Include(x => x.ProjectDetail.Descriptions)
                      .Include(x => x.ProjectDetail.Pictures).ToList();
-
-            // projects
-            //var projectSkills = db.Skills.ToList();
-            //_projectRepository.populateProjectsWithProjectdetails(projectSkills);
+            
+            // Pojects
             populateWithPicture(EPopulate.Projects, projectsViewModels);
-            Utility.populateWithDescription(EPopulate.Projects, projectsViewModels);
+            Utility.populateWithDescription(projectsViewModels, _culture, EPopulate.Projects);
             populateWithPicture(EPopulate.ProjectDetails, projectsViewModels);
-            Utility.populateWithDescription(EPopulate.ProjectDetails, projectsViewModels);
-            //_projectRepository.populateProjectsWithPicture(projectSkills);
+            Utility.populateWithDescription(projectsViewModels, _culture, EPopulate.ProjectDetails);
             ViewBag.Projects = _projectRepository.getProjectsOrderByDate(new List<SkillsViewModel> { new SkillsViewModel { Projects = projectsViewModels } });
 
         }
@@ -158,7 +145,7 @@ namespace DagoWebPortfolio.Controllers
                 .Include(x => x.LevelsViewModel)
                 .Include(x => x.CategoryViewModel).ToList();
             populateWithPicture(EPopulate.Skills, ViewBag.Skills);
-            Utility.populateWithDescription(EPopulate.Skills, ViewBag.Skills);
+            Utility.populateWithDescription(ViewBag.Skills, _culture, EPopulate.Skills );
         }
 
         [HttpGet]
@@ -186,7 +173,7 @@ namespace DagoWebPortfolio.Controllers
                     mail.Body = contactsViewModel.Comments;
                     mail.Body += "<p>Phone: " + contactsViewModel.Phone + "</p>";
                     mail.Body += "<p>Email: " + contactsViewModel.Email + "</p>";
-                    mail.From = mail.Login;// contactsViewModel.Email;
+                    mail.From = mail.Login;
                     mail.FromName = contactsViewModel.Name;
                     mail.IsHtml = true;
                     mail.addAnAddress(new Dictionary<string, List<string>> {
@@ -204,7 +191,7 @@ namespace DagoWebPortfolio.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Log.write(ex.Message, "ERR");
+                    Log.error(ex.Message);
                 }   
             }
 

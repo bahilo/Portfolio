@@ -46,7 +46,7 @@
 <div class="home">
     @*================[  About me section ]=======================*@
 
-    <section class="about-us" id="aboutme">
+    <section class="about-me" id="aboutme">
         <div class="container">
             <!-- SECTION HEADER -->
 
@@ -58,34 +58,25 @@
             <div class="row">
                 <div class="row">
                     <div data-scrollreveal="enter left move 60px after 0.00s over 2.5s">
-                        <div class="about-me">
-                            <div class="container">
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    @if (!string.IsNullOrEmpty(picture.FileName))
+                        <div class="container">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                @if (picture != null && !string.IsNullOrEmpty(picture.FileName))
+                                {
+                                    string fullPath = picture.path + picture.FileName;
+                                    <div class="section-header">
+                                        <img class="picture-home" src="@fullPath" />
+                                    </div>
+                                    foreach (var description in picture.Descriptions)
                                     {
-                                        string fullPath = picture.path + picture.FileName;
-                                        <div class="section-header">
-                                            <img class="picture-home" src="@fullPath" />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p>@Html.DisplayHtml(description.Description)</p>
+                                            </div>
                                         </div>
                                     }
-                                    <p>
-                                        <span>
-                                            I am highly motivated and hardworking IT graduate with a Master degree in Computer Science. I have a great passion for software development and have an interest in the requirement analysis and the design stages. <br /><br />
-
-                                            I have previous experience as a Software Developer; developing property and life insurance software for banks and insurances. <br />
-                                            The development occurred within oracle environment using PL/SQL through two different types of IDE (Integrated Development Environment) to develop the user interfaces and interact with an Oracle 8.0 database. <br />
-                                            I was using FORMS IDE for developing the user interfaces and REPORTS IDE for creating the output PDF such as Invoices and Legal Texts within a multi-language context.<br />
-                                            I have also developed User interaces using WPF (Window Presentation Foundation) within Microsoft environment through several projects with Just IT.<br /><br />
-                                            This experiences helped me to enhance my development and planning skills and improve my understanding of the development process from a business prospective.<br /><br />
-
-                                            To consolidate my future career in development, I am currently enrolled on a self-funded course working towards an agile certification through Just IT.<br /><br />
-
-                                            I am now seeking a position as a C# developer to further develop my skills and experience as well as to start a challenging career within software development for a company that offers an opportunity for personal development.<br /><br />
-                                        </span>
-                                    </p>
-                                </div>
-
+                                }
                             </div>
+
                         </div>
                     </div>
 
@@ -104,7 +95,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <h3><span class="glyphicon glyphicon-retweet"></span>Motivation</h3>
-                                    <p><span>I always wanted to work in IT industry, so after my Master in Computer science I decided to become a C# developer beside having the fundamentals programming in PHP language. In my spare time I like to further my skills by developing applications (web or desktop).</span></p>
+                                    <p><span>I always wanted to work in IT industry, so after my Master in Computer science I decided to become a C# developer beside having the fundamentals programming in PHP language. In my spare time I like to further develop my skills by developing applications (web or desktop).</span></p>
                                 </div>
                                 <div class="col-md-4">
                                     <h3><span class="glyphicon glyphicon-ok-sign"></span>Qualities</h3>
@@ -114,6 +105,27 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div data-scrollreveal="enter right move 60px after 0.00s over 2.5s">
+                            <div class="our-clients">
+                                <h3>
+                                    <span class="section-footer-title">TECHNOLOGIES</span>
+                                </h3>
+                            </div>
+                            <div class="client-list">
+                                @foreach (var technoEnv in projects.SelectMany(x => x.TechnoEnv).Where(x => x.Category == "Technology").GroupBy(y => y.Picture.FileName).Select(y => y.First()).ToList())
+                                {
+                                    <span class="col-md-2">
+                                        <a href="#">
+                                            <img class="techno-img" title="@technoEnv.Subject" alt="@technoEnv.Subject" src="@technoEnv.Picture.path@technoEnv.Picture.FileName">
+                                        </a>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div> <!-- / END 3 COLUMNS OF ABOUT US-->
         </div> <!-- / END CONTAINER -->
@@ -592,25 +604,25 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                    @if (project.TechnoEnv.Where(x => x.Category == "Language").Count() > 0)
-                                    {
-                                        <th>Languages</th>
-                                    }
-                                    @if (project.TechnoEnv.Where(x => x.Category == "Technology").Count() > 0)
-                                    {
-                                        <th>Technologies</th>
-                                    }
-                                    @if (project.TechnoEnv.Where(x => x.Category == "Version Control").Count() > 0)
-                                    {
-                                        <th>Version Control</th>
-                                    }
-                                    @if (project.TechnoEnv.Where(x => x.Category == "Web Service").Count() > 0)
-                                    {
-                                        <th>Web Services</th>
-                                    }
-                                    </tr>
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Language").Count() > 0)
+                                            {
+                                                <th>Languages</th>
+                                            }
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Technology").Count() > 0)
+                                            {
+                                                <th>Technologies</th>
+                                            }
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Version Control").Count() > 0)
+                                            {
+                                                <th>Version Control</th>
+                                            }
+                                            @if (project.TechnoEnv.Where(x => x.Category == "Web Service").Count() > 0)
+                                            {
+                                                <th>Web Services</th>
+                                            }
+                                        </tr>
                                     </thead>
-                                    
+
                                     <tbody>
                                         <tr>
                                             @if (project.TechnoEnv.Where(x => x.Category == "Language").Count() > 0)
@@ -703,39 +715,32 @@
                             </div>
                         </div>
 
-                        <div class="divider"></div>
-
                         @foreach (var description in project.ProjectDetail.Descriptions)
                         {
+                            <div class="divider"></div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <p>@Html.DisplayHtml(description.Description)</p>
                                 </div>
                             </div>
 
-                            <div class="divider"></div>
                         }
 
-                        @*<div class="row">
-                                <div class="col-md-12">
-                                    @if (Model.ProjectDetail.Descriptions.Count > 0)
-                                    {
-                                        <p>@Html.DisplayHtml(Model.ProjectDetail.Descriptions.First().Description)</p>
-                                    }
-                                </div>
-                            </div>*@
-
+                        <div class="divider"></div>
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
                                 {
-                                    <div class="text-center"><p>Live demo</p></div>
                                     <div class="video-box">
-                                        <video class="video" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
-                                            <source src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
-                                        </video>
-                                        <div id="footnote"></div>
+                                        <figure>
+                                            <video class="video" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                                                <source src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
+                                            </video>
+                                            <div id="footnote"></div>
+                                            <figcaption>Live demo</figcaption>
+                                        </figure>
                                     </div>
                                 }
                             </div>
@@ -823,7 +828,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
-
         function resetFormError() {
             var errorName = document.getElementById("NameError");
             errorName.style.display = "none";
@@ -868,8 +872,49 @@
                 return true;
             else
                 return false;
-
         }
+
+        $(document).ready(function () {
+            var param = 0;
+            var value = 0;
+            var name = ""; // ,
+            var listColor = ['#E1BEE7', '#F8BBD0', '#7F677F'];
+            $("canvas[id^=demo]").each(function () {
+                value = $(this).attr("property");
+                name = $(this).attr("name");
+                param = value / 100;
+                $(this).waterbubble({
+
+                    // bubble size
+                    radius: 50,
+
+                    // border width
+                    lineWidth: undefined,
+
+                    // data to present
+                    data: param,
+
+                    // color of the water bubble
+                    waterColor: listColor[Math.floor(Math.random() * listColor.length)],//'rgba(25, 139, 201, 1)',
+
+                    // text color
+                    textColor: 'rgba(06, 85, 128, 0.8)',
+
+                    // custom font family
+                    font: '',
+
+                    // show wave
+                    wave: true,
+
+                    // custom text displayed inside the water bubble
+                    txt: value + "%",
+
+                    // enable water fill animation
+                    animation: true
+
+                });
+            });
+        });
 
     </script>
 }

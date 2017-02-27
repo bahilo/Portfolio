@@ -1362,7 +1362,7 @@ object {
  **   Header               -----
 -----------------------------------------*/
 /*** SECTION HEADERS ***/
-.focus,.works,.about-us,.features,.packages,.products,.testimonial,.contact {
+.focus,.works,.about-me,.features,.packages,.products,.testimonial,.contact {
 	padding-top: 100px;
 }
 .section-header {
@@ -2225,31 +2225,31 @@ width: -webkit-calc(100% / 4);
 /*---------------------------------------
  **   Section: About us;              -----
 -----------------------------------------*/
-.about-us {
+.about-me {
 	background: rgba(128,90,174,.9);
 	color: #FFF;
 }
-.about-us .big-intro {
+.about-me .big-intro {
 	text-align: right;
 	font-weight: 300;
 	font-size: 60px;
 	line-height: normal;
 	margin-top: -15px;
 }
-.about-us .section-header .section-legend {
+.about-me .section-header .section-legend {
 	color: #FFF;
 }
-.about-us p {
+.about-me p {
 	text-align: left;
 	color: #fff;
 	font-size: 14px;
 	line-height: 25px;
 }
-.about-us .column {
+.about-me .column {
 	margin-bottom: 78px;
 }
-.about-us .col-md-12.zerif-rtl-big-title .big-intro,
-.about-us .col-md-12.zerif_about_us_center p {
+.about-me .col-md-12.zerif-rtl-big-title .big-intro,
+.about-me .col-md-12.zerif_about_us_center p {
 	text-align: center;
 }
 /*--SKILLS --*/
@@ -5729,7 +5729,7 @@ p.edd-alert-error,
   		font-size: 12px;
   	}
 	.zerif_about_us_center p,
-	.about-us .col-md-6.zerif_about_us_center.text_and_skills p {
+	.about-me .col-md-6.zerif_about_us_center.text_and_skills p {
 		text-align: center;
 	}
 }
@@ -5829,7 +5829,7 @@ body.custom-background {
 	.big-intro {
 		text-align: center !important;
 	}
-	.about-us .column {
+	.about-me .column {
 		margin-bottom: 40px;
 	}
 	.skills {
@@ -5891,14 +5891,14 @@ body.custom-background {
     .section-header {
         padding-bottom: 30px;
     }
-    .focus, .works, .about-us, .features, .packages, .products, .testimonial, .contact {
+    .focus, .works, .about-me, .features, .packages, .products, .testimonial, .contact {
         padding-top: 60px;
         padding-bottom: 60px;
     }
     .header-content-wrap{
 		padding: 225px 0 150px;
 	}
-	.about-us .big-intro {
+	.about-me .big-intro {
 		text-align: center;
 	}
 	.my-details {
@@ -6072,7 +6072,7 @@ body.custom-background {
 		text-align: center !important;
 		font-size: 8vw !important;
 	}
-	.about-us .column {
+	.about-me .column {
 		margin-bottom: 40px;
 	}
 	.skills {
@@ -6255,7 +6255,7 @@ body.custom-background {
 	}
 	.focus,
 	.works,
-	.about-us,
+	.about-me,
 	.features,
 	.packages,
 	.products,
@@ -6292,10 +6292,10 @@ body.custom-background {
 	    padding: 0 1.5%;
 	    margin-bottom: 0;
 	}
-	.about-us {
+	.about-me {
 		padding-bottom: 0;
 	}
-	.about-us .column {
+	.about-me .column {
 	    margin-bottom: 0;
 	    width: 100%;
 	    float: left;
@@ -6304,7 +6304,7 @@ body.custom-background {
 	    padding-left: 0;
 	    margin-bottom: 0;
 	}
-	.about-us .big-intro {
+	.about-me .big-intro {
 	    margin-top: 0;
 	    text-align: center;
 	}
@@ -6320,7 +6320,7 @@ body.custom-background {
 		width: 25%;
 		margin-bottom: 0;
 	}
-	.about-us p {
+	.about-me p {
 		text-align: center;
 	}
 	.our-team {

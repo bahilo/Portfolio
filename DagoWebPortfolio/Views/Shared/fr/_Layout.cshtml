@@ -6,7 +6,7 @@
     ViewBag.Title = " DAGO - PORTFOLIO";
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 
     <title>@ViewBag.Title</title>
@@ -24,7 +24,6 @@
     <link href="https://fonts.googleapis.com/css?family=Kumar+One+Outline|Monoton|Merienda" rel="stylesheet">
 
     <script src="~/Scripts/jquery-2.1.4.js"></script>
-    <script src="~/Content/Scripts/waterbubble.min.js"></script>
 
 </head>
 
@@ -151,46 +150,6 @@
     <script src="~/Content/Modules/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var param = 0;
-            var value = 0;
-            var name = ""; // ,
-            var listColor = [ '#E1BEE7', '#F8BBD0', '#7F677F' ];
-            $("canvas[id^=demo]").each(function () {
-                value = $(this).attr("property");
-                name = $(this).attr("name");
-                param = value / 100;
-                $(this).waterbubble({
-
-                    // bubble size
-                    radius: 50,
-
-                    // border width
-                    lineWidth: undefined,
-
-                    // data to present
-                    data: param,
-
-                    // color of the water bubble
-                    waterColor: listColor[Math.floor(Math.random() * listColor.length)],//'rgba(25, 139, 201, 1)',
-
-                    // text color
-                    textColor: 'rgba(06, 85, 128, 0.8)',
-
-                    // custom font family
-                    font: '',
-
-                    // show wave
-                    wave: true,
-
-                    // custom text displayed inside the water bubble
-                    txt: value + "%",
-
-                    // enable water fill animation
-                    animation: true
-
-                });
-            });
-
 
             var obj = @Html.Raw(ViewBag.Object);
 
