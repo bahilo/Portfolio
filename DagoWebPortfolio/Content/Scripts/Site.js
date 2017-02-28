@@ -43,7 +43,10 @@ $(document).ready(function () {
         $(this).removeClass('animated infinite pulse');
     });/**/
 
-       
+    $('.modal').dialog({
+        /*height: 300,*/
+        width: 600
+    });
     
 });
 

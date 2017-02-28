@@ -64,7 +64,7 @@
                                 {
                                     string fullPath = picture.path + picture.FileName;
                                     <div class="section-header">
-                                        <img class="picture-home" src="@fullPath" />
+                                        <a href="#"><img class="picture-home" src="@fullPath" /></a>
                                     </div>
                                     foreach (var description in picture.Descriptions)
                                     {
@@ -573,8 +573,7 @@
                         <h4 class="modal-title">@subject</h4>
                     </div>
                     <div class="modal-body">
-
-
+                        
                         <div class="divider"></div>
 
                         <div class="row">
@@ -586,6 +585,26 @@
                             </div>
                         </div>
 
+                        @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
+                        {
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                
+                                        <div class="divider"></div>
+                                        <div class="video-box">
+                                            <figure>
+                                                <video class="video" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
+                                                    <source src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
+                                                </video>
+                                                <div id="footnote"></div>
+                                                <figcaption>Live demo</figcaption>
+                                            </figure>
+                                        </div>
+
+                                </div>
+                            </div>
+                        }
                         <div class="divider"></div>
 
                         <div class="row">
@@ -725,26 +744,7 @@
                                 </div>
                             </div>
 
-                        }
-
-                        <div class="divider"></div>
-
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                @if (project.ProjectDetail != null && project.ProjectDetail.Pictures.Count() > 0 && project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").Count() > 0)
-                                {
-                                    <div class="video-box">
-                                        <figure>
-                                            <video class="video" width="700" id="ourvideo" autoplay loop preload="auto" controls="controls" muted>
-                                                <source src="@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).path)@Html.DisplayFor(modelItem => project.ProjectDetail.Pictures.Where(y => y.FileName.Split('.')[1] == "mp4").ElementAt(0).FileName)" type='video/mp4' />
-                                            </video>
-                                            <div id="footnote"></div>
-                                            <figcaption>Live demo</figcaption>
-                                        </figure>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        }                      
 
                     </div>
                     <div class="modal-footer">
